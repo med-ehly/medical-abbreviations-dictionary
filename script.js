@@ -1,5 +1,10 @@
 // script.js
 
+// Fonction pour trier les données en ordre alphabétique
+function sortDataAlphabetically(data) {
+  return data.sort((a, b) => a.abreviation.localeCompare(b.abreviation));
+}
+
 // Fonction pour afficher les résultats de recherche
 function displayResults(results) {
   const resultsList = document.getElementById("resultsList");
@@ -18,21 +23,24 @@ function displayResults(results) {
 }
 
 // Fonction pour gérer la recherche
-function handleSearch(event) {
+function handleSearch(event, data) {
   const searchTerm = event.target.value.toLowerCase();
-  fetch("data.json") // Chemin vers le fichier JSON contenant vos données
-    .then(response => response.json())
-    .then(data => {
-      const filteredResults = data.filter(item =>
-        item.abreviation.toLowerCase().includes(searchTerm)
-      );
-      displayResults(filteredResults);
-    })
-    .catch(error => {
-      console.error("Une erreur s'est produite lors du chargement des données.", error);
-    });
+  const filteredResults = data.filter(item =>
+    item.abreviation.toLowerCase().includes(searchTerm)
+  );
+  displayResults(filteredResults);
 }
 
 // Écouteur d'événement pour la barre de recherche
 const searchInput = document.getElementById("searchInput");
-searchInput.addEventListener("input", handleSearch);
+
+fetch("data.json")
+  .then(response => response.json())
+  .then(data => {
+    const sortedData = sortDataAlphabetically(data);
+    displayResults(sortedData);
+    searchInput.addEventListener("input", event => handleSearch(event, sortedData));
+  })
+  .catch(error => {
+    console.error("Une erreur s'est produite lors du chargement des données.", error);
+  });
