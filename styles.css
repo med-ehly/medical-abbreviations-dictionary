@@ -46,6 +46,13 @@ input[type="text"] {
   margin: 0 3px; /* Ajouter un espacement horizontal entre les boutons */
 }
 
+/* Ajouter le style pour la classe "active" */
+.letter-button.active {
+  background-color: #007BFF; /* Couleur différente lorsque le bouton est enfoncé */
+  color: white; /* Couleur du texte */
+  border-color: #007BFF; /* Couleur de la bordure */
+}
+
 .letter-button:hover {
   background-color: #ddd;
 }
