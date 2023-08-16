@@ -1,17 +1,14 @@
 /* styles.css */
 
 /* Réinitialisation des styles par défaut du navigateur */
-body,
-h1,
-ul,
-li {
+body, h1, ul, li {
   margin: 0;
   padding: 0;
 }
 
-
+/* Style du fond de page */
 body {
-  background-color: #f5f5f5;
+  background-color: #f5f5f5; /* Couleur de fond pâle */
 }
 
 /* Style du header */
@@ -32,24 +29,47 @@ input[type="text"] {
   margin-bottom: 20px;
 }
 
+/* Style des boutons de lettre */
+.alphabet {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.letter-button {
+  padding: 5px 10px;
+  font-size: 16px;
+  margin: 0 5px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.letter-button:hover {
+  background-color: #ddd;
+}
+
 /* Style du conteneur des résultats */
 .results-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
+  background-color: white; /* Couleur de fond pour les résultats */
   padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px; /* Arrondir les coins */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Ajouter une ombre légère */
+  width: 80%; /* Largeur des résultats */
+  margin: 0 auto; /* Centrer horizontalement */
+  margin-top: 20px; /* Espacement par rapport aux lettres */
 }
 
 /* Style de la liste des résultats (tableau) */
 ul {
   list-style: none;
   padding: 0;
-  width: 100%;
+  width: 100%; /* Utiliser toute la largeur du conteneur */
 }
-
 
 /* Style des éléments de la liste (ligne de tableau) */
 li {
@@ -61,7 +81,6 @@ li {
   margin-bottom: 10px;
 }
 
-
 /* Style de l'abréviation (premier côté) */
 abbr {
   font-weight: bold;
@@ -69,5 +88,5 @@ abbr {
 
 /* Au survol, changer la couleur de fond des éléments de la liste */
 li:hover {
-  background-color: white;
+  background-color: #f2f2f2;
 }
