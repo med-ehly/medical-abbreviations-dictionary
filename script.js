@@ -6,7 +6,7 @@ function sortDataAlphabetically(data) {
 }
 
 // Fonction pour afficher les résultats de recherche
-function displayResults(results) {
+function displaySearchResults(results) {
   const resultsList = document.getElementById("resultsList");
   resultsList.innerHTML = "";
 
@@ -28,7 +28,7 @@ function handleSearch(event, data) {
   const filteredResults = data.filter(item =>
     item.abreviation.toLowerCase().includes(searchTerm)
   );
-  displayResults(filteredResults);
+  displaySearchResults(filteredResults);
 }
 
 // Écouteur d'événement pour la barre de recherche
@@ -38,7 +38,7 @@ fetch("data.json")
   .then(response => response.json())
   .then(data => {
     const sortedData = sortDataAlphabetically(data);
-    displayResults(sortedData);
+    displaySearchResults(sortedData);
     searchInput.addEventListener("input", event => handleSearch(event, sortedData));
   })
   .catch(error => {
@@ -58,14 +58,14 @@ letterButtons.forEach(button => {
   button.addEventListener("click", () => {
     const selectedLetter = button.getAttribute("data-letter");
     const filteredResults = filterResultsByLetter(selectedLetter, sortedData);
-    displayResults(filteredResults);
+    displayResults(filteredResults); // Utilisez la fonction displaySearchResults ici
   });
 });
 
-// Fonction pour afficher les résultats filtrés
+// Fonction pour afficher les résultats filtrés par lettre
 function displayResults(results) {
   const resultsList = document.getElementById("results-list");
-  resultsList.innerHTML = ''; // Effacer les résultats actuels
+  resultsList.innerHTML = '';
 
   results.forEach(result => {
     const li = document.createElement("li");
