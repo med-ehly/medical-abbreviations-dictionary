@@ -37,6 +37,7 @@ const searchInput = document.getElementById("searchInput");
 fetch("data.json")
   .then(response => response.json())
   .then(data => {
+    console.log("Fetched data:", sortedData)
     const sortedData = sortDataAlphabetically(data);
     displaySearchResults(sortedData);
     searchInput.addEventListener("input", event => handleSearch(event, sortedData));
@@ -58,14 +59,16 @@ const letterButtons = document.querySelectorAll(".letter-button");
 letterButtons.forEach(button => {
   button.addEventListener("click", () => {
     const selectedLetter = button.getAttribute("data-letter");
+    console.log("Button clicked:", button.getAttribute("data-letter"));
     const isFilterActive = button.classList.contains("active"); // Vérifier l'état actif
 
     // Si le filtre est actif, désactivez-le et affichez tous les résultats
     if (isFilterActive) {
       button.classList.remove("active");
+      console.log("Filter is active. Removing filter...");
       displayResults(sortedData); // Use displayResults instead of displaySearchResults
     } else {
-      // Sinon, activez le filtre et affichez les résultats filtrés
+      console.log("Filter is not active. Applying filter...");
       button.classList.add("active");
       const filteredResults = filterResultsByLetter(selectedLetter, sortedData);
       displayResults(filteredResults);
@@ -75,6 +78,7 @@ letterButtons.forEach(button => {
 
 // Fonction pour afficher les résultats (filtrés ou non)
 function displayResults(results) {
+  console.log("Displaying results:", results);
   const resultsList = document.getElementById("resultsList"); // Correction de l'ID
   resultsList.innerHTML = '';
 
