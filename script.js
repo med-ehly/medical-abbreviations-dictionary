@@ -56,8 +56,18 @@ function filterResultsByLetter(letter, data) {
 letterButtons.forEach(button => {
   button.addEventListener("click", () => {
     const selectedLetter = button.getAttribute("data-letter");
-    const filteredResults = filterResultsByLetter(selectedLetter, sortedData);
-    displayResults(filteredResults); // Utilisez la fonction displayResults ici
+    const isFilterActive = button.classList.contains("active"); // Vérifier l'état actif
+
+    // Si le filtre est actif, désactivez-le et affichez tous les résultats
+    if (isFilterActive) {
+      button.classList.remove("active");
+      displayResults(sortedData);
+    } else {
+      // Sinon, activez le filtre et affichez les résultats filtrés
+      button.classList.add("active");
+      const filteredResults = filterResultsByLetter(selectedLetter, sortedData);
+      displayResults(filteredResults);
+    }
   });
 });
 
