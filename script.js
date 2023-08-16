@@ -73,7 +73,7 @@ letterButtons.forEach(button => {
 
 // Fonction pour afficher les résultats (filtrés ou non)
 function displayResults(results) {
-  const resultsList = document.getElementById("results-list");
+  const resultsList = document.getElementById("resultsList"); // Correction de l'ID
   resultsList.innerHTML = '';
 
   if (results.length === 0) {
@@ -95,3 +95,4 @@ function displayResults(results) {
     resultsList.appendChild(row); // Ajouter la ligne au tableau de résultats
   });
 }
+
