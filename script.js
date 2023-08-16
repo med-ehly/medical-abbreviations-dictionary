@@ -45,6 +45,13 @@ fetch("data.json")
     console.error("Une erreur s'est produite lors du chargement des données.", error);
   });
 
+// Fonction pour filtrer les résultats par lettre
+function filterResultsByLetter(letter, data) {
+  return data.filter(item =>
+    item.abreviation.charAt(0).toLowerCase() === letter.toLowerCase()
+  );
+}
+
 // Écouteurs d'événement pour les boutons de lettre
 const letterButtons = document.querySelectorAll(".letter-button");
 letterButtons.forEach(button => {
@@ -54,3 +61,15 @@ letterButtons.forEach(button => {
     displayResults(filteredResults);
   });
 });
+
+// Fonction pour afficher les résultats filtrés
+function displayResults(results) {
+  const resultsList = document.getElementById("results-list");
+  resultsList.innerHTML = ''; // Effacer les résultats actuels
+
+  results.forEach(result => {
+    const li = document.createElement("li");
+    li.innerHTML = `<abbr>${result.abreviation}</abbr> - ${result.description}`;
+    resultsList.appendChild(li);
+  });
+}
