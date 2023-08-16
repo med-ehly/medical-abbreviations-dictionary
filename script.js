@@ -63,7 +63,7 @@ letterButtons.forEach(button => {
     // Si le filtre est actif, désactivez-le et affichez tous les résultats
     if (isFilterActive) {
       button.classList.remove("active");
-      displayResults(sortedData);
+      displayResults(sortedData); // Use displayResults instead of displaySearchResults
     } else {
       // Sinon, activez le filtre et affichez les résultats filtrés
       button.classList.add("active");
