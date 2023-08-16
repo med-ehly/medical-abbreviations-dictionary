@@ -53,19 +53,23 @@ function filterResultsByLetter(letter, data) {
 }
 
 // Écouteurs d'événement pour les boutons de lettre
-const letterButtons = document.querySelectorAll(".letter-button");
 letterButtons.forEach(button => {
   button.addEventListener("click", () => {
     const selectedLetter = button.getAttribute("data-letter");
     const filteredResults = filterResultsByLetter(selectedLetter, sortedData);
-    displayResults(filteredResults); // Utilisez la fonction displaySearchResults ici
+    displayResults(filteredResults); // Utilisez la fonction displayResults ici
   });
 });
 
-// Fonction pour afficher les résultats filtrés par lettre
+// Fonction pour afficher les résultats (filtrés ou non)
 function displayResults(results) {
   const resultsList = document.getElementById("results-list");
   resultsList.innerHTML = '';
+
+  if (results.length === 0) {
+    resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
+    return;
+  }
 
   results.forEach(result => {
     const li = document.createElement("li");
