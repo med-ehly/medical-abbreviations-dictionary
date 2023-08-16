@@ -29,7 +29,6 @@ input[type="text"] {
   margin-bottom: 10px;
 }
 
-
 /* Style des boutons de lettre */
 .alphabet {
   display: flex;
@@ -38,13 +37,13 @@ input[type="text"] {
 }
 
 .letter-button {
-  padding: 5px 0; /* Ajuster le rembourrage vertical */
-  width: 80%; /* Prendre toute la largeur du conteneur */
+  padding: 5px 10px; /* Ajuster le rembourrage vertical */
   font-size: 13px;
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
+  margin: 0 3px; /* Ajouter un espacement horizontal entre les boutons */
 }
 
 .letter-button:hover {
@@ -53,42 +52,31 @@ input[type="text"] {
 
 /* Style du conteneur des résultats */
 .results-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   background-color: white;
-  padding: 50px;
+  padding: 20px;
   border-radius: 5px; /* Arrondir les coins */
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Ajouter une ombre légère */
   width: 80%; /* Largeur des résultats */
   margin: 0 auto; /* Centrer horizontalement */
-  margin-top: 30px; /* Ajuster l'espacement par rapport aux lettres */
+  margin-top: 20px; /* Ajuster l'espacement par rapport aux lettres */
+  text-align: center; /* Centrer le contenu */
 }
 
 /* Style de la liste des résultats (tableau) */
 ul {
   list-style: none;
   padding: 0;
-  width: 100%; /* Utiliser toute la largeur du conteneur */
+  margin: 0; /* Réinitialiser la marge */
 }
 
 /* Style des éléments de la liste (ligne de tableau) */
 li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
+  padding: 10px 0;
   border-bottom: 1px solid #ccc;
-  margin-bottom: 10px;
   background-color: white;
 }
 
 /* Style de l'abréviation (premier côté) */
 abbr {
   font-weight: bold;
-}
-
-/* Au survol, changer la couleur de fond des éléments de la liste */
-li:hover {
-  background-color: #f2f2f2;
 }
