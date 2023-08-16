@@ -21,7 +21,7 @@ header {
 
 /* Style du champ de recherche */
 input[type="text"] {
-  width: 100%;
+  justify-content: center;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
