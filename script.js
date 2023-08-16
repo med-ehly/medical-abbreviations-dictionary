@@ -53,6 +53,8 @@ function filterResultsByLetter(letter, data) {
 }
 
 // Écouteurs d'événement pour les boutons de lettre
+const letterButtons = document.querySelectorAll(".letter-button"); 
+
 letterButtons.forEach(button => {
   button.addEventListener("click", () => {
     const selectedLetter = button.getAttribute("data-letter");
