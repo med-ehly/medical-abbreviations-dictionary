@@ -44,3 +44,13 @@ fetch("data.json")
   .catch(error => {
     console.error("Une erreur s'est produite lors du chargement des données.", error);
   });
+
+// Écouteurs d'événement pour les boutons de lettre
+const letterButtons = document.querySelectorAll(".letter-button");
+letterButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const selectedLetter = button.getAttribute("data-letter");
+    const filteredResults = filterResultsByLetter(selectedLetter, sortedData);
+    displayResults(filteredResults);
+  });
+});
