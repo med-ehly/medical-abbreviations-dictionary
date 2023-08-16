@@ -1,0 +1,42 @@
+/* styles.css */
+
+/* Réinitialisation des styles par défaut du navigateur */
+body, h1, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style du header */
+header {
+  background-color: #007BFF;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Style du champ de recherche */
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+/* Style de la liste des résultats */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Style des éléments de la liste */
+li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Au survol, changer la couleur de fond des éléments de la liste */
+li:hover {
+  background-color: #f2f2f2;
+}
