@@ -24,7 +24,8 @@ input[type="text"] {
   display: block; /* Mettre en bloc pour que les marges fonctionnent */
   margin: 0 auto; /* Centrer horizontalement */
   width: 80%;
-  padding: 10px;
+  margin-top: 10px;
+  padding: 20px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
