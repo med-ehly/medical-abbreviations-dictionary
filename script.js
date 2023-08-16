@@ -72,8 +72,16 @@ function displayResults(results) {
   }
 
   results.forEach(result => {
-    const li = document.createElement("li");
-    li.innerHTML = `<abbr>${result.abreviation}</abbr> - ${result.description}`;
-    resultsList.appendChild(li);
+    const row = document.createElement("li"); // Créer une ligne de tableau (élément li)
+    
+    const abbrCell = document.createElement("abbr"); // Créer une cellule pour l'abréviation
+    abbrCell.textContent = result.abreviation;
+    row.appendChild(abbrCell); // Ajouter la cellule à la ligne
+    
+    const descriptionCell = document.createElement("p"); // Créer une cellule pour la description
+    descriptionCell.textContent = result.signification;
+    row.appendChild(descriptionCell); // Ajouter la cellule à la ligne
+    
+    resultsList.appendChild(row); // Ajouter la ligne au tableau de résultats
   });
 }
