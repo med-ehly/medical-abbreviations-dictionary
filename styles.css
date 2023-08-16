@@ -30,15 +30,20 @@ ul {
   padding: 0;
 }
 
-/* Style des éléments de la liste */
+/* Style des éléments de la liste (tableau) */
 li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 10px;
-  border-bottom: 1px solid #ccc;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
 }
 
-/* Mettre en gras les termes médicaux (abréviations) */
-li strong {
+/* Style de l'abréviation (premier côté) */
+abbr {
   font-weight: bold;
+  margin-right: 10px;
 }
 
 /* Au survol, changer la couleur de fond des éléments de la liste */
