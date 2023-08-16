@@ -1,32 +1,31 @@
 /* styles.css */
 
-/* Réinitialisation des styles par défaut du navigateur */
-body, h1, ul, li {
-  margin: 0;
-  padding: 0;
-}
-
-/* Style du header */
-header {
-  background-color: #007BFF;
-  color: white;
+/* Centrer les éléments horizontalement */
+body, main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  padding: 20px;
 }
 
-/* Style du champ de recherche */
+/* Centrer la barre de recherche */
 input[type="text"] {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 20px;
+  margin: 20px auto;
 }
 
-/* Style de la liste des résultats */
+/* Donner de l'espace en haut de la page */
+header {
+  margin-top: 30px;
+}
+
+/* Donner de l'espace en bas de la page */
+footer {
+  margin-bottom: 30px;
+}
+
+/* Centrer les résultats */
 ul {
-  list-style: none;
+  margin: 20px auto;
   padding: 0;
 }
 
@@ -34,9 +33,6 @@ ul {
 li {
   padding: 10px;
   border-bottom: 1px solid #ccc;
-}
-
-/* Au survol, changer la couleur de fond des éléments de la liste */
-li:hover {
-  background-color: #f2f2f2;
+  width: 70%; /* Ajuster la largeur des éléments */
+  margin: 0 auto; /* Centrer horizontalement */
 }
