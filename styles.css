@@ -1,10 +1,7 @@
 /* styles.css */
 
 /* Réinitialisation des styles par défaut du navigateur */
-body,
-h1,
-ul,
-li {
+body, h1, ul, li {
   margin: 0;
   padding: 0;
 }
@@ -37,6 +34,11 @@ ul {
 li {
   padding: 10px;
   border-bottom: 1px solid #ccc;
+}
+
+/* Mettre en gras les termes médicaux (abréviations) */
+li strong {
+  font-weight: bold;
 }
 
 /* Au survol, changer la couleur de fond des éléments de la liste */
