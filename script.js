@@ -1,25 +1,6 @@
-// script.js
-
 // Fonction pour trier les données en ordre alphabétique
 function sortDataAlphabetically(data) {
   return data.sort((a, b) => a.abreviation.localeCompare(b.abreviation));
-}
-
-// Fonction pour afficher les résultats de recherche
-function displaySearchResults(results) {
-  const resultsList = document.getElementById("resultsList");
-  resultsList.innerHTML = "";
-
-  if (results.length === 0) {
-    resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
-    return;
-  }
-
-  results.forEach(item => {
-    const listItem = document.createElement("li");
-    listItem.textContent = `${item.abreviation} - ${item.signification}`;
-    resultsList.appendChild(listItem);
-  });
 }
 
 // Fonction pour gérer la recherche
@@ -28,18 +9,66 @@ function handleSearch(event, data) {
   const filteredResults = data.filter(item =>
     item.abreviation.toLowerCase().includes(searchTerm)
   );
-  displaySearchResults(filteredResults);
+  displayResults(filteredResults);
+}
+
+// Fonction pour afficher les résultats (filtrés ou non)
+function displayResults(results) {
+  const resultsList = document.getElementById("resultsList");
+  resultsList.innerHTML = '';
+
+  if (results.length === 0) {
+    resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
+    return;
+  }
+
+  results.forEach(result => {
+    const row = document.createElement("li");
+    const abbrCell = document.createElement("abbr");
+    abbrCell.textContent = result.abreviation;
+    row.appendChild(abbrCell);
+
+    const descriptionCell = document.createElement("p");
+    descriptionCell.textContent = result.signification;
+    row.appendChild(descriptionCell);
+
+    resultsList.appendChild(row);
+  });
 }
 
 // Écouteur d'événement pour la barre de recherche
 const searchInput = document.getElementById("searchInput");
 
+// Fetch data and set up letter buttons
 fetch("data.json")
   .then(response => response.json())
   .then(data => {
-    console.log("Fetched data:", sortedData)
     const sortedData = sortDataAlphabetically(data);
-    displaySearchResults(sortedData);
+    const letterButtons = document.querySelectorAll(".letter-button");
+
+    letterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const selectedLetter = button.getAttribute("data-letter");
+        const isFilterActive = button.classList.contains("active");
+
+        letterButtons.forEach(otherButton => {
+          if (otherButton !== button) {
+            otherButton.classList.remove("active");
+          }
+        });
+
+        if (isFilterActive) {
+          button.classList.remove("active");
+          displayResults(sortedData);
+        } else {
+          button.classList.add("active");
+          const filteredResults = filterResultsByLetter(selectedLetter, sortedData);
+          displayResults(filteredResults);
+        }
+      });
+    });
+
+    displayResults(sortedData);
     searchInput.addEventListener("input", event => handleSearch(event, sortedData));
   })
   .catch(error => {
@@ -52,53 +81,3 @@ function filterResultsByLetter(letter, data) {
     item.abreviation.charAt(0).toLowerCase() === letter.toLowerCase()
   );
 }
-
-// Écouteurs d'événement pour les boutons de lettre
-const letterButtons = document.querySelectorAll(".letter-button"); 
-
-letterButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    const selectedLetter = button.getAttribute("data-letter");
-    console.log("Button clicked:", button.getAttribute("data-letter"));
-    const isFilterActive = button.classList.contains("active"); // Vérifier l'état actif
-
-    // Si le filtre est actif, désactivez-le et affichez tous les résultats
-    if (isFilterActive) {
-      button.classList.remove("active");
-      console.log("Filter is active. Removing filter...");
-      displayResults(sortedData); // Use displayResults instead of displaySearchResults
-    } else {
-      console.log("Filter is not active. Applying filter...");
-      button.classList.add("active");
-      const filteredResults = filterResultsByLetter(selectedLetter, sortedData);
-      displayResults(filteredResults);
-    }
-  });
-});
-
-// Fonction pour afficher les résultats (filtrés ou non)
-function displayResults(results) {
-  console.log("Displaying results:", results);
-  const resultsList = document.getElementById("resultsList"); // Correction de l'ID
-  resultsList.innerHTML = '';
-
-  if (results.length === 0) {
-    resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
-    return;
-  }
-
-  results.forEach(result => {
-    const row = document.createElement("li"); // Créer une ligne de tableau (élément li)
-    
-    const abbrCell = document.createElement("abbr"); // Créer une cellule pour l'abréviation
-    abbrCell.textContent = result.abreviation;
-    row.appendChild(abbrCell); // Ajouter la cellule à la ligne
-    
-    const descriptionCell = document.createElement("p"); // Créer une cellule pour la description
-    descriptionCell.textContent = result.signification;
-    row.appendChild(descriptionCell); // Ajouter la cellule à la ligne
-    
-    resultsList.appendChild(row); // Ajouter la ligne au tableau de résultats
-  });
-}
-
