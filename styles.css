@@ -23,6 +23,7 @@ header {
 input[type="text"] {
   display: block; /* Mettre en bloc pour que les marges fonctionnent */
   margin: 0 auto; /* Centrer horizontalement */
+  width: 80%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
