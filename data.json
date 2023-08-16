@@ -1,0 +1,18 @@
+[
+  {
+    "abreviation": "AVC",
+    "signification": "Accident Vasculaire Cérébral"
+  },
+  {
+    "abreviation": "PL",
+    "signification": "Ponction Lombaire"
+  },
+  {
+    "abreviation": "RXi",
+    "signification": "Radiographie"
+  },
+  {
+    "abreviation": "HCNT",
+    "signification": "Hémorragie Cérébrale Non Traumatique"
+  }
+]
