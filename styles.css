@@ -21,7 +21,8 @@ header {
 
 /* Style du champ de recherche */
 input[type="text"] {
-  justify-content: center;
+  display: block; /* Mettre en bloc pour que les marges fonctionnent */
+  margin: 0 auto; /* Centrer horizontalement */
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
