@@ -63,10 +63,10 @@ input[type="text"] {
 /* Style du conteneur des résultats */
 .results-container {
   background-color: white;
-  padding: 20px;
-  border-radius: 5px; /* Arrondir les coins */
+  padding: 10px;
+  border-radius: 10px; /* Arrondir les coins */
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Ajouter une ombre légère */
-  width: 50%; /* Largeur des résultats */
+  width: 30%; /* Largeur des résultats */
   margin: 0 auto; /* Centrer horizontalement */
   margin-top: 20px; /* Ajuster l'espacement par rapport aux lettres */
   text-align: center; /* Centrer le contenu */
@@ -83,7 +83,7 @@ ul {
 li {
   display: flex; /* Use flexbox to align items horizontally */
   align-items: center; /* Center items vertically within the list item */
-  padding: 10px 0;
+  padding: 25px;
   border-bottom: 1px solid #ccc;
   background-color: white;
 }
@@ -93,13 +93,14 @@ abbr {
   flex: 1; /* Allow the abbr to take available space */
   text-align: left; /* Align text to the right */
   margin-right: 10px; /* Add some spacing between abbr and p */
+  font-size: xx-large;
 }
 
 /* Update the style of the description (left side) */
 p {
   flex: 2; /* Allow the p to take more space */
   margin: 5px 0;
-  color: #666;
+  color: black;
   font-style: italic;
-  text-align: left;
+  text-align: right;
 }
