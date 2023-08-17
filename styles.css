@@ -79,19 +79,25 @@ ul {
   margin: 0; /* Réinitialiser la marge */
 }
 
-/* Style des éléments de la liste (ligne de tableau) */
+/* Update the style of list items */
 li {
+  display: flex; /* Use flexbox to align items horizontally */
+  align-items: center; /* Center items vertically within the list item */
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
   background-color: white;
 }
 
-/* Style de l'abréviation (premier côté) */
+/* Update the style of the abbr (right side) */
 abbr {
-  font-weight: bold;
+  flex: 1; /* Allow the abbr to take available space */
+  text-align: right; /* Align text to the right */
+  margin-right: 10px; /* Add some spacing between abbr and p */
 }
 
+/* Update the style of the description (left side) */
 p {
+  flex: 2; /* Allow the p to take more space */
   margin: 5px 0;
   color: #666;
   font-style: italic;
