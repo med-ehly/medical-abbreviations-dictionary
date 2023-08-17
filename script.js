@@ -12,10 +12,18 @@ function displaySearchResults(results) {
     return;
   }
   
-  results.forEach(item => {
-    const listItem = document.createElement("li");
-    listItem.textContent = `${item.abreviation} - ${item.signification}`;
-    resultsList.appendChild(listItem);
+  results.forEach(result => {
+    const row = document.createElement("li"); // Créer une ligne de tableau (élément li)
+    
+    const abbrCell = document.createElement("abbr"); // Créer une cellule pour l'abréviation
+    abbrCell.textContent = result.abreviation;
+    row.appendChild(abbrCell); // Ajouter la cellule à la ligne
+    
+    const descriptionCell = document.createElement("p"); // Créer une cellule pour la description
+    descriptionCell.textContent = result.signification;
+    row.appendChild(descriptionCell); // Ajouter la cellule à la ligne
+    
+    resultsList.appendChild(row); // Ajouter la ligne au tableau de résultats
   });
 }
 
