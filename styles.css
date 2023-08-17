@@ -90,3 +90,9 @@ li {
 abbr {
   font-weight: bold;
 }
+
+p {
+  margin: 5px 0;
+  color: #666;
+  font-style: italic;
+}
