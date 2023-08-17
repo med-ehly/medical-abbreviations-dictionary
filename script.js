@@ -72,7 +72,7 @@ fetch("data.json")
     const letterButtons = document.querySelectorAll(".letter-button");
     let activeLetterButton = null;
 
-    letterButtons.forEach(button => {
+letterButtons.forEach(button => {
   button.addEventListener("click", () => {
     const selectedLetter = button.getAttribute("data-letter");
     console.log("Button clicked:", button.getAttribute("data-letter"));
@@ -87,14 +87,20 @@ fetch("data.json")
       console.log("Applying filter...");
       button.classList.add("active");
       activeLetterButton = button;
+    } else {
+      console.log("Removing filter...");
+      activeLetterButton = null; // Désactive la lettre active
     }
 
-    const filteredResults = filterResultsByLetter(selectedLetter, sortedData);
-    displayResults(filteredResults);
+    // Si aucune lettre n'est active, affiche tous les résultats
+    if (!activeLetterButton) {
+      displayResults(sortedData);
+    } else {
+      const filteredResults = filterResultsByLetter(selectedLetter, sortedData);
+      displayResults(filteredResults);
+    }
   });
 });
-
-  })
   .catch(error => {
     console.error("Une erreur s'est produite lors du chargement des données.", error);
   });
