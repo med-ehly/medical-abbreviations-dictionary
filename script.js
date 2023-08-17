@@ -70,25 +70,30 @@ fetch("data.json")
     searchInput.addEventListener("input", event => handleSearch(event, sortedData));
 
     const letterButtons = document.querySelectorAll(".letter-button");
-    
-    letterButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        const selectedLetter = button.getAttribute("data-letter");
-        console.log("Button clicked:", button.getAttribute("data-letter"));
-        const isFilterActive = button.classList.contains("active");
+    let activeLetterButton = null;
 
-        if (isFilterActive) {
-          button.classList.remove("active");
-          console.log("Filter is active. Removing filter...");
-          displayResults(sortedData);
-        } else {
-          console.log("Filter is not active. Applying filter...");
-          button.classList.add("active");
-          const filteredResults = filterResultsByLetter(selectedLetter, sortedData);
-          displayResults(filteredResults);
-        }
-      });
-    });
+    letterButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const selectedLetter = button.getAttribute("data-letter");
+    console.log("Button clicked:", button.getAttribute("data-letter"));
+    const isFilterActive = button.classList.contains("active");
+
+    if (activeLetterButton) {
+      activeLetterButton.classList.remove("active");
+      console.log("Removing active from previous letter:", activeLetterButton.getAttribute("data-letter"));
+    }
+
+    if (!isFilterActive) {
+      console.log("Applying filter...");
+      button.classList.add("active");
+      activeLetterButton = button;
+    }
+
+    const filteredResults = filterResultsByLetter(selectedLetter, sortedData);
+    displayResults(filteredResults);
+  });
+});
+
   })
   .catch(error => {
     console.error("Une erreur s'est produite lors du chargement des données.", error);
