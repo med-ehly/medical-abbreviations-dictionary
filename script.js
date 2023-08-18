@@ -99,16 +99,17 @@ fetch("data.json")
     const uniqueTypes = [...new Set(sortedData.map(item => item.type))];
 
     // Générer les boutons de filtre pour les catégories
-    const categoryFilter = document.querySelector(".category-filter");
-    categoryFilter.innerHTML = "<h2>Catégories</h2>";
+const categoryFilter = document.querySelector(".category-filter");
+categoryFilter.innerHTML = "<h2>Catégories</h2>";
 
-    uniqueCategories.forEach(category => {
-      const categoryButton = document.createElement("button");
-      categoryButton.textContent = category;
-      categoryButton.classList.add("category-button");
-      categoryButton.addEventListener("click", () => handleCategoryFilter(category, sortedData));
-      categoryFilter.appendChild(categoryButton);
-    });
+uniqueCategories.forEach(category => {
+  const categoryButton = document.createElement("button");
+  categoryButton.textContent = category;
+  categoryButton.classList.add("category-button");
+  categoryButton.setAttribute("data-category", category); // Ajoutez l'attribut data-category
+  categoryButton.addEventListener("click", () => handleCategoryFilter(category, sortedData));
+  categoryFilter.appendChild(categoryButton);
+});
 
     // Générer les boutons de filtre pour les types de termes
     const typeFilter = document.querySelector(".type-filter");
@@ -118,6 +119,7 @@ fetch("data.json")
       const typeButton = document.createElement("button");
       typeButton.textContent = type;
       typeButton.classList.add("type-button");
+      typeButton.setAttribute("data-type", type);
       typeButton.addEventListener("click", () => handleTypeFilter(type, sortedData));
       typeFilter.appendChild(typeButton);
     });
