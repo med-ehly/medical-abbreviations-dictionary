@@ -80,6 +80,7 @@ header {
   list-style: none;
   padding: 0;
   margin: 0; /* Réinitialiser la marge *
+  width: 70%; /* Largeur des résultats */
   margin: 0 auto; /* Centrer horizontalement */
 }
 
