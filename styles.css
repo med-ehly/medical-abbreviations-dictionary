@@ -146,6 +146,14 @@ header {
   margin-bottom: 10px;
 }
 
+.category-filter {
+  margin-right: 10px; 
+}
+
+.type-filter {
+  margin-left: 10px; 
+}
+
 /* Style des boutons de filtre dans les colonnes */
 .filter-column .category-button,
 .filter-column .type-button {
