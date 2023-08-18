@@ -97,7 +97,7 @@ abbr {
   flex: 1; /* Allow the abbr to take available space */
   text-align: left; /* Align text to the right */
   margin-right: 10px; /* Add some spacing between abbr and p */
-  font-size: xx-large;
+  font-size: x-large;
   font-weight: bold;
 }
 
@@ -108,4 +108,5 @@ p {
   color: black;
   font-style: italic;
   text-align: right;
+  font-size: small;
 }
