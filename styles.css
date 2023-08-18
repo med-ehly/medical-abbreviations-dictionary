@@ -37,10 +37,12 @@ header {
   margin-top: 10px;
 }
 
-.letter-button {
+.letter-button,
+.category-button,
+.type-button {
   padding: 5px 10px; /* Ajuster le rembourrage vertical */
   font-size: 13px;
-  background-color: white;
+  background-color: white; /* Même couleur que les boutons de lettre */
   border: 1px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
@@ -48,13 +50,17 @@ header {
 }
 
 /* Ajouter le style pour la classe "active" */
-.letter-button.active {
+.letter-button.active,
+.category-button.active,
+.type-button.active {
   background-color: #007BFF; /* Couleur différente lorsque le bouton est enfoncé */
   color: white; /* Couleur du texte */
   border-color: #007BFF; /* Couleur de la bordure */
 }
 
-.letter-button:hover {
+.letter-button:hover,
+.category-button:hover,
+.type-button:hover {
   background-color: #ddd;
 }
 
@@ -125,22 +131,20 @@ header {
   flex-direction: column;
   align-items: center;
   width: 20%;
-}
-
-/* Style des boutons de filtre */
-.category-filter, .type-filter {
-  margin: 10px;
-  padding: 10px;
-  background-color: white;
+  background-color: white; /* Fond blanc pour les colonnes de filtre */
   border-radius: 5px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
   text-align: center;
+  margin: 0 10px; /* Espacement entre les colonnes de filtre */
 }
 
-.category-filter h2, .type-filter h2 {
+.category-filter h2,
+.type-filter h2 {
   margin-bottom: 10px;
 }
 
-.category-button, .type-button {
-  margin: 0 5px;
+.category-button,
+.type-button {
+  margin: 5px;
 }
