@@ -119,18 +119,20 @@ header {
   font-size: small;
 }
 
+/* Style des colonnes de filtre et de la liste des résultats */
+.filters-and-list {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between; /* Utiliser space-between pour espacer les colonnes */
+  margin-top: 20px;
+}
+
 /* Style des colonnes de filtre */
 .filter-column {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.filter-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 15%; /* Réduisez la largeur des colonnes de filtre */
+  /* Retirez la largeur */
 }
 
 /* Style de la colonne du centre */
