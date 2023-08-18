@@ -147,14 +147,17 @@ header {
 }
 
 .category-filter { 
+  margin-left: 200px; 
 }
 
 .type-filter {
+  margin-right: 200px; 
 }
 
 /* Style des boutons de filtre dans les colonnes */
 .filter-column .category-button,
 .filter-column .type-button {
   margin: 5px;
+  width: 120px; /* Ajustez la largeur des boutons selon vos préférences */
+  padding: 10px; /* Ajustez le rembourrage des boutons selon vos préférences */
 }
-
