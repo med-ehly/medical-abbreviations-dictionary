@@ -120,11 +120,10 @@ header {
 }
 
 /* Style des colonnes de filtre */
-.filters-and-list {
+.filter-column {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-around;
-  margin-top: 20px;
+  flex-direction: column;
+  align-items: center;
 }
 
 .filter-column {
@@ -134,8 +133,9 @@ header {
   width: 15%; /* Réduisez la largeur des colonnes de filtre */
 }
 
-.results-column {
-  width: 70%; /* Augmentez la largeur de la colonne des résultats */
+/* Style de la colonne du centre */
+.center-column {
+  width: 70%; /* Largeur de la colonne du centre */
   margin: 0 auto; /* Centrer horizontalement */
 }
 
