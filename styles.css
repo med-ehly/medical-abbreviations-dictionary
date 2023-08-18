@@ -76,11 +76,12 @@ header {
   text-align: center; /* Centrer le contenu */
 }
 
-/* Style de la liste des résultats (tableau) */
 #resultsList {
   list-style: none;
   padding: 0;
   margin: 0; /* Réinitialiser la marge */
+  width: 60%; /* Ajuster la largeur de la liste des résultats */
+  margin: 0 auto; /* Centrer horizontalement */
 }
 
 /* Update the style of list items */
