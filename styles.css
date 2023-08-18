@@ -109,13 +109,26 @@ p {
   font-size: small;
 }
 
-/* Styles pour les boutons de filtre par catégorie et par type */
+/* Style de la colonne de filtre */
+.filter-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+}
+
+/* Style des boutons de filtre */
 .category-filter, .type-filter {
-  margin-top: 20px;
+  margin: 10px;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .category-filter h2, .type-filter h2 {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .category-button, .type-button {
