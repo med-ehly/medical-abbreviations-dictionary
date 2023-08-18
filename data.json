@@ -7,7 +7,9 @@
   },
   {
     "abreviation": "PL",
-    "signification": "Ponction Lombaire"
+    "signification": "Ponction Lombaire",
+    "categorie": "Neurologie",
+    "type": "Traitement"
   },
   {
     "abreviation": "RXi",
