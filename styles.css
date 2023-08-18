@@ -1,5 +1,3 @@
-/* styles.css */
-
 /* Réinitialisation des styles par défaut du navigateur */
 body, h1, ul, li {
   margin: 0;
@@ -109,4 +107,17 @@ p {
   font-style: italic;
   text-align: right;
   font-size: small;
+}
+
+/* Styles pour les boutons de filtre par catégorie et par type */
+.category-filter, .type-filter {
+  margin-top: 20px;
+}
+
+.category-filter h2, .type-filter h2 {
+  margin-bottom: 5px;
+}
+
+.category-button, .type-button {
+  margin: 0 5px;
 }
