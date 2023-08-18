@@ -37,7 +37,7 @@ header {
   margin-top: 10px;
 }
 
-.letter-button,
+.alphabet .letter-button,
 .category-button,
 .type-button {
   padding: 5px 10px; /* Ajuster le rembourrage vertical */
@@ -144,7 +144,9 @@ header {
   margin-bottom: 10px;
 }
 
-.category-button,
-.type-button {
+/* Style des boutons de filtre dans les colonnes */
+.filter-column .category-button,
+.filter-column .type-button {
   margin: 5px;
 }
+
