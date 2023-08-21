@@ -127,6 +127,37 @@ uniqueCategories.forEach(category => {
   .catch(error => {
     console.error("Une erreur s'est produite lors du chargement des données.", error);
   });
+const categoryButtons = document.querySelectorAll(".category-button");
+const typeButtons = document.querySelectorAll(".type-button");
+
+function handleFilterButtonClick(buttons, filterFunction) {
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      const selectedFilter = button.getAttribute("data-category") || button.getAttribute("data-type");
+      const isFilterActive = button.classList.contains("active");
+
+      if (activeFilterButton) {
+        activeFilterButton.classList.remove("active");
+      }
+
+      if (!isFilterActive) {
+        button.classList.add("active");
+        activeFilterButton = button;
+      } else {
+        activeFilterButton = null;
+      }
+
+      if (!activeFilterButton) {
+        displayResults(sortedData);
+      } else {
+        filterFunction(selectedFilter, sortedData);
+      }
+    });
+  });
+}
+
+handleFilterButtonClick(categoryButtons, handleCategoryFilter);
+handleFilterButtonClick(typeButtons, handleTypeFilter);
 
 function filterResultsByLetter(letter, data) {
   return data.filter(item =>
@@ -143,3 +174,4 @@ function handleTypeFilter(type, data) {
   const filteredResults = data.filter(item => item.type === type);
   displayResults(filteredResults);
 }
+
