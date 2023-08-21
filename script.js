@@ -94,70 +94,56 @@ fetch("data.json")
       });
     });
 
-    // Récupérer les catégories uniques et les types uniques
-    const uniqueCategories = [...new Set(sortedData.map(item => item.categorie))];
-    const uniqueTypes = [...new Set(sortedData.map(item => item.type))];
+    // Liste de toutes les catégories et types possibles
+    const allCategories = ["Anesthésie", "Cardiologie", "CEGDC", "Neurologie", /* Ajoutez d'autres catégories */];
+    const allTypes = ["Traitement", /* Ajoutez d'autres types */];
 
     // Générer les boutons de filtre pour les catégories
-const categoryFilter = document.querySelector(".category-filter");
-categoryFilter.innerHTML = "<h2>Catégories</h2>";
+    const categoryFilter = document.querySelector(".category-filter");
+    categoryFilter.innerHTML = "<h2>Catégories</h2>";
 
-uniqueCategories.forEach(category => {
-  const categoryButton = document.createElement("button");
-  categoryButton.textContent = category;
-  categoryButton.classList.add("category-button");
-  categoryButton.setAttribute("data-category", category); // Ajoutez l'attribut data-category
-  categoryButton.addEventListener("click", () => handleCategoryFilter(category, sortedData));
-  categoryFilter.appendChild(categoryButton);
-});
+    allCategories.forEach(category => {
+      const categoryButton = createFilterButton(category, "data-category", sortedData, handleCategoryFilter);
+      categoryFilter.appendChild(categoryButton);
+    });
 
     // Générer les boutons de filtre pour les types de termes
     const typeFilter = document.querySelector(".type-filter");
     typeFilter.innerHTML = "<h2>Types</h2>";
 
-    uniqueTypes.forEach(type => {
-      const typeButton = document.createElement("button");
-      typeButton.textContent = type;
-      typeButton.classList.add("type-button");
-      typeButton.setAttribute("data-type", type);
-      typeButton.addEventListener("click", () => handleTypeFilter(type, sortedData));
+    allTypes.forEach(type => {
+      const typeButton = createFilterButton(type, "data-type", sortedData, handleTypeFilter);
       typeFilter.appendChild(typeButton);
     });
   })
   .catch(error => {
     console.error("Une erreur s'est produite lors du chargement des données.", error);
   });
+
 const categoryButtons = document.querySelectorAll(".category-button");
 const typeButtons = document.querySelectorAll(".type-button");
 
-function handleFilterButtonClick(buttons, filterFunction) {
-  buttons.forEach(button => {
-    button.addEventListener("click", () => {
-      const selectedFilter = button.getAttribute("data-category") || button.getAttribute("data-type");
-      const isFilterActive = button.classList.contains("active");
-
-      if (activeFilterButton) {
-        activeFilterButton.classList.remove("active");
-      }
-
-      if (!isFilterActive) {
-        button.classList.add("active");
-        activeFilterButton = button;
-      } else {
-        activeFilterButton = null;
-      }
-
-      if (!activeFilterButton) {
-        displayResults(sortedData);
-      } else {
-        filterFunction(selectedFilter, sortedData);
-      }
-    });
-  });
+function createFilterButton(text, attribute, data, filterFunction) {
+  const button = document.createElement("button");
+  button.textContent = text;
+  button.classList.add("category-button");
+  button.setAttribute(attribute, text);
+  button.addEventListener("click", () => handleFilterButtonClick(button, data, filterFunction));
+  return button;
 }
 
-handleFilterButtonClick(categoryButtons, handleCategoryFilter);
-handleFilterButtonClick(typeButtons, handleTypeFilter);
+function handleFilterButtonClick(button, data, filterFunction) {
+  const selectedFilter = button.getAttribute("data-category") || button.getAttribute("data-type");
+  const isFilterActive = button.classList.contains("active");
+
+  if (isFilterActive) {
+    button.classList.remove("active");
+    displayResults(data);
+  } else {
+    button.classList.add("active");
+    filterFunction(selectedFilter, data);
+  }
+}
 
 function filterResultsByLetter(letter, data) {
   return data.filter(item =>
@@ -174,4 +160,3 @@ function handleTypeFilter(type, data) {
   const filteredResults = data.filter(item => item.type === type);
   displayResults(filteredResults);
 }
-
