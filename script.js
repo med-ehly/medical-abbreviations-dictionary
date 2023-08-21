@@ -95,7 +95,7 @@ fetch("data.json")
     });
 
     // Liste de toutes les catégories et types possibles
-    const allCategories = ["Anesthésie", "Cardiologie", "CEGDC", "Neurologie", /* Ajoutez d'autres catégories */];
+    const allCategories = ["Anesthésie", "Cardiologie", "CEGDC", "CCVT", "Dermatologie", "Endocrinologie", "Gastrologie", "Génétique", "Gériatrie", "Gynécologie", "Hémato-Onco", "Immuno-Allergie", "Med Interne", "Infectio", "Néphrologie", "Neurochirurgie", "Neurologie", "Ophtalmologie", "ORL", "Orthopédie", "Pédiatrie", "Physiatrie", "Plastie", "Pneumologie", "Psychiatrie", "Rhumatologie", "Urologie"];
     const allTypes = ["Traitement", /* Ajoutez d'autres types */];
 
     // Générer les boutons de filtre pour les catégories
