@@ -144,14 +144,17 @@ header {
 .category-filter h2,
 .type-filter h2 {
   margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .category-filter { 
   margin-left: 200px; 
+  margin-right: 200px; 
 }
 
 .type-filter {
   margin-right: 200px; 
+  margin-left: 200px; 
 }
 
 /* Style des boutons de filtre dans les colonnes */
