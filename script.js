@@ -136,17 +136,68 @@ function createFilterButton(text, attribute, data, filterFunction) {
   return button;
 }
 
-function handleFilterButtonClick(button, data, filterFunction) {
-  const selectedFilter = button.getAttribute("data-category") || button.getAttribute("data-type");
-  const isFilterActive = button.classList.contains("active");
+// Fonction pour gérer le clic sur un bouton de filtre de catégorie
+function handleCategoryFilterButtonClick(button, data) {
+  const selectedCategoryFilter = button.getAttribute("data-category");
+  const isCategoryFilterActive = button.classList.contains("active");
 
-  if (isFilterActive) {
+  if (isCategoryFilterActive) {
+    // Si le filtre de catégorie est déjà actif, désactivez-le
     button.classList.remove("active");
-    displayResults(data);
+    activeCategoryFilter = null;
   } else {
+    // Si aucun filtre de catégorie n'est actif, activez celui-ci
+    // D'abord, désactivez tous les autres filtres de catégorie actifs
+    categoryButtons.forEach(categoryButton => {
+      categoryButton.classList.remove("active");
+    });
+    // Activez le filtre de catégorie sélectionné
     button.classList.add("active");
-    filterFunction(selectedFilter, data);
+    activeCategoryFilter = selectedCategoryFilter;
   }
+
+  // Appliquez les filtres actifs sur les données
+  applyActiveFilters(data);
+}
+
+// Fonction pour gérer le clic sur un bouton de filtre de type
+function handleTypeFilterButtonClick(button, data) {
+  const selectedTypeFilter = button.getAttribute("data-type");
+  const isTypeFilterActive = button.classList.contains("active");
+
+  if (isTypeFilterActive) {
+    // Si le filtre de type est déjà actif, désactivez-le
+    button.classList.remove("active");
+    activeTypeFilter = null;
+  } else {
+    // Si aucun filtre de type n'est actif, activez celui-ci
+    // D'abord, désactivez tous les autres filtres de type actifs
+    typeButtons.forEach(typeButton => {
+      typeButton.classList.remove("active");
+    });
+    // Activez le filtre de type sélectionné
+    button.classList.add("active");
+    activeTypeFilter = selectedTypeFilter;
+  }
+
+  // Appliquez les filtres actifs sur les données
+  applyActiveFilters(data);
+}
+
+// Fonction pour appliquer les filtres actifs
+function applyActiveFilters(data) {
+  const filteredResults = data.filter(item => {
+    // Vérifiez si la catégorie de l'élément correspond au filtre de catégorie actif
+    const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
+
+    // Vérifiez si le type de l'élément correspond au filtre de type actif
+    const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
+
+    // Retournez true si à la fois la catégorie et le type correspondent
+    return categoryMatches && typeMatches;
+  });
+
+  displayResults(filteredResults);
 }
 
 function filterResultsByLetter(letter, data) {
@@ -164,3 +215,15 @@ function handleTypeFilter(type, data) {
   const filteredResults = data.filter(item => item.type === type);
   displayResults(filteredResults);
 }
+
+// Écoutez les clics sur les boutons de filtre de catégorie et de type
+categoryButtons.forEach(categoryButton => {
+  categoryButton.addEventListener("click", () =>
+    handleCategoryFilterButtonClick(categoryButton, sortedData)
+  );
+});
+typeButtons.forEach(typeButton => {
+  typeButton.addEventListener("click", () =>
+    handleTypeFilterButtonClick(typeButton, sortedData)
+  );
+});
