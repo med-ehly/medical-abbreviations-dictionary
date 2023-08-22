@@ -218,12 +218,16 @@ function handleTypeFilter(type, data) {
 
 // Écoutez les clics sur les boutons de filtre de catégorie et de type
 categoryButtons.forEach(categoryButton => {
-  categoryButton.addEventListener("click", () =>
-    handleCategoryFilterButtonClick(categoryButton, sortedData)
-  );
+  categoryButton.addEventListener("click", () => {
+    const selectedCategory = categoryButton.getAttribute("data-category");
+    handleCategoryFilter(selectedCategory, sortedData); // Appel de la fonction de filtre de catégorie
+  });
 });
+
 typeButtons.forEach(typeButton => {
-  typeButton.addEventListener("click", () =>
-    handleTypeFilterButtonClick(typeButton, sortedData)
-  );
+  typeButton.addEventListener("click", () => {
+    const selectedType = typeButton.getAttribute("data-type");
+    handleTypeFilter(selectedType, sortedData); // Appel de la fonction de filtre de type
+  });
 });
+
