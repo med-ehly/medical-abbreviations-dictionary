@@ -154,11 +154,19 @@ header {
 .category-filter { 
   margin-left: 200px; 
   margin-right: 200px; 
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .type-filter {
   margin-right: 200px; 
   margin-left: 200px; 
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 /* Style des boutons de filtre dans les colonnes */
