@@ -123,6 +123,10 @@ fetch("data.json")
 const categoryButtons = document.querySelectorAll(".category-button");
 const typeButtons = document.querySelectorAll(".type-button");
 
+// Déclarez des tableaux pour stocker les filtres actifs de chaque type
+let activeCategoryFilters = [];
+let activeTypeFilters = [];
+
 function createFilterButton(text, attribute, data, filterFunction) {
   const button = document.createElement("button");
   button.textContent = text;
