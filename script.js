@@ -30,7 +30,7 @@ function handleSearch(event, data) {
   const filteredResults = data.filter(item =>
     item.abreviation.toLowerCase().includes(searchTerm)
   );
-  displaySearchResults(filteredResults);
+  applyActiveFilters(filteredResults); // Appliquer les filtres actifs également lors de la recherche
 }
 
 function displayResults(results) {
@@ -74,23 +74,19 @@ fetch("data.json")
         const selectedLetter = button.getAttribute("data-letter");
         const isFilterActive = button.classList.contains("active");
 
-        if (activeLetterButton) {
-          activeLetterButton.classList.remove("active");
-        }
-
         if (!isFilterActive) {
+          // Désactivez toutes les autres lettres sélectionnées
+          letterButtons.forEach(letterButton => {
+            letterButton.classList.remove("active");
+          });
           button.classList.add("active");
           activeLetterButton = button;
         } else {
+          button.classList.remove("active");
           activeLetterButton = null;
         }
 
-        if (!activeLetterButton) {
-          displayResults(sortedData);
-        } else {
-          const filteredResults = filterResultsByLetter(selectedLetter, sortedData);
-          displayResults(filteredResults);
-        }
+        applyActiveFilters(sortedData);
       });
     });
 
@@ -120,6 +116,7 @@ fetch("data.json")
 const categoryButtons = document.querySelectorAll(".category-button");
 const typeButtons = document.querySelectorAll(".type-button");
 
+let activeLetterButton = null;
 let activeCategoryFilter = null;
 let activeTypeFilter = null;
 
@@ -136,15 +133,16 @@ function handleCategoryFilterButtonClick(button, data) {
   const selectedCategoryFilter = button.getAttribute("data-category");
   const isCategoryFilterActive = button.classList.contains("active-filter");
 
-  if (isCategoryFilterActive) {
-    button.classList.remove("active-filter");
-    activeCategoryFilter = null;
-  } else {
+  if (!isCategoryFilterActive) {
+    // Désactivez toutes les autres catégories sélectionnées
     categoryButtons.forEach(categoryButton => {
       categoryButton.classList.remove("active-filter");
     });
     button.classList.add("active-filter");
     activeCategoryFilter = selectedCategoryFilter;
+  } else {
+    button.classList.remove("active-filter");
+    activeCategoryFilter = null;
   }
 
   applyActiveFilters(data);
@@ -154,15 +152,16 @@ function handleTypeFilterButtonClick(button, data) {
   const selectedTypeFilter = button.getAttribute("data-type");
   const isTypeFilterActive = button.classList.contains("active-filter");
 
-  if (isTypeFilterActive) {
-    button.classList.remove("active-filter");
-    activeTypeFilter = null;
-  } else {
+  if (!isTypeFilterActive) {
+    // Désactivez toutes les autres types sélectionnés
     typeButtons.forEach(typeButton => {
       typeButton.classList.remove("active-filter");
     });
     button.classList.add("active-filter");
     activeTypeFilter = selectedTypeFilter;
+  } else {
+    button.classList.remove("active-filter");
+    activeTypeFilter = null;
   }
 
   applyActiveFilters(data);
@@ -170,16 +169,11 @@ function handleTypeFilterButtonClick(button, data) {
 
 function applyActiveFilters(data) {
   const filteredResults = data.filter(item => {
+    const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.getAttribute("data-letter").toLowerCase();
     const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
     const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
-    return categoryMatches && typeMatches;
+    return letterMatches && categoryMatches && typeMatches;
   });
 
   displayResults(filteredResults);
-}
-
-function filterResultsByLetter(letter, data) {
-  return data.filter(item =>
-    item.abreviation.charAt(0).toLowerCase() === letter.toLowerCase()
-  );
 }
