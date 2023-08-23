@@ -116,7 +116,6 @@ fetch("data.json")
 const categoryButtons = document.querySelectorAll(".category-button");
 const typeButtons = document.querySelectorAll(".type-button");
 
-let activeLetterButton = null;
 let activeCategoryFilter = null;
 let activeTypeFilter = null;
 
