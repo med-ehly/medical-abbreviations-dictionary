@@ -103,7 +103,7 @@ fetch("data.json")
     categoryFilter.innerHTML = "<h2>Catégories</h2>";
 
     allCategories.forEach(category => {
-      const categoryButton = createFilterButton(category, "data-category", sortedData, handleCategoryFilterButtonClick);
+      const categoryButton = createFilterButton(category, "data-category", sortedData, handleCategoryFilter);
       categoryFilter.appendChild(categoryButton);
     });
 
@@ -112,7 +112,7 @@ fetch("data.json")
     typeFilter.innerHTML = "<h2>Types</h2>";
 
     allTypes.forEach(type => {
-      const typeButton = createFilterButton(type, "data-type", sortedData, handleTypeFilterButtonClick);
+      const typeButton = createFilterButton(type, "data-type", sortedData, handleTypeFilter);
       typeFilter.appendChild(typeButton);
     });
   })
@@ -136,7 +136,7 @@ function createFilterButton(text, attribute, data, filterFunction) {
   return button;
 }
 
-function handleCategoryFilterButtonClick(button, data) {
+function handleCategoryFilter(button, data) {
   const selectedCategoryFilter = button.getAttribute("data-category");
   const isCategoryFilterActive = button.classList.contains("active-filter");
 
@@ -154,7 +154,7 @@ function handleCategoryFilterButtonClick(button, data) {
   applyActiveFilters(data);
 }
 
-function handleTypeFilterButtonClick(button, data) {
+function handleTypeFilter(button, data) {
   const selectedTypeFilter = button.getAttribute("data-type");
   const isTypeFilterActive = button.classList.contains("active-filter");
 
