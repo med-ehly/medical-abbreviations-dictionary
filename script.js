@@ -124,67 +124,28 @@ const categoryButtons = document.querySelectorAll(".category-button");
 const typeButtons = document.querySelectorAll(".type-button");
 
 // Déclarez des tableaux pour stocker les filtres actifs de chaque type
-let activeCategoryFilters = [];
-let activeTypeFilters = [];
+let activeCategoryFilter = null;
+let activeTypeFilter = null;
 
 function createFilterButton(text, attribute, data, filterFunction) {
   const button = document.createElement("button");
   button.textContent = text;
   button.classList.add("category-button");
   button.setAttribute(attribute, text);
-  button.addEventListener("click", () => handleFilterButtonClick(button, data, filterFunction));
+  button.addEventListener("click", () => filterFunction(text, data));
   return button;
 }
 
-// Fonction pour gérer le clic sur un bouton de filtre de catégorie
-function handleCategoryFilterButtonClick(button, data) {
-  const selectedCategoryFilter = button.getAttribute("data-category");
-  const isCategoryFilterActive = button.classList.contains("active");
-
-  if (isCategoryFilterActive) {
-    // Si le filtre de catégorie est déjà actif, désactivez-le
-    button.classList.remove("active");
-    activeCategoryFilter = null;
-  } else {
-    // Si aucun filtre de catégorie n'est actif, activez celui-ci
-    // D'abord, désactivez tous les autres filtres de catégorie actifs
-    categoryButtons.forEach(categoryButton => {
-      categoryButton.classList.remove("active");
-    });
-    // Activez le filtre de catégorie sélectionné
-    button.classList.add("active");
-    activeCategoryFilter = selectedCategoryFilter;
-  }
-
-  // Appliquez les filtres actifs sur les données
+function handleCategoryFilter(category, data) {
+  activeCategoryFilter = category;
   applyActiveFilters(data);
 }
 
-// Fonction pour gérer le clic sur un bouton de filtre de type
-function handleTypeFilterButtonClick(button, data) {
-  const selectedTypeFilter = button.getAttribute("data-type");
-  const isTypeFilterActive = button.classList.contains("active");
-
-  if (isTypeFilterActive) {
-    // Si le filtre de type est déjà actif, désactivez-le
-    button.classList.remove("active");
-    activeTypeFilter = null;
-  } else {
-    // Si aucun filtre de type n'est actif, activez celui-ci
-    // D'abord, désactivez tous les autres filtres de type actifs
-    typeButtons.forEach(typeButton => {
-      typeButton.classList.remove("active");
-    });
-    // Activez le filtre de type sélectionné
-    button.classList.add("active");
-    activeTypeFilter = selectedTypeFilter;
-  }
-
-  // Appliquez les filtres actifs sur les données
+function handleTypeFilter(type, data) {
+  activeTypeFilter = type;
   applyActiveFilters(data);
 }
 
-// Fonction pour appliquer les filtres actifs
 function applyActiveFilters(data) {
   const filteredResults = data.filter(item => {
     // Vérifiez si la catégorie de l'élément correspond au filtre de catégorie actif
@@ -206,16 +167,6 @@ function filterResultsByLetter(letter, data) {
   );
 }
 
-function handleCategoryFilter(category, data) {
-  const filteredResults = data.filter(item => item.categorie === category);
-  displayResults(filteredResults);
-}
-
-function handleTypeFilter(type, data) {
-  const filteredResults = data.filter(item => item.type === type);
-  displayResults(filteredResults);
-}
-
 // Écoutez les clics sur les boutons de filtre de catégorie et de type
 categoryButtons.forEach(categoryButton => {
   categoryButton.addEventListener("click", () => {
@@ -230,4 +181,3 @@ typeButtons.forEach(typeButton => {
     handleTypeFilter(selectedType, sortedData); // Appel de la fonction de filtre de type
   });
 });
-
