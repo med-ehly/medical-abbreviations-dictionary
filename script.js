@@ -94,11 +94,9 @@ fetch("data.json")
       });
     });
 
-    // Liste de toutes les catégories et types possibles
     const allCategories = ["Anesthésie", "Cardiologie", "CEGDC", "CCVT", "Dermatologie", "Endocrinologie", "Gastrologie", "Génétique", "Gériatrie", "Gynécologie", "Hémato-Onco", "Immuno-Allergie", "Med Interne", "Infectio", "Néphrologie", "Neurochirurgie", "Neurologie", "Ophtalmologie", "ORL", "Orthopédie", "Pédiatrie", "Physiatrie", "Plastie", "Pneumologie", "Psychiatrie", "Rhumatologie", "Urologie"];
     const allTypes = ["Traitement", /* Ajoutez d'autres types */];
 
-    // Générer les boutons de filtre pour les catégories
     const categoryFilter = document.querySelector(".category-filter");
     categoryFilter.innerHTML = "<h2>Catégories</h2>";
 
@@ -107,7 +105,6 @@ fetch("data.json")
       categoryFilter.appendChild(categoryButton);
     });
 
-    // Générer les boutons de filtre pour les types de termes
     const typeFilter = document.querySelector(".type-filter");
     typeFilter.innerHTML = "<h2>Types</h2>";
 
@@ -123,7 +120,6 @@ fetch("data.json")
 const categoryButtons = document.querySelectorAll(".category-button");
 const typeButtons = document.querySelectorAll(".type-button");
 
-// Déclarez des variables pour stocker les filtres actifs de chaque type
 let activeCategoryFilter = null;
 let activeTypeFilter = null;
 
@@ -140,12 +136,10 @@ function handleCategoryFilterButtonClick(button, data) {
   const selectedCategoryFilter = button.getAttribute("data-category");
   const isCategoryFilterActive = button.classList.contains("active-filter");
 
-  // Si le filtre de catégorie est actif, désactivez-le
   if (isCategoryFilterActive) {
     button.classList.remove("active-filter");
     activeCategoryFilter = null;
   } else {
-    // Désactivez tous les autres filtres de catégorie et activez le filtre sélectionné
     categoryButtons.forEach(categoryButton => {
       categoryButton.classList.remove("active-filter");
     });
@@ -160,12 +154,10 @@ function handleTypeFilterButtonClick(button, data) {
   const selectedTypeFilter = button.getAttribute("data-type");
   const isTypeFilterActive = button.classList.contains("active-filter");
 
-  // Si le filtre de type est actif, désactivez-le
   if (isTypeFilterActive) {
     button.classList.remove("active-filter");
     activeTypeFilter = null;
   } else {
-    // Désactivez tous les autres filtres de type et activez le filtre sélectionné
     typeButtons.forEach(typeButton => {
       typeButton.classList.remove("active-filter");
     });
