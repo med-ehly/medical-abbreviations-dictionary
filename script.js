@@ -103,7 +103,7 @@ fetch("data.json")
     categoryFilter.innerHTML = "<h2>Catégories</h2>";
 
     allCategories.forEach(category => {
-      const categoryButton = createFilterButton(category, "data-category", sortedData, handleCategoryFilter);
+      const categoryButton = createFilterButton(category, "data-category", sortedData, handleCategoryFilterButtonClick);
       categoryFilter.appendChild(categoryButton);
     });
 
@@ -112,7 +112,7 @@ fetch("data.json")
     typeFilter.innerHTML = "<h2>Types</h2>";
 
     allTypes.forEach(type => {
-      const typeButton = createFilterButton(type, "data-type", sortedData, handleTypeFilter);
+      const typeButton = createFilterButton(type, "data-type", sortedData, handleTypeFilterButtonClick);
       typeFilter.appendChild(typeButton);
     });
   })
@@ -136,14 +136,16 @@ function createFilterButton(text, attribute, data, filterFunction) {
   return button;
 }
 
-function handleCategoryFilter(button, data) {
+function handleCategoryFilterButtonClick(button, data) {
   const selectedCategoryFilter = button.getAttribute("data-category");
   const isCategoryFilterActive = button.classList.contains("active-filter");
 
+  // Si le filtre de catégorie est actif, désactivez-le
   if (isCategoryFilterActive) {
     button.classList.remove("active-filter");
     activeCategoryFilter = null;
   } else {
+    // Désactivez tous les autres filtres de catégorie et activez le filtre sélectionné
     categoryButtons.forEach(categoryButton => {
       categoryButton.classList.remove("active-filter");
     });
@@ -154,14 +156,16 @@ function handleCategoryFilter(button, data) {
   applyActiveFilters(data);
 }
 
-function handleTypeFilter(button, data) {
+function handleTypeFilterButtonClick(button, data) {
   const selectedTypeFilter = button.getAttribute("data-type");
   const isTypeFilterActive = button.classList.contains("active-filter");
 
+  // Si le filtre de type est actif, désactivez-le
   if (isTypeFilterActive) {
     button.classList.remove("active-filter");
     activeTypeFilter = null;
   } else {
+    // Désactivez tous les autres filtres de type et activez le filtre sélectionné
     typeButtons.forEach(typeButton => {
       typeButton.classList.remove("active-filter");
     });
