@@ -103,7 +103,7 @@ fetch("data.json")
     categoryFilter.innerHTML = "<h2>Catégories</h2>";
 
     allCategories.forEach(category => {
-      const categoryButton = createFilterButton(category, "data-category", sortedData, handleCategoryFilter);
+      const categoryButton = createFilterButton(category, "data-category", sortedData, handleCategoryFilterButtonClick);
       categoryFilter.appendChild(categoryButton);
     });
 
@@ -112,7 +112,7 @@ fetch("data.json")
     typeFilter.innerHTML = "<h2>Types</h2>";
 
     allTypes.forEach(type => {
-      const typeButton = createFilterButton(type, "data-type", sortedData, handleTypeFilter);
+      const typeButton = createFilterButton(type, "data-type", sortedData, handleTypeFilterButtonClick);
       typeFilter.appendChild(typeButton);
     });
   })
@@ -123,7 +123,7 @@ fetch("data.json")
 const categoryButtons = document.querySelectorAll(".category-button");
 const typeButtons = document.querySelectorAll(".type-button");
 
-// Déclarez des tableaux pour stocker les filtres actifs de chaque type
+// Déclarez des variables pour stocker les filtres actifs de chaque type
 let activeCategoryFilter = null;
 let activeTypeFilter = null;
 
@@ -132,29 +132,50 @@ function createFilterButton(text, attribute, data, filterFunction) {
   button.textContent = text;
   button.classList.add("category-button");
   button.setAttribute(attribute, text);
-  button.addEventListener("click", () => filterFunction(text, data));
+  button.addEventListener("click", () => filterFunction(button, data));
   return button;
 }
 
-function handleCategoryFilter(category, data) {
-  activeCategoryFilter = category;
+function handleCategoryFilterButtonClick(button, data) {
+  const selectedCategoryFilter = button.getAttribute("data-category");
+  const isCategoryFilterActive = button.classList.contains("active-filter");
+
+  if (isCategoryFilterActive) {
+    button.classList.remove("active-filter");
+    activeCategoryFilter = null;
+  } else {
+    categoryButtons.forEach(categoryButton => {
+      categoryButton.classList.remove("active-filter");
+    });
+    button.classList.add("active-filter");
+    activeCategoryFilter = selectedCategoryFilter;
+  }
+
   applyActiveFilters(data);
 }
 
-function handleTypeFilter(type, data) {
-  activeTypeFilter = type;
+function handleTypeFilterButtonClick(button, data) {
+  const selectedTypeFilter = button.getAttribute("data-type");
+  const isTypeFilterActive = button.classList.contains("active-filter");
+
+  if (isTypeFilterActive) {
+    button.classList.remove("active-filter");
+    activeTypeFilter = null;
+  } else {
+    typeButtons.forEach(typeButton => {
+      typeButton.classList.remove("active-filter");
+    });
+    button.classList.add("active-filter");
+    activeTypeFilter = selectedTypeFilter;
+  }
+
   applyActiveFilters(data);
 }
 
 function applyActiveFilters(data) {
   const filteredResults = data.filter(item => {
-    // Vérifiez si la catégorie de l'élément correspond au filtre de catégorie actif
     const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
-
-    // Vérifiez si le type de l'élément correspond au filtre de type actif
     const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
-
-    // Retournez true si à la fois la catégorie et le type correspondent
     return categoryMatches && typeMatches;
   });
 
@@ -165,52 +186,4 @@ function filterResultsByLetter(letter, data) {
   return data.filter(item =>
     item.abreviation.charAt(0).toLowerCase() === letter.toLowerCase()
   );
-}
-
-// Fonction pour gérer le clic sur un bouton de filtre de catégorie
-function handleCategoryFilterButtonClick(button, data) {
-  const selectedCategoryFilter = button.getAttribute("data-category");
-  const isCategoryFilterActive = button.classList.contains("active-filter"); // Utilisez "active-filter" ici
-
-  if (isCategoryFilterActive) {
-    // Si le filtre de catégorie est déjà actif, désactivez-le
-    button.classList.remove("active-filter");
-    activeCategoryFilter = null;
-  } else {
-    // Si aucun filtre de catégorie n'est actif, activez celui-ci
-    // D'abord, désactivez tous les autres filtres de catégorie actifs
-    categoryButtons.forEach(categoryButton => {
-      categoryButton.classList.remove("active-filter");
-    });
-    // Activez le filtre de catégorie sélectionné
-    button.classList.add("active-filter");
-    activeCategoryFilter = selectedCategoryFilter;
-  }
-
-  // Appliquez les filtres actifs sur les données
-  applyActiveFilters(data);
-}
-
-// Fonction pour gérer le clic sur un bouton de filtre de type
-function handleTypeFilterButtonClick(button, data) {
-  const selectedTypeFilter = button.getAttribute("data-type");
-  const isTypeFilterActive = button.classList.contains("active-filter"); // Utilisez "active-filter" ici
-
-  if (isTypeFilterActive) {
-    // Si le filtre de type est déjà actif, désactivez-le
-    button.classList.remove("active-filter");
-    activeTypeFilter = null;
-  } else {
-    // Si aucun filtre de type n'est actif, activez celui-ci
-    // D'abord, désactivez tous les autres filtres de type actifs
-    typeButtons.forEach(typeButton => {
-      typeButton.classList.remove("active-filter");
-    });
-    // Activez le filtre de type sélectionné
-    button.classList.add("active-filter");
-    activeTypeFilter = selectedTypeFilter;
-  }
-
-  // Appliquez les filtres actifs sur les données
-  applyActiveFilters(data);
 }
