@@ -1,8 +1,6 @@
 // Constantes pour les sélecteurs DOM
 const searchInput = document.getElementById("searchInput");
 const resultsList = document.getElementById("resultsList");
-const categoryFilter = document.querySelector(".category-filter");
-const typeFilter = document.querySelector(".type-filter");
 
 // Variables pour les filtres actifs
 let activeLetterFilter = null;
