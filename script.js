@@ -183,19 +183,18 @@ function handleCategoryFilterButtonClick(button, data) {
     applyActiveFilters(data);
 }
 
-
 function handleTypeFilterButtonClick(button, data) {
     const selectedTypeFilter = button.getAttribute("data-type");
     const isTypeFilterActive = button.classList.contains("active");
 
     if (!isTypeFilterActive) {
-        // Désactivez le bouton de catégorie actif s'il y en a un
+        // Désactivez le bouton de type actif s'il y en a un
         if (activeTypeButton) {
             activeTypeButton.classList.remove("active");
         }
         button.classList.add("active");
         activeTypeButton = button;
-        activeTypeFilter = selectedCategoryFilter;
+        activeTypeFilter = selectedTypeFilter;
     } else {
         button.classList.remove("active");
         activeTypeButton = null;
@@ -204,3 +203,4 @@ function handleTypeFilterButtonClick(button, data) {
 
     applyActiveFilters(data);
 }
+
