@@ -15,11 +15,20 @@ function applyActiveFilters(data) {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.getAttribute("data-letter").toLowerCase();
         const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
         const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
+
+        // La logique est ajustée ici pour que tous les filtres actifs doivent être satisfaits
         return letterMatches && categoryMatches && typeMatches;
     });
 
-    displayResults(filteredResults);
+    if (activeLetterButton || activeCategoryFilter || activeTypeFilter) {
+        // Au moins un filtre est actif, afficher les résultats filtrés
+        displayResults(filteredResults);
+    } else {
+        // Aucun filtre actif, afficher tous les résultats
+        displayResults(data);
+    }
 }
+
 
 function sortDataAlphabetically(data) {
     return data.sort((a, b) => a.abreviation.localeCompare(b.abreviation));
