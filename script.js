@@ -98,27 +98,33 @@ fetch("data.json")
         const letterButtons = document.querySelectorAll(".letter-button");
         let activeLetterButton = null;
 
-       letterButtons.forEach(button => {
+// Fonction pour gérer le clic sur une lettre
+function handleLetterButtonClick(button, data) {
+    const selectedLetter = button.getAttribute("data-letter");
+    const isFilterActive = button.classList.contains("active");
+
+    if (!isFilterActive) {
+        // Désactivez toutes les autres lettres sélectionnées
+        letterButtons.forEach(letterButton => {
+            letterButton.classList.remove("active");
+        });
+        button.classList.add("active");
+        activeLetterFilter = selectedLetter; // Mettez à jour la variable activeLetterFilter
+    } else {
+        button.classList.remove("active");
+        activeLetterFilter = null; // Réinitialisez le filtre de lettre actif
+    }
+
+    applyActiveFilters(data);
+}
+
+// Associez la fonction handleLetterButtonClick au clic sur chaque bouton de lettre
+letterButtons.forEach(button => {
     button.addEventListener("click", () => {
-        const selectedLetter = button.getAttribute("data-letter");
-        const isFilterActive = button.classList.contains("active");
-
-        if (!isFilterActive) {
-            // Désactivez toutes les autres lettres sélectionnées
-            letterButtons.forEach(letterButton => {
-                letterButton.classList.remove("active");
-            });
-            button.classList.add("active");
-            activeLetterButton = selectedLetter;
-            activeLetterFilter = selectedLetter; // Mettez à jour la variable activeLetterFilter
-        } else {
-            button.classList.remove("active");
-            activeLetterButton = null;
-            activeLetterFilter = null; // Mettez à jour la variable activeLetterFilter
-        }
-
-        applyActiveFilters(sortedData);
+        handleLetterButtonClick(button, sortedData);
     });
+});
+
 });
 
         const allCategories = ["Anesthésie", "Cardiologie", "CEGDC", "CCVT", "Dermatologie", "Endocrinologie", "Gastrologie", "Génétique", "Gériatrie", "Gynécologie", "Hémato-Onco", "Immuno-Allergie", "Med Interne", "Infectio", "Néphrologie", "Neurochirurgie", "Neurologie", "Ophtalmologie", "ORL", "Orthopédie", "Pédiatrie", "Physiatrie", "Plastie", "Pneumologie", "Psychiatrie", "Rhumatologie", "Urologie"];
