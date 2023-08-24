@@ -25,16 +25,28 @@ function resetFilters() {
     activeTypeButton = null;
     activeTypeFilter = null;
 
-    // Réinitialisez visuellement les boutons de filtre
-    letterButtons.forEach(letterButton => {
-        letterButton.classList.remove("active");
-    });
+       // Réinitialisez visuellement les boutons de filtre de catégorie
     categoryButtons.forEach(categoryButton => {
         categoryButton.classList.remove("active");
     });
+}
+
+// Fonction pour réinitialiser les filtres de type
+function resetTypeFilters() {
+    activeTypeFilter = null;
+    activeTypeButton = null;
+
+    // Réinitialisez visuellement les boutons de filtre de type
     typeButtons.forEach(typeButton => {
         typeButton.classList.remove("active");
     });
+}
+
+// Fonction pour réinitialiser tous les filtres
+function resetFilters() {
+    resetLetterFilters();
+    resetCategoryFilters(); // Appel de la fonction de réinitialisation des filtres de catégorie
+    resetTypeFilters(); // Appel de la fonction de réinitialisation des filtres de type
 
     // Réappliquez les filtres
     applyActiveFilters(sortedData);
