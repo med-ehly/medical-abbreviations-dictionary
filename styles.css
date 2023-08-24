@@ -1,3 +1,134 @@
+/* Styles par défaut pour les écrans larges */
+body {
+  background-color: #f5f5f5;
+}
+
+/* Styles pour les écrans larges (plus de 768px de large) */
+@media (min-width: 768px) {
+  header {
+    padding: 20px;
+  }
+
+  #searchInput {
+    width: 80%;
+  }
+
+  .alphabet {
+    margin-top: 10px;
+  }
+
+  .alphabet .letter-button,
+  .category-button,
+  .type-button {
+    margin: 0 3px;
+  }
+
+  .results-container {
+    width: 70%;
+    margin-top: 20px;
+  }
+
+  #resultsList {
+    width: 70%;
+  }
+
+  .filter-column {
+    margin-left: 200px;
+    margin-right: 200px;
+  }
+
+  .type-filter {
+    margin-right: 200px;
+    margin-left: 200px;
+  }
+}
+
+/* Styles pour les écrans moyens (entre 480px et 768px de large) */
+@media (min-width: 480px) and (max-width: 768px) {
+  header {
+    padding: 10px;
+    font-size: 18px;
+  }
+
+  #searchInput {
+    width: 90%;
+  }
+
+  .alphabet {
+    margin-top: 5px;
+  }
+
+  .alphabet .letter-button,
+  .category-button,
+  .type-button {
+    margin: 0 2px;
+    font-size: 12px;
+  }
+
+  .results-container {
+    width: 90%;
+    margin-top: 10px;
+  }
+
+  #resultsList {
+    width: 90%;
+  }
+
+  .filter-column {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .type-filter {
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+}
+
+/* Styles pour les écrans étroits (moins de 480px de large, comme les smartphones) */
+@media (max-width: 480px) {
+  header {
+    padding: 5px;
+    font-size: 16px;
+  }
+
+  #searchInput {
+    width: 100%;
+  }
+
+  .alphabet {
+    margin-top: 2px;
+    flex-wrap: wrap;
+  }
+
+  .alphabet .letter-button,
+  .category-button,
+  .type-button {
+    margin: 2px;
+    font-size: 10px;
+  }
+
+  .results-container {
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  #resultsList {
+    width: 100%;
+  }
+
+  .filter-column {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .type-filter {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+}
+
+
 /* Réinitialisation des styles par défaut du navigateur */
 body, h1, ul, li {
   margin: 0;
