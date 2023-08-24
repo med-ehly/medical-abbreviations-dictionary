@@ -20,16 +20,6 @@ function applyActiveFilters(data) {
         return letterMatches && categoryMatches && typeMatches;
     });
 
-    if (activeLetterButton || activeCategoryFilter || activeTypeFilter) {
-        displayResults(filteredResults);
-    } else {
-        // Aucun filtre actif, afficher tous les résultats
-        displayResults(data);
-    }
-}
-
-
-
     displayResults(filteredResults);
 }
 
@@ -91,7 +81,6 @@ function displayResults(results) {
         resultsList.appendChild(row); // Ajouter la ligne au tableau de résultats 
     });
 }
-
 
 fetch("data.json")
     .then(response => response.json())
@@ -209,4 +198,3 @@ function handleTypeFilterButtonClick(button, data) {
 
     applyActiveFilters(data);
 }
-
