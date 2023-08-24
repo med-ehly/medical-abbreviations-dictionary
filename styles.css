@@ -66,6 +66,13 @@ header {
   background-color: #ddd;
 }
 
+.letter-button.active:hover,
+.category-button.active:hover,
+.type-button.active:hover {
+  background-color: #ddd;
+  color: black;
+}
+
 /* Style du conteneur des résultats */
 .results-container {
   background-color: white;
