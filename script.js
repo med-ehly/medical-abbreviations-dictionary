@@ -1,63 +1,82 @@
+// Constantes pour les sélecteurs DOM
+const searchInput = document.getElementById("searchInput");
+const resultsList = document.getElementById("resultsList");
+const categoryFilter = document.querySelector(".category-filter");
+const typeFilter = document.querySelector(".type-filter");
+
+// Variables pour les filtres actifs
+let activeLetterButton = null;
+let activeCategoryFilter = null;
+let activeTypeFilter = null;
+
+// Fonction de filtrage principale
+function applyActiveFilters(data) {
+    const filteredResults = data.filter(item => {
+      const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.getAttribute("data-letter").toLowerCase();
+      const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
+      const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
+      return letterMatches && categoryMatches && typeMatches;
+    });
+  
+    displayResults(filteredResults);
+  }
+
 function sortDataAlphabetically(data) {
-  return data.sort((a, b) => a.abreviation.localeCompare(b.abreviation));
+    return data.sort((a, b) => a.abreviation.localeCompare(b.abreviation));
 }
 
 function displaySearchResults(results) {
-  const resultsList = document.getElementById("resultsList");
-  resultsList.innerHTML = "";
-  if (results.length === 0) {
-    resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
-    return;
-  }
+    resultsList.innerHTML = "";
+    if (results.length === 0) {
+      resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
+      return;
+    }
 
-  results.forEach(result => {
-    const row = document.createElement("li"); // Créer une ligne de tableau (élément li)
+    results.forEach(result => {
+      const row = document.createElement("li"); // Créer une ligne de tableau (élément li)
 
-    const abbrCell = document.createElement("abbr"); // Créer une cellule pour l'abréviation
-    abbrCell.textContent = result.abreviation;
-    row.appendChild(abbrCell); // Ajouter la cellule à la ligne
+      const abbrCell = document.createElement("abbr"); // Créer une cellule pour l'abréviation
+      abbrCell.textContent = result.abreviation;
+      row.appendChild(abbrCell); // Ajouter la cellule à la ligne
 
-    const descriptionCell = document.createElement("p"); // Créer une cellule pour la description
-    descriptionCell.textContent = result.signification;
-    row.appendChild(descriptionCell); // Ajouter la cellule à la ligne
+      const descriptionCell = document.createElement("p"); // Créer une cellule pour la description
+      descriptionCell.textContent = result.signification;
+      row.appendChild(descriptionCell); // Ajouter la cellule à la ligne
 
-    resultsList.appendChild(row); // Ajouter la ligne au tableau de résultats
-  });
+      resultsList.appendChild(row); // Ajouter la ligne au tableau de résultats
+    });
 }
 
 function handleSearch(event, data) {
-  const searchTerm = event.target.value.toLowerCase();
-  const filteredResults = data.filter(item =>
-    item.abreviation.toLowerCase().includes(searchTerm)
-  );
-  applyActiveFilters(filteredResults); // Appliquer les filtres actifs également lors de la recherche
+    const searchTerm = event.target.value.toLowerCase();
+    const filteredResults = data.filter(item =>
+      item.abreviation.toLowerCase().includes(searchTerm)
+    );
+    applyActiveFilters(filteredResults); // Appliquer les filtres actifs également lors de la recherche
 }
 
 function displayResults(results) {
-  const resultsList = document.getElementById("resultsList");
-  resultsList.innerHTML = '';
+    resultsList.innerHTML = '';
 
-  if (results.length === 0) {
-    resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
-    return;
-  }
+    if (results.length === 0) {
+      resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
+      return;
+    }
 
-  results.forEach(result => {
-    const row = document.createElement("li"); // Créer une ligne de tableau (élément li)
+    results.forEach(result => {
+      const row = document.createElement("li"); // Créer une ligne de tableau (élément li)
 
-    const abbrCell = document.createElement("abbr"); // Créer une cellule pour l'abréviation
-    abbrCell.textContent = result.abreviation;
-    row.appendChild(abbrCell); // Ajouter la cellule à la ligne
+      const abbrCell = document.createElement("abbr"); // Créer une cellule pour l'abréviation
+      abbrCell.textContent = result.abreviation;
+      row.appendChild(abbrCell); // Ajouter la cellule à la ligne
 
-    const descriptionCell = document.createElement("p"); // Créer une cellule pour la description
-    descriptionCell.textContent = result.signification;
-    row.appendChild(descriptionCell); // Ajouter la cellule à la ligne
+      const descriptionCell = document.createElement("p"); // Créer une cellule pour la description
+      descriptionCell.textContent = result.signification;
+      row.appendChild(descriptionCell); // Ajouter la cellule à la ligne
 
-    resultsList.appendChild(row); // Ajouter la ligne au tableau de résultats 
-  });
+      resultsList.appendChild(row); // Ajouter la ligne au tableau de résultats 
+    });
 }
-
-const searchInput = document.getElementById("searchInput");
 
 fetch("data.json")
   .then(response => response.json())
@@ -93,7 +112,6 @@ fetch("data.json")
     const allCategories = ["Anesthésie", "Cardiologie", "CEGDC", "CCVT", "Dermatologie", "Endocrinologie", "Gastrologie", "Génétique", "Gériatrie", "Gynécologie", "Hémato-Onco", "Immuno-Allergie", "Med Interne", "Infectio", "Néphrologie", "Neurochirurgie", "Neurologie", "Ophtalmologie", "ORL", "Orthopédie", "Pédiatrie", "Physiatrie", "Plastie", "Pneumologie", "Psychiatrie", "Rhumatologie", "Urologie"];
     const allTypes = ["Traitement", /* Ajoutez d'autres types */];
 
-    const categoryFilter = document.querySelector(".category-filter");
     categoryFilter.innerHTML = "<h2>Catégories</h2>";
 
     allCategories.forEach(category => {
@@ -101,7 +119,6 @@ fetch("data.json")
       categoryFilter.appendChild(categoryButton);
     });
 
-    const typeFilter = document.querySelector(".type-filter");
     typeFilter.innerHTML = "<h2>Types</h2>";
 
     allTypes.forEach(type => {
@@ -115,9 +132,6 @@ fetch("data.json")
 
 const categoryButtons = document.querySelectorAll(".category-button");
 const typeButtons = document.querySelectorAll(".type-button");
-
-let activeCategoryFilter = null;
-let activeTypeFilter = null;
 
 function createFilterButton(text, attribute, data, filterFunction) {
   const button = document.createElement("button");
@@ -164,15 +178,4 @@ function handleTypeFilterButtonClick(button, data) {
   }
 
   applyActiveFilters(data);
-}
-
-function applyActiveFilters(data) {
-  const filteredResults = data.filter(item => {
-    const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.getAttribute("data-letter").toLowerCase();
-    const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
-    const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
-    return letterMatches && categoryMatches && typeMatches;
-  });
-
-  displayResults(filteredResults);
 }
