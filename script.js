@@ -20,7 +20,12 @@ function applyActiveFilters(data) {
         return letterMatches && categoryMatches && typeMatches;
     });
 
-    displayResults(filteredResults);
+    if (activeLetterButton || activeCategoryFilter || activeTypeFilter) {
+        displayResults(filteredResults);
+    } else {
+        // Aucun filtre actif, afficher tous les résultats
+        displayResults(data);
+    }
 }
 
 function sortDataAlphabetically(data) {
