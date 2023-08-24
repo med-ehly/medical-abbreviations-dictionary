@@ -14,11 +14,15 @@ let activeTypeFilter = null;
 // Fonction de filtrage principale
 function applyActiveFilters(data) {
     const filteredResults = data.filter(item => {
-        const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.getAttribute("data-letter").toLowerCase();
+        const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
         const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
         const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
         return letterMatches && categoryMatches && typeMatches;
     });
+
+    displayResults(filteredResults);
+}
+
 
     displayResults(filteredResults);
 }
