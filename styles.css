@@ -72,7 +72,7 @@ header {
   padding: 10px;
   border-radius: 10px; /* Arrondir les coins */
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), 0px -2px 4px rgba(0, 0, 0, 0.1);
-  width: 70%; /* Largeur des résultats */
+  width: 100%; /* Largeur des résultats */
   margin: 0 auto; /* Centrer horizontalement */
   margin-top: 20px; /* Ajuster l'espacement par rapport aux lettres */
   text-align: center; /* Centrer le contenu */
@@ -82,7 +82,7 @@ header {
   list-style: none;
   padding: 0;
   margin: 0; /* Réinitialiser la marge *
-  width: 70%; /* Largeur des résultats */
+  width: 100%; /* Largeur des résultats */
   margin: 0 auto; /* Centrer horizontalement */
 }
 
@@ -139,7 +139,7 @@ header {
 
 /* Style de la colonne du centre */
 .center-column {
-  width: 70%; /* Largeur de la colonne du centre */
+  width: 80%; /* Largeur de la colonne du centre */
   margin: 0 auto; /* Centrer horizontalement */
 }
 
@@ -154,7 +154,7 @@ header {
 }
 
 .category-filter { 
-  margin-left: 200px; 
+  margin-left: 100px; 
   margin-right: 200px; 
   margin-bottom: 40px;
   display: flex;
@@ -163,7 +163,7 @@ header {
 }
 
 .type-filter {
-  margin-right: 200px; 
+  margin-right: 100px; 
   margin-left: 200px; 
   margin-bottom: 40px;
   display: flex;
