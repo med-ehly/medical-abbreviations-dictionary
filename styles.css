@@ -114,7 +114,7 @@ header {
   flex: 1; /* Allow the abbr to take available space */
   text-align: left; /* Align text to the right */
   margin-right: 10px; /* Add some spacing between abbr and p */
-  font-size: x-large;
+  font-size: xx-large;
   font-weight: bold;
 }
 
@@ -123,9 +123,8 @@ header {
   flex: 2; /* Allow the p to take more space */
   margin: 5px 0;
   color: black;
-  font-style: italic;
   text-align: right;
-  font-size: small;
+  font-size: medium;
 }
 
 /* Style des colonnes de filtre et de la liste des résultats */
