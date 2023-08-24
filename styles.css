@@ -30,13 +30,14 @@ header {
   margin-bottom: 10px;
 }
 
-/* Style des boutons de lettre */
+#resetFiltersButton
 .alphabet {
   display: flex;
   justify-content: center;
   margin-top: 10px;
 }
 
+#resetFiltersButton
 .alphabet .letter-button,
 .category-button,
 .type-button {
@@ -191,8 +192,3 @@ header {
     align-items: center;
     margin-bottom: 10px; /* Ajustez la marge selon vos besoins */
 }
-
-#resetFiltersButton {
-    margin-right: 10px; /* Espacez le bouton des lettres de l'alphabet */
-}
-
