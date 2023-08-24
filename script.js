@@ -42,11 +42,10 @@ function resetTypeFilters() {
     });
 }
 
-// Fonction pour réinitialiser tous les filtres
-function resetFilters() {
+function resetFilters(sortedData) {
     resetLetterFilters();
-    resetCategoryFilters(); // Appel de la fonction de réinitialisation des filtres de catégorie
-    resetTypeFilters(); // Appel de la fonction de réinitialisation des filtres de type
+    resetCategoryFilters();
+    resetTypeFilters();
 
     // Réappliquez les filtres
     applyActiveFilters(sortedData);
