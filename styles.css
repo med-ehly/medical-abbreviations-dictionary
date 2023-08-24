@@ -186,7 +186,9 @@ header {
 }
 
 #resetFiltersButton {
-  
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 #filterControls {
