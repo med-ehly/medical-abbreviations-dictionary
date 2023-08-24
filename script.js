@@ -104,7 +104,7 @@ fetch("data.json")
                         letterButton.classList.remove("active");
                     });
                     button.classList.add("active");
-                    activeLetterButton = button;
+                    activeLetterButton = selectedLetter;
                 } else {
                     button.classList.remove("active");
                     activeLetterButton = null;
