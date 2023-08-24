@@ -97,23 +97,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Fonction pour gérer le clic sur une lettre
             function handleLetterButtonClick(button) {
-    const selectedLetter = button.getAttribute("data-letter");
-    const isFilterActive = button.classList.contains("active");
+                const selectedLetter = button.getAttribute("data-letter");
+                const isFilterActive = button.classList.contains("active");
 
-    if (!isFilterActive) {
-        // Désactivez toutes les autres lettres sélectionnées
-        letterButtons.forEach(letterButton => {
-            letterButton.classList.remove("active");
-        });
-        button.classList.add("active");
-        activeLetterButton = selectedLetter; // Mettez à jour la variable globale activeLetterButton
-    } else {
-        button.classList.remove("active");
-        activeLetterButton = null; // Réinitialisez le filtre de lettre actif
-    }
+                if (!isFilterActive) {
+                    // Désactivez toutes les autres lettres sélectionnées
+                    letterButtons.forEach(letterButton => {
+                        letterButton.classList.remove("active");
+                    });
+                    button.classList.add("active");
+                    activeLetterButton = selectedLetter; // Mettez à jour la variable globale activeLetterButton
+                } else {
+                    button.classList.remove("active");
+                    activeLetterButton = null; // Réinitialisez le filtre de lettre actif
+                }
 
-    applyActiveFilters(sortedData);
-}
+                applyActiveFilters(sortedData);
+            }
 
 
             // Associez la fonction handleLetterButtonClick au clic sur chaque bouton de lettre
@@ -202,19 +202,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 applyActiveFilters(sortedData);
             }
-            // Associez la fonction handleCategoryFilterButtonClick au clic sur chaque bouton de catégorie
-categoryButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        handleCategoryFilterButtonClick(button);
-    });
-});
-
-// Associez la fonction handleTypeFilterButtonClick au clic sur chaque bouton de type
-typeButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        handleTypeFilterButtonClick(button);
-    });
-});
         })
         .catch(error => {
             console.error("Une erreur s'est produite lors du chargement des données.", error);
