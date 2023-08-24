@@ -10,6 +10,36 @@ let activeCategoryButton = null;
 let activeTypeButton = null;
 let activeTypeFilter = null;
 
+// Déclarez ces variables en tant que constantes en dehors de la fonction DOMContentLoaded
+const letterButtons = document.querySelectorAll(".letter-button");
+const categoryButtons = document.querySelectorAll(".category-button");
+const typeButtons = document.querySelectorAll(".type-button");
+
+// Fonction pour réinitialiser les filtres
+function resetFilters() {
+    // Réinitialisez toutes les variables de filtre
+    activeLetterFilter = null;
+    activeLetterButton = null;
+    activeCategoryFilter = null;
+    activeCategoryButton = null;
+    activeTypeButton = null;
+    activeTypeFilter = null;
+
+    // Réinitialisez visuellement les boutons de filtre
+    letterButtons.forEach(letterButton => {
+        letterButton.classList.remove("active");
+    });
+    categoryButtons.forEach(categoryButton => {
+        categoryButton.classList.remove("active");
+    });
+    typeButtons.forEach(typeButton => {
+        typeButton.classList.remove("active");
+    });
+
+    // Réappliquez les filtres
+    applyActiveFilters(sortedData);
+}
+
 // Fonction de filtrage principale
 function applyActiveFilters(data) {
     const filteredResults = data.filter(item => {
@@ -92,6 +122,7 @@ function displayResults(results) {
         resultsList.appendChild(row); // Ajouter la ligne au tableau de résultats 
     });
 }
+
 
 // Charger les données et initialiser les événements après le chargement du document
 document.addEventListener("DOMContentLoaded", () => {
@@ -213,10 +244,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 applyActiveFilters(sortedData);
                 scrollToTop();
             }
-            // Ajoutez un gestionnaire d'événements pour le bouton de réinitialisation des filtres
-    const resetFiltersButton = document.getElementById("resetFiltersButton");
-    resetFiltersButton.addEventListener("click", resetFilters);
-});
+          // Ajoutez un gestionnaire d'événements pour le bouton de réinitialisation des filtres
+            const resetFiltersButton = document.getElementById("resetFiltersButton");
+            resetFiltersButton.addEventListener("click", resetFilters);
         })
         .catch(error => {
             console.error("Une erreur s'est produite lors du chargement des données.", error);
