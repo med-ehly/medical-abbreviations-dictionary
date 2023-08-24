@@ -53,7 +53,7 @@ function displayResults(results) {
     descriptionCell.textContent = result.signification;
     row.appendChild(descriptionCell); // Ajouter la cellule à la ligne
 
-    resultsList.appendChild(row); // Ajouter la ligne au tableau de résultats
+    resultsList.appendChild(row); // Ajouter la ligne au tableau de résultats 
   });
 }
 
@@ -130,17 +130,17 @@ function createFilterButton(text, attribute, data, filterFunction) {
 
 function handleCategoryFilterButtonClick(button, data) {
   const selectedCategoryFilter = button.getAttribute("data-category");
-  const isCategoryFilterActive = button.classList.contains("active-filter");
+  const isCategoryFilterActive = button.classList.contains("active");
 
   if (!isCategoryFilterActive) {
     // Désactivez toutes les autres catégories sélectionnées
     categoryButtons.forEach(categoryButton => {
-      categoryButton.classList.remove("active-filter");
+      categoryButton.classList.remove("active");
     });
-    button.classList.add("active-filter");
+    button.classList.add("active");
     activeCategoryFilter = selectedCategoryFilter;
   } else {
-    button.classList.remove("active-filter");
+    button.classList.remove("active");
     activeCategoryFilter = null;
   }
 
@@ -149,17 +149,17 @@ function handleCategoryFilterButtonClick(button, data) {
 
 function handleTypeFilterButtonClick(button, data) {
   const selectedTypeFilter = button.getAttribute("data-type");
-  const isTypeFilterActive = button.classList.contains("active-filter");
+  const isTypeFilterActive = button.classList.contains("active");
 
   if (!isTypeFilterActive) {
     // Désactivez toutes les autres types sélectionnés
     typeButtons.forEach(typeButton => {
-      typeButton.classList.remove("active-filter");
+      typeButton.classList.remove("active");
     });
-    button.classList.add("active-filter");
+    button.classList.add("active");
     activeTypeFilter = selectedTypeFilter;
   } else {
-    button.classList.remove("active-filter");
+    button.classList.remove("active");
     activeTypeFilter = null;
   }
 
