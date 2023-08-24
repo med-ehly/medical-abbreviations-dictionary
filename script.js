@@ -251,4 +251,4 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(error => {
             console.error("Une erreur s'est produite lors du chargement des données.", error);
         });
-});
+
