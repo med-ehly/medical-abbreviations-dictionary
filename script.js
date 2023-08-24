@@ -244,11 +244,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 applyActiveFilters(sortedData);
                 scrollToTop();
             }
-          // Ajoutez un gestionnaire d'événements pour le bouton de réinitialisation des filtres
+          
+            // Ajoutez un gestionnaire d'événements pour le bouton de réinitialisation des filtres
             const resetFiltersButton = document.getElementById("resetFiltersButton");
             resetFiltersButton.addEventListener("click", resetFilters);
         })
         .catch(error => {
             console.error("Une erreur s'est produite lors du chargement des données.", error);
         });
-
+});
