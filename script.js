@@ -5,6 +5,7 @@ const categoryFilter = document.querySelector(".category-filter");
 const typeFilter = document.querySelector(".type-filter");
 
 // Variables pour les filtres actifs
+let activeLetterFilter = null;
 let activeLetterButton = null;
 let activeCategoryFilter = null;
 let activeCategoryButton = null;
@@ -97,26 +98,28 @@ fetch("data.json")
         const letterButtons = document.querySelectorAll(".letter-button");
         let activeLetterButton = null;
 
-        letterButtons.forEach(button => {
-            button.addEventListener("click", () => {
-                const selectedLetter = button.getAttribute("data-letter");
-                const isFilterActive = button.classList.contains("active");
+       letterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const selectedLetter = button.getAttribute("data-letter");
+        const isFilterActive = button.classList.contains("active");
 
-                if (!isFilterActive) {
-                    // Désactivez toutes les autres lettres sélectionnées
-                    letterButtons.forEach(letterButton => {
-                        letterButton.classList.remove("active");
-                    });
-                    button.classList.add("active");
-                    activeLetterButton = selectedLetter;
-                } else {
-                    button.classList.remove("active");
-                    activeLetterButton = null;
-                }
-
-                applyActiveFilters(sortedData);
+        if (!isFilterActive) {
+            // Désactivez toutes les autres lettres sélectionnées
+            letterButtons.forEach(letterButton => {
+                letterButton.classList.remove("active");
             });
-        });
+            button.classList.add("active");
+            activeLetterButton = selectedLetter;
+            activeLetterFilter = selectedLetter; // Mettez à jour la variable activeLetterFilter
+        } else {
+            button.classList.remove("active");
+            activeLetterButton = null;
+            activeLetterFilter = null; // Mettez à jour la variable activeLetterFilter
+        }
+
+        applyActiveFilters(sortedData);
+    });
+});
 
         const allCategories = ["Anesthésie", "Cardiologie", "CEGDC", "CCVT", "Dermatologie", "Endocrinologie", "Gastrologie", "Génétique", "Gériatrie", "Gynécologie", "Hémato-Onco", "Immuno-Allergie", "Med Interne", "Infectio", "Néphrologie", "Neurochirurgie", "Neurologie", "Ophtalmologie", "ORL", "Orthopédie", "Pédiatrie", "Physiatrie", "Plastie", "Pneumologie", "Psychiatrie", "Rhumatologie", "Urologie"];
         const allTypes = ["Traitement", /* Ajoutez d'autres types */];
