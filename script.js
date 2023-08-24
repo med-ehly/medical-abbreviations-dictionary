@@ -202,6 +202,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 applyActiveFilters(sortedData);
             }
+            // Associez la fonction handleCategoryFilterButtonClick au clic sur chaque bouton de catégorie
+categoryButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        handleCategoryFilterButtonClick(button);
+    });
+});
+
+// Associez la fonction handleTypeFilterButtonClick au clic sur chaque bouton de type
+typeButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        handleTypeFilterButtonClick(button);
+    });
+});
         })
         .catch(error => {
             console.error("Une erreur s'est produite lors du chargement des données.", error);
