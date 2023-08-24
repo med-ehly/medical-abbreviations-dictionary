@@ -7,6 +7,8 @@ const typeFilter = document.querySelector(".type-filter");
 // Variables pour les filtres actifs
 let activeLetterButton = null;
 let activeCategoryFilter = null;
+let activeCategoryButton = null;
+let activeTypeButton = null;
 let activeTypeFilter = null;
 
 // Fonction de filtrage principale
@@ -15,20 +17,11 @@ function applyActiveFilters(data) {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.getAttribute("data-letter").toLowerCase();
         const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
         const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
-
-        // La logique est ajustée ici pour que tous les filtres actifs doivent être satisfaits
         return letterMatches && categoryMatches && typeMatches;
     });
 
-    if (activeLetterButton || activeCategoryFilter || activeTypeFilter) {
-        // Au moins un filtre est actif, afficher les résultats filtrés
-        displayResults(filteredResults);
-    } else {
-        // Aucun filtre actif, afficher tous les résultats
-        displayResults(data);
-    }
+    displayResults(filteredResults);
 }
-
 
 function sortDataAlphabetically(data) {
     return data.sort((a, b) => a.abreviation.localeCompare(b.abreviation));
@@ -170,36 +163,40 @@ function handleCategoryFilterButtonClick(button, data) {
     const isCategoryFilterActive = button.classList.contains("active");
 
     if (!isCategoryFilterActive) {
-        // Désactivez toutes les autres catégories sélectionnées
-        categoryButtons.forEach(categoryButton => {
-            categoryButton.classList.remove("active");
-        });
+        // Désactivez le bouton de catégorie actif s'il y en a un
+        if (activeCategoryButton) {
+            activeCategoryButton.classList.remove("active");
+        }
         button.classList.add("active");
+        activeCategoryButton = button;
         activeCategoryFilter = selectedCategoryFilter;
     } else {
         button.classList.remove("active");
+        activeCategoryButton = null;
         activeCategoryFilter = null;
     }
 
     applyActiveFilters(data);
 }
 
+
 function handleTypeFilterButtonClick(button, data) {
     const selectedTypeFilter = button.getAttribute("data-type");
     const isTypeFilterActive = button.classList.contains("active");
 
     if (!isTypeFilterActive) {
-        // Désactivez toutes les autres types sélectionnés
-        typeButtons.forEach(typeButton => {
-            typeButton.classList.remove("active");
-        });
+        // Désactivez le bouton de catégorie actif s'il y en a un
+        if (activeTypeButton) {
+            activeTypeButton.classList.remove("active");
+        }
         button.classList.add("active");
-        activeTypeFilter = selectedTypeFilter;
+        activeTypeButton = button;
+        activeTypeFilter = selectedCategoryFilter;
     } else {
         button.classList.remove("active");
+        activeTypeButton = null;
         activeTypeFilter = null;
     }
 
     applyActiveFilters(data);
 }
-
