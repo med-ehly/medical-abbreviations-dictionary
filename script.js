@@ -15,8 +15,7 @@ const letterButtons = document.querySelectorAll(".letter-button");
 const categoryButtons = document.querySelectorAll(".category-button");
 const typeButtons = document.querySelectorAll(".type-button");
 
-// Fonction pour réinitialiser tous les filtres
-function resetFilters() {
+function resetFilters(sortedData) {
     resetLetterFilters();
     resetCategoryFilters();
     resetTypeFilters();
@@ -265,7 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
           
             // Ajoutez un gestionnaire d'événements pour le bouton de réinitialisation des filtres
             const resetFiltersButton = document.getElementById("resetFiltersButton");
-            resetFiltersButton.addEventListener("click", resetFilters);
+            resetFiltersButton.addEventListener("click", () => resetFilters(sortedData));
         })
         .catch(error => {
             console.error("Une erreur s'est produite lors du chargement des données.", error);
