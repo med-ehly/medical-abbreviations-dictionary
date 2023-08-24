@@ -212,6 +212,36 @@ document.addEventListener("DOMContentLoaded", () => {
                 applyActiveFilters(sortedData);
                 scrollToTop();
             }
+            function handleresetFiltersButtonClick() {
+    // Réinitialisez toutes les variables de filtre actives à null
+    activeLetterFilter = null;
+    activeLetterButton = null;
+    activeCategoryFilter = null;
+    activeCategoryButton = null;
+    activeTypeButton = null;
+    activeTypeFilter = null;
+
+    // Réinitialisez visuellement les boutons de filtre de lettre, catégorie et type
+    letterButtons.forEach(letterButton => {
+        letterButton.classList.remove("active");
+    });
+
+    categoryButtons.forEach(categoryButton => {
+        categoryButton.classList.remove("active");
+    });
+
+    typeButtons.forEach(typeButton => {
+        typeButton.classList.remove("active");
+    });
+
+    // Réappliquez les filtres aux données triées
+    applyActiveFilters(sortedData);
+}
+
+// Associez la fonction handleresetFiltersButtonClick au clic sur le bouton de réinitialisation des filtres
+const resetFiltersButton = document.getElementById("resetFiltersButton");
+resetFiltersButton.addEventListener("click", handleresetFiltersButtonClick);
+
         })
         .catch(error => {
             console.error("Une erreur s'est produite lors du chargement des données.", error);
