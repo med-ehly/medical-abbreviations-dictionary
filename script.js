@@ -10,53 +10,6 @@ let activeCategoryButton = null;
 let activeTypeButton = null;
 let activeTypeFilter = null;
 
-// Déclarez ces variables en tant que constantes en dehors de la fonction DOMContentLoaded
-const letterButtons = document.querySelectorAll(".letter-button");
-const categoryButtons = document.querySelectorAll(".category-button");
-const typeButtons = document.querySelectorAll(".type-button");
-
-function resetFilters(sortedData) {
-    resetLetterFilters();
-    resetCategoryFilters();
-    resetTypeFilters();
-
-    // Réappliquez les filtres
-    applyActiveFilters(sortedData);
-}
-
-// Fonction pour réinitialiser les filtres de lettre
-function resetLetterFilters() {
-    activeLetterFilter = null;
-    activeLetterButton = null;
-
-    // Réinitialisez visuellement les boutons de filtre de lettre
-    letterButtons.forEach(letterButton => {
-        letterButton.classList.remove("active");
-    });
-}
-
-// Fonction pour réinitialiser les filtres de catégorie
-function resetCategoryFilters() {
-    activeCategoryFilter = null;
-    activeCategoryButton = null;
-
-    // Réinitialisez visuellement les boutons de filtre de catégorie
-    categoryButtons.forEach(categoryButton => {
-        categoryButton.classList.remove("active");
-    });
-}
-
-// Fonction pour réinitialiser les filtres de type
-function resetTypeFilters() {
-    activeTypeFilter = null;
-    activeTypeButton = null;
-
-    // Réinitialisez visuellement les boutons de filtre de type
-    typeButtons.forEach(typeButton => {
-        typeButton.classList.remove("active");
-    });
-}
-
 // Fonction de filtrage principale
 function applyActiveFilters(data) {
     const filteredResults = data.filter(item => {
@@ -116,7 +69,6 @@ function handleSearch(event, data) {
     applyActiveFilters(filteredResults); // Appliquer les filtres actifs également lors de la recherche
 }
 
-
 function displayResults(results) {
     resultsList.innerHTML = '';
 
@@ -139,7 +91,6 @@ function displayResults(results) {
         resultsList.appendChild(row); // Ajouter la ligne au tableau de résultats 
     });
 }
-
 
 // Charger les données et initialiser les événements après le chargement du document
 document.addEventListener("DOMContentLoaded", () => {
@@ -261,10 +212,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 applyActiveFilters(sortedData);
                 scrollToTop();
             }
-          
-            // Ajoutez un gestionnaire d'événements pour le bouton de réinitialisation des filtres
-            const resetFiltersButton = document.getElementById("resetFiltersButton");
-            resetFiltersButton.addEventListener("click", () => resetFilters(sortedData));
         })
         .catch(error => {
             console.error("Une erreur s'est produite lors du chargement des données.", error);
