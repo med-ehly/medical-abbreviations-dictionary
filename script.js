@@ -15,17 +15,33 @@ const letterButtons = document.querySelectorAll(".letter-button");
 const categoryButtons = document.querySelectorAll(".category-button");
 const typeButtons = document.querySelectorAll(".type-button");
 
-// Fonction pour réinitialiser les filtres
+// Fonction pour réinitialiser tous les filtres
 function resetFilters() {
-    // Réinitialisez toutes les variables de filtre
+    resetLetterFilters();
+    resetCategoryFilters();
+    resetTypeFilters();
+
+    // Réappliquez les filtres
+    applyActiveFilters(sortedData);
+}
+
+// Fonction pour réinitialiser les filtres de lettre
+function resetLetterFilters() {
     activeLetterFilter = null;
     activeLetterButton = null;
+
+    // Réinitialisez visuellement les boutons de filtre de lettre
+    letterButtons.forEach(letterButton => {
+        letterButton.classList.remove("active");
+    });
+}
+
+// Fonction pour réinitialiser les filtres de catégorie
+function resetCategoryFilters() {
     activeCategoryFilter = null;
     activeCategoryButton = null;
-    activeTypeButton = null;
-    activeTypeFilter = null;
 
-       // Réinitialisez visuellement les boutons de filtre de catégorie
+    // Réinitialisez visuellement les boutons de filtre de catégorie
     categoryButtons.forEach(categoryButton => {
         categoryButton.classList.remove("active");
     });
@@ -40,15 +56,6 @@ function resetTypeFilters() {
     typeButtons.forEach(typeButton => {
         typeButton.classList.remove("active");
     });
-}
-
-function resetFilters(sortedData) {
-    resetLetterFilters();
-    resetCategoryFilters();
-    resetTypeFilters();
-
-    // Réappliquez les filtres
-    applyActiveFilters(sortedData);
 }
 
 // Fonction de filtrage principale
