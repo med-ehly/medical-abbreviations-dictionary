@@ -195,12 +195,5 @@ header {
     display: flex;
     align-items: center;
     margin-bottom: 10px; /* Ajustez la marge selon vos besoins */
-  padding: 5px 10px; /* Ajuster le rembourrage vertical */
-  font-size: 13px;
-  background-color: white; /* Même couleur que les boutons de lettre */
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 0 3px; /* Ajouter un espacement horizontal entre les boutons */
 }
 
