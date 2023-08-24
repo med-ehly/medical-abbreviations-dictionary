@@ -53,6 +53,13 @@ function displaySearchResults(results) {
     });
 }
 
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth" // Cela permettra une animation de défilement en douceur
+    });
+}
+
 function handleSearch(event, data) {
     const searchTerm = event.target.value.toLowerCase();
     const filteredResults = data.filter(item =>
@@ -180,6 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 applyActiveFilters(sortedData);
+                scrollToTop();
             }
 
             function handleTypeFilterButtonClick(button) {
@@ -201,6 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 applyActiveFilters(sortedData);
+                scrollToTop();
             }
         })
         .catch(error => {
