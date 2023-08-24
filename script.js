@@ -97,23 +97,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Fonction pour gérer le clic sur une lettre
             function handleLetterButtonClick(button) {
-                const selectedLetter = button.getAttribute("data-letter");
-                const isFilterActive = button.classList.contains("active");
+    const selectedLetter = button.getAttribute("data-letter");
+    const isFilterActive = button.classList.contains("active");
 
-                if (!isFilterActive) {
-                    // Désactivez toutes les autres lettres sélectionnées
-                    letterButtons.forEach(letterButton => {
-                        letterButton.classList.remove("active");
-                    });
-                    button.classList.add("active");
-                    activeLetterFilter = selectedLetter; // Mettez à jour la variable activeLetterFilter
-                } else {
-                    button.classList.remove("active");
-                    activeLetterFilter = null; // Réinitialisez le filtre de lettre actif
-                }
+    if (!isFilterActive) {
+        // Désactivez toutes les autres lettres sélectionnées
+        letterButtons.forEach(letterButton => {
+            letterButton.classList.remove("active");
+        });
+        button.classList.add("active");
+        activeLetterButton = selectedLetter; // Mettez à jour la variable globale activeLetterButton
+    } else {
+        button.classList.remove("active");
+        activeLetterButton = null; // Réinitialisez le filtre de lettre actif
+    }
 
-                applyActiveFilters(sortedData);
-            }
+    applyActiveFilters(sortedData);
+}
+
 
             // Associez la fonction handleLetterButtonClick au clic sur chaque bouton de lettre
             letterButtons.forEach(button => {
