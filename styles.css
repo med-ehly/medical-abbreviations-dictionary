@@ -30,14 +30,12 @@ header {
   margin-bottom: 10px;
 }
 
-#resetFiltersButton
 .alphabet {
   display: flex;
   justify-content: center;
   margin-top: 10px;
 }
 
-#resetFiltersButton
 .alphabet .letter-button,
 .category-button,
 .type-button {
@@ -187,8 +185,13 @@ header {
   text-transform: uppercase;
 }
 
+#resetFiltersButton {
+  
+}
+
 #filterControls {
     display: flex;
     align-items: center;
     margin-bottom: 10px; /* Ajustez la marge selon vos besoins */
 }
+
