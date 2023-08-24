@@ -184,4 +184,5 @@ header {
   margin: 5px;
   width: 200px; /* Ajustez la largeur des boutons selon vos préférences */
   padding: 10px; /* Ajustez le rembourrage des boutons selon vos préférences */
+  text-transform: uppercase;
 }
