@@ -185,3 +185,14 @@ header {
   padding: 10px; /* Ajustez le rembourrage des boutons selon vos préférences */
   text-transform: uppercase;
 }
+
+#filterControls {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Ajustez la marge selon vos besoins */
+}
+
+#resetFiltersButton {
+    margin-right: 10px; /* Espacez le bouton des lettres de l'alphabet */
+}
+
