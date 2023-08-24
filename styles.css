@@ -14,7 +14,7 @@ header {
   background-color: #007BFF;
   color: white;
   text-align: center;
-  padding: 2%; /* Utilisation de pourcentages pour la marge intérieure */
+  padding: 20px;
 }
 
 /* Style du champ de recherche */
@@ -22,34 +22,120 @@ header {
   display: block; /* Mettre en bloc pour que les marges fonctionnent */
   margin: 0 auto; /* Centrer horizontalement */
   width: 80%;
-  margin-top: 1%; /* Utilisation de pourcentages pour la marge externe */
-  padding: 2%; /* Utilisation de pourcentages pour le rembourrage */
-  font-size: 1.5vw; /* Utilisation de valeurs relatives (vw) pour la taille de police */
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-bottom: 1%; /* Utilisation de pourcentages pour la marge externe */
+  margin-bottom: 10px;
 }
 
 /* Style des boutons de lettre */
 .alphabet {
   display: flex;
   justify-content: center;
-  margin-top: 1%; /* Utilisation de pourcentages pour la marge externe */
+  margin-top: 10px;
 }
 
 .alphabet .letter-button,
 .category-button,
 .type-button {
-  padding: 1% 2%; /* Utilisation de pourcentages pour le rembourrage vertical et horizontal */
-  font-size: 1vw; /* Utilisation de valeurs relatives (vw) pour la taille de police */
+  padding: 5px 10px; /* Ajuster le rembourrage vertical */
+  font-size: 13px;
   background-color: white; /* Même couleur que les boutons de lettre */
   border: 1px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
-  margin: 0.3% 0.5%; /* Utilisation de pourcentages pour l'espacement horizontal et vertical */
+  margin: 0 3px; /* Ajouter un espacement horizontal entre les boutons */
 }
 
-/* ... (le reste de votre code) */
+/* Ajouter le style pour la classe "active-filter" */
+.letter-button.active,
+.category-button.active,
+.type-button.active,
+.category-button.active-filter, /* Ajoutez cette règle pour les filtres de catégorie actifs */
+.type-button.active-filter { /* Ajoutez cette règle pour les filtres de type actifs */
+  background-color: #007BFF; /* Couleur différente lorsque le bouton est enfoncé */
+  color: white; /* Couleur du texte */
+  border-color: #007BFF; /* Couleur de la bordure */
+}
+
+.letter-button:hover,
+.category-button:hover,
+.type-button:hover {
+  background-color: #ddd;
+}
+
+/* Style du conteneur des résultats */
+.results-container {
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px; /* Arrondir les coins */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), 0px -2px 4px rgba(0, 0, 0, 0.1);
+  width: 70%; /* Largeur des résultats */
+  margin: 0 auto; /* Centrer horizontalement */
+  margin-top: 20px; /* Ajuster l'espacement par rapport aux lettres */
+  text-align: center; /* Centrer le contenu */
+}
+
+#resultsList {
+  list-style: none;
+  padding: 0;
+  margin: 0; /* Réinitialiser la marge *
+  width: 70%; /* Largeur des résultats */
+  margin: 0 auto; /* Centrer horizontalement */
+}
+
+/* Update the style of list items */
+#resultsList li {
+  display: flex; /* Use flexbox to align items horizontally */
+  align-items: center; /* Center items vertically within the list item */
+  padding: 25px;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc; /* Ajouter une bordure à gauche */
+  border-right: 1px solid #ccc;
+  background-color: white;
+  font-family: Arial, sans-serif; /* Changer la police */
+}
+
+#resultsList li:last-child {
+  border-bottom: 1px solid #ccc; /* Ajouter la bordure en bas uniquement au dernier élément */
+}
+
+/* Update the style of the abbr (right side) */
+#resultsList abbr {
+  flex: 1; /* Allow the abbr to take available space */
+  text-align: left; /* Align text to the right */
+  margin-right: 10px; /* Add some spacing between abbr and p */
+  font-size: x-large;
+  font-weight: bold;
+}
+
+/* Update the style of the description (left side) */
+#resultsList p {
+  flex: 2; /* Allow the p to take more space */
+  margin: 5px 0;
+  color: black;
+  font-style: italic;
+  text-align: right;
+  font-size: small;
+}
+
+/* Style des colonnes de filtre et de la liste des résultats */
+.filters-and-list {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between; /* Utiliser space-between pour espacer les colonnes */
+  margin-top: 20px;
+}
+
+/* Style des colonnes de filtre */
+.filter-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Retirez la largeur */
+}
 
 /* Style de la colonne du centre */
 .center-column {
@@ -58,28 +144,28 @@ header {
 }
 
 .category-filter h2 {
-  margin-bottom: 1%; /* Utilisation de pourcentages pour la marge externe */
-  margin-left: 1%; /* Utilisation de pourcentages pour la marge externe */
+  margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .type-filter h2 {
-  margin-bottom: 1%; /* Utilisation de pourcentages pour la marge externe */
-  margin-left: 3%; /* Utilisation de pourcentages pour la marge externe */
+  margin-bottom: 10px;
+  margin-left: 30px;
 }
 
 .category-filter { 
-  margin-left: 10%; /* Utilisation de pourcentages pour la marge externe */
-  margin-right: 10%; /* Utilisation de pourcentages pour la marge externe */
-  margin-bottom: 2%; /* Utilisation de pourcentages pour la marge externe */
+  margin-left: 200px; 
+  margin-right: 200px; 
+  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
 .type-filter {
-  margin-right: 10%; /* Utilisation de pourcentages pour la marge externe */
-  margin-left: 10%; /* Utilisation de pourcentages pour la marge externe */
-  margin-bottom: 2%; /* Utilisation de pourcentages pour la marge externe */
+  margin-right: 200px; 
+  margin-left: 200px; 
+  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -88,7 +174,7 @@ header {
 /* Style des boutons de filtre dans les colonnes */
 .filter-column .category-button,
 .filter-column .type-button {
-  margin: 1%;
-  width: 20%; /* Utilisation de pourcentages pour la largeur */
-  padding: 2%; /* Utilisation de pourcentages pour le rembourrage */
+  margin: 5px;
+  width: 120px; /* Ajustez la largeur des boutons selon vos préférences */
+  padding: 10px; /* Ajustez le rembourrage des boutons selon vos préférences */
 }
