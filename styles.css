@@ -11,7 +11,7 @@ body {
 
 /* Style du header */
 header {
-  background-color: #007BFF;
+  background-color: #4e42d4;
   color: white;
   text-align: center;
   padding: 20px;
@@ -55,9 +55,9 @@ header {
 .type-button.active,
 .category-button.active-filter, /* Ajoutez cette règle pour les filtres de catégorie actifs */
 .type-button.active-filter { /* Ajoutez cette règle pour les filtres de type actifs */
-  background-color: #007BFF; /* Couleur différente lorsque le bouton est enfoncé */
+  background-color: #4e42d4; /* Couleur différente lorsque le bouton est enfoncé */
   color: white; /* Couleur du texte */
-  border-color: #007BFF; /* Couleur de la bordure */
+  border-color: #4e42d4; /* Couleur de la bordure */
 }
 
 .letter-button:hover,
@@ -175,6 +175,6 @@ header {
 .filter-column .category-button,
 .filter-column .type-button {
   margin: 5px;
-  width: 120px; /* Ajustez la largeur des boutons selon vos préférences */
+  width: 200px; /* Ajustez la largeur des boutons selon vos préférences */
   padding: 10px; /* Ajustez le rembourrage des boutons selon vos préférences */
 }
