@@ -144,10 +144,6 @@ letterButtons.forEach(button => {
             typeFilter.appendChild(typeButton);
         });
 
-    .catch(error => {
-        console.error("Une erreur s'est produite lors du chargement des données.", error);
-    });
-
 const categoryButtons = document.querySelectorAll(".category-button");
 const typeButtons = document.querySelectorAll(".type-button");
 
