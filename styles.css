@@ -36,9 +36,10 @@ header {
   margin-top: 10px;
 }
 
-.alphabet .letter-button,
+.letter-button,
 .letter-button-symbol, 
 .category-button,
+.letter-button, 
 .type-button {
   padding: 5px 10px;
   font-size: 13px;
@@ -49,25 +50,28 @@ header {
   margin: 0 3px;
 }
 
-.alphabet .letter-button.active,
+.letter-button.active,
 .letter-button-symbol.active, 
 .category-button.active,
+.letter-button.active,
 .type-button.active {
   background-color: #4e42d4;
   color: white;
   border-color: #4e42d4;
 }
 
-.alphabet .letter-button:hover,
+.letter-button:hover,
 .letter-button-symbol:hover, 
 .category-button:hover,
+.letter-button:hover,
 .type-button:hover {
   background-color: #ddd;
 }
 
-.alphabet .letter-button.active:hover,
+.letter-button.active:hover,
 .letter-button-symbol.active:hover, /* Ajoutez le sélecteur du bouton des symboles actif survolé ici */
 .category-button.active:hover,
+.letter-button.active:hover,
 .type-button.active:hover {
   background-color: #ddd;
   color: black;
