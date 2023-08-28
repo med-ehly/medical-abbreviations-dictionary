@@ -192,16 +192,16 @@ header {
 
 
 #resetFiltersButton {
-  display: flex;
-  justify-content: center;
   margin-top: 10px;
   margin-right: 10px;
-  border: 1px solid #ccc;
+  border: 3px solid #ccc;
+  color: white;
+  background-color: #4e42d4;
 }
-
+/*
 #filterControls {
     display: flex;
     align-items: center;
     margin-bottom: 10px; /* Ajustez la marge selon vos besoins */
 }
-
+*/
