@@ -3,22 +3,26 @@
     "abreviation": "AVC",
     "signification": "Accident Vasculaire Cérébral",
     "categorie": "Neurologie",
-    "type": "Diagnostic"
+    "type": "Diagnostic",
+    "langue": "français"
   },
   {
     "abreviation": "PL",
     "signification": "Ponction Lombaire",
     "categorie": "Neurologie",
-    "type": "Traitement"
+    "type": "Traitement",
+    "langue": "français"
   },
   {
     "abreviation": "RXi",
-    "signification": "Radiographie"
+    "signification": "Radiographie",
+    "langue": "français"
   },
   {
     "abreviation": "HCNT",
     "signification": "Hémorragie Cérébrale Non Traumatique",
     "categorie": "Neurologie",
-    "type": "Médication" 
+    "type": "Médication",
+    "langue": "français"
   }
 ]
