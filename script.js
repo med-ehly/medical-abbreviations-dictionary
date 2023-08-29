@@ -70,6 +70,7 @@ function handleSearch(event, data) {
 }
 
 function displayResults(results) {
+  const resultsList = document.getElementById('resultsList');
   resultsList.innerHTML = '';
 
   if (results.length === 0) {
@@ -78,24 +79,24 @@ function displayResults(results) {
   }
 
   results.forEach(result => {
-    const row = document.createElement("li"); // Créer une ligne de tableau (élément li)
-
-    const abbrCell = document.createElement("abbr"); // Créer une cellule pour l'abréviation
+    const row = document.createElement('li');
+    const abbrCell = document.createElement('abbr');
     abbrCell.textContent = result.abreviation;
-    row.appendChild(abbrCell); // Ajouter la cellule à la ligne
+    row.appendChild(abbrCell);
 
-    const descriptionCell = document.createElement("p"); // Créer une cellule pour la description
+    const descriptionCell = document.createElement('p');
     descriptionCell.textContent = result.signification;
-    row.appendChild(descriptionCell); // Ajouter la cellule à la ligne
+    row.appendChild(descriptionCell);
 
-    const languageCell = document.createElement("p"); // Créer une cellule pour la langue
-    languageCell.textContent = "Langue: " + result.langue;
-    languageCell.classList.add("language"); // Ajoutez la classe "language"
-    row.appendChild(languageCell); // Ajouter la cellule à la ligne
+    const languageCell = document.createElement('p');
+    languageCell.textContent = 'Langue: ' + result.langue;
+    languageCell.classList.add('language');
+    row.appendChild(languageCell);
 
-    resultsList.appendChild(row); // Ajouter la ligne au tableau de résultats 
+    resultsList.appendChild(row);
   });
 }
+
 
 
 // Charger les données et initialiser les événements après le chargement du document
