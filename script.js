@@ -88,6 +88,10 @@ function displayResults(results) {
         descriptionCell.textContent = result.signification;
         row.appendChild(descriptionCell); // Ajouter la cellule à la ligne
 
+        const languageCell = document.createElement("p"); // Créer une cellule pour la langue
+        languageCell.textContent = "Langue: " + result.langue;
+        row.appendChild(languageCell); // Ajouter la cellule à la ligne
+
         resultsList.appendChild(row); // Ajouter la ligne au tableau de résultats 
     });
 }
