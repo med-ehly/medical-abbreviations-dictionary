@@ -132,12 +132,18 @@ header {
 }
 
 /* Style de la langue (ajouté pour afficher la langue en minuscules) */
-#resultsList p.language {
+.language {
   flex: 2; /* Allow the language to take more space */
   margin: 5px 0;
   color: gray; /* Couleur de la langue */
   text-align: right;
   font-size: small; /* Réduisez la taille de la police pour la langue */
+}
+
+/* Modifier le style de la cellule de langue au survol */
+.language:hover {
+  text-decoration: underline; /* Ajoutez un soulignement au survol */
+  color: #4e42d4; /* Changez la couleur du texte au survol */
 }
 
 /* Style des colonnes de filtre et de la liste des résultats */
