@@ -70,31 +70,33 @@ function handleSearch(event, data) {
 }
 
 function displayResults(results) {
-    resultsList.innerHTML = '';
+  resultsList.innerHTML = '';
 
-    if (results.length === 0) {
-        resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
-        return;
-    }
+  if (results.length === 0) {
+    resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
+    return;
+  }
 
-    results.forEach(result => {
-        const row = document.createElement("li"); // Créer une ligne de tableau (élément li)
+  results.forEach(result => {
+    const row = document.createElement("li"); // Créer une ligne de tableau (élément li)
 
-        const abbrCell = document.createElement("abbr"); // Créer une cellule pour l'abréviation
-        abbrCell.textContent = result.abreviation;
-        row.appendChild(abbrCell); // Ajouter la cellule à la ligne
+    const abbrCell = document.createElement("abbr"); // Créer une cellule pour l'abréviation
+    abbrCell.textContent = result.abreviation;
+    row.appendChild(abbrCell); // Ajouter la cellule à la ligne
 
-        const descriptionCell = document.createElement("p"); // Créer une cellule pour la description
-        descriptionCell.textContent = result.signification;
-        row.appendChild(descriptionCell); // Ajouter la cellule à la ligne
+    const descriptionCell = document.createElement("p"); // Créer une cellule pour la description
+    descriptionCell.textContent = result.signification;
+    row.appendChild(descriptionCell); // Ajouter la cellule à la ligne
 
-        const languageCell = document.createElement("p"); // Créer une cellule pour la langue
-        languageCell.textContent = "Langue: " + result.langue;
-        row.appendChild(languageCell); // Ajouter la cellule à la ligne
+    const languageCell = document.createElement("p"); // Créer une cellule pour la langue
+    languageCell.textContent = "Langue: " + result.langue;
+    languageCell.classList.add("language"); // Ajoutez la classe "language"
+    row.appendChild(languageCell); // Ajouter la cellule à la ligne
 
-        resultsList.appendChild(row); // Ajouter la ligne au tableau de résultats 
-    });
+    resultsList.appendChild(row); // Ajouter la ligne au tableau de résultats 
+  });
 }
+
 
 // Charger les données et initialiser les événements après le chargement du document
 document.addEventListener("DOMContentLoaded", () => {
