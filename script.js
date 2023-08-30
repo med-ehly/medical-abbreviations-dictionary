@@ -289,7 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Réappliquez les filtres aux données triées
     applyActiveFilters(sortedData);
     resultsList.style.display = "block";
-    }, 2000);
+    }, 500);
 }
 
 // Associez la fonction handleresetFiltersButtonClick au clic sur le bouton de réinitialisation des filtres
