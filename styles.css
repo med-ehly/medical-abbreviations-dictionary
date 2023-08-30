@@ -134,6 +134,7 @@ header {
   text-align: right;
   font-size: medium;
   padding: 10px;
+  padding-top: 20px;
 }
 
 /* Style de la langue (ajouté pour afficher la langue en minuscules) */
