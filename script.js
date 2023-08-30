@@ -77,24 +77,29 @@ function displaySearchResults(results) {
         return;
     }
 
-    results.forEach(result => {
-        const row = document.createElement("li"); // Create a table row (li element)
+   results.forEach(result => {
+    const row = document.createElement("li"); // Create a table row (li element)
 
-        const abbrCell = document.createElement("abbr"); // Create a cell for abbreviation
-        abbrCell.textContent = result.abreviation;
-        row.appendChild(abbrCell); // Add the cell to the row
+    const abbrCell = document.createElement("abbr"); // Create a cell for abbreviation
+    abbrCell.textContent = result.abreviation;
+    row.appendChild(abbrCell); // Add the cell to the row
 
-        const descriptionCell = document.createElement("p"); // Create a cell for description
-        descriptionCell.textContent = result.signification;
-        row.appendChild(descriptionCell); // Add the cell to the row
+    const descriptionCell = document.createElement("div"); // Create a container for description and langue
+    descriptionCell.classList.add("description-container");
 
-        const langueCell = document.createElement("span"); // Create a cell for langue
-        langueCell.textContent = result.langue;
-        langueCell.classList.add("language"); // Add the "language" class to style it
-        row.appendChild(langueCell); // Add the cell to the row
+    const descriptionText = document.createElement("p"); // Create a cell for description
+    descriptionText.textContent = result.signification;
+    descriptionCell.appendChild(descriptionText); // Add the description cell to the container
 
-        resultsList.appendChild(row); // Add the row to the results list
-    });
+    const langueCell = document.createElement("span"); // Create a cell for langue
+    langueCell.textContent = result.langue;
+    langueCell.classList.add("language"); // Add the "language" class to style it
+    descriptionCell.appendChild(langueCell); // Add the langue cell to the container
+
+    row.appendChild(descriptionCell); // Add the description container to the row
+
+    resultsList.appendChild(row); // Add the row to the results list
+});
 }
 
 // Charger les données et initialiser les événements après le chargement du document
