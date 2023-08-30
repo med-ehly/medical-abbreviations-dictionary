@@ -71,13 +71,20 @@ function scrollToTop() {
     });
 }
 
+function removeAccents(text) {
+    return text
+        .normalize("NFD") // Normaliser les caractères avec accents
+        .replace(/[\u0300-\u036f]/g, ""); // Supprimer les caractères diacritiques
+}
+
 function handleSearch(event, data) {
-    const searchTerm = event.target.value.toLowerCase();
-    const filteredResults = data.filter(item =>
-        item.abreviation.toLowerCase().includes(searchTerm) ||
-        (item.signification && item.signification.toLowerCase().includes(searchTerm))
-    );
-    applyActiveFilters(filteredResults); // Appliquer les filtres actifs également lors de la recherche
+    const searchTerm = removeAccents(event.target.value.toLowerCase());
+    const filteredResults = data.filter(item => {
+        const abbreviationWithoutAccents = removeAccents(item.abreviation.toLowerCase());
+        return abbreviationWithoutAccents.includes(searchTerm);
+    });
+
+    applyActiveFilters(filteredResults);
 }
 
 function displayResults(data) {
