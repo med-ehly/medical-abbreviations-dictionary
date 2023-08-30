@@ -18,10 +18,11 @@ function applyActiveFilters(data) {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
         const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
         const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
-        return letterMatches && categoryMatches && typeMatches;
+        const symbolMatches = !activeSymbolFilter || item.type === activeSymbolFilter; // Ajout de la vérification du filtre de symbole
+        return letterMatches && categoryMatches && typeMatches && symbolMatches; // Mise à jour des filtres actifs
     });
 
-    if (activeLetterButton || activeCategoryFilter || activeTypeFilter) {
+    if (activeLetterButton || activeCategoryFilter || activeTypeFilter || activeSymbolFilter) {
         displayResults(filteredResults);
     } else {
         // Aucun filtre actif, afficher tous les résultats
@@ -145,39 +146,38 @@ document.addEventListener("DOMContentLoaded", () => {
                 applyActiveFilters(sortedData);
             }
 
-            // Function to handle the click event on the "Symbole" filter button
+            // Fonction pour gérer le clic sur le bouton de filtre "Symbole"
             function handleSymbolFilterButtonClick() {
-            // Check if the letter filter is active
-            const isLetterFilterActive = activeLetterButton !== null;
+                const isLetterFilterActive = activeLetterButton !== null;
+                const isFilterActive = symbolFilterButton.classList.contains("active");
 
-            if (!isLetterFilterActive) {
-            const isFilterActive = symbolFilterButton.classList.contains("active");
-
-           if (!isFilterActive) {
-            letterButtons.forEach(letterButton => {
+                if (!isLetterFilterActive) {
+                    letterButtons.forEach(letterButton => {
                         letterButton.classList.remove("active");
                     });
 
-            symbolFilterButton.classList.add("active");
+                    if (!isFilterActive) {
+                        symbolFilterButton.classList.add("active");
+                        activeSymbolFilter = "SYMBOLE";
+                    } else {
+                        symbolFilterButton.classList.remove("active");
+                        activeSymbolFilter = null;
+                    }
 
-            // Set the activeTypeFilter to "SYMBOLE" to filter by "SYMBOLE"
-            activeSymbolFilter = "SYMBOLE";
-        } else {
-            symbolFilterButton.classList.remove("active");
-            activeSymbolFilter = null;
-        }
+                    applyActiveFilters(sortedData);
+                    scrollToTop();
+                }
+            }
 
-        applyActiveFilters(sortedData);
-        scrollToTop();
-    }
-}
-            
             // Associez la fonction handleLetterButtonClick au clic sur chaque bouton de lettre
             letterButtons.forEach(button => {
                 button.addEventListener("click", () => {
                     handleLetterButtonClick(button);
                 });
             });
+
+            // Associez la fonction handleSymbolFilterButtonClick au clic sur le bouton de filtre "Symbole"
+            symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
 
             const allCategories = ["Anesthésie", "Cardiologie", "CEGDC", "CCVT", "Dermatologie", "Endocrinologie", "Gastrologie", "Génétique", "Gériatrie", "Gynécologie", "Hémato-Onco", "Immuno-Allergie", "Med Interne", "Infectio", "Néphrologie", "Neurochirurgie", "Neurologie", "Ophtalmologie", "ORL", "Orthopédie", "Pédiatrie", "Physiatrie", "Plastie", "Pneumologie", "Psychiatrie", "Rhumatologie", "Urologie"];
             const allTypes = ["Anatomie", "Diagnostic", "Examen", "Médication", "Traitement"];
@@ -260,9 +260,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 applyActiveFilters(sortedData);
                 scrollToTop();
             }
-            function handleresetFiltersButtonClick() {
-            // Réinitialisez toutes les variables de filtre actives à null
-                resultsList.style.display = "none";
+
+            function resetFilters() {
+                // Réinitialisez toutes les variables de filtre actives à null
                 activeLetterFilter = null;
                 activeLetterButton = null;
                 activeCategoryFilter = null;
@@ -271,30 +271,30 @@ document.addEventListener("DOMContentLoaded", () => {
                 activeTypeFilter = null;
                 symbolFilterButton = null;
                 activeSymbolFilter = null;
-                
 
-    // Réinitialisez visuellement les boutons de filtre de lettre, catégorie et type
-    letterButtons.forEach(letterButton => {
-        letterButton.classList.remove("active");
-    });
+                // Réinitialisez visuellement les boutons de filtre de lettre, catégorie et type
+                letterButtons.forEach(letterButton => {
+                    letterButton.classList.remove("active");
+                });
 
-    categoryButtons.forEach(categoryButton => {
-        categoryButton.classList.remove("active");
-    });
+                categoryButtons.forEach(categoryButton => {
+                    categoryButton.classList.remove("active");
+                });
 
-    typeButtons.forEach(typeButton => {
-        typeButton.classList.remove("active");
-    });
+                typeButtons.forEach(typeButton => {
+                    typeButton.classList.remove("active");
+                });
 
-    // Réappliquez les filtres aux données triées
-    applyActiveFilters(sortedData);
-    resultsList.style.display = "block";
-    }, 500);
-}
+                symbolFilterButton.classList.remove("active");
 
-// Associez la fonction handleresetFiltersButtonClick au clic sur le bouton de réinitialisation des filtres
-const resetFiltersButton = document.getElementById("resetFiltersButton");
-resetFiltersButton.addEventListener("click", handleresetFiltersButtonClick);
+                // Réappliquez les filtres aux données triées
+                applyActiveFilters(sortedData);
+                scrollToTop();
+            }
+
+            // Associez la fonction resetFilters au clic sur le bouton de réinitialisation des filtres
+            const resetFiltersButton = document.getElementById("resetFiltersButton");
+            resetFiltersButton.addEventListener("click", resetFilters);
 
         })
         .catch(error => {
