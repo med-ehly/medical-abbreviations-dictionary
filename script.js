@@ -146,14 +146,14 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             function handleSymbolFilterButtonClick() {
-            const isLetterFilterActive = activeLetterButton !== null;
-            const isFilterActive = symbolFilterButton.classList.contains("active");
+    const isLetterFilterActive = activeLetterButton !== null;
+    const isFilterActive = symbolFilterButton.classList.contains("active");
     
-            if (!isLetterFilterActive) {
-            letterButtons.forEach(letterButton => {
+    if (!isLetterFilterActive) {
+        letterButtons.forEach(letterButton => {
             letterButton.classList.remove("active");
         });
-
+        
         if (!isFilterActive) {
             symbolFilterButton.classList.add("active");
             activeSymbolButton = symbolFilterButton;
@@ -168,7 +168,6 @@ document.addEventListener("DOMContentLoaded", () => {
         scrollToTop();
     }
 }
-            }
 
             // Associez la fonction handleLetterButtonClick au clic sur chaque bouton de lettre
             letterButtons.forEach(button => {
