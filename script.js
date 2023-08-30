@@ -20,7 +20,7 @@ function applyActiveFilters(data) {
     });
 
     if (activeLetterButton || activeCategoryFilter || activeTypeFilter) {
-        displaySearchResults(filteredResults);
+        displayResults(filteredResults);
     } else {
         // Aucun filtre actif, afficher tous les résultats
         displayResults(data);
