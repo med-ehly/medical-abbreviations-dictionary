@@ -17,7 +17,7 @@ function applyActiveFilters(data) {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
         const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
         const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
-        const symbolMatches = !activeSymbolFilter || item.type === activeSymbolFilter;
+        const symbolMatches = !activeSymbolFilter || (item.symbole && item.symbole === activeSymbolFilter); //
 
         return letterMatches && categoryMatches && typeMatches && symbolMatches;
     });
