@@ -123,10 +123,7 @@ header {
   margin-right: 10px; /* Add some spacing between abbr and p */
   font-size: xx-large;
   font-weight: bold;
-}
-
-.description-container {
-    position: relative;
+  padding: 10px;
 }
 
 /* Update the style of the description (right side) */
@@ -136,6 +133,7 @@ header {
   color: black;
   text-align: right;
   font-size: medium;
+  padding: 10px;
 }
 
 /* Style de la langue (ajouté pour afficher la langue en minuscules) */
