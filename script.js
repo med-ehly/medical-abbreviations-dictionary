@@ -12,19 +12,18 @@ let activeTypeFilter = null;
 let activeSymbolButton = null;
 let activeSymbolFilter = null;
 
+// Fonction de filtrage principale
 function applyActiveFilters(data) {
     const filteredResults = data.filter(item => {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
         const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
         const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
-        const symbolMatches = !activeSymbolFilter || (item.symbole && item.symbole === activeSymbolFilter); //
-
-        return letterMatches && categoryMatches && typeMatches && symbolMatches;
+        return letterMatches && categoryMatches && typeMatches;
     });
-
-    if (activeLetterButton || activeCategoryFilter || activeTypeFilter || activeSymbolFilter) {
+    if (activeLetterButton || activeCategoryFilter || activeTypeFilter) {
         displayResults(filteredResults);
     } else {
+        // Aucun filtre actif, afficher tous les résultats
         displayResults(data);
     }
 }
