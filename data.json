@@ -11,18 +11,19 @@
     "signification": "Ponction Lombaire",
     "categorie": "Neurologie",
     "type": "Traitement",
-    "langue": "fr"
+    "langue": "(eng)"
   },
   {
     "abreviation": "RXi",
     "signification": "Radiographie",
-    "langue": "fr"
+    "langue": "(fr)"
   },
   {
     "abreviation": "HCNT",
     "signification": "Hémorragie Cérébrale Non Traumatique",
     "categorie": "Neurologie",
     "type": "Médication",
-    "langue": "fr"
+    "symbole": "SYMBOLE",
+    "langue": "(fr)"
   }
 ]
