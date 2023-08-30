@@ -140,7 +140,7 @@ header {
   margin: 5px 0;
   color: gray; /* Couleur de la langue */
   text-align: right;
-  font-size: small; /* Réduisez la taille de la police pour la langue */
+  font-size: xx-small; /* Réduisez la taille de la police pour la langue */
   margin-left: 300px;
 }
 
