@@ -263,35 +263,35 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             function resetFilters() {
-                // Réinitialisez toutes les variables de filtre actives à null
-                activeLetterFilter = null;
-                activeLetterButton = null;
-                activeCategoryFilter = null;
-                activeCategoryButton = null;
-                activeTypeButton = null;
-                activeTypeFilter = null;
-                symbolFilterButton = null;
-                activeSymbolFilter = null;
+    // Réinitialisez toutes les variables de filtre actives à null
+    activeLetterFilter = null;
+    activeLetterButton = null;
+    activeCategoryFilter = null;
+    activeCategoryButton = null;
+    activeTypeButton = null;
+    activeTypeFilter = null;
+    activeSymbolButton = null; // Ajoutez cette ligne pour réinitialiser le bouton de filtre de symbole
+    activeSymbolFilter = null;
 
-                // Réinitialisez visuellement les boutons de filtre de lettre, catégorie et type
-                letterButtons.forEach(letterButton => {
-                    letterButton.classList.remove("active");
-                });
+    // Réinitialisez visuellement les boutons de filtre de lettre, catégorie, type et symbole
+    letterButtons.forEach(letterButton => {
+        letterButton.classList.remove("active");
+    });
 
-                categoryButtons.forEach(categoryButton => {
-                    categoryButton.classList.remove("active");
-                });
+    categoryButtons.forEach(categoryButton => {
+        categoryButton.classList.remove("active");
+    });
 
-                typeButtons.forEach(typeButton => {
-                    typeButton.classList.remove("active");
-                });
+    typeButtons.forEach(typeButton => {
+        typeButton.classList.remove("active");
+    });
 
-                symbolFilterButton.classList.remove("active");
+    symbolFilterButton.classList.remove("active");
 
-                // Réappliquez les filtres aux données triées
-                applyActiveFilters(sortedData);
-                scrollToTop();
-            }
+    // Réappliquez les filtres aux données triées
+    applyActiveFilters(sortedData);
+    scrollToTop();
+}
 
             // Associez la fonction resetFilters au clic sur le bouton de réinitialisation des filtres
             const resetFiltersButton = document.getElementById("resetFiltersButton");
