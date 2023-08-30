@@ -122,6 +122,10 @@ header {
   font-weight: bold;
 }
 
+.description-container {
+    position: relative;
+}
+
 /* Update the style of the description (right side) */
 #resultsList p {
   flex: 2; /* Allow the p to take more space */
