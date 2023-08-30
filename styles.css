@@ -141,6 +141,7 @@ header {
   color: gray; /* Couleur de la langue */
   text-align: right;
   font-size: small; /* Réduisez la taille de la police pour la langue */
+  margin-left: 300px;
 }
 
 /* Style des colonnes de filtre et de la liste des résultats */
