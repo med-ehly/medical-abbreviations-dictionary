@@ -31,14 +31,14 @@ function sortDataAlphabetically(data) {
     return data.sort((a, b) => a.abreviation.localeCompare(b.abreviation));
 }
 
-function displaySearchResults(results) {
+function displayResults(data) {
     resultsList.innerHTML = "";
-    if (results.length === 0) {
+    if (data.length === 0) {
         resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
         return;
     }
 
-    results.forEach(result => {
+    data.forEach(result => {
         const row = document.createElement("li"); // Créer une ligne de tableau (élément li)
 
         const abbrCell = document.createElement("abbr"); // Créer une cellule pour l'abréviation
@@ -79,46 +79,13 @@ function handleSearch(event, data) {
     applyActiveFilters(filteredResults); // Appliquer les filtres actifs également lors de la recherche
 }
 
-function displaySearchResults(results) {
-    resultsList.innerHTML = "";
-
-    if (results.length === 0) {
-        resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
-        return;
-    }
-
-   results.forEach(result => {
-    const row = document.createElement("li"); // Create a table row (li element)
-
-    const abbrCell = document.createElement("abbr"); // Create a cell for abbreviation
-    abbrCell.textContent = result.abreviation;
-    row.appendChild(abbrCell); // Add the cell to the row
-
-    const descriptionCell = document.createElement("div"); // Create a container for description and langue
-    descriptionCell.classList.add("description-container");
-
-    const descriptionText = document.createElement("p"); // Create a cell for description
-    descriptionText.textContent = result.signification;
-    descriptionCell.appendChild(descriptionText); // Add the description cell to the container
-
-    const langueCell = document.createElement("span"); // Create a cell for langue
-    langueCell.textContent = result.langue;
-    langueCell.classList.add("language"); // Add the "language" class to style it
-    descriptionCell.appendChild(langueCell); // Add the langue cell to the container
-
-    row.appendChild(descriptionCell); // Add the description container to the row
-
-    resultsList.appendChild(row); // Add the row to the results list
-});
-}
-
 // Charger les données et initialiser les événements après le chargement du document
 document.addEventListener("DOMContentLoaded", () => {
     fetch("data.json")
         .then(response => response.json())
         .then(data => {
             const sortedData = sortDataAlphabetically(data);
-            displaySearchResults(sortedData);
+            displayResults(sortedData); // Utilisez displayResults ici
             searchInput.addEventListener("input", event => handleSearch(event, sortedData));
 
             const letterButtons = document.querySelectorAll(".letter-button");
