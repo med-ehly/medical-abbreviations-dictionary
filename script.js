@@ -121,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
             searchInput.addEventListener("input", event => handleSearch(event, sortedData));
 
             const letterButtons = document.querySelectorAll(".letter-button");
+            const symbolFilterButton = document.getElementById("symbolFilterButton");
 
             // Fonction pour gérer le clic sur une lettre
             function handleLetterButtonClick(button) {
@@ -142,7 +143,33 @@ document.addEventListener("DOMContentLoaded", () => {
                 applyActiveFilters(sortedData);
             }
 
+            // Function to handle the click event on the "Symbole" filter button
+            function handleSymbolFilterButtonClick() {
+            // Check if the letter filter is active
+            const isLetterFilterActive = activeLetterButton !== null;
 
+            if (!isLetterFilterActive) {
+            const isFilterActive = symbolFilterButton.classList.contains("active");
+
+           if (!isFilterActive) {
+            letterButtons.forEach(letterButton => {
+                        letterButton.classList.remove("active");
+                    });
+
+            symbolFilterButton.classList.add("active");
+
+            // Set the activeTypeFilter to "SYMBOLE" to filter by "SYMBOLE"
+            activeTypeFilter = "SYMBOLE";
+        } else {
+            symbolFilterButton.classList.remove("active");
+            activeTypeFilter = null;
+        }
+
+        applyActiveFilters(sortedData);
+        scrollToTop();
+    }
+}
+            
             // Associez la fonction handleLetterButtonClick au clic sur chaque bouton de lettre
             letterButtons.forEach(button => {
                 button.addEventListener("click", () => {
