@@ -31,7 +31,7 @@ function sortDataAlphabetically(data) {
     return data.sort((a, b) => a.abreviation.localeCompare(b.abreviation));
 }
 
-function displaySearchResults(results) {
+function displaySearchResults(data) {
     resultsList.innerHTML = "";
     if (data.length === 0) {
         resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
@@ -79,7 +79,7 @@ function handleSearch(event, data) {
     applyActiveFilters(filteredResults); // Appliquer les filtres actifs également lors de la recherche
 }
 
-function displayResults(results) {
+function displayResults(data) {
     resultsList.innerHTML = "";
     if (data.length === 0) {
         resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
