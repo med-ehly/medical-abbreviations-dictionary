@@ -113,16 +113,16 @@ header {
   border-bottom: 1px solid #ccc; /* Ajouter la bordure en bas uniquement au dernier élément */
 }
 
-/* Update the style of the abbr (right side) */
+/* Update the style of the abbr (left side) */
 #resultsList abbr {
   flex: 1; /* Allow the abbr to take available space */
-  text-align: left; /* Align text to the right */
+  text-align: left; /* Align text to the left */
   margin-right: 10px; /* Add some spacing between abbr and p */
   font-size: xx-large;
   font-weight: bold;
 }
 
-/* Update the style of the description (left side) */
+/* Update the style of the description (right side) */
 #resultsList p {
   flex: 2; /* Allow the p to take more space */
   margin: 5px 0;
