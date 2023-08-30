@@ -9,23 +9,22 @@ let activeCategoryFilter = null;
 let activeCategoryButton = null;
 let activeTypeButton = null;
 let activeTypeFilter = null;
-let symbolFilterButton = null;
+let activeSymbolButton = null;
 let activeSymbolFilter = null;
 
-// Fonction de filtrage principale
 function applyActiveFilters(data) {
     const filteredResults = data.filter(item => {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
         const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
         const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
-        const symbolMatches = !activeSymbolFilter || item.type === activeSymbolFilter; // Ajout de la vérification du filtre de symbole
-        return letterMatches && categoryMatches && typeMatches && symbolMatches; // Mise à jour des filtres actifs
+        const symbolMatches = !activeSymbolFilter || item.type === activeSymbolFilter;
+
+        return letterMatches && categoryMatches && typeMatches && symbolMatches;
     });
 
     if (activeLetterButton || activeCategoryFilter || activeTypeFilter || activeSymbolFilter) {
         displayResults(filteredResults);
     } else {
-        // Aucun filtre actif, afficher tous les résultats
         displayResults(data);
     }
 }
@@ -146,27 +145,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 applyActiveFilters(sortedData);
             }
 
-            // Fonction pour gérer le clic sur le bouton de filtre "Symbole"
             function handleSymbolFilterButtonClick() {
-                const isLetterFilterActive = activeLetterButton !== null;
-                const isFilterActive = symbolFilterButton.classList.contains("active");
+            const isLetterFilterActive = activeLetterButton !== null;
+            const isFilterActive = symbolFilterButton.classList.contains("active");
+    
+            if (!isLetterFilterActive) {
+            letterButtons.forEach(letterButton => {
+            letterButton.classList.remove("active");
+        });
 
-                if (!isLetterFilterActive) {
-                    letterButtons.forEach(letterButton => {
-                        letterButton.classList.remove("active");
-                    });
+        if (!isFilterActive) {
+            symbolFilterButton.classList.add("active");
+            activeSymbolButton = symbolFilterButton;
+            activeSymbolFilter = "SYMBOLE";
+        } else {
+            symbolFilterButton.classList.remove("active");
+            activeSymbolButton = null;
+            activeSymbolFilter = null;
+        }
 
-                    if (!isFilterActive) {
-                        symbolFilterButton.classList.add("active");
-                        activeSymbolFilter = "SYMBOLE";
-                    } else {
-                        symbolFilterButton.classList.remove("active");
-                        activeSymbolFilter = null;
-                    }
-
-                    applyActiveFilters(sortedData);
-                    scrollToTop();
-                }
+        applyActiveFilters(sortedData);
+        scrollToTop();
+    }
+}
             }
 
             // Associez la fonction handleLetterButtonClick au clic sur chaque bouton de lettre
