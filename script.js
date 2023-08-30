@@ -70,33 +70,33 @@ function handleSearch(event, data) {
 }
 
 function displayResults(results) {
-  const resultsList = document.getElementById('resultsList');
-  resultsList.innerHTML = '';
+    const resultsList = document.getElementById('resultsList');
+    resultsList.innerHTML = '';
 
-  if (results.length === 0) {
-    resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
-    return;
-  }
+    if (results.length === 0) {
+        resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
+        return;
+    }
 
-  results.forEach(result => {
-    const row = document.createElement('li');
-    const abbrCell = document.createElement('abbr');
-    abbrCell.textContent = result.abreviation;
-    row.appendChild(abbrCell);
+    results.forEach(result => {
+        const row = document.createElement('li');
 
-    const descriptionCell = document.createElement('p');
-    descriptionCell.textContent = result.signification;
-    row.appendChild(descriptionCell);
+        const abbrCell = document.createElement('abbr');
+        abbrCell.textContent = result.abreviation;
+        row.appendChild(abbrCell);
 
-    const languageCell = document.createElement('p');
-    languageCell.textContent = 'Langue: ' + result.langue;
-    languageCell.classList.add('language');
-    row.appendChild(languageCell);
+        const descriptionCell = document.createElement('p');
+        descriptionCell.textContent = result.signification;
+        row.appendChild(descriptionCell);
 
-    resultsList.appendChild(row);
-  });
+        const languageCell = document.createElement('p');
+        languageCell.textContent = 'Langue: ' + result.langue;
+        languageCell.classList.add('language');
+        row.appendChild(languageCell);
+
+        resultsList.appendChild(row);
+    });
 }
-
 
 
 // Charger les données et initialiser les événements après le chargement du document
