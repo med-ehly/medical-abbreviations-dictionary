@@ -159,10 +159,10 @@ document.addEventListener("DOMContentLoaded", () => {
             symbolFilterButton.classList.add("active");
 
             // Set the activeTypeFilter to "SYMBOLE" to filter by "SYMBOLE"
-            activeTypeFilter = "SYMBOLE";
+            activeSymbolFilter = "SYMBOLE";
         } else {
             symbolFilterButton.classList.remove("active");
-            activeTypeFilter = null;
+            activeSymbolFilter = null;
         }
 
         applyActiveFilters(sortedData);
@@ -259,13 +259,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 scrollToTop();
             }
             function handleresetFiltersButtonClick() {
-    // Réinitialisez toutes les variables de filtre actives à null
-    activeLetterFilter = null;
-    activeLetterButton = null;
-    activeCategoryFilter = null;
-    activeCategoryButton = null;
-    activeTypeButton = null;
-    activeTypeFilter = null;
+            // Réinitialisez toutes les variables de filtre actives à null
+                resultsList.style.display = "none";
+                activeLetterFilter = null;
+                activeLetterButton = null;
+                activeCategoryFilter = null;
+                activeCategoryButton = null;
+                activeTypeButton = null;
+                activeTypeFilter = null;
+                symbolFilterButton = null;
+                activeSymbolFilter = null;
+                
 
     // Réinitialisez visuellement les boutons de filtre de lettre, catégorie et type
     letterButtons.forEach(letterButton => {
@@ -282,6 +286,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Réappliquez les filtres aux données triées
     applyActiveFilters(sortedData);
+    resultsList.style.display = "block";
+    }, 2000);
 }
 
 // Associez la fonction handleresetFiltersButtonClick au clic sur le bouton de réinitialisation des filtres
