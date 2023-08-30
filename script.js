@@ -31,7 +31,7 @@ function sortDataAlphabetically(data) {
     return data.sort((a, b) => a.abreviation.localeCompare(b.abreviation));
 }
 
-function displayResults(data) {
+function displaySearchResults(results) {
     resultsList.innerHTML = "";
     if (data.length === 0) {
         resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
@@ -77,6 +77,38 @@ function handleSearch(event, data) {
         (item.signification && item.signification.toLowerCase().includes(searchTerm))
     );
     applyActiveFilters(filteredResults); // Appliquer les filtres actifs également lors de la recherche
+}
+
+function displayResults(results) {
+    resultsList.innerHTML = "";
+    if (data.length === 0) {
+        resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
+        return;
+    }
+
+    data.forEach(result => {
+        const row = document.createElement("li"); // Créer une ligne de tableau (élément li)
+
+        const abbrCell = document.createElement("abbr"); // Créer une cellule pour l'abréviation
+        abbrCell.textContent = result.abreviation;
+        row.appendChild(abbrCell); // Ajouter la cellule à la ligne
+
+        const descriptionCell = document.createElement("div"); // Create a container for description and langue
+        descriptionCell.classList.add("description-container");
+
+        const descriptionText = document.createElement("p"); // Create a cell for description
+        descriptionText.textContent = result.signification;
+        descriptionCell.appendChild(descriptionText); // Add the description cell to the container
+
+        const langueCell = document.createElement("span"); // Create a cell for langue
+        langueCell.textContent = result.langue;
+        langueCell.classList.add("language"); // Add the "language" class to style it
+        descriptionCell.appendChild(langueCell); // Add the langue cell to the container
+
+        row.appendChild(descriptionCell); // Add the description container to the row
+
+        resultsList.appendChild(row); // Add the row to the results list
+    });
 }
 
 // Charger les données et initialiser les événements après le chargement du document
