@@ -4,25 +4,25 @@
     "signification": "Accident Vasculaire Cérébral",
     "categorie": "Neurologie",
     "type": "Diagnostic",
-    "langue": "français"
+    "langue": "fr"
   },
   {
     "abreviation": "PL",
     "signification": "Ponction Lombaire",
     "categorie": "Neurologie",
     "type": "Traitement",
-    "langue": "français"
+    "langue": "fr"
   },
   {
     "abreviation": "RXi",
     "signification": "Radiographie",
-    "langue": "français"
+    "langue": "fr"
   },
   {
     "abreviation": "HCNT",
     "signification": "Hémorragie Cérébrale Non Traumatique",
     "categorie": "Neurologie",
     "type": "Médication",
-    "langue": "français"
+    "langue": "fr"
   }
 ]
