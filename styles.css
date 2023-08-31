@@ -3,10 +3,12 @@ body, h1, ul, li {
   margin: 0;
   padding: 0;
 }
+
 /* Style du fond de page */
 body {
   background-color: #f5f5f5; /* Couleur de fond pâle */
 }
+
 /* Style du header */
 header {
   background-color: #4e42d4;
@@ -14,6 +16,7 @@ header {
   text-align: center;
   padding: 20px;
 }
+
 /* Style du champ de recherche */
 #searchInput {
   display: block; /* Mettre en bloc pour que les marges fonctionnent */
@@ -26,93 +29,123 @@ header {
   border-radius: 5px;
   margin-bottom: 10px;
 }
-/* Style des boutons de lettre */
+
 .alphabet {
   display: flex;
   justify-content: center;
   margin-top: 10px;
 }
-.alphabet .letter-button,
+
+.letter-button,
+.letter-button-symbol, 
 .category-button,
+.letter-button, 
 .type-button {
-  padding: 5px 10px; /* Ajuster le rembourrage vertical */
+  padding: 5px 10px;
   font-size: 13px;
-  background-color: white; /* Même couleur que les boutons de lettre */
+  background-color: white;
   border: 1px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
-  margin: 0 3px; /* Ajouter un espacement horizontal entre les boutons */
+  margin: 0 3px;
 }
-/* Ajouter le style pour la classe "active-filter" */
+
 .letter-button.active,
+.letter-button-symbol.active, 
 .category-button.active,
-.type-button.active,
-.category-button.active-filter, /* Ajoutez cette règle pour les filtres de catégorie actifs */
-.type-button.active-filter { /* Ajoutez cette règle pour les filtres de type actifs */
-  background-color: #4e42d4; /* Couleur différente lorsque le bouton est enfoncé */
-  color: white; /* Couleur du texte */
-  border-color: #4e42d4; /* Couleur de la bordure */
+.letter-button.active,
+.type-button.active {
+  background-color: #4e42d4;
+  color: white;
+  border-color: #4e42d4;
 }
+
 .letter-button:hover,
+.letter-button-symbol:hover, 
 .category-button:hover,
+.letter-button:hover,
 .type-button:hover {
   background-color: #ddd;
 }
+
 .letter-button.active:hover,
+.letter-button-symbol.active:hover, /* Ajoutez le sélecteur du bouton des symboles actif survolé ici */
 .category-button.active:hover,
+.letter-button.active:hover,
 .type-button.active:hover {
   background-color: #ddd;
   color: black;
 }
+
 /* Style du conteneur des résultats */
 .results-container {
   background-color: white;
   padding: 10px;
   border-radius: 10px; /* Arrondir les coins */
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), 0px -2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%; /* Largeur des résultats */
+  width: 90%; /* Largeur des résultats */
   margin: 0 auto; /* Centrer horizontalement */
   margin-top: 20px; /* Ajuster l'espacement par rapport aux lettres */
   text-align: center; /* Centrer le contenu */
 }
+
 #resultsList {
   list-style: none;
   padding: 0;
   margin: 0; /* Réinitialiser la marge *
-  width: 100%; /* Largeur des résultats */
+  width: 90; /* Largeur des résultats */
   margin: 0 auto; /* Centrer horizontalement */
 }
+
 /* Update the style of list items */
 #resultsList li {
   display: flex; /* Use flexbox to align items horizontally */
   align-items: center; /* Center items vertically within the list item */
-  padding: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   border-top: 1px solid #ccc;
   border-left: 1px solid #ccc; /* Ajouter une bordure à gauche */
   border-right: 1px solid #ccc;
   background-color: white;
   font-family: Arial, sans-serif; /* Changer la police */
 }
+
 #resultsList li:last-child {
   border-bottom: 1px solid #ccc; /* Ajouter la bordure en bas uniquement au dernier élément */
 }
-/* Update the style of the abbr (right side) */
+
+/* Update the style of the abbr (left side) */
 #resultsList abbr {
   flex: 1; /* Allow the abbr to take available space */
-  text-align: left; /* Align text to the right */
+  text-align: left; /* Align text to the left */
   margin-right: 10px; /* Add some spacing between abbr and p */
-  font-size: x-large;
+  font-size: xx-large;
   font-weight: bold;
+  padding: 10px;
 }
-/* Update the style of the description (left side) */
+
+/* Update the style of the description (right side) */
 #resultsList p {
   flex: 2; /* Allow the p to take more space */
   margin: 5px 0;
   color: black;
-  font-style: italic;
   text-align: right;
-  font-size: small;
+  font-size: medium;
+  padding: 10px;
+  padding-top: 20px;
 }
+
+/* Style de la langue (ajouté pour afficher la langue en minuscules) */
+.language {
+  margin: 5px 0;
+  color: gray; /* Couleur de la langue */
+  text-align: right;
+  font-size: xx-small; /* Réduisez la taille de la police pour la langue */
+  margin-left: 300px;
+}
+
 /* Style des colonnes de filtre et de la liste des résultats */
 .filters-and-list {
   display: flex;
@@ -120,6 +153,7 @@ header {
   justify-content: space-between; /* Utiliser space-between pour espacer les colonnes */
   margin-top: 20px;
 }
+
 /* Style des colonnes de filtre */
 .filter-column {
   display: flex;
@@ -127,6 +161,7 @@ header {
   align-items: center;
   /* Retirez la largeur */
 }
+
 /* Style de la colonne du centre */
 .center-column {
   width: 80%; /* Largeur de la colonne du centre */
@@ -145,12 +180,13 @@ header {
 
 .category-filter { 
   margin-left: 100px; 
-  margin-right: 200px; 
+  margin-right: 180px; 
   margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
+
 .type-filter {
   margin-right: 100px; 
   margin-left: 200px; 
@@ -159,10 +195,23 @@ header {
   flex-direction: column;
   align-items: flex-start;
 }
+
 /* Style des boutons de filtre dans les colonnes */
 .filter-column .category-button,
 .filter-column .type-button {
   margin: 5px;
   width: 200px; /* Ajustez la largeur des boutons selon vos préférences */
   padding: 10px; /* Ajustez le rembourrage des boutons selon vos préférences */
+  text-transform: uppercase;
+}
+
+
+#resetFiltersButton {
+  margin-right: 10px;
+  border: 3px solid #ccc;
+  color: white;
+  background-color: #4e42d4;
+}
+
+#filterControls {
 }
