@@ -9,6 +9,8 @@ let activeCategoryFilter = null;
 let activeCategoryButton = null;
 let activeTypeButton = null;
 let activeTypeFilter = null;
+let activeSymbolButton = null;
+let activeSymbolFilter = null;
 
 // Fonction de filtrage principale
 function applyActiveFilters(data) {
