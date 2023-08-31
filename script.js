@@ -1,6 +1,7 @@
 // Constantes pour les sélecteurs DOM
 const searchInput = document.getElementById("searchInput");
 const resultsList = document.getElementById("resultsList");
+
 // Variables pour les filtres actifs
 let activeLetterFilter = null;
 let activeLetterButton = null;
@@ -8,6 +9,7 @@ let activeCategoryFilter = null;
 let activeCategoryButton = null;
 let activeTypeButton = null;
 let activeTypeFilter = null;
+
 // Fonction de filtrage principale
 function applyActiveFilters(data) {
     const filteredResults = data.filter(item => {
@@ -23,9 +25,11 @@ function applyActiveFilters(data) {
         displayResults(data);
     }
 }
+
 function sortDataAlphabetically(data) {
     return data.sort((a, b) => a.abreviation.localeCompare(b.abreviation));
 }
+
 function displaySearchResults(results) {
     resultsList.innerHTML = "";
     if (results.length === 0) {
@@ -55,16 +59,19 @@ function displaySearchResults(results) {
         resultsList.appendChild(row); // Ajouter la ligne au tableau de résultats
     });
 }
+
 function scrollToTop() {
     window.scrollTo({
         top: 0,
         behavior: "smooth" // Cela permettra une animation de défilement en douceur
     });
 }
+
 function handleSearch(event, data) {
     const searchTerm = event.target.value.toLowerCase();
     const filteredResults = data.filter(item =>
         item.abreviation.toLowerCase().includes(searchTerm)
+        item.signification.toLowerCase().includes(searchTerm)
     );
     applyActiveFilters(filteredResults); // Appliquer les filtres actifs également lors de la recherche
 }
