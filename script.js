@@ -72,11 +72,12 @@ function scrollToTop() {
 function handleSearch(event, data) {
     const searchTerm = event.target.value.toLowerCase();
     const filteredResults = data.filter(item =>
-        item.abreviation.toLowerCase().includes(searchTerm)
+        item.abreviation.toLowerCase().includes(searchTerm) ||
         item.signification.toLowerCase().includes(searchTerm)
     );
     applyActiveFilters(filteredResults); // Appliquer les filtres actifs également lors de la recherche
 }
+
 function displayResults(results) {
     resultsList.innerHTML = '';
     if (results.length === 0) {
