@@ -253,7 +253,7 @@ function handleCategoryFilterButtonClick(button, data) {
     scrollToTop();
 }
 
-function handleTypeFilterButtonClick(button, data) {
+function handleTypeFilterButtonClick(button) {
     const selectedTypeFilter = button.getAttribute("data-type");
     const isTypeFilterActive = button.classList.contains("active");
 
