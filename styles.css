@@ -179,8 +179,8 @@ header {
 }
 
 .category-filter { 
-  margin-left: 100px; 
-  margin-right: 180px; 
+  margin-left: 200px; 
+  margin-right: 80px; 
   margin-bottom: 40px;
   display: flex;
   flex-direction: column;
@@ -188,8 +188,8 @@ header {
 }
 
 .type-filter {
-  margin-right: 100px; 
-  margin-left: 200px; 
+  margin-right: 200px; 
+  margin-left: 80px; 
   margin-bottom: 40px;
   display: flex;
   flex-direction: column;
