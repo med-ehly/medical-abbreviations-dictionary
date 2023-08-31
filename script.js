@@ -18,7 +18,8 @@ function applyActiveFilters(data) {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
         const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
         const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
-        return letterMatches && categoryMatches && typeMatches;
+        const symbolMatches = !activeSymbolFilter || item.symbole === activeSymbolFilter; // Added symbol filtering
+        return letterMatches && categoryMatches && typeMatches && symbolMatches;
     });
     if (activeLetterButton || activeCategoryFilter || activeTypeFilter || activeSymbolFilter) {
         displayResults(filteredResults);
@@ -71,12 +72,6 @@ function scrollToTop() {
     });
 }
 
-function removeAccents(text) {
-    return text
-        .normalize("NFD") // Normaliser les caractères avec accents
-        .replace(/[\u0300-\u036f]/g, ""); // Supprimer les caractères diacritiques
-}
-
 function handleSearch(event, data) {
     const searchTerm = removeAccents(event.target.value.toLowerCase());
     const filteredResults = data.filter(item => {
@@ -125,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(response => response.json())
         .then(data => {
             const sortedData = sortDataAlphabetically(data);
-            displayResults(sortedData); // Utilisez displayResults ici
+            displayResults(sortedData);
             searchInput.addEventListener("input", event => handleSearch(event, sortedData));
 
             const letterButtons = document.querySelectorAll(".letter-button");
