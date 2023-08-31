@@ -119,6 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
             searchInput.addEventListener("input", event => handleSearch(event, sortedData));
             const letterButtons = document.querySelectorAll(".letter-button");
             const symbolFilterButton = document.getElementById("symbolFilterButton");
+            
             // Fonction pour gérer le clic sur une lettre
             function handleLetterButtonClick(button) {
                 const selectedLetter = button.getAttribute("data-letter");
@@ -151,6 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     letterButtons.forEach(letterButton => {
                         letterButton.classList.remove("active");
                     });
+                    activeLetterButton = null; 
 
                     if (!isFilterActive) {
                         symbolFilterButton.classList.add("active");
