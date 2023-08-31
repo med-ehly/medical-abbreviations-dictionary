@@ -20,7 +20,7 @@ function applyActiveFilters(data) {
         const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
         return letterMatches && categoryMatches && typeMatches;
     });
-    if (activeLetterButton || activeCategoryFilter || activeTypeFilter) {
+    if (activeLetterButton || activeCategoryFilter || activeTypeFilter || activeSymbolFilter) {
         displayResults(filteredResults);
     } else {
         // Aucun filtre actif, afficher tous les résultats
@@ -152,28 +152,28 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             function handleSymbolFilterButtonClick() {
-    const isLetterFilterActive = activeLetterButton !== null;
-    const isFilterActive = symbolFilterButton.classList.contains("active");
-    
-    if (!isLetterFilterActive) {
-        letterButtons.forEach(letterButton => {
-            letterButton.classList.remove("active");
-        });
-        
-        if (!isFilterActive) {
-            symbolFilterButton.classList.add("active");
-            activeSymbolButton = symbolFilterButton;
-            activeSymbolFilter = "SYMBOLE";
-        } else {
-            symbolFilterButton.classList.remove("active");
-            activeSymbolButton = null;
-            activeSymbolFilter = null;
-        }
+                const isLetterFilterActive = activeLetterButton !== null;
+                const isFilterActive = symbolFilterButton.classList.contains("active");
 
-        applyActiveFilters(sortedData);
-        scrollToTop();
-    }
-}
+                if (!isLetterFilterActive) {
+                    letterButtons.forEach(letterButton => {
+                        letterButton.classList.remove("active");
+                    });
+
+                    if (!isFilterActive) {
+                        symbolFilterButton.classList.add("active");
+                        activeSymbolButton = symbolFilterButton;
+                        activeSymbolFilter = "SYMBOLE";
+                    } else {
+                        symbolFilterButton.classList.remove("active");
+                        activeSymbolButton = null;
+                        activeSymbolFilter = null;
+                    }
+
+                    applyActiveFilters(sortedData);
+                    scrollToTop();
+                }
+            }
 
             // Associez la fonction handleLetterButtonClick au clic sur chaque bouton de lettre
             letterButtons.forEach(button => {
@@ -224,95 +224,95 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             function handleCategoryFilterButtonClick(button, data) {
-    const selectedCategoryFilter = button.getAttribute("data-category");
-    const isCategoryFilterActive = button.classList.contains("active");
+                const selectedCategoryFilter = button.getAttribute("data-category");
+                const isCategoryFilterActive = button.classList.contains("active");
 
-    if (!isCategoryFilterActive) {
-        // Désactivez le bouton de catégorie actif s'il y en a un
-        if (activeCategoryButton) {
-            activeCategoryButton.classList.remove("active");
-        }
-        button.classList.add("active");
-        activeCategoryButton = button;
-        activeCategoryFilter = selectedCategoryFilter;
-    } else {
-        button.classList.remove("active");
-        activeCategoryButton = null;
-        activeCategoryFilter = null;
-    }
+                if (!isCategoryFilterActive) {
+                    // Désactivez le bouton de catégorie actif s'il y en a un
+                    if (activeCategoryButton) {
+                        activeCategoryButton.classList.remove("active");
+                    }
+                    button.classList.add("active");
+                    activeCategoryButton = button;
+                    activeCategoryFilter = selectedCategoryFilter;
+                } else {
+                    button.classList.remove("active");
+                    activeCategoryButton = null;
+                    activeCategoryFilter = null;
+                }
 
-    applyActiveFilters(data);
-    scrollToTop();
-}
+                applyActiveFilters(data);
+                scrollToTop();
+            }
 
-function handleTypeFilterButtonClick(button, data) {
-    const selectedTypeFilter = button.getAttribute("data-type");
-    const isTypeFilterActive = button.classList.contains("active");
+            function handleTypeFilterButtonClick(button, data) {
+                const selectedTypeFilter = button.getAttribute("data-type");
+                const isTypeFilterActive = button.classList.contains("active");
 
-    if (!isTypeFilterActive) {
-        // Désactivez le bouton de type actif s'il y en a un
-        if (activeTypeButton) {
-            activeTypeButton.classList.remove("active");
-        }
-        button.classList.add("active");
-        activeTypeButton = button;
-        activeTypeFilter = selectedTypeFilter;
-    } else {
-        button.classList.remove("active");
-        activeTypeButton = null;
-        activeTypeFilter = null;
-    }
+                if (!isTypeFilterActive) {
+                    // Désactivez le bouton de type actif s'il y en a un
+                    if (activeTypeButton) {
+                        activeTypeButton.classList.remove("active");
+                    }
+                    button.classList.add("active");
+                    activeTypeButton = button;
+                    activeTypeFilter = selectedTypeFilter;
+                } else {
+                    button.classList.remove("active");
+                    activeTypeButton = null;
+                    activeTypeFilter = null;
+                }
 
-    applyActiveFilters(data);
-    scrollToTop();
-}
+                applyActiveFilters(data);
+                scrollToTop();
+            }
 
-    // Associez la fonction handleCategoryFilterButtonClick au clic sur chaque bouton de catégorie
-categoryButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        handleCategoryFilterButtonClick(button, sortedData);
-    });
-});
+            // Associez la fonction handleCategoryFilterButtonClick au clic sur chaque bouton de catégorie
+            categoryButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    handleCategoryFilterButtonClick(button, sortedData);
+                });
+            });
 
-// Associez la fonction handleTypeFilterButtonClick au clic sur chaque bouton de type
-typeButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        handleTypeFilterButtonClick(button, sortedData);
-    });
-});
-    
-        function resetFilters() {
-    // Réinitialisez toutes les variables de filtre actives à null
-    activeLetterFilter = null;
-    activeLetterButton = null;
-    activeCategoryFilter = null;
-    activeCategoryButton = null;
-    activeTypeButton = null;
-    activeTypeFilter = null;
-    activeSymbolButton = null;
-    activeSymbolFilter = null;
+            // Associez la fonction handleTypeFilterButtonClick au clic sur chaque bouton de type
+            typeButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    handleTypeFilterButtonClick(button, sortedData);
+                });
+            });
 
-    // Réinitialisez visuellement les boutons de filtre de lettre, catégorie, type et symbole
-    letterButtons.forEach(letterButton => {
-        letterButton.classList.remove("active");
-    });
+            function resetFilters() {
+                // Réinitialisez toutes les variables de filtre actives à null
+                activeLetterFilter = null;
+                activeLetterButton = null;
+                activeCategoryFilter = null;
+                activeCategoryButton = null;
+                activeTypeButton = null;
+                activeTypeFilter = null;
+                activeSymbolButton = null;
+                activeSymbolFilter = null;
 
-    categoryButtons.forEach(categoryButton => {
-        categoryButton.classList.remove("active");
-    });
+                // Réinitialisez visuellement les boutons de filtre de lettre, catégorie, type et symbole
+                letterButtons.forEach(letterButton => {
+                    letterButton.classList.remove("active");
+                });
 
-    typeButtons.forEach(typeButton => {
-        typeButton.classList.remove("active");
-    });
+                categoryButtons.forEach(categoryButton => {
+                    categoryButton.classList.remove("active");
+                });
 
-    if (symbolFilterButton) { // Vérifiez si symbolFilterButton existe avant de l'utiliser
-        symbolFilterButton.classList.remove("active");
-    }
+                typeButtons.forEach(typeButton => {
+                    typeButton.classList.remove("active");
+                });
 
-    // Réappliquez les filtres aux données triées
-    applyActiveFilters(sortedData);
-    scrollToTop();
-}
+                if (symbolFilterButton) { // Vérifiez si symbolFilterButton existe avant de l'utiliser
+                    symbolFilterButton.classList.remove("active");
+                }
+
+                // Réappliquez les filtres aux données triées
+                applyActiveFilters(sortedData);
+                scrollToTop();
+            }
 
             // Associez la fonction resetFilters au clic sur le bouton de réinitialisation des filtres
             const resetFiltersButton = document.getElementById("resetFiltersButton");
