@@ -19,9 +19,9 @@ function applyActiveFilters(data) {
         const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
         const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
         const symbolMatches = !activeSymbolFilter || (item.symbole && item.symbole === "SYMBOLE");
-        return letterMatches && categoryMatches && typeMatches && symbolMatches;
+        return letterMatches && categoryMatches && typeMatches;
     });
-    if (activeLetterButton || activeCategoryFilter || activeSymbolFilter) {
+    if (activeLetterButton || activeCategoryFilter || activeTypeFilter || activeSymbolFilter) {
         displayResults(filteredResults);
     } else {
         // Aucun filtre actif, afficher tous les résultats
