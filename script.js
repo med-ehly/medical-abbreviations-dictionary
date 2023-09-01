@@ -21,7 +21,7 @@ function applyActiveFilters(data) {
         const symbolMatches = !activeSymbolFilter || (item.symbole && item.symbole === "SYMBOLE");
         return letterMatches && categoryMatches && typeMatches && symbolMatches;
     });
-    if (activeLetterButton || activeCategoryFilter || activeTypeFilter) {
+    if (activeLetterButton || activeCategoryFilter || activeSymbolFilter) {
         displayResults(filteredResults);
     } else {
         // Aucun filtre actif, afficher tous les résultats
