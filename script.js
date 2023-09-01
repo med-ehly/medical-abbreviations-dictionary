@@ -18,7 +18,8 @@ function applyActiveFilters(data) {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
         const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
         const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
-        return letterMatches && categoryMatches && typeMatches;
+        const symbolMatches = !activeSymbolFilter || (item.symbole && item.symbole === "SYMBOLE");
+        return letterMatches && categoryMatches && typeMatches && symbolMatches;
     });
     if (activeLetterButton || activeCategoryFilter || activeTypeFilter) {
         displayResults(filteredResults);
