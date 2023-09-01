@@ -135,6 +135,34 @@ document.addEventListener("DOMContentLoaded", () => {
                     handleLetterButtonClick(button);
                 });
             });
+
+            function handleSymbolFilterButtonClick() {
+    const isLetterFilterActive = activeLetterButton !== null;
+    const isFilterActive = symbolFilterButton.classList.contains("active");
+
+    if (!isLetterFilterActive) {
+        letterButtons.forEach(letterButton => {
+            letterButton.classList.remove("active");
+        });
+        activeLetterButton = null;
+
+        if (!isFilterActive) {
+            symbolFilterButton.classList.add("active"); // Ajouter la classe "active" pour activer le bouton "Symbole"
+            activeSymbolButton = symbolFilterButton;
+            activeSymbolFilter = "SYMBOLE";
+        } else {
+            symbolFilterButton.classList.remove("active");
+            activeSymbolButton = null;
+            activeSymbolFilter = null;
+        }
+
+        applyActiveFilters(sortedData);
+    }
+}
+
+// Associez la fonction handleSymbolFilterButtonClick au clic sur le bouton de filtre "Symbole"
+symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
+
             
             const allCategories = ["Anesthésie", "Cardiologie", "CEGDC", "CCVT", "Dermatologie", "Endocrinologie", "Gastrologie", "Génétique", "Gériatrie", "Gynécologie", "Hémato-Onco", "Immuno-Allergie", "Med Interne", "Infectio", "Néphrologie", "Neurochirurgie", "Neurologie", "Ophtalmologie", "ORL", "Orthopédie", "Pédiatrie", "Physiatrie", "Plastie", "Pneumologie", "Psychiatrie", "Rhumatologie", "Urologie"];
             const allTypes = ["Anatomie", "Diagnostic", "Examen", "Médication", "Traitement"];
