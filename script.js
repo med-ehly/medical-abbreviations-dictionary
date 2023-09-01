@@ -46,20 +46,16 @@ function displaySearchResults(results) {
         abbrCell.textContent = result.abreviation;
         row.appendChild(abbrCell); // Ajouter la cellule à la ligne
         
-        const descriptionCell = document.createElement("div"); //  Create a container for description and langue
+        const descriptionCell = document.createElement("div"); // Create a container for description
         descriptionCell.classList.add("description-container");
-
-        const descriptionText = document.createElement("p");
+        
+        const descriptionText = document.createElement("p"); // Create a cell for description
         descriptionText.textContent = result.signification;
         descriptionCell.appendChild(descriptionText); // Add the description cell to the container
         
-        const langueCell = document.createElement("span"); // Create a cell for langue
-        langueCell.textContent = result.langue;
-        langueCell.classList.add("language"); // Add the "language" class to style it
-        descriptionCell.appendChild(langueCell); // Add the langue cell to the container
+        row.appendChild(descriptionCell); // Add the description container to the row
         
-        row.appendChild(descriptionCell); // Ajouter la cellule à la ligne
-        resultsList.appendChild(row); // Ajouter la ligne au tableau de résultats
+        resultsList.appendChild(row); // Add the row to the results list
     });
 }
 
@@ -92,17 +88,12 @@ function displayResults(results) {
         abbrCell.textContent = result.abreviation;
         row.appendChild(abbrCell); // Ajouter la cellule à la ligne
         
-        const descriptionCell = document.createElement("div"); // Create a container for description and langue
+        const descriptionCell = document.createElement("div"); // Create a container for description
         descriptionCell.classList.add("description-container");
         
         const descriptionText = document.createElement("p"); // Create a cell for description
         descriptionText.textContent = result.signification;
         descriptionCell.appendChild(descriptionText); // Add the description cell to the container
-
-        const langueCell = document.createElement("span"); // Create a cell for langue
-        langueCell.textContent = result.langue;
-        langueCell.classList.add("language"); // Add the "language" class to style it
-        descriptionCell.appendChild(langueCell); // Add the langue cell to the container
         
         row.appendChild(descriptionCell); // Add the description container to the row
         
