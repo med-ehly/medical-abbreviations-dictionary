@@ -15,6 +15,7 @@ let activeSymbolFilter = null;
 function applyActiveFilters(data) {
     console.log("Applying active filters...");
     console.log("Active Symbol Filter:", activeSymbolFilter);
+    console.log("Item Symbol:", item.symbole);
     const filteredResults = data.filter(item => {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
         const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
