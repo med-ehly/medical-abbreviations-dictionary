@@ -14,11 +14,12 @@ let activeSymbolFilter = null;
 
 function applyActiveFilters(data) {
     console.log("Applying active filters...");
+    console.log("Active Symbol Filter:", activeSymbolFilter);
     const filteredResults = data.filter(item => {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
         const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
         const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
-        const symbolMatches = !activeSymbolFilter || (item.symbole === activeSymbolFilter);
+        const symbolMatches = !activeSymbolFilter || (item.symbole === "SYMBOLE");
         return letterMatches && categoryMatches && typeMatches;
     });
 
