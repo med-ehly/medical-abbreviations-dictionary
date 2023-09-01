@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
             activeSymbolFilter = null;
         }
 
-        applyActiveFilters(sortedData);
+        applyActiveFilters(filteredResults);
     }
                 console.log("Symbole button clicked");
 }
