@@ -19,7 +19,7 @@ function applyActiveFilters(data) {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
         const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
         const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
-        const symbolMatches = !activeSymbolFilter || (item.symbole === "SYMBOLE" && activeSymbolButton !== null);
+        const symbolMatches = !activeSymbolButton || (activeSymbolFilter && item.symbole === "SYMBOLE");
         return letterMatches && categoryMatches && typeMatches;
     });
 
