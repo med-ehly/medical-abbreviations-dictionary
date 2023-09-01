@@ -12,15 +12,15 @@ let activeTypeFilter = null;
 let activeSymbolButton = null;
 let activeSymbolFilter = null;
 
-// Fonction de filtrage principale
 function applyActiveFilters(data) {
     const filteredResults = data.filter(item => {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
         const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
         const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
         const symbolMatches = !activeSymbolFilter || (item.symbole && item.symbole === "SYMBOLE");
-        return letterMatches && categoryMatches && typeMatches;
+        return letterMatches && categoryMatches && typeMatches && symbolMatches;
     });
+
     if (activeLetterButton || activeCategoryFilter || activeTypeFilter || activeSymbolFilter) {
         displayResults(filteredResults);
     } else {
@@ -145,28 +145,38 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
 
-            function handleSymbolFilterButtonClick() {
-    const isLetterFilterActive = activeLetterButton !== null;
+           function handleSymbolFilterButtonClick() {
+    // Désactiver le filtre de lettre actif s'il y en a un
+    if (activeLetterButton) {
+        activeLetterButton.classList.remove("active");
+        activeLetterButton = null;
+    }
+    
+    // Désactiver le filtre de catégorie actif s'il y en a un
+    if (activeCategoryButton) {
+        activeCategoryButton.classList.remove("active");
+        activeCategoryButton = null;
+    }
+    
+    // Désactiver le filtre de type actif s'il y en a un
+    if (activeTypeButton) {
+        activeTypeButton.classList.remove("active");
+        activeTypeButton = null;
+    }
+
     const isFilterActive = symbolFilterButton.classList.contains("active");
 
-    if (isLetterFilterActive) {
-        letterButtons.forEach(letterButton => {
-            letterButton.classList.remove("active");
-        });
-        activeLetterButton = null;
-
-        if (!isFilterActive) {
-            symbolFilterButton.classList.add("active"); // Ajouter la classe "active" pour activer le bouton "Symbole"
-            activeSymbolButton = symbolFilterButton;
-            activeSymbolFilter = "SYMBOLE";
-        } else {
-            symbolFilterButton.classList.remove("active");
-            activeSymbolButton = null;
-            activeSymbolFilter = null;
-        }
-
-        applyActiveFilters(sortedData);
+    if (!isFilterActive) {
+        symbolFilterButton.classList.add("active"); // Ajouter la classe "active" pour activer le bouton "Symbole"
+        activeSymbolButton = symbolFilterButton;
+        activeSymbolFilter = "SYMBOLE";
+    } else {
+        symbolFilterButton.classList.remove("active");
+        activeSymbolButton = null;
+        activeSymbolFilter = null;
     }
+
+    applyActiveFilters(sortedData);
 }
 
             // Associez la fonction handleSymbolFilterButtonClick au clic sur le bouton de filtre "Symbole"
