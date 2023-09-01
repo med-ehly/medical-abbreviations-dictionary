@@ -13,11 +13,12 @@ let activeSymbolButton = null;
 let activeSymbolFilter = null;
 
 function applyActiveFilters(data) {
+    console.log("Applying active filters...");
     const filteredResults = data.filter(item => {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
         const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
         const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
-        const symbolMatches = !activeSymbolFilter || (item.symbole === "SYMBOLE");
+        const symbolMatches = !activeSymbolFilter || (item.symbole === activeSymbolFilter);
         return letterMatches && categoryMatches && typeMatches;
     });
 
