@@ -139,7 +139,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
 
-          function handleSymbolFilterButtonClick() {
+          
+function handleSymbolFilterButtonClick() {
     const isLetterFilterActive = activeLetterButton !== null;
     const isFilterActive = symbolFilterButton.classList.contains("active");
 
@@ -154,13 +155,13 @@ document.addEventListener("DOMContentLoaded", () => {
             activeSymbolButton = symbolFilterButton;
             activeSymbolFilter = "SYMBOLE";
 
-            // Filtrer les résultats en fonction du symbole "SYMBOLE"
+            // Assurez-vous que "filteredResults" est défini ici
             const filteredResults = sortedData.filter(item => {
                 return activeSymbolFilter === null || (item.symbole === "SYMBOLE");
             });
 
-            // Assurez-vous de passer les données filtrées à la fonction applyActiveFilters
-            applyActiveFilters(filteredResults); // Utilisez les données filtrées ici
+            // Assurez-vous de passer les données filtrées à la fonction displayResults
+            displayResults(filteredResults); // Utilisez les données filtrées ici
         } else {
             symbolFilterButton.classList.remove("active");
             activeSymbolButton = null;
@@ -171,6 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 }
+
 
 
 // Associez la fonction handleSymbolFilterButtonClick au clic sur le bouton de filtre "Symbole"
