@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const isLetterFilterActive = activeLetterButton !== null;
     const isFilterActive = symbolFilterButton.classList.contains("active");
 
-    if (!isLetterFilterActive) {
+    if (isLetterFilterActive) {
         letterButtons.forEach(letterButton => {
             letterButton.classList.remove("active");
         });
