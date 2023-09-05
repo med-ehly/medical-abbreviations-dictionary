@@ -38,8 +38,30 @@ function applyActiveFilters(data) {
     }
 }
 
-function sortDataAlphabetically(data) {
-    return data.sort((a, b) => a.abreviation.localeCompare(b.abreviation));
+function sortDataAlphabeticallyWithFallback(data) {
+    // Divisez les données en deux groupes : celles avec une catégorie "type" et celles sans
+    const withTypeCategory = data.filter(item => item.type !== undefined && item.type !== null);
+    const withoutTypeCategory = data.filter(item => item.type === undefined || item.type === null);
+
+    // Triez d'abord les éléments avec une catégorie "type" par abréviation
+    const sortedWithTypeCategory = withTypeCategory.sort((a, b) => a.abreviation.localeCompare(b.abreviation));
+
+    // Ensuite, triez les éléments sans catégorie "type" comme s'ils avaient la catégorie "symbole"
+    const sortedWithoutTypeCategory = withoutTypeCategory.sort((a, b) => {
+        if (a.type === "SYMBOLE" && b.type !== "SYMBOLE") {
+            return 1; // "a" (SYMBOLE) va à la fin
+        } else if (a.type !== "SYMBOLE" && b.type === "SYMBOLE") {
+            return -1; // "b" (SYMBOLE) va à la fin
+        } else {
+            // Si les deux ont la même catégorie ou aucune catégorie, triez par abréviation
+            return a.abreviation.localeCompare(b.abreviation);
+        }
+    });
+
+    // Fusionnez les deux groupes triés
+    const sortedData = sortedWithTypeCategory.concat(sortedWithoutTypeCategory);
+
+    return sortedData;
 }
 
 function displaySearchResults(results) {
@@ -162,13 +184,12 @@ function displayResults(results) {
     }
 }
 
-
 // Charger les données et initialiser les événements après le chargement du document
 document.addEventListener("DOMContentLoaded", () => {
     fetch("data.json")
         .then(response => response.json())
         .then(data => {
-            const sortedData = sortDataAlphabetically(data);
+            const sortedData = sortDataAlphabeticallyWithFallback(data);
             displaySearchResults(sortedData);
             searchInput.addEventListener("input", event => handleSearch(event, sortedData));
             const letterButtons = document.querySelectorAll(".letter-button");
