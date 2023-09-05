@@ -85,29 +85,39 @@ function handleSearch(event, data) {
 }
 
 function displayResults(results) {
+    clearResultsContainers();
     resultsList.innerHTML = '';
     if (results.length === 0) {
         resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
         return;
     }
-    results.forEach(result => {
-        const row = document.createElement("li"); // Créer une ligne de tableau (élément li)
-        
-        const abbrCell = document.createElement("abbr"); // Créer une cellule pour l'abréviation
-        abbrCell.textContent = result.abreviation;
-        row.appendChild(abbrCell); // Ajouter la cellule à la ligne
-        
-        const descriptionCell = document.createElement("div"); // Create a container for description
-        descriptionCell.classList.add("description-container");
-        
-        const descriptionText = document.createElement("p"); // Create a cell for description
-        descriptionText.textContent = result.signification;
-        descriptionCell.appendChild(descriptionText); // Add the description cell to the container
-        
-        row.appendChild(descriptionCell); // Add the description container to the row
-        
-        resultsList.appendChild(row); // Add the row to the results list
-    });
+   results.forEach(result => {
+    const row = document.createElement("li"); // Créez une ligne de tableau (élément li)
+    const abbrCell = document.createElement("abbr"); // Créez une cellule pour l'abréviation
+    abbrCell.textContent = result.abreviation;
+    row.appendChild(abbrCell); // Ajoutez la cellule à la ligne
+    const descriptionCell = document.createElement("div"); // Créez un conteneur pour la description
+    descriptionCell.classList.add("description-container");
+    const descriptionText = document.createElement("p"); // Créez une cellule pour la description
+    descriptionText.textContent = result.signification;
+    descriptionCell.appendChild(descriptionText); // Ajoutez la cellule de description au conteneur
+    row.appendChild(descriptionCell); // Ajoutez le conteneur de description à la ligne
+
+    // Séparez les résultats en fonction du type
+    if (result.type === "Médication") {
+      document.getElementById("medicationList").appendChild(row);
+    } else if (result.type === "Symbole") {
+      document.getElementById("symbolList").appendChild(row);
+    }
+    // Ajoutez d'autres conditions pour d'autres types si nécessaire
+  });
+}
+
+function clearResultsContainers() {
+  // Effacez tous les conteneurs de résultats
+  document.getElementById("medicationList").innerHTML = "";
+  document.getElementById("symbolList").innerHTML = "";
+  // Effacez les autres conteneurs si vous en avez ajouté
 }
 
 // Charger les données et initialiser les événements après le chargement du document
