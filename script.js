@@ -147,41 +147,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
           
 function handleSymbolFilterButtonClick() {
-    const isLetterFilterActive = activeLetterButton !== null;
     const isFilterActive = symbolFilterButton.classList.contains("active");
 
-    if (!isLetterFilterActive) {
-        letterButtons.forEach(letterButton => {
-            letterButton.classList.remove("active");
+    // Désactivez tous les autres filtres actifs
+    letterButtons.forEach(letterButton => {
+        letterButton.classList.remove("active");
+    });
+    activeLetterButton = null;
+
+    categoryButtons.forEach(categoryButton => {
+        categoryButton.classList.remove("active");
+    });
+    activeCategoryButton = null;
+    activeCategoryFilter = null;
+
+    typeButtons.forEach(typeButton => {
+        typeButton.classList.remove("active");
+    });
+    activeTypeButton = null;
+    activeTypeFilter = null;
+
+    // Si le filtre "Symbole" n'est pas actif, activez-le
+    if (!isFilterActive) {
+        symbolFilterButton.classList.add("active");
+        activeSymbolButton = symbolFilterButton;
+        activeSymbolFilter = "SYMBOLE";
+
+        const filteredResults = sortedData.filter(item => {
+            return activeSymbolFilter === null || (item.symbole === "SYMBOLE");
         });
-        activeLetterButton = null;
 
-        if (!isFilterActive) {
-            symbolFilterButton.classList.add("active"); // Ajouter la classe "active" pour activer le bouton "Symbole"
-            activeSymbolButton = symbolFilterButton;
-            activeSymbolFilter = "SYMBOLE";
-
-            // Assurez-vous que "filteredResults" est défini ici
-            const filteredResults = sortedData.filter(item => {
-                return activeSymbolFilter === null || (item.symbole === "SYMBOLE");
-            });
-
-            // Assurez-vous de passer les données filtrées à la fonction displayResults
-            displayResults(filteredResults); // Utilisez les données filtrées ici
-        } else {
-            symbolFilterButton.classList.remove("active");
-            activeSymbolButton = null;
-            activeSymbolFilter = null;
-
-             // Si le filtre "Symbole" est désactivé, réinitialisez les filtres
-            applyActiveFilters(sortedData); // Réinitialisez les filtres en passant toutes les données
-        }
+        displayResults(filteredResults);
     } else {
-        // Réinitialisez les filtres lorsque le bouton "Symbole" est désactivé
+        // Si le filtre "Symbole" est désactivé, réinitialisez les filtres
         symbolFilterButton.classList.remove("active");
         activeSymbolButton = null;
         activeSymbolFilter = null;
-        applyActiveFilters(sortedData); // Réinitialisez les filtres en passant toutes les données
+        applyActiveFilters(sortedData);
     }
 }
 
