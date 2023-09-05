@@ -79,13 +79,16 @@ function displaySearchResults(results) {
     results.forEach(result => {
         const type = (result.type || "SYMBOLE").toUpperCase(); // Mettez en majuscules le type
 
-        // Créez un groupe s'il n'existe pas encore
-        if (!groupedResults[type]) {
-            groupedResults[type] = [];
-        }
+        // Excluez les éléments ayant un type du groupe "SYMBOLE"
+        if (type !== "SYMBOLE") {
+            // Créez un groupe s'il n'existe pas encore
+            if (!groupedResults[type]) {
+                groupedResults[type] = [];
+            }
 
-        // Ajoutez le résultat au groupe correspondant
-        groupedResults[type].push(result);
+            // Ajoutez le résultat au groupe correspondant
+            groupedResults[type].push(result);
+        }
     });
 
     // Parcourez les groupes et ajoutez les résultats à la liste
@@ -149,13 +152,16 @@ function displayResults(results) {
     results.forEach(result => {
         const type = (result.type || "SYMBOLE").toUpperCase(); // Mettez en majuscules le type
 
-        // Créez un groupe s'il n'existe pas encore
-        if (!groupedResults[type]) {
-            groupedResults[type] = [];
-        }
+        // Excluez les éléments ayant un type du groupe "SYMBOLE"
+        if (type !== "SYMBOLE") {
+            // Créez un groupe s'il n'existe pas encore
+            if (!groupedResults[type]) {
+                groupedResults[type] = [];
+            }
 
-        // Ajoutez le résultat au groupe correspondant
-        groupedResults[type].push(result);
+            // Ajoutez le résultat au groupe correspondant
+            groupedResults[type].push(result);
+        }
     });
 
     // Parcourez les groupes et ajoutez les résultats à la liste
