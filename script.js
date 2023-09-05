@@ -65,7 +65,7 @@ function sortDataAlphabeticallyWithFallback(data) {
 }
 
 function displaySearchResults(results) {
-    resultsList.innerHTML = '';
+   resultsList.innerHTML = '';
     if (results.length === 0) {
         resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
         return;
@@ -77,7 +77,7 @@ function displaySearchResults(results) {
     };
 
     results.forEach(result => {
-        const type = result.type || "SYMBOLE"; // Si le résultat n'a pas de type, utilisez "SYMBOLE"
+        const type = (result.type || "SYMBOLE").toUpperCase(); // Mettez en majuscules le type
 
         // Créez un groupe s'il n'existe pas encore
         if (!groupedResults[type]) {
@@ -135,7 +135,7 @@ function handleSearch(event, data) {
 }
 
 function displayResults(results) {
-     resultsList.innerHTML = '';
+    resultsList.innerHTML = '';
     if (results.length === 0) {
         resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
         return;
@@ -147,7 +147,7 @@ function displayResults(results) {
     };
 
     results.forEach(result => {
-        const type = result.type || "SYMBOLE"; // Si le résultat n'a pas de type, utilisez "SYMBOLE"
+        const type = (result.type || "SYMBOLE").toUpperCase(); // Mettez en majuscules le type
 
         // Créez un groupe s'il n'existe pas encore
         if (!groupedResults[type]) {
