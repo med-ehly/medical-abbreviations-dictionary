@@ -38,46 +38,6 @@ function applyActiveFilters(data) {
     }
 }
 
-function resetFilters() {
-    // Réinitialisez les filtres de lettre
-    letterButtons.forEach(letterButton => {
-        letterButton.classList.remove("active");
-    });
-    activeLetterButton = null;
-
-    // Réinitialisez le filtre "Symbole"
-    if (activeSymbolButton) {
-        activeSymbolButton.classList.remove("active");
-        activeSymbolButton = null;
-        activeSymbolFilter = null;
-    }
-
-    // Réinitialisez les filtres de catégorie
-    categoryButtons.forEach(categoryButton => {
-        categoryButton.classList.remove("active");
-    });
-    activeCategoryButton = null;
-    activeCategoryFilter = null;
-
-    // Réinitialisez les filtres de type
-    typeButtons.forEach(typeButton => {
-        typeButton.classList.remove("active");
-    });
-    activeTypeButton = null;
-    activeTypeFilter = null;
-
-    // Appliquez les filtres réinitialisés aux données
-    applyActiveFilters(sortedData);
-    scrollToTop();
-}
-
-const resetFiltersButton = document.getElementById("resetFiltersButton"); // Remplacez "resetFiltersButton" par l'ID de votre bouton de réinitialisation
-
-resetFiltersButton.addEventListener("click", () => {
-    resetFilters();
-});
-
-
 function sortDataAlphabetically(data) {
     return data.sort((a, b) => a.abreviation.localeCompare(b.abreviation));
 }
@@ -185,7 +145,45 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
 
-          
+          function resetFilters() {
+    // Réinitialisez les filtres de lettre
+    letterButtons.forEach(letterButton => {
+        letterButton.classList.remove("active");
+    });
+    activeLetterButton = null;
+
+    // Réinitialisez le filtre "Symbole"
+    if (activeSymbolButton) {
+        activeSymbolButton.classList.remove("active");
+        activeSymbolButton = null;
+        activeSymbolFilter = null;
+    }
+
+    // Réinitialisez les filtres de catégorie
+    categoryButtons.forEach(categoryButton => {
+        categoryButton.classList.remove("active");
+    });
+    activeCategoryButton = null;
+    activeCategoryFilter = null;
+
+    // Réinitialisez les filtres de type
+    typeButtons.forEach(typeButton => {
+        typeButton.classList.remove("active");
+    });
+    activeTypeButton = null;
+    activeTypeFilter = null;
+
+    // Appliquez les filtres réinitialisés aux données
+    applyActiveFilters(sortedData);
+    scrollToTop();
+}
+
+const resetFiltersButton = document.getElementById("resetFiltersButton"); // Remplacez "resetFiltersButton" par l'ID de votre bouton de réinitialisation
+
+resetFiltersButton.addEventListener("click", () => {
+    resetFilters();
+});
+
 function handleSymbolFilterButtonClick() {
     const isFilterActive = symbolFilterButton.classList.contains("active");
 
