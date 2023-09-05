@@ -16,19 +16,25 @@ function applyActiveFilters(data) {
     console.log("Applying active filters...");
     console.log("Active Symbol Filter:", activeSymbolFilter);
 
-    const filteredResults = data.filter(item => {
-        const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
-        const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
-        const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
-        const symbolMatches = !activeSymbolButton || (activeSymbolFilter && item.symbole === "SYMBOLE");
-        return letterMatches && categoryMatches && typeMatches && symbolMatches;
-    });
-
-    if (activeLetterButton || activeCategoryFilter || activeTypeFilter || activeSymbolFilter) {
+    if (activeSymbolFilter) {
+        // Si le filtre "Symbole" est actif, ignorer les autres filtres
+        const filteredResults = data.filter(item => item.symbole === "SYMBOLE");
         displayResults(filteredResults);
     } else {
-        // Aucun filtre actif, afficher tous les résultats
-        displayResults(data);
+        // Si le filtre "Symbole" n'est pas actif, appliquer les autres filtres
+        const filteredResults = data.filter(item => {
+            const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
+            const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
+            const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
+            return letterMatches && categoryMatches && typeMatches;
+        });
+
+        if (activeLetterButton || activeCategoryFilter || activeTypeFilter) {
+            displayResults(filteredResults);
+        } else {
+            // Aucun filtre actif, afficher tous les résultats
+            displayResults(data);
+        }
     }
 }
 
