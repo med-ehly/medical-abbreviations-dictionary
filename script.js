@@ -43,29 +43,55 @@ function sortDataAlphabetically(data) {
 }
 
 function displaySearchResults(results) {
-    resultsList.innerHTML = "";
+   resultsList.innerHTML = '';
     if (results.length === 0) {
         resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
         return;
     }
+
+    // Créer un objet pour stocker les résultats groupés par type
+    const groupedResults = {};
+
     results.forEach(result => {
-        const row = document.createElement("li"); // Créer une ligne de tableau (élément li)
-        
-        const abbrCell = document.createElement("abbr"); // Créer une cellule pour l'abréviation
-        abbrCell.textContent = result.abreviation;
-        row.appendChild(abbrCell); // Ajouter la cellule à la ligne
-        
-        const descriptionCell = document.createElement("div"); // Create a container for description
-        descriptionCell.classList.add("description-container");
-        
-        const descriptionText = document.createElement("p"); // Create a cell for description
-        descriptionText.textContent = result.signification;
-        descriptionCell.appendChild(descriptionText); // Add the description cell to the container
-        
-        row.appendChild(descriptionCell); // Add the description container to the row
-        
-        resultsList.appendChild(row); // Add the row to the results list
+        const type = result.type;
+
+        // Créer une section si elle n'existe pas encore
+        if (!groupedResults[type]) {
+            groupedResults[type] = [];
+        }
+
+        // Ajouter le résultat à la section correspondante
+        groupedResults[type].push(result);
     });
+
+    // Parcourir les sections et ajouter les résultats à la liste
+    for (const type in groupedResults) {
+        if (groupedResults.hasOwnProperty(type)) {
+            const typeResults = groupedResults[type];
+
+            // Créer une section pour le type
+            const typeSection = document.createElement("div");
+            typeSection.classList.add("type-section");
+            typeSection.innerHTML = `<h2>${type}</h2>`;
+
+            // Ajouter chaque résultat à la section
+            typeResults.forEach(result => {
+                const row = document.createElement("li");
+                const abbrCell = document.createElement("abbr");
+                abbrCell.textContent = result.abreviation;
+                row.appendChild(abbrCell);
+                const descriptionCell = document.createElement("div");
+                descriptionCell.classList.add("description-container");
+                const descriptionText = document.createElement("p");
+                descriptionText.textContent = result.signification;
+                descriptionCell.appendChild(descriptionText);
+                row.appendChild(descriptionCell);
+                typeSection.appendChild(row);
+            });
+
+            resultsList.appendChild(typeSection);
+        }
+    }
 }
 
 function scrollToTop() {
@@ -90,25 +116,52 @@ function displayResults(results) {
         resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
         return;
     }
+
+    // Créer un objet pour stocker les résultats groupés par type
+    const groupedResults = {};
+
     results.forEach(result => {
-        const row = document.createElement("li"); // Créer une ligne de tableau (élément li)
-        
-        const abbrCell = document.createElement("abbr"); // Créer une cellule pour l'abréviation
-        abbrCell.textContent = result.abreviation;
-        row.appendChild(abbrCell); // Ajouter la cellule à la ligne
-        
-        const descriptionCell = document.createElement("div"); // Create a container for description
-        descriptionCell.classList.add("description-container");
-        
-        const descriptionText = document.createElement("p"); // Create a cell for description
-        descriptionText.textContent = result.signification;
-        descriptionCell.appendChild(descriptionText); // Add the description cell to the container
-        
-        row.appendChild(descriptionCell); // Add the description container to the row
-        
-        resultsList.appendChild(row); // Add the row to the results list
+        const type = result.type;
+
+        // Créer une section si elle n'existe pas encore
+        if (!groupedResults[type]) {
+            groupedResults[type] = [];
+        }
+
+        // Ajouter le résultat à la section correspondante
+        groupedResults[type].push(result);
     });
+
+    // Parcourir les sections et ajouter les résultats à la liste
+    for (const type in groupedResults) {
+        if (groupedResults.hasOwnProperty(type)) {
+            const typeResults = groupedResults[type];
+
+            // Créer une section pour le type
+            const typeSection = document.createElement("div");
+            typeSection.classList.add("type-section");
+            typeSection.innerHTML = `<h2>${type}</h2>`;
+
+            // Ajouter chaque résultat à la section
+            typeResults.forEach(result => {
+                const row = document.createElement("li");
+                const abbrCell = document.createElement("abbr");
+                abbrCell.textContent = result.abreviation;
+                row.appendChild(abbrCell);
+                const descriptionCell = document.createElement("div");
+                descriptionCell.classList.add("description-container");
+                const descriptionText = document.createElement("p");
+                descriptionText.textContent = result.signification;
+                descriptionCell.appendChild(descriptionText);
+                row.appendChild(descriptionCell);
+                typeSection.appendChild(row);
+            });
+
+            resultsList.appendChild(typeSection);
+        }
+    }
 }
+
 
 // Charger les données et initialiser les événements après le chargement du document
 document.addEventListener("DOMContentLoaded", () => {
