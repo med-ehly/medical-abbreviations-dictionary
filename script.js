@@ -15,13 +15,13 @@ let activeSymbolFilter = null;
 function applyActiveFilters(data) {
     console.log("Applying active filters...");
     console.log("Active Symbol Filter:", activeSymbolFilter);
-    console.log("Item Symbol:", item.symbole);
+
     const filteredResults = data.filter(item => {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
         const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
         const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
         const symbolMatches = !activeSymbolButton || (activeSymbolFilter && item.symbole === "SYMBOLE");
-        return letterMatches && categoryMatches && typeMatches;
+        return letterMatches && categoryMatches && typeMatches && symbolMatches;
     });
 
     if (activeLetterButton || activeCategoryFilter || activeTypeFilter || activeSymbolFilter) {
