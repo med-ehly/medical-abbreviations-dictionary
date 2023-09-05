@@ -14,14 +14,16 @@ let activeSymbolFilter = null;
 
 function applyActiveFilters(data) {
     console.log("Applying active filters...");
-    console.log("Active Symbol Filter:", activeSymbolFilter);
 
+    // Créez un groupe pour les résultats avec le type "SYMBOLE"
+    const symboleResults = data.filter(item => item.type === "SYMBOLE");
+
+    // Si le filtre "Symbole" est actif, affichez uniquement ce groupe
     if (activeSymbolFilter) {
-        // Si le filtre "Symbole" est actif, ignorer les autres filtres
-        const filteredResults = data.filter(item => item.symbole === "SYMBOLE");
-        displayResults(filteredResults);
+        displayResults(symboleResults);
     } else {
-        // Si le filtre "Symbole" n'est pas actif, appliquer les autres filtres
+        // Si le filtre "Symbole" n'est pas actif, incluez le groupe "Symbole"
+        // et appliquez d'autres filtres si nécessaire
         const filteredResults = data.filter(item => {
             const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
             const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
@@ -29,11 +31,15 @@ function applyActiveFilters(data) {
             return letterMatches && categoryMatches && typeMatches;
         });
 
+        // Fusionnez les résultats du groupe "Symbole" avec les autres résultats filtrés
+        const combinedResults = [...symboleResults, ...filteredResults];
+
+        // Si un autre filtre est actif, supprimez les éléments avec le type "SYMBOLE"
         if (activeLetterButton || activeCategoryFilter || activeTypeFilter) {
-            displayResults(filteredResults);
+            const filteredWithoutSymbole = combinedResults.filter(item => item.type !== "SYMBOLE");
+            displayResults(filteredWithoutSymbole);
         } else {
-            // Aucun filtre actif, afficher tous les résultats
-            displayResults(data);
+            displayResults(combinedResults);
         }
     }
 }
