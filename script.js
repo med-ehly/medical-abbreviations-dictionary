@@ -65,39 +65,41 @@ function sortDataAlphabeticallyWithFallback(data) {
 }
 
 function displaySearchResults(results) {
-   resultsList.innerHTML = '';
+    resultsList.innerHTML = '';
     if (results.length === 0) {
         resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
         return;
     }
 
-    // Créer un objet pour stocker les résultats groupés par type
-    const groupedResults = {};
+    // Créez un objet pour stocker les résultats groupés par type et symbole
+    const groupedResults = {
+        "SYMBOLE": [], // Initialisez un groupe pour les résultats sans type
+    };
 
     results.forEach(result => {
-        const type = result.type;
+        const type = result.type || "SYMBOLE"; // Si le résultat n'a pas de type, utilisez "SYMBOLE"
 
-        // Créer une section si elle n'existe pas encore
+        // Créez un groupe s'il n'existe pas encore
         if (!groupedResults[type]) {
             groupedResults[type] = [];
         }
 
-        // Ajouter le résultat à la section correspondante
+        // Ajoutez le résultat au groupe correspondant
         groupedResults[type].push(result);
     });
 
-    // Parcourir les sections et ajouter les résultats à la liste
-    for (const type in groupedResults) {
-        if (groupedResults.hasOwnProperty(type)) {
-            const typeResults = groupedResults[type];
+    // Parcourez les groupes et ajoutez les résultats à la liste
+    for (const group in groupedResults) {
+        if (groupedResults.hasOwnProperty(group)) {
+            const groupResults = groupedResults[group];
 
-            // Créer une section pour le type
-            const typeSection = document.createElement("div");
-            typeSection.classList.add("type-section");
-            typeSection.innerHTML = `<h2>${type}</h2>`;
+            // Créez une section pour le groupe (type ou "SYMBOLE")
+            const groupSection = document.createElement("div");
+            groupSection.classList.add("type-section");
+            groupSection.innerHTML = `<h2>${group}</h2>`;
 
-            // Ajouter chaque résultat à la section
-            typeResults.forEach(result => {
+            // Ajoutez chaque résultat à la section
+            groupResults.forEach(result => {
                 const row = document.createElement("li");
                 const abbrCell = document.createElement("abbr");
                 abbrCell.textContent = result.abreviation;
@@ -108,10 +110,10 @@ function displaySearchResults(results) {
                 descriptionText.textContent = result.signification;
                 descriptionCell.appendChild(descriptionText);
                 row.appendChild(descriptionCell);
-                typeSection.appendChild(row);
+                groupSection.appendChild(row);
             });
 
-            resultsList.appendChild(typeSection);
+            resultsList.appendChild(groupSection);
         }
     }
 }
@@ -133,39 +135,41 @@ function handleSearch(event, data) {
 }
 
 function displayResults(results) {
-    resultsList.innerHTML = '';
+     resultsList.innerHTML = '';
     if (results.length === 0) {
         resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
         return;
     }
 
-    // Créer un objet pour stocker les résultats groupés par type
-    const groupedResults = {};
+    // Créez un objet pour stocker les résultats groupés par type et symbole
+    const groupedResults = {
+        "SYMBOLE": [], // Initialisez un groupe pour les résultats sans type
+    };
 
     results.forEach(result => {
-        const type = result.type;
+        const type = result.type || "SYMBOLE"; // Si le résultat n'a pas de type, utilisez "SYMBOLE"
 
-        // Créer une section si elle n'existe pas encore
+        // Créez un groupe s'il n'existe pas encore
         if (!groupedResults[type]) {
             groupedResults[type] = [];
         }
 
-        // Ajouter le résultat à la section correspondante
+        // Ajoutez le résultat au groupe correspondant
         groupedResults[type].push(result);
     });
 
-    // Parcourir les sections et ajouter les résultats à la liste
-    for (const type in groupedResults) {
-        if (groupedResults.hasOwnProperty(type)) {
-            const typeResults = groupedResults[type];
+    // Parcourez les groupes et ajoutez les résultats à la liste
+    for (const group in groupedResults) {
+        if (groupedResults.hasOwnProperty(group)) {
+            const groupResults = groupedResults[group];
 
-            // Créer une section pour le type
-            const typeSection = document.createElement("div");
-            typeSection.classList.add("type-section");
-            typeSection.innerHTML = `<h2>${type}</h2>`;
+            // Créez une section pour le groupe (type ou "SYMBOLE")
+            const groupSection = document.createElement("div");
+            groupSection.classList.add("type-section");
+            groupSection.innerHTML = `<h2>${group}</h2>`;
 
-            // Ajouter chaque résultat à la section
-            typeResults.forEach(result => {
+            // Ajoutez chaque résultat à la section
+            groupResults.forEach(result => {
                 const row = document.createElement("li");
                 const abbrCell = document.createElement("abbr");
                 abbrCell.textContent = result.abreviation;
@@ -176,10 +180,10 @@ function displayResults(results) {
                 descriptionText.textContent = result.signification;
                 descriptionCell.appendChild(descriptionText);
                 row.appendChild(descriptionCell);
-                typeSection.appendChild(row);
+                groupSection.appendChild(row);
             });
 
-            resultsList.appendChild(typeSection);
+            resultsList.appendChild(groupSection);
         }
     }
 }
