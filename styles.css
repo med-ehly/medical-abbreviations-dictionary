@@ -146,6 +146,23 @@ header {
   margin-left: 300px;
 }
 
+/* Styles pour les cases d'items */
+.type-section li {
+    background-color: #fff; /* Changez la couleur de fond selon vos préférences */
+    border: 1px solid #ccc; /* Ajoutez une bordure pour délimiter les cases */
+    padding: 5px; /* Ajoutez une marge intérieure pour l'apparence */
+    margin: 5px 0; /* Ajoutez une marge extérieure pour l'espacement entre les cases */
+}
+
+.type-section li abbr {
+    font-weight: bold; /* Mettez en gras l'abréviation */
+}
+
+.type-section li .description-container p {
+    font-size: 14px; /* Changez la taille de la police pour la description */
+    color: #666; /* Changez la couleur du texte pour la description */
+}
+
 /* Style des colonnes de filtre et de la liste des résultats */
 .filters-and-list {
   display: flex;
