@@ -167,12 +167,17 @@ function handleSymbolFilterButtonClick() {
             activeSymbolButton = null;
             activeSymbolFilter = null;
 
-            // Si le filtre "Symbole" est désactivé, réinitialisez les filtres
+             // Si le filtre "Symbole" est désactivé, réinitialisez les filtres
             applyActiveFilters(sortedData); // Réinitialisez les filtres en passant toutes les données
         }
+    } else {
+        // Réinitialisez les filtres lorsque le bouton "Symbole" est désactivé
+        symbolFilterButton.classList.remove("active");
+        activeSymbolButton = null;
+        activeSymbolFilter = null;
+        applyActiveFilters(sortedData); // Réinitialisez les filtres en passant toutes les données
     }
 }
-
 
 
 // Associez la fonction handleSymbolFilterButtonClick au clic sur le bouton de filtre "Symbole"
