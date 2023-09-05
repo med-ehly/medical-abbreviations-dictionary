@@ -18,30 +18,25 @@ function applyActiveFilters(data) {
     // Créez un groupe pour les résultats avec le type "SYMBOLE"
     const symboleResults = data.filter(item => item.type === "SYMBOLE");
 
-    // Si le filtre "Symbole" est actif, affichez uniquement ce groupe
-    if (activeSymbolFilter) {
-        displayResults(symboleResults);
-    } else {
-        // Si le filtre "Symbole" n'est pas actif, incluez le groupe "Symbole"
-        // et appliquez d'autres filtres si nécessaire
-        const filteredResults = data.filter(item => {
-            const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
-            const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
-            const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
-            return letterMatches && categoryMatches && typeMatches;
-        });
+    // Vérifiez si le filtre "Symbole" est actif
+    const isSymbolFilterActive = activeSymbolFilter === "SYMBOLE";
 
-        // Fusionnez les résultats du groupe "Symbole" avec les autres résultats filtrés
-        const combinedResults = [...symboleResults, ...filteredResults];
+    // Appliquez les filtres en fonction de l'état des filtres
+    const filteredResults = data.filter(item => {
+        const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
+        const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
+        const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
 
-        // Si un autre filtre est actif, supprimez les éléments avec le type "SYMBOLE"
-        if (activeLetterButton || activeCategoryFilter || activeTypeFilter) {
-            const filteredWithoutSymbole = combinedResults.filter(item => item.type !== "SYMBOLE");
-            displayResults(filteredWithoutSymbole);
-        } else {
-            displayResults(combinedResults);
+        // Vérifiez si le filtre "Symbole" est actif et que l'élément est de type "SYMBOLE"
+        if (isSymbolFilterActive && item.type === "SYMBOLE") {
+            return true;
         }
-    }
+
+        // Vérifiez si d'autres filtres correspondent également
+        return letterMatches && categoryMatches && typeMatches;
+    });
+
+    displayResults(filteredResults);
 }
 
 function sortDataAlphabeticallyWithFallback(data) {
@@ -71,30 +66,25 @@ function sortDataAlphabeticallyWithFallback(data) {
 }
 
 function displaySearchResults(results) {
-   resultsList.innerHTML = '';
+    resultsList.innerHTML = '';
     if (results.length === 0) {
         resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
         return;
     }
 
-    // Créez un objet pour stocker les résultats groupés par type et symbole
-    const groupedResults = {
-        "SYMBOLE": [], // Initialisez un groupe pour les résultats sans type
-    };
+    // Créez un objet pour stocker les résultats groupés par type
+    const groupedResults = {};
 
     results.forEach(result => {
         const type = (result.type || "SYMBOLE").toUpperCase(); // Mettez en majuscules le type
 
-        // Excluez les éléments ayant un type du groupe "SYMBOLE"
-        if (type !== "SYMBOLE") {
-            // Créez un groupe s'il n'existe pas encore
-            if (!groupedResults[type]) {
-                groupedResults[type] = [];
-            }
-
-            // Ajoutez le résultat au groupe correspondant
-            groupedResults[type].push(result);
+        // Créez un groupe s'il n'existe pas encore
+        if (!groupedResults[type]) {
+            groupedResults[type] = [];
         }
+
+        // Ajoutez le résultat au groupe correspondant
+        groupedResults[type].push(result);
     });
 
     // Parcourez les groupes et ajoutez les résultats à la liste
@@ -150,24 +140,19 @@ function displayResults(results) {
         return;
     }
 
-    // Créez un objet pour stocker les résultats groupés par type et symbole
-    const groupedResults = {
-        "SYMBOLE": [], // Initialisez un groupe pour les résultats sans type
-    };
+    // Créez un objet pour stocker les résultats groupés par type
+    const groupedResults = {};
 
     results.forEach(result => {
         const type = (result.type || "SYMBOLE").toUpperCase(); // Mettez en majuscules le type
 
-        // Excluez les éléments ayant un type du groupe "SYMBOLE"
-        if (type !== "SYMBOLE") {
-            // Créez un groupe s'il n'existe pas encore
-            if (!groupedResults[type]) {
-                groupedResults[type] = [];
-            }
-
-            // Ajoutez le résultat au groupe correspondant
-            groupedResults[type].push(result);
+        // Créez un groupe s'il n'existe pas encore
+        if (!groupedResults[type]) {
+            groupedResults[type] = [];
         }
+
+        // Ajoutez le résultat au groupe correspondant
+        groupedResults[type].push(result);
     });
 
     // Parcourez les groupes et ajoutez les résultats à la liste
