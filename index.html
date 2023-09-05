@@ -79,12 +79,23 @@
         </div>
       </div>
       <div class="center-column">
-        <div class="results-container">
-        <ul id="resultsList">
-          <!-- Liste des termes médicaux ici -->
-        </ul>
-          </div>
-      </div>
+  <div class="results-container">
+    <!-- Conteneur pour les résultats de type Médication -->
+    <div class="results-subcontainer" id="medicationResults">
+      <h2>Médication</h2>
+      <ul id="medicationList"></ul>
+    </div>
+
+    <!-- Conteneur pour les résultats de type Symbole -->
+    <div class="results-subcontainer" id="symbolResults">
+      <h2>Symboles</h2>
+      <ul id="symbolList"></ul>
+    </div>
+
+    <!-- Ajoutez d'autres conteneurs pour d'autres types si nécessaire -->
+  </div>
+</div>
+
       <div class="filter-column">
         <div class="type-filter">
          <button class="type-button" data-type="Anatomie">Anatomie</button>
