@@ -43,7 +43,12 @@ function sortDataAlphabetically(data) {
 }
 
 function displaySearchResults(results) {
-    clearResultsContainers();
+    const resultsList = document.getElementById("resultsList");
+    if (!resultsList) {
+        console.error("L'élément 'resultsList' n'existe pas.");
+        return;
+    }
+
     resultsList.innerHTML = "";
     if (results.length === 0) {
         resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
