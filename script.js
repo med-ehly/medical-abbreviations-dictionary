@@ -224,6 +224,14 @@ symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
             function handleCategoryFilterButtonClick(button) {
                 const selectedCategoryFilter = button.getAttribute("data-category");
                 const isCategoryFilterActive = button.classList.contains("active");
+
+                 // Désactivez le filtre "Symbole" si actif
+                if (activeSymbolButton) {
+                activeSymbolButton.classList.remove("active");
+                activeSymbolButton = null;
+                activeSymbolFilter = null;
+                }
+                
                 if (!isCategoryFilterActive) {
                     // Désactivez le bouton de catégorie actif s'il y en a un
                     if (activeCategoryButton) {
@@ -243,6 +251,14 @@ symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
             function handleTypeFilterButtonClick(button) {
                 const selectedTypeFilter = button.getAttribute("data-type");
                 const isTypeFilterActive = button.classList.contains("active");
+
+                 // Désactivez le filtre "Symbole" si actif
+                if (activeSymbolButton) {
+                activeSymbolButton.classList.remove("active");
+                activeSymbolButton = null;
+                activeSymbolFilter = null;
+                }
+                
                 if (!isTypeFilterActive) {
                     // Désactivez le bouton de type actif s'il y en a un
                     if (activeTypeButton) {
