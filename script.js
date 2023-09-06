@@ -236,13 +236,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
             function handleMouseEnter(event) {
   const popover = event.currentTarget.querySelector(".langue-popover");
-  popover.style.display = "block";
+  if (popover) {
+    popover.style.display = "block";
+  }
 }
 
 function handleMouseLeave(event) {
   const popover = event.currentTarget.querySelector(".langue-popover");
-  popover.style.display = "none";
+  if (popover) {
+    popover.style.display = "none";
+  }
 }
+
+// Attachez les gestionnaires d'événements aux éléments qui nécessitent des popovers de langue
+const elementsWithPopover = document.querySelectorAll('.element-with-popover');
+
+elementsWithPopover.forEach(element => {
+  element.addEventListener('mouseenter', handleMouseEnter);
+  element.addEventListener('mouseleave', handleMouseLeave);
+});
           function resetFilters() {
     // Réinitialisez les filtres de lettre
     letterButtons.forEach(letterButton => {
