@@ -39,45 +39,6 @@ function applyActiveFilters(data) {
     displayResults(filteredResults);
 }
 
-// Déclarez une variable globale pour stocker le popover
-let currentPopover = null;
-
-function handleMouseMove(event) {
-    if (currentPopover) {
-        // Ajustez la position du popover en fonction de la souris
-        const offsetX = 10;
-        const offsetY = -20;
-        currentPopover.style.left = `${event.clientX + offsetX}px`;
-        currentPopover.style.top = `${event.clientY + offsetY}px`;
-    }
-}
-
-function handleMouseEnter(event) {
-    const popover = event.currentTarget.querySelector(".langue-popover");
-    if (popover) {
-        popover.style.display = "block";
-
-        // Associez le popover actuel à la variable globale
-        currentPopover = popover;
-
-        // Ajoutez un gestionnaire d'événements mousemove global
-        document.addEventListener("mousemove", handleMouseMove);
-    }
-}
-
-function handleMouseLeave(event) {
-    const popover = event.currentTarget.querySelector(".langue-popover");
-    if (popover) {
-        popover.style.display = "none";
-
-        // Désassociez le popover actuel de la variable globale
-        currentPopover = null;
-
-        // Supprimez le gestionnaire d'événements mousemove global
-        document.removeEventListener("mousemove", handleMouseMove);
-    }
-}
-
 function sortDataAlphabeticallyWithFallback(data) {
     // Divisez les données en deux groupes : celles avec une catégorie "type" et celles sans
     const withTypeCategory = data.filter(item => item.type !== undefined && item.type !== null);
@@ -153,17 +114,9 @@ function displaySearchResults(results) {
                 languePopover.classList.add("langue-popover");
                 languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
                 row.appendChild(languePopover);
-
+                
                 row.appendChild(descriptionCell);
                 groupSection.appendChild(row);
-
-                // Attachez les gestionnaires d'événements aux éléments qui nécessitent des popovers de langue
-                const elementsWithPopover = document.querySelectorAll('.element-with-popover');
-
-                elementsWithPopover.forEach(element => {
-                    element.addEventListener('mouseenter', handleMouseEnter);
-                    element.addEventListener('mouseleave', handleMouseLeave);
-                });
             });
 
             resultsList.appendChild(groupSection);
@@ -231,22 +184,14 @@ function displayResults(results) {
                 descriptionText.textContent = result.signification;
                 descriptionCell.appendChild(descriptionText);
 
-                // Ajoutez le popover avec la langue associée
+               // Ajoutez le popover avec la langue associée
                 const languePopover = document.createElement("div");
                 languePopover.classList.add("langue-popover");
                 languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
                 row.appendChild(languePopover);
-
+                                
                 row.appendChild(descriptionCell);
                 groupSection.appendChild(row);
-
-                // Attachez les gestionnaires d'événements aux éléments qui nécessitent des popovers de langue
-                const elementsWithPopover = document.querySelectorAll('.element-with-popover');
-
-                elementsWithPopover.forEach(element => {
-                    element.addEventListener('mouseenter', handleMouseEnter);
-                    element.addEventListener('mouseleave', handleMouseLeave);
-                });
             });
 
             resultsList.appendChild(groupSection);
@@ -289,6 +234,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
 
+            function handleMouseEnter(event) {
+  const popover = event.currentTarget.querySelector(".langue-popover");
+  if (popover) {
+    popover.style.display = "block";
+  }
+}
+
+function handleMouseLeave(event) {
+  const popover = event.currentTarget.querySelector(".langue-popover");
+  if (popover) {
+    popover.style.display = "none";
+  }
+}
+
+// Attachez les gestionnaires d'événements aux éléments qui nécessitent des popovers de langue
+const elementsWithPopover = document.querySelectorAll('.element-with-popover');
+
+elementsWithPopover.forEach(element => {
+  element.addEventListener('mouseenter', handleMouseEnter);
+  element.addEventListener('mouseleave', handleMouseLeave);
+});
           function resetFilters() {
     // Réinitialisez les filtres de lettre
     letterButtons.forEach(letterButton => {
