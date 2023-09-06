@@ -39,17 +39,16 @@ function applyActiveFilters(data) {
     displayResults(filteredResults);
 }
 
-function handleMouseMove(event) {
-    const popover = document.querySelector(".langue-popover");
-    if (popover) {
-        const mouseX = event.clientX;
-        const mouseY = event.clientY;
+// Déclarez une variable globale pour stocker le popover
+let currentPopover = null;
 
+function handleMouseMove(event) {
+    if (currentPopover) {
         // Ajustez la position du popover en fonction de la souris
         const offsetX = 10;
         const offsetY = -20;
-        popover.style.left = `${mouseX + offsetX}px`;
-        popover.style.top = `${mouseY + offsetY}px`;
+        currentPopover.style.left = `${event.clientX + offsetX}px`;
+        currentPopover.style.top = `${event.clientY + offsetY}px`;
     }
 }
 
@@ -57,6 +56,9 @@ function handleMouseEnter(event) {
     const popover = event.currentTarget.querySelector(".langue-popover");
     if (popover) {
         popover.style.display = "block";
+
+        // Associez le popover actuel à la variable globale
+        currentPopover = popover;
 
         // Ajoutez un gestionnaire d'événements mousemove global
         document.addEventListener("mousemove", handleMouseMove);
@@ -67,6 +69,9 @@ function handleMouseLeave(event) {
     const popover = event.currentTarget.querySelector(".langue-popover");
     if (popover) {
         popover.style.display = "none";
+
+        // Désassociez le popover actuel de la variable globale
+        currentPopover = null;
 
         // Supprimez le gestionnaire d'événements mousemove global
         document.removeEventListener("mousemove", handleMouseMove);
@@ -152,11 +157,13 @@ function displaySearchResults(results) {
                 row.appendChild(descriptionCell);
                 groupSection.appendChild(row);
 
-                // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
-                row.addEventListener('mouseenter', handleMouseEnter);
-                row.addEventListener('mouseleave', handleMouseLeave);
-            });
+                // Attachez les gestionnaires d'événements aux éléments qui nécessitent des popovers de langue
+                const elementsWithPopover = document.querySelectorAll('.element-with-popover');
 
+                elementsWithPopover.forEach(element => {
+                element.addEventListener('mouseenter', handleMouseEnter);
+                element.addEventListener('mouseleave', handleMouseLeave);
+                });
             resultsList.appendChild(groupSection);
         }
     }
@@ -231,11 +238,13 @@ function displayResults(results) {
                 row.appendChild(descriptionCell);
                 groupSection.appendChild(row);
 
-                // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
-                row.addEventListener('mouseenter', handleMouseEnter);
-                row.addEventListener('mouseleave', handleMouseLeave);
-            });
+                // Attachez les gestionnaires d'événements aux éléments qui nécessitent des popovers de langue
+                const elementsWithPopover = document.querySelectorAll('.element-with-popover');
 
+                elementsWithPopover.forEach(element => {
+                element.addEventListener('mouseenter', handleMouseEnter);
+                element.addEventListener('mouseleave', handleMouseLeave);
+                });
             resultsList.appendChild(groupSection);
         }
     }
