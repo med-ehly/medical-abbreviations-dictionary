@@ -109,21 +109,11 @@ function displaySearchResults(results) {
                 descriptionText.textContent = result.signification;
                 descriptionCell.appendChild(descriptionText);
 
-                // Ajoutez la langue dans le popover avec Popper.js
-                const languagePopover = document.createElement("div");
-                languagePopover.classList.add("language-popover");
-                languagePopover.textContent = result.langue;
-                descriptionCell.appendChild(languagePopover);
-
-                // Configurez le Popper.js pour afficher le popover
-                const popper = new Popper(abbrCell, languagePopover, {
-                    placement: "top",
-                    modifiers: {
-                        offset: {
-                            offset: "0, 10" // Ajustez la position du popover si nécessaire
-                        }
-                    }
-                });
+                // Ajoutez le popover avec la langue associée
+                const languePopover = document.createElement("div");
+                languePopover.classList.add("langue-popover");
+                languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
+                row.appendChild(languePopover);
                 
                 row.appendChild(descriptionCell);
                 groupSection.appendChild(row);
@@ -194,22 +184,12 @@ function displayResults(results) {
                 descriptionText.textContent = result.signification;
                 descriptionCell.appendChild(descriptionText);
 
-                // Ajoutez la langue dans le popover avec Popper.js
-                const languagePopover = document.createElement("div");
-                languagePopover.classList.add("language-popover");
-                languagePopover.textContent = result.langue;
-                descriptionCell.appendChild(languagePopover);
-
-                // Configurez le Popper.js pour afficher le popover
-                const popper = new Popper(abbrCell, languagePopover, {
-                    placement: "top",
-                    modifiers: {
-                        offset: {
-                            offset: "0, 10" // Ajustez la position du popover si nécessaire
-                        }
-                    }
-                });
-                
+               // Ajoutez le popover avec la langue associée
+                const languePopover = document.createElement("div");
+                languePopover.classList.add("langue-popover");
+                languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
+                row.appendChild(languePopover);
+                                
                 row.appendChild(descriptionCell);
                 groupSection.appendChild(row);
             });
