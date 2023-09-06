@@ -208,9 +208,10 @@ function displayResults(results) {
                 const languePopover = document.createElement("div");
                 languePopover.classList.add("langue-popover");
                 languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
-                row.appendChild(languePopover);
-
+                
                 row.appendChild(descriptionCell);
+                row.appendChild(languePopover);
+                
                 groupSection.appendChild(row);
 
                 // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
