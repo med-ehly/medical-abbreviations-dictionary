@@ -143,13 +143,15 @@ header {
   font-size: 16px; /* Modifiez la taille de la police selon vos préférences */
 }
 
-/* Style de la langue (ajouté pour afficher la langue en minuscules) */
-.language {
-  margin: 5px 0;
-  color: gray; /* Couleur de la langue */
-  text-align: right;
-  font-size: xx-small; /* Réduisez la taille de la police pour la langue */
-  margin-left: 300px;
+/* Ajoutez ce CSS dans votre feuille de style CSS */
+.langue-popover {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 5px;
+  z-index: 1;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Styles pour les cases d'items */
