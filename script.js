@@ -234,6 +234,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
 
+            function handleMouseEnter(event) {
+  const popover = event.currentTarget.querySelector(".langue-popover");
+  popover.style.display = "block";
+}
+
+function handleMouseLeave(event) {
+  const popover = event.currentTarget.querySelector(".langue-popover");
+  popover.style.display = "none";
+}
           function resetFilters() {
     // Réinitialisez les filtres de lettre
     letterButtons.forEach(letterButton => {
