@@ -127,10 +127,10 @@ function scrollToTop() {
 function handleSearch(event, data) {
     const searchTerm = event.target.value.toLowerCase();
     const filteredResults = data.filter(item =>
-        item.abreviation.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, "")) ||
-        item.signification.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
+        (item.abreviation.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").startsWith(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) ||
+        (item.signification.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").startsWith(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, "")))
     );
-    applyActiveFilters(filteredResults); // Appliquer les filtres actifs également lors de la recherche
+    applyActiveFilters(filteredResults);
 }
 
 function displayResults(results) {
