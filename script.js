@@ -285,18 +285,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
 
-// Attachez les gestionnaires d'événements aux éléments qui nécessitent des popovers de langue
-const elementsWithPopover = document.querySelectorAll('.element-with-popover');
-
-elementsWithPopover.forEach(element => {
-  element.addEventListener('mouseenter', handleMouseEnter);
-  element.addEventListener('mouseleave', handleMouseLeave);
-});
-            
-
-// Attachez l'événement mousemove à l'élément qui déclenche le popover (par exemple, chaque <li> dans resultsList)
-resultsList.addEventListener("mousemove", updatePopoverPosition);
-
           function resetFilters() {
     // Réinitialisez les filtres de lettre
     letterButtons.forEach(letterButton => {
