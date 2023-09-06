@@ -161,9 +161,11 @@ function displaySearchResults(results) {
                 const elementsWithPopover = document.querySelectorAll('.element-with-popover');
 
                 elementsWithPopover.forEach(element => {
-                element.addEventListener('mouseenter', handleMouseEnter);
-                element.addEventListener('mouseleave', handleMouseLeave);
+                    element.addEventListener('mouseenter', handleMouseEnter);
+                    element.addEventListener('mouseleave', handleMouseLeave);
                 });
+            });
+
             resultsList.appendChild(groupSection);
         }
     }
@@ -186,7 +188,7 @@ function handleSearch(event, data) {
 }
 
 function displayResults(results) {
-      resultsList.innerHTML = '';
+    resultsList.innerHTML = '';
     if (results.length === 0) {
         resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
         return;
@@ -242,9 +244,11 @@ function displayResults(results) {
                 const elementsWithPopover = document.querySelectorAll('.element-with-popover');
 
                 elementsWithPopover.forEach(element => {
-                element.addEventListener('mouseenter', handleMouseEnter);
-                element.addEventListener('mouseleave', handleMouseLeave);
+                    element.addEventListener('mouseenter', handleMouseEnter);
+                    element.addEventListener('mouseleave', handleMouseLeave);
                 });
+            });
+
             resultsList.appendChild(groupSection);
         }
     }
