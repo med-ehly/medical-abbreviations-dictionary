@@ -108,6 +108,23 @@ function displaySearchResults(results) {
                 const descriptionText = document.createElement("p");
                 descriptionText.textContent = result.signification;
                 descriptionCell.appendChild(descriptionText);
+
+                // Ajoutez la langue au survol
+                row.addEventListener("mouseenter", () => {
+                    const languageSpan = document.createElement("span");
+                    languageSpan.classList.add("language-tooltip");
+                    languageSpan.textContent = result.langue;
+                    descriptionCell.appendChild(languageSpan);
+                });
+
+                // Supprimez la langue lorsque l'utilisateur arrête de survoler
+                row.addEventListener("mouseleave", () => {
+                    const languageSpan = descriptionCell.querySelector(".language-tooltip");
+                    if (languageSpan) {
+                        descriptionCell.removeChild(languageSpan);
+                    }
+                });
+                
                 row.appendChild(descriptionCell);
                 groupSection.appendChild(row);
             });
@@ -176,6 +193,23 @@ function displayResults(results) {
                 const descriptionText = document.createElement("p");
                 descriptionText.textContent = result.signification;
                 descriptionCell.appendChild(descriptionText);
+
+                // Ajoutez la langue au survol
+                row.addEventListener("mouseenter", () => {
+                    const languageSpan = document.createElement("span");
+                    languageSpan.classList.add("language-tooltip");
+                    languageSpan.textContent = result.langue;
+                    descriptionCell.appendChild(languageSpan);
+                });
+
+                // Supprimez la langue lorsque l'utilisateur arrête de survoler
+                row.addEventListener("mouseleave", () => {
+                    const languageSpan = descriptionCell.querySelector(".language-tooltip");
+                    if (languageSpan) {
+                        descriptionCell.removeChild(languageSpan);
+                    }
+                });
+                
                 row.appendChild(descriptionCell);
                 groupSection.appendChild(row);
             });
