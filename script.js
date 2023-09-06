@@ -112,31 +112,33 @@ function displaySearchResults(results) {
             groupSection.innerHTML = `<h2>${group}</h2>`;
 
             // Ajoutez chaque résultat à la section
-            groupResults.forEach(result => {
-                const row = document.createElement("li");
-                const abbrCell = document.createElement("abbr");
-                abbrCell.textContent = result.abreviation;
-                row.appendChild(abbrCell);
-                const descriptionCell = document.createElement("div");
-                descriptionCell.classList.add("description-container");
-                const descriptionText = document.createElement("p");
-                descriptionText.textContent = result.signification;
-                descriptionCell.appendChild(descriptionText);
+           groupResults.forEach(result => {
+    const row = document.createElement("li");
+    const abbrCell = document.createElement("abbr");
+    abbrCell.textContent = result.abreviation;
+    row.appendChild(abbrCell);
 
-                // Ajoutez le popover avec la langue associée
-                const languePopover = document.createElement("div");
-                languePopover.classList.add("langue-popover");
-                languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
+    // Ajoutez la description dans une div description-container
+    const descriptionCell = document.createElement("div");
+    descriptionCell.classList.add("description-container");
+    const descriptionText = document.createElement("p");
+    descriptionText.textContent = result.signification;
+    descriptionCell.appendChild(descriptionText);
 
-                row.appendChild(descriptionCell);
-                row.appendChild(languePopover);
-                
-                groupSection.appendChild(row);
+    row.appendChild(descriptionCell);
 
-                // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
-                row.addEventListener('mouseenter', handleMouseEnter);
-                row.addEventListener('mouseleave', handleMouseLeave);
-            });
+    // Ajoutez le popover avec la langue associée sous la description
+    const languePopover = document.createElement("div");
+    languePopover.classList.add("langue-popover");
+    languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
+    row.appendChild(languePopover); // Placez le popover sous la description
+
+    groupSection.appendChild(row);
+
+    // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
+    row.addEventListener('mouseenter', handleMouseEnter);
+    row.addEventListener('mouseleave', handleMouseLeave);
+});
 
             resultsList.appendChild(groupSection);
         }
@@ -194,30 +196,32 @@ function displayResults(results) {
 
             // Ajoutez chaque résultat à la section
             groupResults.forEach(result => {
-                const row = document.createElement("li");
-                const abbrCell = document.createElement("abbr");
-                abbrCell.textContent = result.abreviation;
-                row.appendChild(abbrCell);
-                const descriptionCell = document.createElement("div");
-                descriptionCell.classList.add("description-container");
-                const descriptionText = document.createElement("p");
-                descriptionText.textContent = result.signification;
-                descriptionCell.appendChild(descriptionText);
+    const row = document.createElement("li");
+    const abbrCell = document.createElement("abbr");
+    abbrCell.textContent = result.abreviation;
+    row.appendChild(abbrCell);
 
-                // Ajoutez le popover avec la langue associée
-                const languePopover = document.createElement("div");
-                languePopover.classList.add("langue-popover");
-                languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
-                
-                row.appendChild(descriptionCell);
-                row.appendChild(languePopover);
-                
-                groupSection.appendChild(row);
+    // Ajoutez la description dans une div description-container
+    const descriptionCell = document.createElement("div");
+    descriptionCell.classList.add("description-container");
+    const descriptionText = document.createElement("p");
+    descriptionText.textContent = result.signification;
+    descriptionCell.appendChild(descriptionText);
 
-                // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
-                row.addEventListener('mouseenter', handleMouseEnter);
-                row.addEventListener('mouseleave', handleMouseLeave);
-            });
+    row.appendChild(descriptionCell);
+
+    // Ajoutez le popover avec la langue associée sous la description
+    const languePopover = document.createElement("div");
+    languePopover.classList.add("langue-popover");
+    languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
+    row.appendChild(languePopover); // Placez le popover sous la description
+
+    groupSection.appendChild(row);
+
+    // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
+    row.addEventListener('mouseenter', handleMouseEnter);
+    row.addEventListener('mouseleave', handleMouseLeave);
+});
 
             resultsList.appendChild(groupSection);
         }
