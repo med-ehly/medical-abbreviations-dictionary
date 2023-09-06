@@ -109,19 +109,19 @@ function displaySearchResults(results) {
                 descriptionText.textContent = result.signification;
                 descriptionCell.appendChild(descriptionText);
 
-                // Ajoutez la langue au survol
-                row.addEventListener("mouseenter", () => {
-                    const languageSpan = document.createElement("span");
-                    languageSpan.classList.add("language-tooltip");
-                    languageSpan.textContent = result.langue;
-                    descriptionCell.appendChild(languageSpan);
-                });
+                // Ajoutez la langue dans le popover avec Popper.js
+                const languagePopover = document.createElement("div");
+                languagePopover.classList.add("language-popover");
+                languagePopover.textContent = result.langue;
+                descriptionCell.appendChild(languagePopover);
 
-                // Supprimez la langue lorsque l'utilisateur arrête de survoler
-                row.addEventListener("mouseleave", () => {
-                    const languageSpan = descriptionCell.querySelector(".language-tooltip");
-                    if (languageSpan) {
-                        descriptionCell.removeChild(languageSpan);
+                // Configurez le Popper.js pour afficher le popover
+                const popper = new Popper(abbrCell, languagePopover, {
+                    placement: "top",
+                    modifiers: {
+                        offset: {
+                            offset: "0, 10" // Ajustez la position du popover si nécessaire
+                        }
                     }
                 });
                 
@@ -194,19 +194,19 @@ function displayResults(results) {
                 descriptionText.textContent = result.signification;
                 descriptionCell.appendChild(descriptionText);
 
-                // Ajoutez la langue au survol
-                row.addEventListener("mouseenter", () => {
-                    const languageSpan = document.createElement("span");
-                    languageSpan.classList.add("language-tooltip");
-                    languageSpan.textContent = result.langue;
-                    descriptionCell.appendChild(languageSpan);
-                });
+                // Ajoutez la langue dans le popover avec Popper.js
+                const languagePopover = document.createElement("div");
+                languagePopover.classList.add("language-popover");
+                languagePopover.textContent = result.langue;
+                descriptionCell.appendChild(languagePopover);
 
-                // Supprimez la langue lorsque l'utilisateur arrête de survoler
-                row.addEventListener("mouseleave", () => {
-                    const languageSpan = descriptionCell.querySelector(".language-tooltip");
-                    if (languageSpan) {
-                        descriptionCell.removeChild(languageSpan);
+                // Configurez le Popper.js pour afficher le popover
+                const popper = new Popper(abbrCell, languagePopover, {
+                    placement: "top",
+                    modifiers: {
+                        offset: {
+                            offset: "0, 10" // Ajustez la position du popover si nécessaire
+                        }
                     }
                 });
                 
