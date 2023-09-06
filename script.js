@@ -264,6 +264,25 @@ elementsWithPopover.forEach(element => {
   element.addEventListener('mouseenter', handleMouseEnter);
   element.addEventListener('mouseleave', handleMouseLeave);
 });
+            // Fonction pour mettre à jour la position du popover en fonction de la souris
+function updatePopoverPosition(event) {
+  const popover = document.querySelector(".langue-popover");
+  if (popover) {
+    const mouseX = event.clientX;
+    const mouseY = event.clientY;
+    
+    // Vous pouvez ajuster la position en fonction de vos préférences, par exemple, en ajoutant une certaine marge
+    const offsetX = 10;
+    const offsetY = -20;
+    
+    popover.style.left = `${mouseX + offsetX}px`;
+    popover.style.top = `${mouseY + offsetY}px`;
+  }
+}
+
+// Attachez l'événement mousemove à l'élément qui déclenche le popover (par exemple, chaque <li> dans resultsList)
+resultsList.addEventListener("mousemove", updatePopoverPosition);
+
           function resetFilters() {
     // Réinitialisez les filtres de lettre
     letterButtons.forEach(letterButton => {
