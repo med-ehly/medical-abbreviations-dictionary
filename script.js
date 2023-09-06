@@ -40,39 +40,38 @@ function applyActiveFilters(data) {
 }
 
 function handleMouseMove(event) {
-  const popover = document.querySelector(".langue-popover");
-  if (popover) {
-    const mouseX = event.clientX;
-    const mouseY = event.clientY;
+    const popover = document.querySelector(".langue-popover");
+    if (popover) {
+        const mouseX = event.clientX;
+        const mouseY = event.clientY;
 
-    // Ajustez la position du popover en fonction de la souris
-    const offsetX = 10;
-    const offsetY = -20;
-    popover.style.left = `${mouseX + offsetX}px`;
-    popover.style.top = `${mouseY + offsetY}px`;
-  }
+        // Ajustez la position du popover en fonction de la souris
+        const offsetX = 10;
+        const offsetY = -20;
+        popover.style.left = `${mouseX + offsetX}px`;
+        popover.style.top = `${mouseY + offsetY}px`;
+    }
 }
 
 function handleMouseEnter(event) {
-  const popover = event.currentTarget.querySelector(".langue-popover");
-  if (popover) {
-    popover.style.display = "block";
+    const popover = event.currentTarget.querySelector(".langue-popover");
+    if (popover) {
+        popover.style.display = "block";
 
-    // Ajoutez un gestionnaire d'événements mousemove global
-    document.addEventListener("mousemove", handleMouseMove);
-  }
+        // Ajoutez un gestionnaire d'événements mousemove global
+        document.addEventListener("mousemove", handleMouseMove);
+    }
 }
 
 function handleMouseLeave(event) {
-  const popover = event.currentTarget.querySelector(".langue-popover");
-  if (popover) {
-    popover.style.display = "none";
+    const popover = event.currentTarget.querySelector(".langue-popover");
+    if (popover) {
+        popover.style.display = "none";
 
-    // Supprimez le gestionnaire d'événements mousemove global
-    document.removeEventListener("mousemove", handleMouseMove);
-  }
+        // Supprimez le gestionnaire d'événements mousemove global
+        document.removeEventListener("mousemove", handleMouseMove);
+    }
 }
-
 
 function sortDataAlphabeticallyWithFallback(data) {
     // Divisez les données en deux groupes : celles avec une catégorie "type" et celles sans
@@ -101,7 +100,7 @@ function sortDataAlphabeticallyWithFallback(data) {
 }
 
 function displaySearchResults(results) {
-     resultsList.innerHTML = '';
+    resultsList.innerHTML = '';
     if (results.length === 0) {
         resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
         return;
@@ -162,7 +161,6 @@ function displaySearchResults(results) {
         }
     }
 }
-
 
 function scrollToTop() {
     window.scrollTo({
