@@ -80,7 +80,7 @@ function sortDataAlphabeticallyWithFallback(data) {
 }
 
 function displaySearchResults(results) {
-    resultsList.innerHTML = '';
+  resultsList.innerHTML = '';
     if (results.length === 0) {
         resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
         return;
@@ -128,15 +128,20 @@ function displaySearchResults(results) {
                 languePopover.classList.add("langue-popover");
                 languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
                 row.appendChild(languePopover);
-                
+
                 row.appendChild(descriptionCell);
                 groupSection.appendChild(row);
+
+                // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
+                row.addEventListener('mouseenter', handleMouseEnter);
+                row.addEventListener('mouseleave', handleMouseLeave);
             });
 
             resultsList.appendChild(groupSection);
         }
     }
 }
+
 
 function scrollToTop() {
     window.scrollTo({
@@ -198,20 +203,25 @@ function displayResults(results) {
                 descriptionText.textContent = result.signification;
                 descriptionCell.appendChild(descriptionText);
 
-               // Ajoutez le popover avec la langue associée
+                // Ajoutez le popover avec la langue associée
                 const languePopover = document.createElement("div");
                 languePopover.classList.add("langue-popover");
                 languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
                 row.appendChild(languePopover);
-                                
+
                 row.appendChild(descriptionCell);
                 groupSection.appendChild(row);
+
+                // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
+                row.addEventListener('mouseenter', handleMouseEnter);
+                row.addEventListener('mouseleave', handleMouseLeave);
             });
 
             resultsList.appendChild(groupSection);
         }
     }
 }
+
 
 // Charger les données et initialiser les événements après le chargement du document
 document.addEventListener("DOMContentLoaded", () => {
