@@ -146,7 +146,9 @@ header {
 /* Ajoutez ce CSS dans votre feuille de style CSS */
 .langue-popover {
   display: none;
-  position: absolute;
+  position: relative;
+  color: #ccc;
+  font-size: 10px;
   background-color: #fff;
   border: 1px solid #ccc;
   padding: 5px;
