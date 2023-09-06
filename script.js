@@ -39,6 +39,20 @@ function applyActiveFilters(data) {
     displayResults(filteredResults);
 }
 
+ function handleMouseEnter(event) {
+  const popover = event.currentTarget.querySelector(".langue-popover");
+  if (popover) {
+    popover.style.display = "block";
+  }
+}
+
+function handleMouseLeave(event) {
+  const popover = event.currentTarget.querySelector(".langue-popover");
+  if (popover) {
+    popover.style.display = "none";
+  }
+}
+
 function sortDataAlphabeticallyWithFallback(data) {
     // Divisez les données en deux groupes : celles avec une catégorie "type" et celles sans
     const withTypeCategory = data.filter(item => item.type !== undefined && item.type !== null);
@@ -233,20 +247,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     handleLetterButtonClick(button);
                 });
             });
-
-            function handleMouseEnter(event) {
-  const popover = event.currentTarget.querySelector(".langue-popover");
-  if (popover) {
-    popover.style.display = "block";
-  }
-}
-
-function handleMouseLeave(event) {
-  const popover = event.currentTarget.querySelector(".langue-popover");
-  if (popover) {
-    popover.style.display = "none";
-  }
-}
 
 // Attachez les gestionnaires d'événements aux éléments qui nécessitent des popovers de langue
 const elementsWithPopover = document.querySelectorAll('.element-with-popover');
