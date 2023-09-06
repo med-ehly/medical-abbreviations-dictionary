@@ -138,6 +138,11 @@ header {
   padding-top: 20px;
 }
 
+/* Diminuer la taille de la police des éléments h2 dans type-section */
+.type-section h2 {
+  font-size: 16px; /* Modifiez la taille de la police selon vos préférences */
+}
+
 /* Style de la langue (ajouté pour afficher la langue en minuscules) */
 .language {
   margin: 5px 0;
