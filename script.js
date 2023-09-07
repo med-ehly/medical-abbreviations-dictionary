@@ -131,6 +131,7 @@ function displaySearchResults(results) {
     const languePopover = document.createElement("div");
     languePopover.classList.add("langue-popover");
     languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
+    languePopover.style.display = "block"; // Forcez l'affichage en tant que bloc
     row.appendChild(languePopover); // Placez le popover sous la description
 
     groupSection.appendChild(row);
@@ -214,6 +215,7 @@ function displayResults(results) {
     const languePopover = document.createElement("div");
     languePopover.classList.add("langue-popover");
     languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
+    languePopover.style.display = "block"; // Forcez l'affichage en tant que bloc
     row.appendChild(languePopover); // Placez le popover sous la description
 
     groupSection.appendChild(row);
