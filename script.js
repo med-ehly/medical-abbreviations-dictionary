@@ -112,27 +112,31 @@ function displaySearchResults(results) {
             groupSection.innerHTML = `<h2>${group}</h2>`;
 
             // Ajoutez chaque résultat à la section
-           groupResults.forEach(result => {
+          groupResults.forEach(result => {
     const row = document.createElement("li");
     const abbrCell = document.createElement("abbr");
     abbrCell.textContent = result.abreviation;
     row.appendChild(abbrCell);
 
-    // Ajoutez la description dans une div description-container
-    const descriptionCell = document.createElement("div");
-    descriptionCell.classList.add("description-container");
+// Créez un conteneur pour la description
+    const descriptionContainer = document.createElement("div");
+    descriptionContainer.classList.add("description-container");
+
+    // Ajoutez la description dans la div description-container
     const descriptionText = document.createElement("p");
     descriptionText.textContent = result.signification;
-    descriptionCell.appendChild(descriptionText);
-
-    row.appendChild(descriptionCell);
+    descriptionContainer.appendChild(descriptionText);
 
     // Ajoutez le popover avec la langue associée sous la description
     const languePopover = document.createElement("div");
     languePopover.classList.add("langue-popover");
     languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
-    languePopover.style.display = "block"; // Forcez l'affichage en tant que bloc
-    row.appendChild(languePopover); // Placez le popover sous la description
+
+    // Ajoutez la langue-popover à la description-container
+    descriptionContainer.appendChild(languePopover);
+
+    // Ajoutez la description-container au row
+    row.appendChild(descriptionContainer);
 
     groupSection.appendChild(row);
 
@@ -202,21 +206,25 @@ function displayResults(results) {
     abbrCell.textContent = result.abreviation;
     row.appendChild(abbrCell);
 
-    // Ajoutez la description dans une div description-container
-    const descriptionCell = document.createElement("div");
-    descriptionCell.classList.add("description-container");
+    // Créez un conteneur pour la description
+    const descriptionContainer = document.createElement("div");
+    descriptionContainer.classList.add("description-container");
+
+    // Ajoutez la description dans la div description-container
     const descriptionText = document.createElement("p");
     descriptionText.textContent = result.signification;
-    descriptionCell.appendChild(descriptionText);
-
-    row.appendChild(descriptionCell);
+    descriptionContainer.appendChild(descriptionText);
 
     // Ajoutez le popover avec la langue associée sous la description
     const languePopover = document.createElement("div");
     languePopover.classList.add("langue-popover");
     languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
-    languePopover.style.display = "block"; // Forcez l'affichage en tant que bloc
-    row.appendChild(languePopover); // Placez le popover sous la description
+
+    // Ajoutez la langue-popover à la description-container
+    descriptionContainer.appendChild(languePopover);
+
+    // Ajoutez la description-container au row
+    row.appendChild(descriptionContainer);
 
     groupSection.appendChild(row);
 
