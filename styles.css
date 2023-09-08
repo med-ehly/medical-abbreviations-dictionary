@@ -181,6 +181,11 @@ table td {
     text-align: right; /* Alignez l'icône à droite */
 }
 
+.icon-class {
+  width: 24px;
+  height: 24px;
+}
+
 /* Styles pour les cases d'items */
 .type-section li {
     background-color: #fff; /* Changez la couleur de fond selon vos préférences */
