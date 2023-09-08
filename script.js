@@ -142,12 +142,11 @@ function displaySearchResults(results) {
           window.open(result.url, "_blank"); // Ouvrez le lien dans une nouvelle fenêtre
         });
 
-          // Ajoutez l'icône à iconAndLinkContainer
-        iconAndLinkContainer.appendChild(icon);
+         // Ajoutez l'icône à iconAndLinkContainer
+iconAndLinkContainer.appendChild(icon);
 
-          // Ajoutez iconAndLinkContainer à descriptionContainer
-        descriptionContainer.appendChild(iconAndLinkContainer);
-          
+// Ajoutez iconAndLinkContainer à descriptionContainer
+descriptionContainer.appendChild(iconAndLinkContainer);
 
         // Ajoutez le popover avec la langue associée sous la description
         const languePopover = document.createElement("div");
