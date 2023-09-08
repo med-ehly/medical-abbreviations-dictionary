@@ -309,6 +309,13 @@ elementsWithPopover.forEach(element => {
     activeTypeButton = null;
     activeTypeFilter = null;
 
+              // Effacez le contenu de la barre de recherche
+    const searchInput = document.getElementById("searchInput"); // Remplacez "searchInput" par l'ID de votre champ de recherche
+    if (searchInput) {
+        searchInput.value = "";
+    }
+
+
     // Appliquez les filtres réinitialisés aux données
     applyActiveFilters(sortedData);
     scrollToTop();
