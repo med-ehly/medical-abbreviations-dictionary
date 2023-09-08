@@ -296,7 +296,7 @@ function handleMouseEnter(event) {
 
   // Calculer la position en fonction de l'élément cible
   const rowRect = row.getBoundingClientRect();
-  const top = rowRect.bottom + window.scrollY + 10;
+  const top = rowRect.bottom + window.scrollY + 05;
   const left = rowRect.right + window.scrollX + 05; // Ajustez la valeur 10 selon votre préférence pour l'espace entre l'élément et le popover
 
   // Appliquer la position calculée au popover
