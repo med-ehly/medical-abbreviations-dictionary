@@ -135,6 +135,27 @@ function displaySearchResults(results) {
     // Ajoutez la langue-popover à la description-container
     descriptionContainer.appendChild(languePopover);
 
+    // Créez une balise <img> pour afficher l'icône SVG
+const icon = document.createElement("img");
+icon.src = "monicone.svg"; // Spécifiez le chemin vers votre icône SVG
+
+// Ajoutez un attribut alt pour la description de l'icône (utile pour l'accessibilité)
+icon.alt = "Icône de lien externe";
+
+// Assurez-vous de définir le style de l'icône SVG en fonction de vos besoins (taille, couleur, etc.)
+icon.style.width = "16px"; // Par exemple, définissez la largeur de l'icône
+
+// Ajoutez un gestionnaire d'événements pour ouvrir le lien URL au clic
+icon.style.cursor = "pointer"; // Définissez le curseur pour indiquer que c'est un élément cliquable
+icon.addEventListener("click", () => {
+    // Ouvrez le lien URL dans une nouvelle fenêtre ou un nouvel onglet
+    window.open(result.url, "_blank");
+});
+
+// Ajoutez l'icône à la description-container
+descriptionContainer.appendChild(icon);
+
+
     // Ajoutez la description-container au row
     row.appendChild(descriptionContainer);
 
@@ -168,7 +189,7 @@ function handleSearch(event, data) {
 }
 
 function displayResults(results) {
-    resultsList.innerHTML = '';
+   resultsList.innerHTML = '';
     if (results.length === 0) {
         resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
         return;
@@ -200,13 +221,13 @@ function displayResults(results) {
             groupSection.innerHTML = `<h2>${group}</h2>`;
 
             // Ajoutez chaque résultat à la section
-            groupResults.forEach(result => {
+          groupResults.forEach(result => {
     const row = document.createElement("li");
     const abbrCell = document.createElement("abbr");
     abbrCell.textContent = result.abreviation;
     row.appendChild(abbrCell);
 
-    // Créez un conteneur pour la description
+// Créez un conteneur pour la description
     const descriptionContainer = document.createElement("div");
     descriptionContainer.classList.add("description-container");
 
@@ -223,6 +244,26 @@ function displayResults(results) {
     // Ajoutez la langue-popover à la description-container
     descriptionContainer.appendChild(languePopover);
 
+               // Créez une balise <img> pour afficher l'icône SVG
+const icon = document.createElement("img");
+icon.src = "monicone.svg"; // Spécifiez le chemin vers votre icône SVG
+
+// Ajoutez un attribut alt pour la description de l'icône (utile pour l'accessibilité)
+icon.alt = "Icône de lien externe";
+
+// Assurez-vous de définir le style de l'icône SVG en fonction de vos besoins (taille, couleur, etc.)
+icon.style.width = "16px"; // Par exemple, définissez la largeur de l'icône
+
+// Ajoutez un gestionnaire d'événements pour ouvrir le lien URL au clic
+icon.style.cursor = "pointer"; // Définissez le curseur pour indiquer que c'est un élément cliquable
+icon.addEventListener("click", () => {
+    // Ouvrez le lien URL dans une nouvelle fenêtre ou un nouvel onglet
+    window.open(result.url, "_blank");
+});
+
+// Ajoutez l'icône à la description-container
+descriptionContainer.appendChild(icon);
+
     // Ajoutez la description-container au row
     row.appendChild(descriptionContainer);
 
@@ -237,6 +278,7 @@ function displayResults(results) {
         }
     }
 }
+
 
 
 // Charger les données et initialiser les événements après le chargement du document
