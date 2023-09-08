@@ -80,95 +80,95 @@ function sortDataAlphabeticallyWithFallback(data) {
 }
 
 function displaySearchResults(results) {
-  resultsList.innerHTML = '';
-    if (results.length === 0) {
-        resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
-        return;
+   resultsList.innerHTML = '';
+  if (results.length === 0) {
+    resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
+    return;
+  }
+
+  // Créez un objet pour stocker les résultats groupés par type
+  const groupedResults = {};
+
+  results.forEach(result => {
+    const type = (result.type || "SYMBOLE").toUpperCase(); // Mettez en majuscules le type
+
+    // Créez un groupe s'il n'existe pas encore
+    if (!groupedResults[type]) {
+      groupedResults[type] = [];
     }
 
-    // Créez un objet pour stocker les résultats groupés par type
-    const groupedResults = {};
+    // Ajoutez le résultat au groupe correspondant
+    groupedResults[type].push(result);
+  });
 
-    results.forEach(result => {
-        const type = (result.type || "SYMBOLE").toUpperCase(); // Mettez en majuscules le type
+  // Parcourez les groupes et ajoutez les résultats à la liste
+  for (const group in groupedResults) {
+    if (groupedResults.hasOwnProperty(group)) {
+      const groupResults = groupedResults[group];
 
-        // Créez un groupe s'il n'existe pas encore
-        if (!groupedResults[type]) {
-            groupedResults[type] = [];
-        }
+      // Créez une section pour le groupe (type ou "SYMBOLE")
+      const groupSection = document.createElement("div");
+      groupSection.classList.add("type-section");
+      groupSection.innerHTML = `<h2>${group}</h2>`;
 
-        // Ajoutez le résultat au groupe correspondant
-        groupedResults[type].push(result);
-    });
+      // Ajoutez chaque résultat à la section
+      groupResults.forEach(result => {
+        const row = document.createElement("li");
+        const abbrCell = document.createElement("abbr");
+        abbrCell.textContent = result.abreviation;
+        row.appendChild(abbrCell);
 
-    // Parcourez les groupes et ajoutez les résultats à la liste
-    for (const group in groupedResults) {
-        if (groupedResults.hasOwnProperty(group)) {
-            const groupResults = groupedResults[group];
+        // Créez un conteneur pour la description
+        const descriptionContainer = document.createElement("div");
+        descriptionContainer.classList.add("description-container");
 
-            // Créez une section pour le groupe (type ou "SYMBOLE")
-            const groupSection = document.createElement("div");
-            groupSection.classList.add("type-section");
-            groupSection.innerHTML = `<h2>${group}</h2>`;
+        // Ajoutez la description dans la div description-container
+        const descriptionText = document.createElement("p");
+        descriptionText.textContent = result.signification;
+        descriptionContainer.appendChild(descriptionText);
 
-            // Ajoutez chaque résultat à la section
-          groupResults.forEach(result => {
-    const row = document.createElement("li");
-    const abbrCell = document.createElement("abbr");
-    abbrCell.textContent = result.abreviation;
-    row.appendChild(abbrCell);
+        // Ajoutez le popover avec la langue associée sous la description
+        const languePopover = document.createElement("div");
+        languePopover.classList.add("langue-popover");
+        languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
 
-// Créez un conteneur pour la description
-    const descriptionContainer = document.createElement("div");
-    descriptionContainer.classList.add("description-container");
+        // Ajoutez la langue-popover à la description-container
+        descriptionContainer.appendChild(languePopover);
 
-    // Ajoutez la description dans la div description-container
-    const descriptionText = document.createElement("p");
-    descriptionText.textContent = result.signification;
-    descriptionContainer.appendChild(descriptionText);
+        // Créez un conteneur pour l'icône et le lien
+        const iconAndLinkContainer = document.createElement("div");
+        iconAndLinkContainer.classList.add("icon-link-container");
 
-    // Ajoutez le popover avec la langue associée sous la description
-    const languePopover = document.createElement("div");
-    languePopover.classList.add("langue-popover");
-    languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
+        // Créez une icône (par exemple, un lien externe) pour le lien URL
+        const icon = document.createElement("img");
+        icon.src = "monicone.svg"; // Remplacez par le chemin vers votre icône
+        icon.alt = "Lien externe";
+        icon.style.cursor = "pointer"; // Définissez le curseur comme un pointeur pour indiquer que c'est cliquable
 
-    // Ajoutez la langue-popover à la description-container
-    descriptionContainer.appendChild(languePopover);
+        // Ajoutez un gestionnaire d'événements pour ouvrir le lien URL au clic
+        icon.addEventListener("click", () => {
+          window.open(result.url, "_blank"); // Ouvrez le lien dans une nouvelle fenêtre
+        });
 
-    // Créez une balise <img> pour afficher l'icône SVG
-const icon = document.createElement("img");
-icon.src = "monicone.svg"; // Spécifiez le chemin vers votre icône SVG
+        // Ajoutez l'icône à iconAndLinkContainer
+        iconAndLinkContainer.appendChild(icon);
 
-// Ajoutez un attribut alt pour la description de l'icône (utile pour l'accessibilité)
-icon.alt = "Icône de lien externe";
+        // Ajoutez iconAndLinkContainer à descriptionContainer
+        descriptionContainer.appendChild(iconAndLinkContainer);
 
-// Assurez-vous de définir le style de l'icône SVG en fonction de vos besoins (taille, couleur, etc.)
-icon.style.width = "16px"; // Par exemple, définissez la largeur de l'icône
+        // Ajoutez la description-container au row
+        row.appendChild(descriptionContainer);
 
-// Ajoutez un gestionnaire d'événements pour ouvrir le lien URL au clic
-icon.style.cursor = "pointer"; // Définissez le curseur pour indiquer que c'est un élément cliquable
-icon.addEventListener("click", () => {
-    // Ouvrez le lien URL dans une nouvelle fenêtre ou un nouvel onglet
-    window.open(result.url, "_blank");
-});
+        groupSection.appendChild(row);
 
-// Ajoutez l'icône à la description-container
-descriptionContainer.appendChild(icon);
+        // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
+        row.addEventListener('mouseenter', handleMouseEnter);
+        row.addEventListener('mouseleave', handleMouseLeave);
+      });
 
-
-    // Ajoutez la description-container au row
-    row.appendChild(descriptionContainer);
-
-    groupSection.appendChild(row);
-
-    // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
-    row.addEventListener('mouseenter', handleMouseEnter);
-    row.addEventListener('mouseleave', handleMouseLeave);
-});
-
-            resultsList.appendChild(groupSection);
-        }
+      resultsList.appendChild(groupSection);
     }
+  }
 }
 
 
@@ -189,97 +189,96 @@ function handleSearch(event, data) {
 }
 
 function displayResults(results) {
-   resultsList.innerHTML = '';
-    if (results.length === 0) {
-        resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
-        return;
+  resultsList.innerHTML = '';
+  if (results.length === 0) {
+    resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
+    return;
+  }
+
+  // Créez un objet pour stocker les résultats groupés par type
+  const groupedResults = {};
+
+  results.forEach(result => {
+    const type = (result.type || "SYMBOLE").toUpperCase(); // Mettez en majuscules le type
+
+    // Créez un groupe s'il n'existe pas encore
+    if (!groupedResults[type]) {
+      groupedResults[type] = [];
     }
 
-    // Créez un objet pour stocker les résultats groupés par type
-    const groupedResults = {};
+    // Ajoutez le résultat au groupe correspondant
+    groupedResults[type].push(result);
+  });
 
-    results.forEach(result => {
-        const type = (result.type || "SYMBOLE").toUpperCase(); // Mettez en majuscules le type
+  // Parcourez les groupes et ajoutez les résultats à la liste
+  for (const group in groupedResults) {
+    if (groupedResults.hasOwnProperty(group)) {
+      const groupResults = groupedResults[group];
 
-        // Créez un groupe s'il n'existe pas encore
-        if (!groupedResults[type]) {
-            groupedResults[type] = [];
-        }
+      // Créez une section pour le groupe (type ou "SYMBOLE")
+      const groupSection = document.createElement("div");
+      groupSection.classList.add("type-section");
+      groupSection.innerHTML = `<h2>${group}</h2>`;
 
-        // Ajoutez le résultat au groupe correspondant
-        groupedResults[type].push(result);
-    });
+      // Ajoutez chaque résultat à la section
+      groupResults.forEach(result => {
+        const row = document.createElement("li");
+        const abbrCell = document.createElement("abbr");
+        abbrCell.textContent = result.abreviation;
+        row.appendChild(abbrCell);
 
-    // Parcourez les groupes et ajoutez les résultats à la liste
-    for (const group in groupedResults) {
-        if (groupedResults.hasOwnProperty(group)) {
-            const groupResults = groupedResults[group];
+        // Créez un conteneur pour la description
+        const descriptionContainer = document.createElement("div");
+        descriptionContainer.classList.add("description-container");
 
-            // Créez une section pour le groupe (type ou "SYMBOLE")
-            const groupSection = document.createElement("div");
-            groupSection.classList.add("type-section");
-            groupSection.innerHTML = `<h2>${group}</h2>`;
+        // Ajoutez la description dans la div description-container
+        const descriptionText = document.createElement("p");
+        descriptionText.textContent = result.signification;
+        descriptionContainer.appendChild(descriptionText);
 
-            // Ajoutez chaque résultat à la section
-          groupResults.forEach(result => {
-    const row = document.createElement("li");
-    const abbrCell = document.createElement("abbr");
-    abbrCell.textContent = result.abreviation;
-    row.appendChild(abbrCell);
+        // Ajoutez le popover avec la langue associée sous la description
+        const languePopover = document.createElement("div");
+        languePopover.classList.add("langue-popover");
+        languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
 
-// Créez un conteneur pour la description
-    const descriptionContainer = document.createElement("div");
-    descriptionContainer.classList.add("description-container");
+        // Ajoutez la langue-popover à la description-container
+        descriptionContainer.appendChild(languePopover);
 
-    // Ajoutez la description dans la div description-container
-    const descriptionText = document.createElement("p");
-    descriptionText.textContent = result.signification;
-    descriptionContainer.appendChild(descriptionText);
+        // Créez un conteneur pour l'icône et le lien
+        const iconAndLinkContainer = document.createElement("div");
+        iconAndLinkContainer.classList.add("icon-link-container");
 
-    // Ajoutez le popover avec la langue associée sous la description
-    const languePopover = document.createElement("div");
-    languePopover.classList.add("langue-popover");
-    languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
+        // Créez une icône (par exemple, un lien externe) pour le lien URL
+        const icon = document.createElement("img");
+        icon.src = "monicone.svg"; // Remplacez par le chemin vers votre icône
+        icon.alt = "Lien externe";
+        icon.style.cursor = "pointer"; // Définissez le curseur comme un pointeur pour indiquer que c'est cliquable
 
-    // Ajoutez la langue-popover à la description-container
-    descriptionContainer.appendChild(languePopover);
+        // Ajoutez un gestionnaire d'événements pour ouvrir le lien URL au clic
+        icon.addEventListener("click", () => {
+          window.open(result.url, "_blank"); // Ouvrez le lien dans une nouvelle fenêtre
+        });
 
-               // Créez une balise <img> pour afficher l'icône SVG
-const icon = document.createElement("img");
-icon.src = "monicone.svg"; // Spécifiez le chemin vers votre icône SVG
+        // Ajoutez l'icône à iconAndLinkContainer
+        iconAndLinkContainer.appendChild(icon);
 
-// Ajoutez un attribut alt pour la description de l'icône (utile pour l'accessibilité)
-icon.alt = "Icône de lien externe";
+        // Ajoutez iconAndLinkContainer à descriptionContainer
+        descriptionContainer.appendChild(iconAndLinkContainer);
 
-// Assurez-vous de définir le style de l'icône SVG en fonction de vos besoins (taille, couleur, etc.)
-icon.style.width = "16px"; // Par exemple, définissez la largeur de l'icône
+        // Ajoutez la description-container au row
+        row.appendChild(descriptionContainer);
 
-// Ajoutez un gestionnaire d'événements pour ouvrir le lien URL au clic
-icon.style.cursor = "pointer"; // Définissez le curseur pour indiquer que c'est un élément cliquable
-icon.addEventListener("click", () => {
-    // Ouvrez le lien URL dans une nouvelle fenêtre ou un nouvel onglet
-    window.open(result.url, "_blank");
-});
+        groupSection.appendChild(row);
 
-// Ajoutez l'icône à la description-container
-descriptionContainer.appendChild(icon);
+        // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
+        row.addEventListener('mouseenter', handleMouseEnter);
+        row.addEventListener('mouseleave', handleMouseLeave);
+      });
 
-    // Ajoutez la description-container au row
-    row.appendChild(descriptionContainer);
-
-    groupSection.appendChild(row);
-
-    // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
-    row.addEventListener('mouseenter', handleMouseEnter);
-    row.addEventListener('mouseleave', handleMouseLeave);
-});
-
-            resultsList.appendChild(groupSection);
-        }
+      resultsList.appendChild(groupSection);
     }
+  }
 }
-
-
 
 // Charger les données et initialiser les événements après le chargement du document
 document.addEventListener("DOMContentLoaded", () => {
