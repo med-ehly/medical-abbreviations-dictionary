@@ -131,11 +131,15 @@ function displaySearchResults(results) {
         const iconAndLinkContainer = document.createElement("div");
         iconAndLinkContainer.classList.add("icon-link-container");
 
-          // Créez une icône (par exemple, un lien externe) pour le lien URL
-        const icon = document.createElement("img");
-        icon.src = "monicone.svg"; // Remplacez par le chemin vers votre icône
-        icon.alt = "Lien externe";
-        icon.style.cursor = "pointer"; // Définissez le curseur comme un pointeur pour indiquer que c'est cliquable
+        // Créez une icône (par exemple, un lien externe) pour le lien URL
+const icon = document.createElement("img");
+icon.src = "monicone.svg"; // Remplacez par le chemin vers votre icône
+icon.alt = "Lien externe";
+icon.style.cursor = "pointer"; // Définissez le curseur comme un pointeur pour indiquer que c'est cliquable
+
+// Ajoutez une classe à l'icône pour la cibler avec du CSS
+icon.classList.add("icon-class"); // Remplacez "icon-class" par le nom de la classe de votre choix
+
 
           // Ajoutez un gestionnaire d'événements pour ouvrir le lien URL au clic
         icon.addEventListener("click", () => {
@@ -239,12 +243,16 @@ function displayResults(results) {
           // Créez un conteneur pour l'icône et le lien
         const iconAndLinkContainer = document.createElement("div");
         iconAndLinkContainer.classList.add("icon-link-container");
+          
+// Créez une icône (par exemple, un lien externe) pour le lien URL
+const icon = document.createElement("img");
+icon.src = "monicone.svg"; // Remplacez par le chemin vers votre icône
+icon.alt = "Lien externe";
+icon.style.cursor = "pointer"; // Définissez le curseur comme un pointeur pour indiquer que c'est cliquable
 
-          // Créez une icône (par exemple, un lien externe) pour le lien URL
-        const icon = document.createElement("img");
-        icon.src = "monicone.svg"; // Remplacez par le chemin vers votre icône
-        icon.alt = "Lien externe";
-        icon.style.cursor = "pointer"; // Définissez le curseur comme un pointeur pour indiquer que c'est cliquable
+// Ajoutez une classe à l'icône pour la cibler avec du CSS
+icon.classList.add("icon-class"); // Remplacez "icon-class" par le nom de la classe de votre choix
+
 
           // Ajoutez un gestionnaire d'événements pour ouvrir le lien URL au clic
         icon.addEventListener("click", () => {
