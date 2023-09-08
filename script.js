@@ -289,6 +289,28 @@ icon.classList.add("icon-class"); // Remplacez "icon-class" par le nom de la cla
   }
 }
 
+// Ajoutez une fonction pour gérer l'affichage du popover lors du hover
+function handleMouseEnter(event) {
+  const row = event.currentTarget;
+  const popover = row.querySelector('.langue-popover');
+
+  // Calculer la position en fonction de l'élément cible
+  const rowRect = row.getBoundingClientRect();
+  const top = rowRect.bottom + window.scrollY;
+  const left = rowRect.left + window.scrollX;
+
+  // Appliquer la position calculée au popover
+  popover.style.top = `${top}px`;
+  popover.style.left = `${left}px`;
+
+  // Afficher le popover
+  popover.style.display = 'block';
+}
+
+// Ajoutez un gestionnaire d'événements pour le survol (mouseenter) de chaque élément <li>
+document.querySelectorAll('.type-section li').forEach(row => {
+  row.addEventListener('mouseenter', handleMouseEnter);
+});
 
 
 // Charger les données et initialiser les événements après le chargement du document
