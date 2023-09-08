@@ -127,6 +127,28 @@ function displaySearchResults(results) {
         descriptionText.textContent = result.signification;
         descriptionContainer.appendChild(descriptionText);
 
+          // Créez un conteneur pour l'icône et le lien
+        const iconAndLinkContainer = document.createElement("div");
+        iconAndLinkContainer.classList.add("icon-link-container");
+
+          // Créez une icône (par exemple, un lien externe) pour le lien URL
+        const icon = document.createElement("img");
+        icon.src = "monicone.svg"; // Remplacez par le chemin vers votre icône
+        icon.alt = "Lien externe";
+        icon.style.cursor = "pointer"; // Définissez le curseur comme un pointeur pour indiquer que c'est cliquable
+
+          // Ajoutez un gestionnaire d'événements pour ouvrir le lien URL au clic
+        icon.addEventListener("click", () => {
+          window.open(result.url, "_blank"); // Ouvrez le lien dans une nouvelle fenêtre
+        });
+
+          // Ajoutez l'icône à iconAndLinkContainer
+        iconAndLinkContainer.appendChild(icon);
+
+          // Ajoutez iconAndLinkContainer à descriptionContainer
+        descriptionContainer.appendChild(iconAndLinkContainer);
+          
+
         // Ajoutez le popover avec la langue associée sous la description
         const languePopover = document.createElement("div");
         languePopover.classList.add("langue-popover");
@@ -134,27 +156,6 @@ function displaySearchResults(results) {
 
         // Ajoutez la langue-popover à la description-container
         descriptionContainer.appendChild(languePopover);
-
-        // Créez un conteneur pour l'icône et le lien
-        const iconAndLinkContainer = document.createElement("div");
-        iconAndLinkContainer.classList.add("icon-link-container");
-
-        // Créez une icône (par exemple, un lien externe) pour le lien URL
-        const icon = document.createElement("img");
-        icon.src = "monicone.svg"; // Remplacez par le chemin vers votre icône
-        icon.alt = "Lien externe";
-        icon.style.cursor = "pointer"; // Définissez le curseur comme un pointeur pour indiquer que c'est cliquable
-
-        // Ajoutez un gestionnaire d'événements pour ouvrir le lien URL au clic
-        icon.addEventListener("click", () => {
-          window.open(result.url, "_blank"); // Ouvrez le lien dans une nouvelle fenêtre
-        });
-
-        // Ajoutez l'icône à iconAndLinkContainer
-        iconAndLinkContainer.appendChild(icon);
-
-        // Ajoutez iconAndLinkContainer à descriptionContainer
-        descriptionContainer.appendChild(iconAndLinkContainer);
 
         // Ajoutez la description-container au row
         row.appendChild(descriptionContainer);
@@ -189,7 +190,7 @@ function handleSearch(event, data) {
 }
 
 function displayResults(results) {
-  resultsList.innerHTML = '';
+   resultsList.innerHTML = '';
   if (results.length === 0) {
     resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
     return;
@@ -236,6 +237,28 @@ function displayResults(results) {
         descriptionText.textContent = result.signification;
         descriptionContainer.appendChild(descriptionText);
 
+          // Créez un conteneur pour l'icône et le lien
+        const iconAndLinkContainer = document.createElement("div");
+        iconAndLinkContainer.classList.add("icon-link-container");
+
+          // Créez une icône (par exemple, un lien externe) pour le lien URL
+        const icon = document.createElement("img");
+        icon.src = "monicone.svg"; // Remplacez par le chemin vers votre icône
+        icon.alt = "Lien externe";
+        icon.style.cursor = "pointer"; // Définissez le curseur comme un pointeur pour indiquer que c'est cliquable
+
+          // Ajoutez un gestionnaire d'événements pour ouvrir le lien URL au clic
+        icon.addEventListener("click", () => {
+          window.open(result.url, "_blank"); // Ouvrez le lien dans une nouvelle fenêtre
+        });
+
+          // Ajoutez l'icône à iconAndLinkContainer
+        iconAndLinkContainer.appendChild(icon);
+
+          // Ajoutez iconAndLinkContainer à descriptionContainer
+        descriptionContainer.appendChild(iconAndLinkContainer);
+          
+
         // Ajoutez le popover avec la langue associée sous la description
         const languePopover = document.createElement("div");
         languePopover.classList.add("langue-popover");
@@ -243,27 +266,6 @@ function displayResults(results) {
 
         // Ajoutez la langue-popover à la description-container
         descriptionContainer.appendChild(languePopover);
-
-        // Créez un conteneur pour l'icône et le lien
-        const iconAndLinkContainer = document.createElement("div");
-        iconAndLinkContainer.classList.add("icon-link-container");
-
-        // Créez une icône (par exemple, un lien externe) pour le lien URL
-        const icon = document.createElement("img");
-        icon.src = "monicone.svg"; // Remplacez par le chemin vers votre icône
-        icon.alt = "Lien externe";
-        icon.style.cursor = "pointer"; // Définissez le curseur comme un pointeur pour indiquer que c'est cliquable
-
-        // Ajoutez un gestionnaire d'événements pour ouvrir le lien URL au clic
-        icon.addEventListener("click", () => {
-          window.open(result.url, "_blank"); // Ouvrez le lien dans une nouvelle fenêtre
-        });
-
-        // Ajoutez l'icône à iconAndLinkContainer
-        iconAndLinkContainer.appendChild(icon);
-
-        // Ajoutez iconAndLinkContainer à descriptionContainer
-        descriptionContainer.appendChild(iconAndLinkContainer);
 
         // Ajoutez la description-container au row
         row.appendChild(descriptionContainer);
@@ -279,6 +281,8 @@ function displayResults(results) {
     }
   }
 }
+
+
 
 // Charger les données et initialiser les événements après le chargement du document
 document.addEventListener("DOMContentLoaded", () => {
