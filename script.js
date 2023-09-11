@@ -294,8 +294,8 @@ function handleMouseEnter(event) {
   const row = event.currentTarget;
   const popover = row.querySelector('.langue-popover');
 
-    // Récupérez la langue à partir des données JSON
-  const langue = result.langue;
+   // Récupérez la langue à partir de l'élément DOM
+  const langue = row.getAttribute('data-langue');
 
     if (langue) {
   // Calculer la position en fonction de l'élément cible
