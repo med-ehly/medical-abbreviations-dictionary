@@ -294,6 +294,10 @@ function handleMouseEnter(event) {
   const row = event.currentTarget;
   const popover = row.querySelector('.langue-popover');
 
+    // Récupérez la langue à partir des données JSON
+  const langue = result.langue;
+
+    if (langue) {
   // Calculer la position en fonction de l'élément cible
   const rowRect = row.getBoundingClientRect();
   const top = rowRect.bottom + window.scrollY - 35;
@@ -305,6 +309,7 @@ function handleMouseEnter(event) {
 
   // Afficher le popover
   popover.style.display = 'block';
+}
 }
 
 // Ajoutez un gestionnaire d'événements pour le survol (mouseenter) de chaque élément <li>
