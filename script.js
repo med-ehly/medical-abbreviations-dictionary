@@ -161,7 +161,7 @@ descriptionContainer.appendChild(iconAndLinkContainer);
         iconAndLinkContainer.appendChild(languePopover);
 
         // Ajoutez la description-container au row
-        row.appendChild(iconAndLinkContainer);
+        row.appendChild(descriptionContainer);
 
         groupSection.appendChild(row);
 
