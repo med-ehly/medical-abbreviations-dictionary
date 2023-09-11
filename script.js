@@ -158,10 +158,10 @@ descriptionContainer.appendChild(iconAndLinkContainer);
         languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
 
         // Ajoutez la langue-popover à la description-container
-        descriptionContainer.appendChild(languePopover);
+        iconAndLinkContainer.appendChild(languePopover);
 
         // Ajoutez la description-container au row
-        row.appendChild(descriptionContainer);
+        row.appendChild(iconAndLinkContainer);
 
         groupSection.appendChild(row);
 
