@@ -294,18 +294,24 @@ function handleMouseEnter(event) {
   const row = event.currentTarget;
   const popover = row.querySelector('.langue-popover');
 
-  // Calculer la position en fonction de l'élément cible
-  const rowRect = row.getBoundingClientRect();
-  const top = rowRect.bottom + window.scrollY - 35;
-  const left = rowRect.right + window.scrollX - 37; 
+  // Vérifier si le contenu de la popover n'est pas vide
+  const langueContent = popover.textContent.trim(); // Récupérez le contenu de la popover en supprimant les espaces inutiles
 
-  // Appliquer la position calculée au popover
-  popover.style.top = `${top}px`;
-  popover.style.left = `${left}px`;
+  if (langueContent) {
+    // Calculer la position en fonction de l'élément cible
+    const rowRect = row.getBoundingClientRect();
+    const top = rowRect.bottom + window.scrollY - 35;
+    const left = rowRect.right + window.scrollX - 37; 
 
-  // Afficher le popover
-  popover.style.display = 'block';
+    // Appliquer la position calculée au popover
+    popover.style.top = `${top}px`;
+    popover.style.left = `${left}px`;
+
+    // Afficher le popover
+    popover.style.display = 'block';
+  }
 }
+
 
 // Ajoutez un gestionnaire d'événements pour le survol (mouseenter) de chaque élément <li>
 document.querySelectorAll('.type-section li').forEach(row => {
