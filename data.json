@@ -24,5 +24,26 @@
     "categorie": "Neurologie",
      "symbole": "SYMBOLE",
     "langue": "(fr)"
+  },
+  {
+    "abreviation": "c̅",
+    "signification": "Accident Vasculaire Cérébral",
+    "categorie": "Neurologie",
+    "type": "Diagnostic",
+    "langue": "(fr)"
+  },
+  {
+    "abreviation": "AVC",
+    "signification": "Accident Vasculaire Cérébral",
+    "categorie": "Neurologie",
+    "type": "Diagnostic",
+    "langue": "(fr)"
+  },
+  {
+    "abreviation": "AVC",
+    "signification": "Accident Vasculaire Cérébral",
+    "categorie": "Neurologie",
+    "type": "Diagnostic",
+    "langue": "(fr)"
   }
 ]
