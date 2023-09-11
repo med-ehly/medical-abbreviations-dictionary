@@ -151,10 +151,10 @@ header {
   left: 70%;
   top: 100%;
   color: #ccc;
-  font-size: 10px;
+  font-size: 8px;
   background-color: #fff;
   border: 1px solid #ccc;
-  padding: 4px;
+  padding: 3px;
   z-index: 1;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
