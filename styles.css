@@ -136,6 +136,7 @@ header {
   font-size: medium;
   padding: 10px;
   padding-top: 20px;
+  text-decoration: underline;
 }
 
 /* Diminuer la taille de la police des éléments h2 dans type-section */
