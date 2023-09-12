@@ -124,7 +124,7 @@ function displaySearchResults(results) {
 
         // Ajoutez la description dans la div description-container
 const descriptionText = document.createElement("p");
-descriptionText.innerHTML = `"${result.signification}"`; // Ajoutez les guillemets visuels
+descriptionText.innerHTML = `" ${result.signification} "`; // Ajoutez un espace avant et après les guillemets visuels
 descriptionContainer.appendChild(descriptionText);
 
           // Créez un conteneur pour l'icône et le lien
@@ -237,7 +237,7 @@ function displayResults(results) {
 
         // Ajoutez la description dans la div description-container
 const descriptionText = document.createElement("p");
-descriptionText.innerHTML = `"${result.signification}"`; // Ajoutez les guillemets visuels
+descriptionText.innerHTML = `" ${result.signification} "`; // Ajoutez un espace avant et après les guillemets visuels
 descriptionContainer.appendChild(descriptionText);
 
           // Créez un conteneur pour l'icône et le lien
