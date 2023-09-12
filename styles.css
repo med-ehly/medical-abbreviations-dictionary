@@ -83,7 +83,7 @@ header {
   padding: 10px;
   border-radius: 10px; /* Arrondir les coins */
   box-shadow: 0 0 0 2px rgb(0 0 0 / 12%);
-  width: 90%; /* Largeur des résultats */
+  width: 80%; /* Largeur des résultats */
   margin: 0 auto; /* Centrer horizontalement */
   margin-top: 20px; /* Ajuster l'espacement par rapport aux lettres */
   text-align: center; /* Centrer le contenu */
