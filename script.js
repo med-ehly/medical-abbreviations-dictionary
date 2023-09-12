@@ -123,9 +123,9 @@ function displaySearchResults(results) {
         descriptionContainer.classList.add("description-container");
 
         // Ajoutez la description dans la div description-container
-        const descriptionText = document.createElement("p");
-        descriptionText.textContent = result.signification;
-        descriptionContainer.appendChild(descriptionText);
+const descriptionText = document.createElement("p");
+descriptionText.innerHTML = `"${result.signification}"`; // Ajoutez les guillemets visuels
+descriptionContainer.appendChild(descriptionText);
 
           // Créez un conteneur pour l'icône et le lien
         const iconAndLinkContainer = document.createElement("div");
@@ -236,9 +236,9 @@ function displayResults(results) {
         descriptionContainer.classList.add("description-container");
 
         // Ajoutez la description dans la div description-container
-        const descriptionText = document.createElement("p");
-        descriptionText.textContent = result.signification;
-        descriptionContainer.appendChild(descriptionText);
+const descriptionText = document.createElement("p");
+descriptionText.innerHTML = `"${result.signification}"`; // Ajoutez les guillemets visuels
+descriptionContainer.appendChild(descriptionText);
 
           // Créez un conteneur pour l'icône et le lien
         const iconAndLinkContainer = document.createElement("div");
