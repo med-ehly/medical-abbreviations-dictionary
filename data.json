@@ -26,11 +26,9 @@
     "langue": "(fr)"
   },
   {
-    "abreviation": "AVC",
-    "signification": "Accident Vasculaire Cérébral",
-    "categorie": "Neurologie",
-    "type": "Diagnostic",
-    "langue": "(fr)"
+    "abreviation": "c̅",
+    "signification": "Avec",
+    "symbole": "SYMBOLE"
   },
   {
     "abreviation": "x",
@@ -38,8 +36,23 @@
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "c̅",
-    "signification": "Avec",
+    "abreviation": "♀",
+    "signification": "Femme",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "♂",
+    "signification": "Homme",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "Ø",
+    "signification": "Sans / Absence de / Aucun",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "♥",
+    "signification": "Cardio / Cardiaque / Coeur",
     "symbole": "SYMBOLE"
   }
 ]
