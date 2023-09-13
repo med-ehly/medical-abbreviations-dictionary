@@ -33,11 +33,9 @@
     "langue": "(fr)"
   },
   {
-    "abreviation": "AVC",
-    "signification": "Accident Vasculaire Cérébral",
-    "categorie": "Neurologie",
-    "type": "Diagnostic",
-    "langue": "(fr)"
+    "abreviation": "x",
+    "signification": "Nombre de fois / Par",
+    "symbole": "SYMBOLE"
   },
   {
     "abreviation": "c̅",
