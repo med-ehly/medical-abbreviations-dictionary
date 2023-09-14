@@ -50,6 +50,10 @@ header {
   margin: 0 3px;
 }
 
+.letter-button-symbol {
+  border: 1px solid #4e42d4 !important;
+  }
+
 .letter-button.active,
 .letter-button-symbol.active, 
 .category-button.active,
