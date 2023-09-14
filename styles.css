@@ -83,7 +83,7 @@ header {
   padding: 10px;
   border-radius: 10px; /* Arrondir les coins */
   box-shadow: 0 0 0 2px rgb(0 0 0 / 12%);
-  width: 80%; /* Largeur des résultats */
+  width: 70%; /* Largeur des résultats */
   margin: 0 auto; /* Centrer horizontalement */
   margin-top: 20px; /* Ajuster l'espacement par rapport aux lettres */
   text-align: center; /* Centrer le contenu */
@@ -237,8 +237,8 @@ table td {
 }
 
 .category-filter { 
-  margin-left: 200px; 
-  margin-right: 80px; 
+  margin-left: 280px; 
+  margin-right: 20px; 
   margin-bottom: 40px;
   display: flex;
   flex-direction: column;
@@ -246,8 +246,8 @@ table td {
 }
 
 .type-filter {
-  margin-right: 200px; 
-  margin-left: 80px; 
+  margin-right: 280px; 
+  margin-left: 20px; 
   margin-bottom: 40px;
   display: flex;
   flex-direction: column;
