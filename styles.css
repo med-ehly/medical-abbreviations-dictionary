@@ -50,14 +50,8 @@ header {
   margin: 0 3px;
 }
 
-.letter-button-symbol {
-  border: 3px solid #4e42d4 !important;
-  }
-
 .letter-button-symbol:hover {
-  background-color: #4e42d4;
-  color: white;
-  border-color: #f5f5f5 !important;
+  border-color: #4e42d4 !important;
 }
 
 .letter-button.active,
