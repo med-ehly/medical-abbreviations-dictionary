@@ -346,6 +346,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 activeSymbolButton.classList.remove("active");
                 activeSymbolButton = null;
                 activeSymbolFilter = null;
+                    }
                 } else {
                     button.classList.remove("active");
                     activeLetterButton = null; // Réinitialisez le filtre de lettre actif
