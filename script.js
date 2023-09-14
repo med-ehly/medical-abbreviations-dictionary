@@ -341,6 +341,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
                     button.classList.add("active");
                     activeLetterButton = selectedLetter; // Mettez à jour la variable globale activeLetterButton
+                     // Désactivez le bouton "Symbole" s'il est actif
+                if (activeSymbolButton) {
+                activeSymbolButton.classList.remove("active");
+                activeSymbolButton = null;
+                activeSymbolFilter = null;
                 } else {
                     button.classList.remove("active");
                     activeLetterButton = null; // Réinitialisez le filtre de lettre actif
