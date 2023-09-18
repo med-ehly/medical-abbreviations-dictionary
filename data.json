@@ -54,5 +54,215 @@
     "abreviation": "♥",
     "signification": "Cardio / Cardiaque / Coeur",
     "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "↑",
+    "signification": "Augmenté",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "↓",
+    "signification": "Diminué",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "Ψ",
+    "signification": "Psychiatrie",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "†",
+    "signification": "Décès / Mort",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "+++",
+    "signification": "Important / Significatif",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "△",
+    "signification": "Changement",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "△△",
+    "signification": "Poumon",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "□",
+    "signification": "Demandé / Prescrit",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "©",
+    "signification": "Consultation avec un médecin spécialiste ou un professionnel",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "→",
+    "signification": "Aboutit à / Entraine / Implique la conséquence",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "=",
+    "signification": "Continu / Implique l’égalité",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "≠",
+    "signification": "Différent de",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "≈",
+    "signification": "Environ / Presque / Peu différent de",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "//",
+    "signification": "Parallèle",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "I",
+    "signification": "Primaire / Primitif",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "II",
+    "signification": "Secondaire",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "(+)",
+    "signification": "Impliquer l’excès / Plus positif",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "(-)",
+    "signification": "Implique le manque / Moins négatif",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "±",
+    "signification": "Plus ou moins / Soit positif soit négatif",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "~",
+    "signification": "Alternatif",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "‘",
+    "signification": "Minute / Angle",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": ">",
+    "signification": "Supérieur à / Plus grand que",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "<",
+    "signification": "Inférieur à / Plus petit que",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "≤",
+    "signification": "Inférieur ou égale",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "∞",
+    "signification": "Infini",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "ꓕ",
+    "signification": "Perpendiculaire",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "°",
+    "signification": "Degré",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "½",
+    "signification": "Hémi",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "″",
+    "signification": "Seconde",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "µ",
+    "signification": "Micron",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "Ɵ",
+    "signification": "Négatif",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "(a",
+    "signification": "Jusqu’à / Environ",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "λ",
+    "signification": "Lambda",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "#",
+    "signification": "Fracture",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "µµ",
+    "signification": "Micromicron",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "XY-Y",
+    "signification": "Homme / Hétérochromosome mâle",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "XX-X",
+    "signification": "Femme / Hétérochromosome femelle",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "®",
+    "signification": "Marque déposée",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "β",
+    "signification": "Bêta",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "α",
+    "signification": "Alpha",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "ϒ",
+    "signification": "Gamma",
+    "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "Ω",
+    "signification": "Ohm",
+    "symbole": "SYMBOLE"
   }
 ]
