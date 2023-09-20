@@ -459,7 +459,7 @@ function handleSymbolFilterButtonClick() {
 symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
                     
             const allCategories = ["Anesthésie", "Cardiologie", "CEGDC", "CCVT", "Dermatologie", "Endocrinologie", "Gastrologie", "Génétique", "Gériatrie", "Gynécologie", "Hémato-Onco", "Immuno-Allergie", "Med Interne", "Infectio", "Néphrologie", "Neurochirurgie", "Neurologie", "Ophtalmologie", "ORL", "Orthopédie", "Pédiatrie", "Physiatrie", "Plastie", "Pneumologie", "Psychiatrie", "Rhumatologie", "Urologie"];
-            const allTypes = ["Anatomie", "Diagnostic", "Examen", "Médication", "Traitement"];
+            const allTypes = ["Anatomie", "Diagnostic", "Examen", "Médication", "Traitement", "Abréviations Générales"];
 
             const categoryFilter = document.querySelector(".category-filter");
             categoryFilter.innerHTML = "<h2>Catégories</h2>";
