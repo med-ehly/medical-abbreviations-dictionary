@@ -191,13 +191,6 @@ table td {
   height: 24px;
 }
 
-.custom-space {
-    margin-bottom: 10px; /* Ajustez la valeur de la marge selon vos préférences */
-   margin: 10px;
-    padding: 5px;
-    background-color: #ccc;
-}
-
 /* Styles pour les cases d'items */
 .type-section li {
     background-color: #fff; /* Changez la couleur de fond selon vos préférences */
