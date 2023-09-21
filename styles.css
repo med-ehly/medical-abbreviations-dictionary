@@ -193,6 +193,9 @@ table td {
 
 .custom-space {
     margin-bottom: 10px; /* Ajustez la valeur de la marge selon vos préférences */
+   margin: 10px;
+    padding: 5px;
+    background-color: #ccc;
 }
 
 /* Styles pour les cases d'items */
