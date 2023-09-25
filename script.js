@@ -320,8 +320,10 @@ document.querySelectorAll('.type-section li').forEach(row => {
   row.addEventListener('mouseenter', handleMouseEnter);
 });
 
-// Charger les données et initialiser les événements après le chargement du document
 document.addEventListener("DOMContentLoaded", () => {
+  // Define your excludedGroups array
+  const excludedGroups = ["SYMBOLE"]; 
+    
     fetch("data.json")
         .then(response => response.json())
         .then(data => {
