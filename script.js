@@ -91,27 +91,23 @@ function displaySearchResults(results) {
   let result;
 
   results.forEach(result => {
-    const type = (result.type || "SYMBOLE").toUpperCase(); // Mettez en majuscules le type
+    const type = (result.type || "SYMBOLE").toUpperCase(); 
 
     // Créez un groupe s'il n'existe pas encore
     if (!groupedResults[type]) {
       groupedResults[type] = [];
     }
       
-if (!excludedGroups.includes(type)) {
-  if (!groupedResults[type]) {
-    groupedResults[type] = [];
-  }
     // Ajoutez le résultat au groupe correspondant
     groupedResults[type].push(result);
   });
 
-  // Parcourez les groupes et ajoutez les résultats à la liste
+ // Parcourez les groupes et ajoutez les résultats à la liste
   for (const group in groupedResults) {
     if (groupedResults.hasOwnProperty(group)) {
       const groupResults = groupedResults[group];
 
-      // Créez une section pour le groupe (type ou "SYMBOLE")
+     // Créez une section pour le groupe (type ou "SYMBOLE")
       const groupSection = document.createElement("div");
       groupSection.classList.add("type-section");
       groupSection.innerHTML = `<h2>${group}</h2>`;
@@ -122,21 +118,21 @@ if (!excludedGroups.includes(type)) {
         const abbrCell = document.createElement("abbr");
         abbrCell.textContent = result.abreviation;
         row.appendChild(abbrCell);
-
+          
         // Créez un conteneur pour la description
         const descriptionContainer = document.createElement("div");
         descriptionContainer.classList.add("description-container");
 
         // Ajoutez la description dans la div description-container
 const descriptionText = document.createElement("p");
-descriptionText.innerHTML = `" ${result.signification} "`; // Ajoutez un espace avant et après les guillemets visuels
+descriptionText.innerHTML = `" ${result.signification} "`; 
 descriptionContainer.appendChild(descriptionText);
 
           // Créez un conteneur pour l'icône et le lien
         const iconAndLinkContainer = document.createElement("div");
         iconAndLinkContainer.classList.add("icon-link-container");
 
-      // Créez une icône (par exemple, un lien externe) pour le lien URL
+if (!excludedGroups.includes(group)) {
 const icon = document.createElement("img");
 icon.src = "monicone.svg"; // Remplacez par le chemin vers votre icône
 icon.alt = "Lien externe";
@@ -152,7 +148,8 @@ icon.classList.add("icon-class"); // Remplacez "icon-class" par le nom de la cla
 
          // Ajoutez l'icône à iconAndLinkContainer
 iconAndLinkContainer.appendChild(icon);
-
+ }
+          
 // Ajoutez iconAndLinkContainer à descriptionContainer
 descriptionContainer.appendChild(iconAndLinkContainer);
 
@@ -208,28 +205,23 @@ function displayResults(results) {
   let result;
   
   results.forEach(result => {
-    const type = (result.type || "SYMBOLE").toUpperCase(); // Mettez en majuscules le type
+    const type = (result.type || "SYMBOLE").toUpperCase(); 
 
     // Créez un groupe s'il n'existe pas encore
     if (!groupedResults[type]) {
       groupedResults[type] = [];
     }
-
-      if (!excludedGroups.includes(type)) {
-  if (!groupedResults[type]) {
-    groupedResults[type] = [];
-  }
-
+      
     // Ajoutez le résultat au groupe correspondant
     groupedResults[type].push(result);
   });
 
-  // Parcourez les groupes et ajoutez les résultats à la liste
+ // Parcourez les groupes et ajoutez les résultats à la liste
   for (const group in groupedResults) {
     if (groupedResults.hasOwnProperty(group)) {
       const groupResults = groupedResults[group];
 
-      // Créez une section pour le groupe (type ou "SYMBOLE")
+     // Créez une section pour le groupe (type ou "SYMBOLE")
       const groupSection = document.createElement("div");
       groupSection.classList.add("type-section");
       groupSection.innerHTML = `<h2>${group}</h2>`;
@@ -240,21 +232,21 @@ function displayResults(results) {
         const abbrCell = document.createElement("abbr");
         abbrCell.textContent = result.abreviation;
         row.appendChild(abbrCell);
-
+          
         // Créez un conteneur pour la description
         const descriptionContainer = document.createElement("div");
         descriptionContainer.classList.add("description-container");
 
         // Ajoutez la description dans la div description-container
 const descriptionText = document.createElement("p");
-descriptionText.innerHTML = `" ${result.signification} "`; // Ajoutez un espace avant et après les guillemets visuels
+descriptionText.innerHTML = `" ${result.signification} "`; 
 descriptionContainer.appendChild(descriptionText);
 
           // Créez un conteneur pour l'icône et le lien
         const iconAndLinkContainer = document.createElement("div");
         iconAndLinkContainer.classList.add("icon-link-container");
-          
-// Créez une icône (par exemple, un lien externe) pour le lien URL
+
+if (!excludedGroups.includes(group)) {
 const icon = document.createElement("img");
 icon.src = "monicone.svg"; // Remplacez par le chemin vers votre icône
 icon.alt = "Lien externe";
@@ -270,7 +262,8 @@ icon.classList.add("icon-class"); // Remplacez "icon-class" par le nom de la cla
 
          // Ajoutez l'icône à iconAndLinkContainer
 iconAndLinkContainer.appendChild(icon);
-
+ }
+          
 // Ajoutez iconAndLinkContainer à descriptionContainer
 descriptionContainer.appendChild(iconAndLinkContainer);
 
@@ -281,7 +274,7 @@ descriptionContainer.appendChild(iconAndLinkContainer);
         languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
 
         // Ajoutez la langue-popover à la description-container
-        descriptionContainer.appendChild(languePopover);
+        iconAndLinkContainer.appendChild(languePopover);
 
         // Ajoutez la description-container au row
         row.appendChild(descriptionContainer);
