@@ -1,6 +1,7 @@
 // Constantes pour les sélecteurs DOM
 const searchInput = document.getElementById("searchInput");
 const resultsList = document.getElementById("resultsList");
+const excludedGroups = ["SYMBOLE"];
 
 // Variables pour les filtres actifs
 let activeLetterFilter = null;
@@ -79,7 +80,7 @@ function sortDataAlphabeticallyWithFallback(data) {
     return sortedData;
 }
 
-function displaySearchResults(results) {
+function displaySearchResults(results, excludedGroups) {
    resultsList.innerHTML = '';
   if (results.length === 0) {
     resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
@@ -193,7 +194,7 @@ function handleSearch(event, data) {
     applyActiveFilters(filteredResults);
 }
 
-function displayResults(results) {
+function displayResults(results, excludedGroups){
    resultsList.innerHTML = '';
   if (results.length === 0) {
     resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
