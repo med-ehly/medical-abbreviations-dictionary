@@ -80,7 +80,7 @@ function sortDataAlphabeticallyWithFallback(data) {
     return sortedData;
 }
 
-function displaySearchResults(results, excludedGroups) {
+function displaySearchResults(results) {
    resultsList.innerHTML = '';
   if (results.length === 0) {
     resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
@@ -97,10 +97,6 @@ function displaySearchResults(results, excludedGroups) {
     if (!groupedResults[type]) {
       groupedResults[type] = [];
     }
-      // Check if the group should be excluded
-        if (excludedGroups.includes(type)) {
-            return; // Skip this result if it's in an excluded group
-        }
       
     // Ajoutez le résultat au groupe correspondant
     groupedResults[type].push(result);
@@ -136,7 +132,6 @@ descriptionContainer.appendChild(descriptionText);
         const iconAndLinkContainer = document.createElement("div");
         iconAndLinkContainer.classList.add("icon-link-container");
 
-if (!excludedGroups.includes(group)) {
 const icon = document.createElement("img");
 icon.src = "monicone.svg"; // Remplacez par le chemin vers votre icône
 icon.alt = "Lien externe";
@@ -152,7 +147,6 @@ icon.classList.add("icon-class"); // Remplacez "icon-class" par le nom de la cla
 
          // Ajoutez l'icône à iconAndLinkContainer
 iconAndLinkContainer.appendChild(icon);
- }
           
 // Ajoutez iconAndLinkContainer à descriptionContainer
 descriptionContainer.appendChild(iconAndLinkContainer);
@@ -197,7 +191,7 @@ function handleSearch(event, data) {
     applyActiveFilters(filteredResults);
 }
 
-function displayResults(results, excludedGroups){
+function displayResults(results){
    resultsList.innerHTML = '';
   if (results.length === 0) {
     resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
@@ -214,10 +208,6 @@ function displayResults(results, excludedGroups){
     if (!groupedResults[type]) {
       groupedResults[type] = [];
     }
-      // Check if the group should be excluded
-        if (excludedGroups.includes(type)) {
-            return; // Skip this result if it's in an excluded group
-        }
       
     // Ajoutez le résultat au groupe correspondant
     groupedResults[type].push(result);
@@ -253,7 +243,7 @@ descriptionContainer.appendChild(descriptionText);
         const iconAndLinkContainer = document.createElement("div");
         iconAndLinkContainer.classList.add("icon-link-container");
 
-if (!excludedGroups.includes(group)) {
+
 const icon = document.createElement("img");
 icon.src = "monicone.svg"; // Remplacez par le chemin vers votre icône
 icon.alt = "Lien externe";
@@ -269,7 +259,6 @@ icon.classList.add("icon-class"); // Remplacez "icon-class" par le nom de la cla
 
          // Ajoutez l'icône à iconAndLinkContainer
 iconAndLinkContainer.appendChild(icon);
- }
           
 // Ajoutez iconAndLinkContainer à descriptionContainer
 descriptionContainer.appendChild(iconAndLinkContainer);
@@ -328,14 +317,11 @@ document.querySelectorAll('.type-section li').forEach(row => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Define your excludedGroups array
-  const excludedGroups = ["SYMBOLE"]; 
-    
     fetch("data.json")
         .then(response => response.json())
         .then(data => {
             const sortedData = sortDataAlphabeticallyWithFallback(data);
-            displaySearchResults(sortedData, excludedGroups);
+            displaySearchResults(sortedData);
             searchInput.addEventListener("input", event => handleSearch(event, sortedData));
             const letterButtons = document.querySelectorAll(".letter-button");
             const symbolFilterButton = document.getElementById("symbolFilterButton");
