@@ -11,6 +11,7 @@ let activeTypeButton = null;
 let activeTypeFilter = null;
 let activeSymbolButton = null;
 let activeSymbolFilter = null;
+let data;
 
 function applyActiveFilters(data) {
     console.log("Applying active filters...");
@@ -380,13 +381,12 @@ document.querySelectorAll('.type-section li').forEach(row => {
   row.addEventListener('mouseenter', handleMouseEnter);
 });
 
-let data;
-
 // Charger les données et initialiser les événements après le chargement du document
 document.addEventListener("DOMContentLoaded", () => {
     fetch("data.json")
         .then(response => response.json())
         .then(data => {
+            data = jsonData; // Assign the loaded data to the global data variable
             const sortedData = sortDataAlphabeticallyWithFallback(data);
             displaySearchResults(sortedData);
             searchInput.addEventListener("input", event => handleSearch(event, sortedData));
