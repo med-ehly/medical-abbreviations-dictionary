@@ -53,28 +53,47 @@ function handleMouseLeave(event) {
   }
 }
 
-function displayPopup(title, content, popupText) {
-  // Créez les éléments HTML pour la pop-up
-  const popupContainer = document.createElement("div");
-  popupContainer.classList.add("popup-container");
+function displayPopover(title, content, icon) {
+  // Create the popover container
+  const popoverContainer = document.createElement("div");
+  popoverContainer.classList.add("popover-container");
 
-  const popupTitle = document.createElement("h2");
-  popupTitle.textContent = title;
+  // Create the popover content
+  const popoverContent = document.createElement("div");
+  popoverContent.classList.add("popover-content");
 
-  const popupContent = document.createElement("p");
-  popupContent.textContent = content;
+  const popoverTitle = document.createElement("h2");
+  popoverTitle.textContent = title;
 
-  const popupTextElement = document.createElement("p");
-  popupTextElement.textContent = popupText;
+  const popoverTextElement = document.createElement("p");
+  popoverTextElement.textContent = content;
 
-  // Ajoutez les éléments à la pop-up
-  popupContainer.appendChild(popupTitle);
-  popupContainer.appendChild(popupContent);
-  popupContainer.appendChild(popupTextElement);
+  // Close button for the popover
+  const closeButton = document.createElement("span");
+  closeButton.textContent = "Close";
+  closeButton.classList.add("popover-close-button");
+  closeButton.addEventListener("click", () => {
+    // Close the popover when the close button is clicked
+    document.body.removeChild(popoverContainer);
+  });
 
-  // Ajoutez la pop-up à la page HTML
-  document.body.appendChild(popupContainer);
+  // Add elements to the popover content
+  popoverContent.appendChild(popoverTitle);
+  popoverContent.appendChild(popoverTextElement);
+
+  // Add content and close button to the popover container
+  popoverContainer.appendChild(popoverContent);
+  popoverContainer.appendChild(closeButton);
+
+  // Position the popover near the icon
+  const iconRect = icon.getBoundingClientRect();
+  popoverContainer.style.top = iconRect.bottom + "px";
+  popoverContainer.style.left = iconRect.left + "px";
+
+  // Add the popover to the page
+  document.body.appendChild(popoverContainer);
 }
+
 
 function sortDataAlphabeticallyWithFallback(data) {
     // Divisez les données en deux groupes : celles avec une catégorie "type" et celles sans
@@ -167,10 +186,17 @@ icon.classList.add("icon-class"); // Remplacez "icon-class" par le nom de la cla
   // Créez une copie de la variable result pour capturer sa valeur dans la fermeture
   const resultCopy = result;
 
-  icon.addEventListener("click", () => {
-    console.log("Icône cliquée !");
-    displayPopup(resultCopy.abreviation, resultCopy.signification, resultCopy.popup);
-  });
+ // Inside your loop where you create icons and add click event listeners
+icon.addEventListener("click", () => {
+  // Find the corresponding data for this icon (assuming each icon has a unique abbreviation)
+  const abbreviation = resultCopy.abreviation;
+  const matchingData = data.find(item => item.abreviation === abbreviation);
+
+  if (matchingData) {
+    // Display the popover with the data
+    displayPopover(matchingData.abreviation, matchingData.signification, icon);
+  }
+});
 
  // Ajoutez l'icône à iconAndLinkContainer
         iconAndLinkContainer.appendChild(icon);
@@ -283,10 +309,17 @@ icon.classList.add("icon-class"); // Remplacez "icon-class" par le nom de la cla
   // Créez une copie de la variable result pour capturer sa valeur dans la fermeture
   const resultCopy = result;
 
-  icon.addEventListener("click", () => {
-    console.log("Icône cliquée !");
-    displayPopup(resultCopy.abreviation, resultCopy.signification, resultCopy.popup);
-  });
+  // Inside your loop where you create icons and add click event listeners
+icon.addEventListener("click", () => {
+  // Find the corresponding data for this icon (assuming each icon has a unique abbreviation)
+  const abbreviation = resultCopy.abreviation;
+  const matchingData = data.find(item => item.abreviation === abbreviation);
+
+  if (matchingData) {
+    // Display the popover with the data
+    displayPopover(matchingData.abreviation, matchingData.signification, icon);
+  }
+});
 
            // Ajoutez l'icône à iconAndLinkContainer
         iconAndLinkContainer.appendChild(icon);
