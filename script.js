@@ -97,7 +97,11 @@ function displaySearchResults(results) {
     if (!groupedResults[type]) {
       groupedResults[type] = [];
     }
-
+      
+if (!excludedGroups.includes(type)) {
+  if (!groupedResults[type]) {
+    groupedResults[type] = [];
+  }
     // Ajoutez le résultat au groupe correspondant
     groupedResults[type].push(result);
   });
@@ -210,6 +214,11 @@ function displayResults(results) {
     if (!groupedResults[type]) {
       groupedResults[type] = [];
     }
+
+      if (!excludedGroups.includes(type)) {
+  if (!groupedResults[type]) {
+    groupedResults[type] = [];
+  }
 
     // Ajoutez le résultat au groupe correspondant
     groupedResults[type].push(result);
@@ -324,7 +333,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(response => response.json())
         .then(data => {
             const sortedData = sortDataAlphabeticallyWithFallback(data);
-            displaySearchResults(sortedData);
+            displaySearchResults(sortedData, ["SYMBOLE"]);
             searchInput.addEventListener("input", event => handleSearch(event, sortedData));
             const letterButtons = document.querySelectorAll(".letter-button");
             const symbolFilterButton = document.getElementById("symbolFilterButton");
