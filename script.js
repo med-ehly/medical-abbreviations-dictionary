@@ -128,31 +128,28 @@ const descriptionText = document.createElement("p");
 descriptionText.innerHTML = `" ${result.signification} "`; 
 descriptionContainer.appendChild(descriptionText);
 
+          if (group !== "SYMBOLE") { 
           // Créez un conteneur pour l'icône et le lien
         const iconAndLinkContainer = document.createElement("div");
         iconAndLinkContainer.classList.add("icon-link-container");
 
 const icon = document.createElement("img");
-icon.src = "monicone.svg"; // Remplacez par le chemin vers votre icône
+icon.src = "monicone.svg"; 
 icon.alt = "Lien externe";
-icon.style.cursor = "pointer"; // Définissez le curseur comme un pointeur pour indiquer que c'est cliquable
+icon.style.cursor = "pointer"; 
 
-// Ajoutez une classe à l'icône pour la cibler avec du CSS
-icon.classList.add("icon-class"); // Remplacez "icon-class" par le nom de la classe de votre choix
+icon.classList.add("icon-class"); 
 
-// Ajoutez un gestionnaire d'événements pour ouvrir le lien URL au clic
         icon.addEventListener("click", () => {
-          window.open(result.url, "_blank"); // Ouvrez le lien dans une nouvelle fenêtre
+          window.open(result.url, "_blank"); 
         });
 
-         // Ajoutez l'icône à iconAndLinkContainer
+      
 iconAndLinkContainer.appendChild(icon);
           
-// Ajoutez iconAndLinkContainer à descriptionContainer
 descriptionContainer.appendChild(iconAndLinkContainer);
+              }
 
-
-        // Ajoutez le popover avec la langue associée sous la description
         const languePopover = document.createElement("div");
         languePopover.classList.add("langue-popover");
         languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
@@ -239,32 +236,28 @@ const descriptionText = document.createElement("p");
 descriptionText.innerHTML = `" ${result.signification} "`; 
 descriptionContainer.appendChild(descriptionText);
 
+          if (group !== "SYMBOLE") { 
           // Créez un conteneur pour l'icône et le lien
         const iconAndLinkContainer = document.createElement("div");
         iconAndLinkContainer.classList.add("icon-link-container");
 
-
 const icon = document.createElement("img");
-icon.src = "monicone.svg"; // Remplacez par le chemin vers votre icône
+icon.src = "monicone.svg"; 
 icon.alt = "Lien externe";
-icon.style.cursor = "pointer"; // Définissez le curseur comme un pointeur pour indiquer que c'est cliquable
+icon.style.cursor = "pointer"; 
 
-// Ajoutez une classe à l'icône pour la cibler avec du CSS
-icon.classList.add("icon-class"); // Remplacez "icon-class" par le nom de la classe de votre choix
+icon.classList.add("icon-class"); 
 
-// Ajoutez un gestionnaire d'événements pour ouvrir le lien URL au clic
         icon.addEventListener("click", () => {
-          window.open(result.url, "_blank"); // Ouvrez le lien dans une nouvelle fenêtre
+          window.open(result.url, "_blank"); 
         });
 
-         // Ajoutez l'icône à iconAndLinkContainer
+      
 iconAndLinkContainer.appendChild(icon);
           
-// Ajoutez iconAndLinkContainer à descriptionContainer
 descriptionContainer.appendChild(iconAndLinkContainer);
+              }
 
-
-        // Ajoutez le popover avec la langue associée sous la description
         const languePopover = document.createElement("div");
         languePopover.classList.add("langue-popover");
         languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
