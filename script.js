@@ -131,7 +131,7 @@ descriptionContainer.appendChild(descriptionText);
         const iconAndLinkContainer = document.createElement("div");
         iconAndLinkContainer.classList.add("icon-link-container");
 
-        // Créez une icône (par exemple, un lien externe) pour le lien URL
+      // Créez une icône (par exemple, un lien externe) pour le lien URL
 const icon = document.createElement("img");
 icon.src = "monicone.svg"; // Remplacez par le chemin vers votre icône
 icon.alt = "Lien externe";
@@ -140,10 +140,12 @@ icon.style.cursor = "pointer"; // Définissez le curseur comme un pointeur pour 
 // Ajoutez une classe à l'icône pour la cibler avec du CSS
 icon.classList.add("icon-class"); // Remplacez "icon-class" par le nom de la classe de votre choix
 
+// Ajoutez l'icône à l'élément "row" (votre élément HTML)
+row.appendChild(icon);
 
-        // Afficher une pop-up au clic
-icon.addEventListener("click", () => {
-  displayPopup(result.abreviation, result.signification);
+// Modifiez le gestionnaire d'événements pour afficher une pop-up personnalisée
+row.addEventListener("click", () => {
+  displayPopup(result.abreviation, result.signification, result.popup);
 });
 
          // Ajoutez l'icône à iconAndLinkContainer
@@ -175,6 +177,28 @@ descriptionContainer.appendChild(iconAndLinkContainer);
   }
 }
 
+function displayPopup(title, content, popupText) {
+  // Créez les éléments HTML pour la pop-up
+  const popupContainer = document.createElement("div");
+  popupContainer.classList.add("popup-container");
+
+  const popupTitle = document.createElement("h2");
+  popupTitle.textContent = title;
+
+  const popupContent = document.createElement("p");
+  popupContent.textContent = content;
+
+  const popupTextElement = document.createElement("p");
+  popupTextElement.textContent = popupText;
+
+  // Ajoutez les éléments à la pop-up
+  popupContainer.appendChild(popupTitle);
+  popupContainer.appendChild(popupContent);
+  popupContainer.appendChild(popupTextElement);
+
+  // Ajoutez la pop-up à la page HTML
+  document.body.appendChild(popupContainer);
+}
 
 function scrollToTop() {
     window.scrollTo({
