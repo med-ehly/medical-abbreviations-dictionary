@@ -141,10 +141,10 @@ icon.style.cursor = "pointer"; // Définissez le curseur comme un pointeur pour 
 icon.classList.add("icon-class"); // Remplacez "icon-class" par le nom de la classe de votre choix
 
 
-          // Ajoutez un gestionnaire d'événements pour ouvrir le lien URL au clic
-        icon.addEventListener("click", () => {
-          window.open(result.url, "_blank"); // Ouvrez le lien dans une nouvelle fenêtre
-        });
+        // Afficher une pop-up au clic
+icon.addEventListener("click", () => {
+  displayPopup(result.abreviation, result.signification);
+});
 
          // Ajoutez l'icône à iconAndLinkContainer
 iconAndLinkContainer.appendChild(icon);
