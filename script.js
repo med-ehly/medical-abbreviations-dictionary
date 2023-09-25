@@ -328,7 +328,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(response => response.json())
         .then(data => {
             const sortedData = sortDataAlphabeticallyWithFallback(data);
-            displaySearchResults(sortedData, ["SYMBOLE"]);
+            displaySearchResults(sortedData, excludedGroups);
             searchInput.addEventListener("input", event => handleSearch(event, sortedData));
             const letterButtons = document.querySelectorAll(".letter-button");
             const symbolFilterButton = document.getElementById("symbolFilterButton");
