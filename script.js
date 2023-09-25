@@ -385,7 +385,7 @@ document.querySelectorAll('.type-section li').forEach(row => {
 document.addEventListener("DOMContentLoaded", () => {
     fetch("data.json")
         .then(response => response.json())
-        .then(data => {
+        .then(jsonData => {
             data = jsonData; // Assign the loaded data to the global data variable
             const sortedData = sortDataAlphabeticallyWithFallback(data);
             displaySearchResults(sortedData);
