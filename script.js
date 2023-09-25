@@ -53,6 +53,29 @@ function handleMouseLeave(event) {
   }
 }
 
+function displayPopup(title, content, popupText) {
+  // Créez les éléments HTML pour la pop-up
+  const popupContainer = document.createElement("div");
+  popupContainer.classList.add("popup-container");
+
+  const popupTitle = document.createElement("h2");
+  popupTitle.textContent = title;
+
+  const popupContent = document.createElement("p");
+  popupContent.textContent = content;
+
+  const popupTextElement = document.createElement("p");
+  popupTextElement.textContent = popupText;
+
+  // Ajoutez les éléments à la pop-up
+  popupContainer.appendChild(popupTitle);
+  popupContainer.appendChild(popupContent);
+  popupContainer.appendChild(popupTextElement);
+
+  // Ajoutez la pop-up à la page HTML
+  document.body.appendChild(popupContainer);
+}
+
 function sortDataAlphabeticallyWithFallback(data) {
     // Divisez les données en deux groupes : celles avec une catégorie "type" et celles sans
     const withTypeCategory = data.filter(item => item.type !== undefined && item.type !== null);
@@ -143,13 +166,10 @@ icon.classList.add("icon-class"); // Remplacez "icon-class" par le nom de la cla
 // Ajoutez l'icône à l'élément "row" (votre élément HTML)
 row.appendChild(icon);
 
-// Modifiez le gestionnaire d'événements pour afficher une pop-up personnalisée
-row.addEventListener("click", () => {
+icon.addEventListener("click", () => {
+  console.log("Icône cliquée !");
   displayPopup(result.abreviation, result.signification, result.popup);
 });
-
-         // Ajoutez l'icône à iconAndLinkContainer
-iconAndLinkContainer.appendChild(icon);
 
 // Ajoutez iconAndLinkContainer à descriptionContainer
 descriptionContainer.appendChild(iconAndLinkContainer);
@@ -175,29 +195,6 @@ descriptionContainer.appendChild(iconAndLinkContainer);
       resultsList.appendChild(groupSection);
     }
   }
-}
-
-function displayPopup(title, content, popupText) {
-  // Créez les éléments HTML pour la pop-up
-  const popupContainer = document.createElement("div");
-  popupContainer.classList.add("popup-container");
-
-  const popupTitle = document.createElement("h2");
-  popupTitle.textContent = title;
-
-  const popupContent = document.createElement("p");
-  popupContent.textContent = content;
-
-  const popupTextElement = document.createElement("p");
-  popupTextElement.textContent = popupText;
-
-  // Ajoutez les éléments à la pop-up
-  popupContainer.appendChild(popupTitle);
-  popupContainer.appendChild(popupContent);
-  popupContainer.appendChild(popupTextElement);
-
-  // Ajoutez la pop-up à la page HTML
-  document.body.appendChild(popupContainer);
 }
 
 function scrollToTop() {
@@ -277,14 +274,13 @@ icon.style.cursor = "pointer"; // Définissez le curseur comme un pointeur pour 
 // Ajoutez une classe à l'icône pour la cibler avec du CSS
 icon.classList.add("icon-class"); // Remplacez "icon-class" par le nom de la classe de votre choix
 
+// Ajoutez l'icône à l'élément "row" (votre élément HTML)
+row.appendChild(icon);
 
-          // Ajoutez un gestionnaire d'événements pour ouvrir le lien URL au clic
-        icon.addEventListener("click", () => {
-          window.open(result.url, "_blank"); // Ouvrez le lien dans une nouvelle fenêtre
-        });
-
-          // Ajoutez l'icône à iconAndLinkContainer
-        iconAndLinkContainer.appendChild(icon);
+icon.addEventListener("click", () => {
+  console.log("Icône cliquée !");
+  displayPopup(result.abreviation, result.signification, result.popup);
+});
 
           // Ajoutez iconAndLinkContainer à descriptionContainer
         descriptionContainer.appendChild(iconAndLinkContainer);
