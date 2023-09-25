@@ -1,7 +1,6 @@
 // Constantes pour les sélecteurs DOM
 const searchInput = document.getElementById("searchInput");
 const resultsList = document.getElementById("resultsList");
-const excludedGroups = ["SYMBOLE"];
 
 // Variables pour les filtres actifs
 let activeLetterFilter = null;
@@ -128,7 +127,6 @@ const descriptionText = document.createElement("p");
 descriptionText.innerHTML = `" ${result.signification} "`; 
 descriptionContainer.appendChild(descriptionText);
 
-          if (group !== "SYMBOLE") { 
           // Créez un conteneur pour l'icône et le lien
         const iconAndLinkContainer = document.createElement("div");
         iconAndLinkContainer.classList.add("icon-link-container");
@@ -148,7 +146,6 @@ icon.classList.add("icon-class");
 iconAndLinkContainer.appendChild(icon);
           
 descriptionContainer.appendChild(iconAndLinkContainer);
-              }
 
         const languePopover = document.createElement("div");
         languePopover.classList.add("langue-popover");
@@ -236,7 +233,6 @@ const descriptionText = document.createElement("p");
 descriptionText.innerHTML = `" ${result.signification} "`; 
 descriptionContainer.appendChild(descriptionText);
 
-          if (group !== "SYMBOLE") { 
           // Créez un conteneur pour l'icône et le lien
         const iconAndLinkContainer = document.createElement("div");
         iconAndLinkContainer.classList.add("icon-link-container");
@@ -256,7 +252,6 @@ icon.classList.add("icon-class");
 iconAndLinkContainer.appendChild(icon);
           
 descriptionContainer.appendChild(iconAndLinkContainer);
-              }
 
         const languePopover = document.createElement("div");
         languePopover.classList.add("langue-popover");
