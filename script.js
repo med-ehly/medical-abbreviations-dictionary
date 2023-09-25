@@ -130,7 +130,8 @@ descriptionContainer.appendChild(descriptionText);
           // Créez un conteneur pour l'icône et le lien
         const iconAndLinkContainer = document.createElement("div");
         iconAndLinkContainer.classList.add("icon-link-container");
-
+          
+if (result.url) { 
 const icon = document.createElement("img");
 icon.src = "monicone.svg"; 
 icon.alt = "Lien externe";
@@ -144,17 +145,15 @@ icon.classList.add("icon-class");
 
       
 iconAndLinkContainer.appendChild(icon);
+           }
           
-descriptionContainer.appendChild(iconAndLinkContainer);
-
         const languePopover = document.createElement("div");
         languePopover.classList.add("langue-popover");
         languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
 
-        // Ajoutez la langue-popover à la description-container
+        
         iconAndLinkContainer.appendChild(languePopover);
-
-        // Ajoutez la description-container au row
+        descriptionContainer.appendChild(iconAndLinkContainer);
         row.appendChild(descriptionContainer);
 
         groupSection.appendChild(row);
@@ -236,7 +235,8 @@ descriptionContainer.appendChild(descriptionText);
           // Créez un conteneur pour l'icône et le lien
         const iconAndLinkContainer = document.createElement("div");
         iconAndLinkContainer.classList.add("icon-link-container");
-
+          
+if (result.url) { 
 const icon = document.createElement("img");
 icon.src = "monicone.svg"; 
 icon.alt = "Lien externe";
@@ -250,17 +250,15 @@ icon.classList.add("icon-class");
 
       
 iconAndLinkContainer.appendChild(icon);
+           }
           
-descriptionContainer.appendChild(iconAndLinkContainer);
-
         const languePopover = document.createElement("div");
         languePopover.classList.add("langue-popover");
         languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
 
-        // Ajoutez la langue-popover à la description-container
+        
         iconAndLinkContainer.appendChild(languePopover);
-
-        // Ajoutez la description-container au row
+        descriptionContainer.appendChild(iconAndLinkContainer);
         row.appendChild(descriptionContainer);
 
         groupSection.appendChild(row);
