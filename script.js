@@ -89,7 +89,6 @@ function displaySearchResults(results, excludedGroups) {
 
   // Créez un objet pour stocker les résultats groupés par type
   const groupedResults = {};
-  let result;
 
   results.forEach(result => {
     const type = (result.type || "SYMBOLE").toUpperCase(); 
@@ -98,6 +97,10 @@ function displaySearchResults(results, excludedGroups) {
     if (!groupedResults[type]) {
       groupedResults[type] = [];
     }
+      // Check if the group should be excluded
+        if (excludedGroups.includes(type)) {
+            return; // Skip this result if it's in an excluded group
+        }
       
     // Ajoutez le résultat au groupe correspondant
     groupedResults[type].push(result);
@@ -203,7 +206,6 @@ function displayResults(results, excludedGroups){
 
   // Créez un objet pour stocker les résultats groupés par type
   const groupedResults = {};
-  let result;
   
   results.forEach(result => {
     const type = (result.type || "SYMBOLE").toUpperCase(); 
@@ -212,6 +214,10 @@ function displayResults(results, excludedGroups){
     if (!groupedResults[type]) {
       groupedResults[type] = [];
     }
+      // Check if the group should be excluded
+        if (excludedGroups.includes(type)) {
+            return; // Skip this result if it's in an excluded group
+        }
       
     // Ajoutez le résultat au groupe correspondant
     groupedResults[type].push(result);
