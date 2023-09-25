@@ -164,13 +164,13 @@ icon.style.cursor = "pointer"; // Définissez le curseur comme un pointeur pour 
 // Ajoutez une classe à l'icône pour la cibler avec du CSS
 icon.classList.add("icon-class"); // Remplacez "icon-class" par le nom de la classe de votre choix
 
-// Créez une copie de la variable result pour capturer sa valeur dans la fermeture
+  // Créez une copie de la variable result pour capturer sa valeur dans la fermeture
   const resultCopy = result;
-          
-icon.addEventListener("click", () => {
-  console.log("Icône cliquée !");
-  displayPopup(result.abreviation, result.signification, result.popup);
-});
+
+  icon.addEventListener("click", () => {
+    console.log("Icône cliquée !");
+    displayPopup(resultCopy.abreviation, resultCopy.signification, resultCopy.popup);
+  });
 
  // Ajoutez l'icône à iconAndLinkContainer
         iconAndLinkContainer.appendChild(icon);
@@ -280,13 +280,13 @@ icon.style.cursor = "pointer"; // Définissez le curseur comme un pointeur pour 
 // Ajoutez une classe à l'icône pour la cibler avec du CSS
 icon.classList.add("icon-class"); // Remplacez "icon-class" par le nom de la classe de votre choix
           
-// Créez une copie de la variable result pour capturer sa valeur dans la fermeture
+  // Créez une copie de la variable result pour capturer sa valeur dans la fermeture
   const resultCopy = result;
-          
-icon.addEventListener("click", () => {
-  console.log("Icône cliquée !");
-  displayPopup(result.abreviation, result.signification, result.popup);
-});
+
+  icon.addEventListener("click", () => {
+    console.log("Icône cliquée !");
+    displayPopup(resultCopy.abreviation, resultCopy.signification, resultCopy.popup);
+  });
 
            // Ajoutez l'icône à iconAndLinkContainer
         iconAndLinkContainer.appendChild(icon);
