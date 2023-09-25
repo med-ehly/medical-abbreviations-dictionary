@@ -163,16 +163,17 @@ icon.style.cursor = "pointer"; // Définissez le curseur comme un pointeur pour 
 // Ajoutez une classe à l'icône pour la cibler avec du CSS
 icon.classList.add("icon-class"); // Remplacez "icon-class" par le nom de la classe de votre choix
 
-// Ajoutez l'icône à l'élément "row" (votre élément HTML)
-row.appendChild(icon);
-
 icon.addEventListener("click", () => {
   console.log("Icône cliquée !");
   displayPopup(result.abreviation, result.signification, result.popup);
 });
 
-// Ajoutez iconAndLinkContainer à descriptionContainer
-descriptionContainer.appendChild(iconAndLinkContainer);
+ // Ajoutez l'icône à iconAndLinkContainer
+        iconAndLinkContainer.appendChild(icon);
+          
+          // Ajoutez iconAndLinkContainer à descriptionContainer
+        descriptionContainer.appendChild(iconAndLinkContainer);
+          
 
         // Ajoutez le popover avec la langue associée sous la description
         const languePopover = document.createElement("div");
@@ -274,14 +275,14 @@ icon.style.cursor = "pointer"; // Définissez le curseur comme un pointeur pour 
 // Ajoutez une classe à l'icône pour la cibler avec du CSS
 icon.classList.add("icon-class"); // Remplacez "icon-class" par le nom de la classe de votre choix
 
-// Ajoutez l'icône à l'élément "row" (votre élément HTML)
-row.appendChild(icon);
-
 icon.addEventListener("click", () => {
   console.log("Icône cliquée !");
   displayPopup(result.abreviation, result.signification, result.popup);
 });
 
+           // Ajoutez l'icône à iconAndLinkContainer
+        iconAndLinkContainer.appendChild(icon);
+          
           // Ajoutez iconAndLinkContainer à descriptionContainer
         descriptionContainer.appendChild(iconAndLinkContainer);
           
