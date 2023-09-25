@@ -111,6 +111,7 @@ function displaySearchResults(results) {
 
   // Créez un objet pour stocker les résultats groupés par type
   const groupedResults = {};
+  let result;
 
   results.forEach(result => {
     const type = (result.type || "SYMBOLE").toUpperCase(); // Mettez en majuscules le type
@@ -223,7 +224,8 @@ function displayResults(results) {
 
   // Créez un objet pour stocker les résultats groupés par type
   const groupedResults = {};
-
+  let result;
+  
   results.forEach(result => {
     const type = (result.type || "SYMBOLE").toUpperCase(); // Mettez en majuscules le type
 
