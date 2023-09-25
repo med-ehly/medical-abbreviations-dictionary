@@ -380,6 +380,7 @@ document.querySelectorAll('.type-section li').forEach(row => {
   row.addEventListener('mouseenter', handleMouseEnter);
 });
 
+let data;
 
 // Charger les données et initialiser les événements après le chargement du document
 document.addEventListener("DOMContentLoaded", () => {
