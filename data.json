@@ -4,7 +4,8 @@
     "signification": "Accident Vasculaire Cérébral",
     "categorie": "Neurologie",
     "type": "Diagnostic",
-    "langue": "(fr)"
+    "langue": "(fr)",
+    "url": "http://requin.reg05.rtss.qc.ca/"
   },
   {
     "abreviation": "PL",
