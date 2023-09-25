@@ -11,7 +11,6 @@ let activeTypeButton = null;
 let activeTypeFilter = null;
 let activeSymbolButton = null;
 let activeSymbolFilter = null;
-let data;
 
 function applyActiveFilters(data) {
     console.log("Applying active filters...");
@@ -53,48 +52,6 @@ function handleMouseLeave(event) {
     popover.style.display = "none";
   }
 }
-
-function displayPopover(title, content, icon) {
-  // Create the popover container
-  const popoverContainer = document.createElement("div");
-  popoverContainer.classList.add("popover-container");
-
-  // Create the popover content
-  const popoverContent = document.createElement("div");
-  popoverContent.classList.add("popover-content");
-
-  const popoverTitle = document.createElement("h2");
-  popoverTitle.textContent = title;
-
-  const popoverTextElement = document.createElement("p");
-  popoverTextElement.textContent = content;
-
-  // Close button for the popover
-  const closeButton = document.createElement("span");
-  closeButton.textContent = "Close";
-  closeButton.classList.add("popover-close-button");
-  closeButton.addEventListener("click", () => {
-    // Close the popover when the close button is clicked
-    document.body.removeChild(popoverContainer);
-  });
-
-  // Add elements to the popover content
-  popoverContent.appendChild(popoverTitle);
-  popoverContent.appendChild(popoverTextElement);
-
-  // Add content and close button to the popover container
-  popoverContainer.appendChild(popoverContent);
-  popoverContainer.appendChild(closeButton);
-
-  // Position the popover near the icon
-  const iconRect = icon.getBoundingClientRect();
-  popoverContainer.style.top = iconRect.bottom + "px";
-  popoverContainer.style.left = iconRect.left + "px";
-
-  // Add the popover to the page
-  document.body.appendChild(popoverContainer);
-}
-
 
 function sortDataAlphabeticallyWithFallback(data) {
     // Divisez les données en deux groupes : celles avec une catégorie "type" et celles sans
@@ -184,27 +141,17 @@ icon.style.cursor = "pointer"; // Définissez le curseur comme un pointeur pour 
 // Ajoutez une classe à l'icône pour la cibler avec du CSS
 icon.classList.add("icon-class"); // Remplacez "icon-class" par le nom de la classe de votre choix
 
-  // Créez une copie de la variable result pour capturer sa valeur dans la fermeture
-  const resultCopy = result;
+// Ajoutez un gestionnaire d'événements pour ouvrir le lien URL au clic
+        icon.addEventListener("click", () => {
+          window.open(result.url, "_blank"); // Ouvrez le lien dans une nouvelle fenêtre
+        });
 
- // Inside your loop where you create icons and add click event listeners
-icon.addEventListener("click", () => {
-  // Find the corresponding data for this icon (assuming each icon has a unique abbreviation)
-  const abbreviation = resultCopy.abreviation;
-  const matchingData = data.find(item => item.abreviation === abbreviation);
+         // Ajoutez l'icône à iconAndLinkContainer
+iconAndLinkContainer.appendChild(icon);
 
-  if (matchingData) {
-    // Display the popover with the data
-    displayPopover(matchingData.abreviation, matchingData.signification, icon);
-  }
-});
+// Ajoutez iconAndLinkContainer à descriptionContainer
+descriptionContainer.appendChild(iconAndLinkContainer);
 
- // Ajoutez l'icône à iconAndLinkContainer
-        iconAndLinkContainer.appendChild(icon);
-          
-          // Ajoutez iconAndLinkContainer à descriptionContainer
-        descriptionContainer.appendChild(iconAndLinkContainer);
-          
 
         // Ajoutez le popover avec la langue associée sous la description
         const languePopover = document.createElement("div");
@@ -306,28 +253,18 @@ icon.style.cursor = "pointer"; // Définissez le curseur comme un pointeur pour 
 
 // Ajoutez une classe à l'icône pour la cibler avec du CSS
 icon.classList.add("icon-class"); // Remplacez "icon-class" par le nom de la classe de votre choix
-          
-  // Créez une copie de la variable result pour capturer sa valeur dans la fermeture
-  const resultCopy = result;
 
-  // Inside your loop where you create icons and add click event listeners
-icon.addEventListener("click", () => {
-  // Find the corresponding data for this icon (assuming each icon has a unique abbreviation)
-  const abbreviation = resultCopy.abreviation;
-  const matchingData = data.find(item => item.abreviation === abbreviation);
+// Ajoutez un gestionnaire d'événements pour ouvrir le lien URL au clic
+        icon.addEventListener("click", () => {
+          window.open(result.url, "_blank"); // Ouvrez le lien dans une nouvelle fenêtre
+        });
 
-  if (matchingData) {
-    // Display the popover with the data
-    displayPopover(matchingData.abreviation, matchingData.signification, icon);
-  }
-});
+         // Ajoutez l'icône à iconAndLinkContainer
+iconAndLinkContainer.appendChild(icon);
 
-           // Ajoutez l'icône à iconAndLinkContainer
-        iconAndLinkContainer.appendChild(icon);
-          
-          // Ajoutez iconAndLinkContainer à descriptionContainer
-        descriptionContainer.appendChild(iconAndLinkContainer);
-          
+// Ajoutez iconAndLinkContainer à descriptionContainer
+descriptionContainer.appendChild(iconAndLinkContainer);
+
 
         // Ajoutez le popover avec la langue associée sous la description
         const languePopover = document.createElement("div");
@@ -385,8 +322,7 @@ document.querySelectorAll('.type-section li').forEach(row => {
 document.addEventListener("DOMContentLoaded", () => {
     fetch("data.json")
         .then(response => response.json())
-        .then(jsonData => {
-            data = jsonData; // Assign the loaded data to the global data variable
+        .then(data => {
             const sortedData = sortDataAlphabeticallyWithFallback(data);
             displaySearchResults(sortedData);
             searchInput.addEventListener("input", event => handleSearch(event, sortedData));
