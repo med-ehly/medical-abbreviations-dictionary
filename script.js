@@ -124,21 +124,10 @@ function displaySearchResults(results) {
 
        // Check if there are multiple significations
         if (result.significations && Array.isArray(result.significations)) {
-            // Initialize isFirstInCategory to true
-  let isFirstInCategory = true;
-            
+           
           // Add each signification to the container
           result.significations.forEach((signification, index) => {
             const descriptionText = document.createElement("p");
-              // Check if it's the first signification in the category
-    if (isFirstInCategory) {
-      // Apply top padding only to the first signification in the category
-      descriptionText.style.paddingTop = "20px";
-
-      // Set isFirstInCategory to false so that subsequent significations in the same category won't get padding
-      isFirstInCategory = false;
-    }
-
             descriptionText.innerHTML = `" ${signification} "`;
             descriptionContainer.appendChild(descriptionText);
           });
@@ -253,21 +242,10 @@ function displayResults(results){
 
        // Check if there are multiple significations
         if (result.significations && Array.isArray(result.significations)) {
-            // Initialize isFirstInCategory to true
-  let isFirstInCategory = true;
-            
+                      
           // Add each signification to the container
           result.significations.forEach((signification, index) => {
             const descriptionText = document.createElement("p");
-              // Check if it's the first signification in the category
-    if (isFirstInCategory) {
-      // Apply top padding only to the first signification in the category
-      descriptionText.style.paddingTop = "20px";
-
-      // Set isFirstInCategory to false so that subsequent significations in the same category won't get padding
-      isFirstInCategory = false;
-    }
-
             descriptionText.innerHTML = `" ${signification} "`;
             descriptionContainer.appendChild(descriptionText);
           });
