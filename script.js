@@ -109,6 +109,11 @@ function displaySearchResults(results) {
       // Créez une section pour le groupe (type ou "SYMBOLE")
       const groupSection = document.createElement("div");
       groupSection.classList.add("type-section");
+
+         // Add a separator line before the type name
+    const separator = document.createElement("hr");
+    groupSection.appendChild(separator);
+        
       groupSection.innerHTML = `<h2>${group}</h2>`;
 
       // Ajoutez chaque résultat à la section
@@ -227,6 +232,11 @@ function displayResults(results){
       // Créez une section pour le groupe (type ou "SYMBOLE")
       const groupSection = document.createElement("div");
       groupSection.classList.add("type-section");
+
+         // Add a separator line before the type name
+    const separator = document.createElement("hr");
+    groupSection.appendChild(separator);
+        
       groupSection.innerHTML = `<h2>${group}</h2>`;
 
       // Ajoutez chaque résultat à la section
