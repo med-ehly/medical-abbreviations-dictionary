@@ -163,7 +163,7 @@ iconAndLinkContainer.appendChild(icon);
       } else {
           // If there's only one meaning, display it
           const descriptionText = document.createElement("p");
-          descriptionText.innerHTML = `" ${result.significations} ${result.langue} "`;
+          descriptionText.innerHTML = `" ${result.signification} ${result.langue} "`;
           row.appendChild(descriptionText);
         }
           
@@ -280,7 +280,7 @@ iconAndLinkContainer.appendChild(icon);
       } else {
           // If there's only one meaning, display it
           const descriptionText = document.createElement("p");
-          descriptionText.innerHTML = `" ${result.significations} ${result.langue} "`;
+          descriptionText.innerHTML = `" ${result.signification} ${result.langue} "`;
           row.appendChild(descriptionText);
         }
           
