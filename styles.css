@@ -150,7 +150,7 @@ header {
 }
 
 .type-section h2:not(:first-child) {
-  margin-top: 20px !important;
+  margin-top: 40px !important;
 }
 
 /* Ajoutez ce CSS dans votre feuille de style CSS */
