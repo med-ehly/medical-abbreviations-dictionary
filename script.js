@@ -86,101 +86,7 @@ function displaySearchResults(results) {
     return;
   }
 
-   // Créez un objet pour stocker les résultats groupés par type
-  const groupedResults = {};
-
-  results.forEach(result => {
-    const type = (result.type || "SYMBOLE").toUpperCase();
-
-    // Créez un groupe s'il n'existe pas encore
-    if (!groupedResults[type]) {
-      groupedResults[type] = [];
-    }
-
-    // Ajoutez le résultat au groupe correspondant
-    groupedResults[type].push(result);
-  });
-
-  // Parcourez les groupes et ajoutez les résultats à la liste
-  for (const group in groupedResults) {
-    if (groupedResults.hasOwnProperty(group)) {
-      const groupResults = groupedResults[group];
-
-      // Créez une section pour le groupe (type ou "SYMBOLE")
-      const groupSection = document.createElement("div");
-      groupSection.classList.add("type-section");
-      groupSection.innerHTML = `<h2>${group}</h2>`;
-
-      // Ajoutez chaque résultat à la section
-      groupResults.forEach(result => {
-        const row = document.createElement("li");
-        const abbrCell = document.createElement("abbr");
-        abbrCell.textContent = result.abreviation;
-        row.appendChild(abbrCell);
-
-        // Créez un conteneur pour l'icône et le lien
-        const iconAndLinkContainer = document.createElement("div");
-        iconAndLinkContainer.classList.add("icon-link-container");
-
-        if (result.url) {
-          const icon = document.createElement("img");
-          icon.src = "monicone.svg";
-          icon.alt = "Lien externe";
-          icon.style.cursor = "pointer";
-          icon.classList.add("icon-class");
-
-          icon.addEventListener("click", () => {
-            window.open(result.url, "_blank");
-          });
-
-          iconAndLinkContainer.appendChild(icon);
-        }
-
-        // Create a "langue popover" element for both single and multiple significations
-        const languePopover = document.createElement("div");
-        languePopover.classList.add("langue-popover");
-        languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
-        iconAndLinkContainer.appendChild(languePopover);
-
-        // Add the iconAndLinkContainer to the row
-        row.appendChild(iconAndLinkContainer);
-
-        groupSection.appendChild(row);
-
-        // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
-        row.addEventListener('mouseenter', handleMouseEnter);
-        row.addEventListener('mouseleave', handleMouseLeave);
-      });
-
-      resultsList.appendChild(groupSection);
-    }
-  }
-}
-
-
-function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth" // Cela permettra une animation de défilement en douceur
-    });
-}
-
-function handleSearch(event, data) {
-    const searchTerm = event.target.value.toLowerCase();
-    const filteredResults = data.filter(item =>
-        (item.abreviation.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").startsWith(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) ||
-        (item.signification.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").startsWith(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, "")))
-    );
-    applyActiveFilters(filteredResults);
-}
-
-function displayResults(results){
-   resultsList.innerHTML = '';
-  if (results.length === 0) {
-    resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
-    return;
-  }
-
+  
   // Créez un objet pour stocker les résultats groupés par type
   const groupedResults = {};
 
@@ -240,6 +146,28 @@ function displayResults(results){
         // Add the iconAndLinkContainer to the row
         row.appendChild(iconAndLinkContainer);
 
+        // Check if there are multiple significations
+        if (result.significations && Array.isArray(result.significations)) {
+          // Create a container for the significations
+          const descriptionContainer = document.createElement("div");
+          descriptionContainer.classList.add("description-container");
+
+          // Add each signification to the container
+          result.significations.forEach((signification, index) => {
+            const descriptionText = document.createElement("p");
+            descriptionText.innerHTML = `" ${signification} ${result.langue[index]} "`;
+            descriptionContainer.appendChild(descriptionText);
+          });
+
+          // Add the descriptionContainer to the row
+          row.appendChild(descriptionContainer);
+        } else {
+          // If there's only one signification, display it
+          const descriptionText = document.createElement("p");
+          descriptionText.innerHTML = `" ${result.signification} ${result.langue} "`;
+          row.appendChild(descriptionText);
+        }
+
         groupSection.appendChild(row);
 
         // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
@@ -252,6 +180,122 @@ function displayResults(results){
   }
 }
 
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth" // Cela permettra une animation de défilement en douceur
+    });
+}
+
+function handleSearch(event, data) {
+    const searchTerm = event.target.value.toLowerCase();
+    const filteredResults = data.filter(item =>
+        (item.abreviation.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").startsWith(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) ||
+        (item.signification.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").startsWith(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, "")))
+    );
+    applyActiveFilters(filteredResults);
+}
+
+function displayResults(results){
+   resultsList.innerHTML = '';
+  if (results.length === 0) {
+    resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
+    return;
+  }
+
+ 
+  // Créez un objet pour stocker les résultats groupés par type
+  const groupedResults = {};
+
+  results.forEach(result => {
+    const type = (result.type || "SYMBOLE").toUpperCase();
+
+    // Créez un groupe s'il n'existe pas encore
+    if (!groupedResults[type]) {
+      groupedResults[type] = [];
+    }
+
+    // Ajoutez le résultat au groupe correspondant
+    groupedResults[type].push(result);
+  });
+
+  // Parcourez les groupes et ajoutez les résultats à la liste
+  for (const group in groupedResults) {
+    if (groupedResults.hasOwnProperty(group)) {
+      const groupResults = groupedResults[group];
+
+      // Créez une section pour le groupe (type ou "SYMBOLE")
+      const groupSection = document.createElement("div");
+      groupSection.classList.add("type-section");
+      groupSection.innerHTML = `<h2>${group}</h2>`;
+
+      // Ajoutez chaque résultat à la section
+      groupResults.forEach(result => {
+        const row = document.createElement("li");
+        const abbrCell = document.createElement("abbr");
+        abbrCell.textContent = result.abreviation;
+        row.appendChild(abbrCell);
+
+        // Créez un conteneur pour l'icône et le lien
+        const iconAndLinkContainer = document.createElement("div");
+        iconAndLinkContainer.classList.add("icon-link-container");
+
+        if (result.url) {
+          const icon = document.createElement("img");
+          icon.src = "monicone.svg";
+          icon.alt = "Lien externe";
+          icon.style.cursor = "pointer";
+          icon.classList.add("icon-class");
+
+          icon.addEventListener("click", () => {
+            window.open(result.url, "_blank");
+          });
+
+          iconAndLinkContainer.appendChild(icon);
+        }
+
+        // Create a "langue popover" element for both single and multiple significations
+        const languePopover = document.createElement("div");
+        languePopover.classList.add("langue-popover");
+        languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
+        iconAndLinkContainer.appendChild(languePopover);
+
+        // Add the iconAndLinkContainer to the row
+        row.appendChild(iconAndLinkContainer);
+
+        // Check if there are multiple significations
+        if (result.significations && Array.isArray(result.significations)) {
+          // Create a container for the significations
+          const descriptionContainer = document.createElement("div");
+          descriptionContainer.classList.add("description-container");
+
+          // Add each signification to the container
+          result.significations.forEach((signification, index) => {
+            const descriptionText = document.createElement("p");
+            descriptionText.innerHTML = `" ${signification} ${result.langue[index]} "`;
+            descriptionContainer.appendChild(descriptionText);
+          });
+
+          // Add the descriptionContainer to the row
+          row.appendChild(descriptionContainer);
+        } else {
+          // If there's only one signification, display it
+          const descriptionText = document.createElement("p");
+          descriptionText.innerHTML = `" ${result.signification} ${result.langue} "`;
+          row.appendChild(descriptionText);
+        }
+
+        groupSection.appendChild(row);
+
+        // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
+        row.addEventListener('mouseenter', handleMouseEnter);
+        row.addEventListener('mouseleave', handleMouseLeave);
+      });
+
+      resultsList.appendChild(groupSection);
+    }
+  }
+}
 // Ajoutez une fonction pour gérer l'affichage du popover lors du hover
 function handleMouseEnter(event) {
   const row = event.currentTarget;
