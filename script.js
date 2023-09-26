@@ -160,12 +160,19 @@ iconAndLinkContainer.appendChild(icon);
         descriptionContainer.appendChild(iconAndLinkContainer);
         row.appendChild(descriptionContainer);
 
+      } else {
+          // If there's only one meaning, display it
+          const descriptionText = document.createElement("p");
+          descriptionText.innerHTML = `" ${result.significations} ${result.langue} "`;
+          row.appendChild(descriptionText);
+        }
+          
         groupSection.appendChild(row);
 
         // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
         row.addEventListener('mouseenter', handleMouseEnter);
         row.addEventListener('mouseleave', handleMouseLeave);
-      }
+      
       });
 
       resultsList.appendChild(groupSection);
@@ -270,12 +277,18 @@ iconAndLinkContainer.appendChild(icon);
         descriptionContainer.appendChild(iconAndLinkContainer);
         row.appendChild(descriptionContainer);
 
+      } else {
+          // If there's only one meaning, display it
+          const descriptionText = document.createElement("p");
+          descriptionText.innerHTML = `" ${result.significations} ${result.langue} "`;
+          row.appendChild(descriptionText);
+        }
+          
         groupSection.appendChild(row);
 
         // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
         row.addEventListener('mouseenter', handleMouseEnter);
         row.addEventListener('mouseleave', handleMouseLeave);
-      }
       });
 
       resultsList.appendChild(groupSection);
