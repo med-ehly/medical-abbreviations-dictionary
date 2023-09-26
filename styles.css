@@ -144,10 +144,13 @@ header {
   font-variant: small-caps;
 }
 
-/* Diminuer la taille de la police des éléments h2 dans type-section */
 .type-section h2 {
   font-size: 16px;
   margin-bottom: 15px;
+}
+
+.type-section h2:not(:first-child) {
+  margin-top: 20px;
 }
 
 /* Ajoutez ce CSS dans votre feuille de style CSS */
