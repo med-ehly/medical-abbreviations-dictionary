@@ -159,7 +159,7 @@ function displaySearchResults(results) {
         } else {
           // If there's only one meaning, display it
           const descriptionText = document.createElement("p");
-          descriptionText.innerHTML = `" ${result.significations} ${result.langue} "`;
+          descriptionText.innerHTML = `" ${result.signification} ${result.langue} "`;
           row.appendChild(descriptionText);
 
           // Create a "langue popover" element for single significations
@@ -277,7 +277,7 @@ function displayResults(results){
         } else {
           // If there's only one meaning, display it
           const descriptionText = document.createElement("p");
-          descriptionText.innerHTML = `" ${result.significations} ${result.langue} "`;
+          descriptionText.innerHTML = `" ${result.signification} ${result.langue} "`;
           row.appendChild(descriptionText);
 
           // Create a "langue popover" element for single significations
