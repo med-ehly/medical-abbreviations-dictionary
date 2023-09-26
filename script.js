@@ -102,6 +102,8 @@ function displaySearchResults(results) {
   });
 
   // Parcourez les groupes et ajoutez les résultats à la liste
+    let isFirstType = true;
+    
   for (const group in groupedResults) {
     if (groupedResults.hasOwnProperty(group)) {
       const groupResults = groupedResults[group];
@@ -110,9 +112,14 @@ function displaySearchResults(results) {
       const groupSection = document.createElement("div");
       groupSection.classList.add("type-section");
 
-         // Add a separator line before the type name
-    const separator = document.createElement("hr");
-    groupSection.appendChild(separator);
+         // Add a separator line before the type name if it's not the first type
+    if (!isFirstType) {
+      const separator = document.createElement("hr");
+      groupSection.appendChild(separator);
+    } else {
+      // If it's the first type, set the flag to false
+      isFirstType = false;
+    }
         
       groupSection.innerHTML = `<h2>${group}</h2>`;
 
@@ -225,6 +232,8 @@ function displayResults(results){
   });
 
   // Parcourez les groupes et ajoutez les résultats à la liste
+    let isFirstType = true;
+    
   for (const group in groupedResults) {
     if (groupedResults.hasOwnProperty(group)) {
       const groupResults = groupedResults[group];
@@ -233,9 +242,14 @@ function displayResults(results){
       const groupSection = document.createElement("div");
       groupSection.classList.add("type-section");
 
-         // Add a separator line before the type name
-    const separator = document.createElement("hr");
-    groupSection.appendChild(separator);
+       // Add a separator line before the type name if it's not the first type
+    if (!isFirstType) {
+      const separator = document.createElement("hr");
+      groupSection.appendChild(separator);
+    } else {
+      // If it's the first type, set the flag to false
+      isFirstType = false;
+    }
         
       groupSection.innerHTML = `<h2>${group}</h2>`;
 
