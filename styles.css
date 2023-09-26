@@ -144,20 +144,10 @@ header {
   font-variant: small-caps;
 }
 
-/* Apply margin-top to all h2 elements within .type-section */
 .type-section h2 {
   font-size: 16px;
-  margin-bottom: 15px;
-}
-
-/* Reset margin-top for the first h2 within .type-section */
-.type-section h2:first-child {
-  margin-top: 0; /* Reset margin-top for the first h2 */
-}
-
-/* Apply margin-top to all h2 elements except the first one */
-.type-section h2:not(:first-child) {
-  margin-top: 20px;
+  margin-bottom: 30px;
+  margin-top: 30px;
 }
 
 /* Ajoutez ce CSS dans votre feuille de style CSS */
