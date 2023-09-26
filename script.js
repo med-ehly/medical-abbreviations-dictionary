@@ -124,6 +124,9 @@ function displaySearchResults(results) {
 
        // Check if there are multiple significations
         if (result.significations && Array.isArray(result.significations)) {
+            // Initialize isFirstInCategory to true
+  let isFirstInCategory = true;
+            
           // Add each signification to the container
           result.significations.forEach((signification, index) => {
             const descriptionText = document.createElement("p");
@@ -250,6 +253,9 @@ function displayResults(results){
 
        // Check if there are multiple significations
         if (result.significations && Array.isArray(result.significations)) {
+            // Initialize isFirstInCategory to true
+  let isFirstInCategory = true;
+            
           // Add each signification to the container
           result.significations.forEach((signification, index) => {
             const descriptionText = document.createElement("p");
