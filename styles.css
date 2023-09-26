@@ -89,7 +89,8 @@ header {
   box-shadow: 0 0 0 2px rgb(0 0 0 / 12%);
   width: 70%; /* Largeur des résultats */
   margin: 0 auto; /* Centrer horizontalement */
-  margin-top: 20px; /* Ajuster l'espacement par rapport aux lettres */
+  margin-top: 20px;
+  margin-bottom: 20px; 
   text-align: center; /* Centrer le contenu */
 }
 
@@ -109,6 +110,7 @@ header {
   padding-right: 10px;
   padding-top: 5px;
   padding-bottom: 10px;
+  margin-top: 20px; 
   border-top: 1px solid #ccc;
   border-left: 1px solid #ccc; /* Ajouter une bordure à gauche */
   border-right: 1px solid #ccc;
