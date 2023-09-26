@@ -122,18 +122,20 @@ function displaySearchResults(results) {
         const descriptionContainer = document.createElement("div");
         descriptionContainer.classList.add("description-container");
 
-        // Check if there are multiple significations
+       // Check if there are multiple significations
         if (result.significations && Array.isArray(result.significations)) {
           // Add each signification to the container
           result.significations.forEach((signification, index) => {
             const descriptionText = document.createElement("p");
-            descriptionText.innerHTML = `" ${signification} ${result.langue[index]} "`;
+            const langue = result.langue[index]; // Store the langue value in a variable
+            descriptionText.innerHTML = `" ${signification} ${langue} "`;
             descriptionContainer.appendChild(descriptionText);
           });
         } else {
           // If there's only one signification, display it
           const descriptionText = document.createElement("p");
-          descriptionText.innerHTML = `" ${result.signification} ${result.langue[index]}"`;
+          const langue = result.langue; // Store the langue value in a variable
+          descriptionText.innerHTML = `" ${result.signification} ${langue}"`;
           descriptionContainer.appendChild(descriptionText);
         }
 
@@ -239,18 +241,20 @@ function displayResults(results){
         const descriptionContainer = document.createElement("div");
         descriptionContainer.classList.add("description-container");
 
-        // Check if there are multiple significations
+       // Check if there are multiple significations
         if (result.significations && Array.isArray(result.significations)) {
           // Add each signification to the container
           result.significations.forEach((signification, index) => {
             const descriptionText = document.createElement("p");
-            descriptionText.innerHTML = `" ${signification} ${result.langue[index]} "`;
+            const langue = result.langue[index]; // Store the langue value in a variable
+            descriptionText.innerHTML = `" ${signification} ${langue} "`;
             descriptionContainer.appendChild(descriptionText);
           });
         } else {
           // If there's only one signification, display it
           const descriptionText = document.createElement("p");
-          descriptionText.innerHTML = `" ${result.signification} ${result.langue[index]}"`;
+          const langue = result.langue; // Store the langue value in a variable
+          descriptionText.innerHTML = `" ${result.signification} ${langue}"`;
           descriptionContainer.appendChild(descriptionText);
         }
 
