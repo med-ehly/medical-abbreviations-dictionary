@@ -1,12 +1,16 @@
 [
-  {
-    "abreviation": "AVC",
-    "signification": "Accident Vasculaire Cérébral",
-    "categorie": "Neurologie",
-    "type": "Diagnostic",
-    "langue": "(fr)",
-    "url": "http://requin.reg05.rtss.qc.ca/"
-  },
+ {
+  "abreviation": "AVC",
+  "significations": [
+    "Accident Vasculaire Cérébral",
+    "Autre Signification 1",
+    "Autre Signification 2"
+  ],
+  "categorie": "Neurologie",
+  "type": "Diagnostic",
+  "langue": "(fr)",
+  "url": "http://requin.reg05.rtss.qc.ca/"
+},
   {
     "abreviation": "PL",
     "signification": "Ponction Lombaire",
