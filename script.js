@@ -165,6 +165,7 @@ iconAndLinkContainer.appendChild(icon);
         // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
         row.addEventListener('mouseenter', handleMouseEnter);
         row.addEventListener('mouseleave', handleMouseLeave);
+      }
       });
 
       resultsList.appendChild(groupSection);
@@ -274,6 +275,7 @@ iconAndLinkContainer.appendChild(icon);
         // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
         row.addEventListener('mouseenter', handleMouseEnter);
         row.addEventListener('mouseleave', handleMouseLeave);
+      }
       });
 
       resultsList.appendChild(groupSection);
