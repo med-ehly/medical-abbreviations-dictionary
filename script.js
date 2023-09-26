@@ -127,11 +127,15 @@ function displaySearchResults(results) {
           // Add each signification to the container
           result.significations.forEach((signification, index) => {
             const descriptionText = document.createElement("p");
-              // Check if it's the first signification
-    if (index === 0) {
-      // Apply top padding only to the first signification
+              // Check if it's the first signification in the category
+    if (isFirstInCategory) {
+      // Apply top padding only to the first signification in the category
       descriptionText.style.paddingTop = "20px";
+
+      // Set isFirstInCategory to false so that subsequent significations in the same category won't get padding
+      isFirstInCategory = false;
     }
+
             descriptionText.innerHTML = `" ${signification} "`;
             descriptionContainer.appendChild(descriptionText);
           });
@@ -249,11 +253,15 @@ function displayResults(results){
           // Add each signification to the container
           result.significations.forEach((signification, index) => {
             const descriptionText = document.createElement("p");
-              // Check if it's the first signification
-    if (index === 0) {
-      // Apply top padding only to the first signification
+              // Check if it's the first signification in the category
+    if (isFirstInCategory) {
+      // Apply top padding only to the first signification in the category
       descriptionText.style.paddingTop = "20px";
+
+      // Set isFirstInCategory to false so that subsequent significations in the same category won't get padding
+      isFirstInCategory = false;
     }
+
             descriptionText.innerHTML = `" ${signification} "`;
             descriptionContainer.appendChild(descriptionText);
           });
@@ -318,8 +326,8 @@ function handleMouseEnter(event) {
   if (langueContent) {
     // Calculer la position en fonction de l'élément cible
     const rowRect = row.getBoundingClientRect();
-    const top = rowRect.bottom + window.scrollY - 28;
-    const left = rowRect.right + window.scrollX - 35; 
+    const top = rowRect.bottom + window.scrollY - 26;
+    const left = rowRect.right + window.scrollX - 32; 
 
     // Appliquer la position calculée au popover
     popover.style.top = `${top}px`;
