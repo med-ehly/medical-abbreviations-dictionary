@@ -122,11 +122,12 @@ function displaySearchResults(results) {
         const descriptionContainer = document.createElement("div");
         descriptionContainer.classList.add("description-container");
 
-        // Ajoutez la description dans la div description-container
+ // Ajoutez chaque signification dans le conteneur
+  result.significations.forEach((signification, index) => {
 const descriptionText = document.createElement("p");
 descriptionText.innerHTML = `" ${result.signification} "`; 
 descriptionContainer.appendChild(descriptionText);
-
+});
           // Créez un conteneur pour l'icône et le lien
         const iconAndLinkContainer = document.createElement("div");
         iconAndLinkContainer.classList.add("icon-link-container");
