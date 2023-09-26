@@ -127,6 +127,11 @@ function displaySearchResults(results) {
           // Add each signification to the container
           result.significations.forEach((signification, index) => {
             const descriptionText = document.createElement("p");
+              // Check if it's the first signification
+    if (index === 0) {
+      // Apply top padding only to the first signification
+      descriptionText.style.paddingTop = "20px";
+    }
             descriptionText.innerHTML = `" ${signification} "`;
             descriptionContainer.appendChild(descriptionText);
           });
@@ -244,6 +249,11 @@ function displayResults(results){
           // Add each signification to the container
           result.significations.forEach((signification, index) => {
             const descriptionText = document.createElement("p");
+              // Check if it's the first signification
+    if (index === 0) {
+      // Apply top padding only to the first signification
+      descriptionText.style.paddingTop = "20px";
+    }
             descriptionText.innerHTML = `" ${signification} "`;
             descriptionContainer.appendChild(descriptionText);
           });
