@@ -85,9 +85,8 @@ function displaySearchResults(results) {
     resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
     return;
   }
-
-  
-  // Créez un objet pour stocker les résultats groupés par type
+    
+// Créez un objet pour stocker les résultats groupés par type
   const groupedResults = {};
 
   results.forEach(result => {
@@ -119,6 +118,28 @@ function displaySearchResults(results) {
         abbrCell.textContent = result.abreviation;
         row.appendChild(abbrCell);
 
+        // Create a container for the significations
+        const descriptionContainer = document.createElement("div");
+        descriptionContainer.classList.add("description-container");
+
+        // Check if there are multiple significations
+        if (result.significations && Array.isArray(result.significations)) {
+          // Add each signification to the container
+          result.significations.forEach((signification, index) => {
+            const descriptionText = document.createElement("p");
+            descriptionText.innerHTML = `" ${signification} ${result.langue[index]} "`;
+            descriptionContainer.appendChild(descriptionText);
+          });
+        } else {
+          // If there's only one signification, display it
+          const descriptionText = document.createElement("p");
+          descriptionText.innerHTML = `" ${result.signification} ${result.langue} "`;
+          descriptionContainer.appendChild(descriptionText);
+        }
+
+        // Add the descriptionContainer to the row
+        row.appendChild(descriptionContainer);
+
         // Créez un conteneur pour l'icône et le lien
         const iconAndLinkContainer = document.createElement("div");
         iconAndLinkContainer.classList.add("icon-link-container");
@@ -141,32 +162,11 @@ function displaySearchResults(results) {
         const languePopover = document.createElement("div");
         languePopover.classList.add("langue-popover");
         languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
+
         iconAndLinkContainer.appendChild(languePopover);
 
         // Add the iconAndLinkContainer to the row
         row.appendChild(iconAndLinkContainer);
-
-        // Check if there are multiple significations
-        if (result.significations && Array.isArray(result.significations)) {
-          // Create a container for the significations
-          const descriptionContainer = document.createElement("div");
-          descriptionContainer.classList.add("description-container");
-
-          // Add each signification to the container
-          result.significations.forEach((signification, index) => {
-            const descriptionText = document.createElement("p");
-            descriptionText.innerHTML = `" ${signification} ${result.langue[index]} "`;
-            descriptionContainer.appendChild(descriptionText);
-          });
-
-          // Add the descriptionContainer to the row
-          row.appendChild(descriptionContainer);
-        } else {
-          // If there's only one signification, display it
-          const descriptionText = document.createElement("p");
-          descriptionText.innerHTML = `" ${result.signification} ${result.langue} "`;
-          row.appendChild(descriptionText);
-        }
 
         groupSection.appendChild(row);
 
@@ -202,9 +202,8 @@ function displayResults(results){
     resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
     return;
   }
-
- 
-  // Créez un objet pour stocker les résultats groupés par type
+    
+// Créez un objet pour stocker les résultats groupés par type
   const groupedResults = {};
 
   results.forEach(result => {
@@ -236,6 +235,28 @@ function displayResults(results){
         abbrCell.textContent = result.abreviation;
         row.appendChild(abbrCell);
 
+        // Create a container for the significations
+        const descriptionContainer = document.createElement("div");
+        descriptionContainer.classList.add("description-container");
+
+        // Check if there are multiple significations
+        if (result.significations && Array.isArray(result.significations)) {
+          // Add each signification to the container
+          result.significations.forEach((signification, index) => {
+            const descriptionText = document.createElement("p");
+            descriptionText.innerHTML = `" ${signification} ${result.langue[index]} "`;
+            descriptionContainer.appendChild(descriptionText);
+          });
+        } else {
+          // If there's only one signification, display it
+          const descriptionText = document.createElement("p");
+          descriptionText.innerHTML = `" ${result.signification} ${result.langue} "`;
+          descriptionContainer.appendChild(descriptionText);
+        }
+
+        // Add the descriptionContainer to the row
+        row.appendChild(descriptionContainer);
+
         // Créez un conteneur pour l'icône et le lien
         const iconAndLinkContainer = document.createElement("div");
         iconAndLinkContainer.classList.add("icon-link-container");
@@ -258,32 +279,11 @@ function displayResults(results){
         const languePopover = document.createElement("div");
         languePopover.classList.add("langue-popover");
         languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
+
         iconAndLinkContainer.appendChild(languePopover);
 
         // Add the iconAndLinkContainer to the row
         row.appendChild(iconAndLinkContainer);
-
-        // Check if there are multiple significations
-        if (result.significations && Array.isArray(result.significations)) {
-          // Create a container for the significations
-          const descriptionContainer = document.createElement("div");
-          descriptionContainer.classList.add("description-container");
-
-          // Add each signification to the container
-          result.significations.forEach((signification, index) => {
-            const descriptionText = document.createElement("p");
-            descriptionText.innerHTML = `" ${signification} ${result.langue[index]} "`;
-            descriptionContainer.appendChild(descriptionText);
-          });
-
-          // Add the descriptionContainer to the row
-          row.appendChild(descriptionContainer);
-        } else {
-          // If there's only one signification, display it
-          const descriptionText = document.createElement("p");
-          descriptionText.innerHTML = `" ${result.signification} ${result.langue} "`;
-          row.appendChild(descriptionText);
-        }
 
         groupSection.appendChild(row);
 
@@ -296,6 +296,7 @@ function displayResults(results){
     }
   }
 }
+
 // Ajoutez une fonction pour gérer l'affichage du popover lors du hover
 function handleMouseEnter(event) {
   const row = event.currentTarget;
