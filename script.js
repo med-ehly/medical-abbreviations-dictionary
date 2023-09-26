@@ -123,7 +123,7 @@ function displaySearchResults(results) {
         descriptionContainer.classList.add("description-container");
 
         // Check if there are multiple significations
-        if (result.significations && Array.isArray(result.significations)) {
+        if (result.signification && Array.isArray(result.signification)) {
           // Add each signification to the container
           result.significations.forEach((signification, index) => {
             const descriptionText = document.createElement("p");
@@ -133,7 +133,7 @@ function displaySearchResults(results) {
         } else {
           // If there's only one signification, display it
           const descriptionText = document.createElement("p");
-          descriptionText.innerHTML = `" ${result.signification} ${result.langue} "`;
+          descriptionText.innerHTML = `" ${result.signification} ${result.langue[index]}"`;
           descriptionContainer.appendChild(descriptionText);
         }
 
@@ -240,7 +240,7 @@ function displayResults(results){
         descriptionContainer.classList.add("description-container");
 
         // Check if there are multiple significations
-        if (result.significations && Array.isArray(result.significations)) {
+        if (result.signification && Array.isArray(result.signification)) {
           // Add each signification to the container
           result.significations.forEach((signification, index) => {
             const descriptionText = document.createElement("p");
@@ -250,7 +250,7 @@ function displayResults(results){
         } else {
           // If there's only one signification, display it
           const descriptionText = document.createElement("p");
-          descriptionText.innerHTML = `" ${result.signification} ${result.langue} "`;
+          descriptionText.innerHTML = `" ${result.signification} ${result.langue[index]} "`;
           descriptionContainer.appendChild(descriptionText);
         }
 
