@@ -38,7 +38,10 @@
   },
   {
     "abreviation": "x",
-    "signification": "Nombre de fois / Par",
+    "significations": [
+     "Nombre de fois", 
+     "Par"
+     ],
     "symbole": "SYMBOLE"
   },
   {
@@ -53,12 +56,20 @@
   },
   {
     "abreviation": "Ø",
-    "signification": "Sans / Absence de / Aucun",
+    "significations": [
+     "Sans", 
+     "Absence de",
+     "Aucun"
+     ], 
     "symbole": "SYMBOLE"
   },
   {
     "abreviation": "♥",
-    "signification": "Cardio / Cardiaque / Coeur",
+   "significations": [
+     "Cardio", 
+     "Cardiaque",
+     "Coeur"
+     ],
     "symbole": "SYMBOLE"
   },
   {
@@ -78,12 +89,18 @@
   },
   {
     "abreviation": "†",
-    "signification": "Décès / Mort",
+    "significations": [
+     "Décès", 
+     "Mort"
+     ],
     "symbole": "SYMBOLE"
   },
   {
     "abreviation": "+++",
-    "signification": "Important / Significatif",
+    "significations": [
+     "Important", 
+     "Significatif"
+     ],
     "symbole": "SYMBOLE"
   },
   {
@@ -98,7 +115,10 @@
   },
   {
     "abreviation": "□",
-    "signification": "Demandé / Prescrit",
+    "significations": [
+     "Demandé", 
+     "Prescrit"
+     ],
     "symbole": "SYMBOLE"
   },
   {
@@ -108,12 +128,19 @@
   },
   {
     "abreviation": "→",
-    "signification": "Aboutit à / Entraine / Implique la conséquence",
+    "significations": [
+     "Aboutit à", 
+     "Entraîne",
+     "Implique la conséquence"
+     ],
     "symbole": "SYMBOLE"
   },
   {
     "abreviation": "=",
-    "signification": "Continu / Implique l’égalité",
+    "significations": [
+     "Continu", 
+     "Implique l'égalité"
+     ],
     "symbole": "SYMBOLE"
   },
   {
@@ -123,7 +150,11 @@
   },
   {
     "abreviation": "≈",
-    "signification": "Environ / Presque / Peu différent de",
+    "significations": [
+     "Environ", 
+     "Presque",
+     "Peu différent de"
+     ],
     "symbole": "SYMBOLE"
   },
   {
@@ -133,7 +164,10 @@
   },
   {
     "abreviation": "I",
-    "signification": "Primaire / Primitif",
+    "significations": [
+     "Primaire", 
+     "Primitif"
+     ],
     "symbole": "SYMBOLE"
   },
   {
@@ -143,17 +177,26 @@
   },
   {
     "abreviation": "(+)",
-    "signification": "Impliquer l’excès / Plus positif",
+    "significations": [
+     "Implique l'excès", 
+     "Plus positif"
+     ],
     "symbole": "SYMBOLE"
   },
   {
     "abreviation": "(-)",
-    "signification": "Implique le manque / Moins négatif",
+    "significations": [
+     "Implique le manque", 
+     "Moins négatif"
+     ],
     "symbole": "SYMBOLE"
   },
   {
     "abreviation": "±",
-    "signification": "Plus ou moins / Soit positif soit négatif",
+    "significations": [
+     "Plus ou moins", 
+     "soit positif, soit négatif"
+     ],
     "symbole": "SYMBOLE"
   },
   {
@@ -163,17 +206,26 @@
   },
   {
     "abreviation": "‘",
-    "signification": "Minute / Angle",
+    "significations": [
+     "Minute", 
+     "Angle"
+     ],
     "symbole": "SYMBOLE"
   },
   {
     "abreviation": ">",
-    "signification": "Supérieur à / Plus grand que",
+    "significations": [
+     "Supérieur à", 
+     "Plus grand que"
+     ],
     "symbole": "SYMBOLE"
   },
   {
     "abreviation": "<",
-    "signification": "Inférieur à / Plus petit que",
+    "significations": [
+     "Inférieur à", 
+     "Plus petit que"
+     ],
     "symbole": "SYMBOLE"
   },
   {
@@ -218,7 +270,10 @@
   },
   {
     "abreviation": "(a",
-    "signification": "Jusqu’à / Environ",
+    "significations": [
+     "Jusqu'à", 
+     "Environ"
+     ],
     "symbole": "SYMBOLE"
   },
   {
@@ -238,12 +293,18 @@
   },
   {
     "abreviation": "XY-Y",
-    "signification": "Homme / Hétérochromosome mâle",
+    "significations": [
+     "Homme", 
+     "Hétérochromosome mâle"
+     ],
     "symbole": "SYMBOLE"
   },
   {
     "abreviation": "XX-X",
-    "signification": "Femme / Hétérochromosome femelle",
+    "significations": [
+     "Femme", 
+     "Hétérochromosome femelle"
+     ],
     "symbole": "SYMBOLE"
   },
   {
