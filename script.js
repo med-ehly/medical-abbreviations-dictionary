@@ -118,16 +118,19 @@ function displaySearchResults(results) {
         abbrCell.textContent = result.abreviation;
         row.appendChild(abbrCell);
           
-        // Créez un conteneur pour la description
-        const descriptionContainer = document.createElement("div");
-        descriptionContainer.classList.add("description-container");
+       // Vérifiez que la propriété 'significations' existe dans l'objet 'result'
+  if (result.significations && Array.isArray(result.significations)) {
+    // Créez un conteneur pour les significations
+    const descriptionContainer = document.createElement("div");
+    descriptionContainer.classList.add("description-container");
 
- // Ajoutez chaque signification dans le conteneur
-  result.significations.forEach((signification, index) => {
-  const descriptionText = document.createElement("p");
-descriptionText.innerHTML = `" ${result.signification} "`; 
-descriptionContainer.appendChild(descriptionText);
-});
+    // Ajoutez chaque signification dans le conteneur
+    result.significations.forEach((signification, index) => {
+      const descriptionText = document.createElement("p");
+      descriptionText.innerHTML = `" ${signification} ${result.langue[index]} "`;
+      descriptionContainer.appendChild(descriptionText);
+    });
+
           // Créez un conteneur pour l'icône et le lien
         const iconAndLinkContainer = document.createElement("div");
         iconAndLinkContainer.classList.add("icon-link-container");
@@ -224,16 +227,18 @@ function displayResults(results){
         abbrCell.textContent = result.abreviation;
         row.appendChild(abbrCell);
           
-        // Créez un conteneur pour la description
-        const descriptionContainer = document.createElement("div");
-        descriptionContainer.classList.add("description-container");
+        // Vérifiez que la propriété 'significations' existe dans l'objet 'result'
+  if (result.significations && Array.isArray(result.significations)) {
+    // Créez un conteneur pour les significations
+    const descriptionContainer = document.createElement("div");
+    descriptionContainer.classList.add("description-container");
 
-         // Ajoutez chaque signification dans le conteneur
-  result.significations.forEach((signification, index) => {
-  const descriptionText = document.createElement("p");
-descriptionText.innerHTML = `" ${result.signification} "`; 
-descriptionContainer.appendChild(descriptionText);
-});
+    // Ajoutez chaque signification dans le conteneur
+    result.significations.forEach((signification, index) => {
+      const descriptionText = document.createElement("p");
+      descriptionText.innerHTML = `" ${signification} ${result.langue[index]} "`;
+      descriptionContainer.appendChild(descriptionText);
+    });
 
           // Créez un conteneur pour l'icône et le lien
         const iconAndLinkContainer = document.createElement("div");
