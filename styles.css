@@ -128,8 +128,8 @@ header {
   flex: 1; /* Allow the abbr to take available space */
   text-align: left; /* Align text to the left */
   margin-right: 10px; /* Add some spacing between abbr and p */
-  font-size: xx-large;
-  font-weight: bold;
+  font-size: 25px;
+  font-weight: bolder;
   padding: 10px;
 }
 
