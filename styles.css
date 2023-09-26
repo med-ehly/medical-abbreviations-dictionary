@@ -146,7 +146,8 @@ header {
 
 /* Diminuer la taille de la police des éléments h2 dans type-section */
 .type-section h2 {
-  font-size: 16px; /* Modifiez la taille de la police selon vos préférences */
+  font-size: 16px;
+  margin-bottom: 15px;
 }
 
 /* Ajoutez ce CSS dans votre feuille de style CSS */
