@@ -127,7 +127,7 @@ function displaySearchResults(results) {
           // Add each signification to the container
           result.significations.forEach((signification, index) => {
             const descriptionText = document.createElement("p");
-            descriptionText.innerHTML = `" ${signification} ${result.langue[index]} "`;
+            descriptionText.innerHTML = `" ${result.signification}"`;
             descriptionContainer.appendChild(descriptionText);
           });
         } else {
@@ -244,7 +244,7 @@ function displayResults(results){
           // Add each signification to the container
           result.significations.forEach((signification, index) => {
             const descriptionText = document.createElement("p");
-            descriptionText.innerHTML = `" ${signification} ${result.langue[index]} "`;
+            descriptionText.innerHTML = `" ${result.signification}"`;
             descriptionContainer.appendChild(descriptionText);
           });
         } else {
