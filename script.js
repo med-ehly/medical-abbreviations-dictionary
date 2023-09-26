@@ -127,15 +127,13 @@ function displaySearchResults(results) {
           // Add each signification to the container
           result.significations.forEach((signification, index) => {
             const descriptionText = document.createElement("p");
-            const langue = result.langue[index]; // Store the langue value in a variable
-            descriptionText.innerHTML = `" ${signification} ${langue} "`;
+            descriptionText.innerHTML = `" ${signification} ${result.langue[index]} "`;
             descriptionContainer.appendChild(descriptionText);
           });
         } else {
           // If there's only one signification, display it
           const descriptionText = document.createElement("p");
-          const langue = result.langue; // Store the langue value in a variable
-          descriptionText.innerHTML = `" ${result.signification} ${langue}"`;
+          descriptionText.innerHTML = `" ${result.signification}"`;
           descriptionContainer.appendChild(descriptionText);
         }
 
@@ -246,15 +244,13 @@ function displayResults(results){
           // Add each signification to the container
           result.significations.forEach((signification, index) => {
             const descriptionText = document.createElement("p");
-            const langue = result.langue[index]; // Store the langue value in a variable
-            descriptionText.innerHTML = `" ${signification} ${langue} "`;
+            descriptionText.innerHTML = `" ${signification} ${result.langue[index]} "`;
             descriptionContainer.appendChild(descriptionText);
           });
         } else {
           // If there's only one signification, display it
           const descriptionText = document.createElement("p");
-          const langue = result.langue; // Store the langue value in a variable
-          descriptionText.innerHTML = `" ${result.signification} ${langue}"`;
+          descriptionText.innerHTML = `" ${result.signification}"`;
           descriptionContainer.appendChild(descriptionText);
         }
 
