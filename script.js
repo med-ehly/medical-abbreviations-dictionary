@@ -124,7 +124,7 @@ function displaySearchResults(results) {
 
  // Ajoutez chaque signification dans le conteneur
   result.significations.forEach((signification, index) => {
-const descriptionText = document.createElement("p");
+  const descriptionText = document.createElement("p");
 descriptionText.innerHTML = `" ${result.signification} "`; 
 descriptionContainer.appendChild(descriptionText);
 });
@@ -228,10 +228,12 @@ function displayResults(results){
         const descriptionContainer = document.createElement("div");
         descriptionContainer.classList.add("description-container");
 
-        // Ajoutez la description dans la div description-container
-const descriptionText = document.createElement("p");
+         // Ajoutez chaque signification dans le conteneur
+  result.significations.forEach((signification, index) => {
+  const descriptionText = document.createElement("p");
 descriptionText.innerHTML = `" ${result.signification} "`; 
 descriptionContainer.appendChild(descriptionText);
+});
 
           // Créez un conteneur pour l'icône et le lien
         const iconAndLinkContainer = document.createElement("div");
