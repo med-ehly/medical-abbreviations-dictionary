@@ -101,18 +101,18 @@ function displaySearchResults(results) {
     groupedResults[type].push(result);
   });
 
-  // Parcourez les groupes et ajoutez les résultats à la liste
-    let isFirstType = true;
-    
-  for (const group in groupedResults) {
-    if (groupedResults.hasOwnProperty(group)) {
-      const groupResults = groupedResults[group];
+ // Parcourez les groupes et ajoutez les résultats à la liste
+let isFirstType = true; // Initialize a flag to track the first type
 
-      // Créez une section pour le groupe (type ou "SYMBOLE")
-      const groupSection = document.createElement("div");
-      groupSection.classList.add("type-section");
+for (const group in groupedResults) {
+  if (groupedResults.hasOwnProperty(group)) {
+    const groupResults = groupedResults[group];
 
-         // Add a separator line before the type name if it's not the first type
+    // Créez une section pour le groupe (type ou "SYMBOLE")
+    const groupSection = document.createElement("div");
+    groupSection.classList.add("type-section");
+
+    // Add a separator line before the type name if it's not the first type
     if (!isFirstType) {
       const separator = document.createElement("hr");
       groupSection.appendChild(separator);
@@ -120,8 +120,8 @@ function displaySearchResults(results) {
       // If it's the first type, set the flag to false
       isFirstType = false;
     }
-        
-      groupSection.innerHTML = `<h2>${group}</h2>`;
+
+    groupSection.innerHTML = `<h2>${group}</h2>`;
 
       // Ajoutez chaque résultat à la section
       groupResults.forEach(result => {
@@ -231,18 +231,18 @@ function displayResults(results){
     groupedResults[type].push(result);
   });
 
-  // Parcourez les groupes et ajoutez les résultats à la liste
-    let isFirstType = true;
-    
-  for (const group in groupedResults) {
-    if (groupedResults.hasOwnProperty(group)) {
-      const groupResults = groupedResults[group];
+ // Parcourez les groupes et ajoutez les résultats à la liste
+let isFirstType = true; // Initialize a flag to track the first type
 
-      // Créez une section pour le groupe (type ou "SYMBOLE")
-      const groupSection = document.createElement("div");
-      groupSection.classList.add("type-section");
+for (const group in groupedResults) {
+  if (groupedResults.hasOwnProperty(group)) {
+    const groupResults = groupedResults[group];
 
-       // Add a separator line before the type name if it's not the first type
+    // Créez une section pour le groupe (type ou "SYMBOLE")
+    const groupSection = document.createElement("div");
+    groupSection.classList.add("type-section");
+
+    // Add a separator line before the type name if it's not the first type
     if (!isFirstType) {
       const separator = document.createElement("hr");
       groupSection.appendChild(separator);
@@ -250,8 +250,8 @@ function displayResults(results){
       // If it's the first type, set the flag to false
       isFirstType = false;
     }
-        
-      groupSection.innerHTML = `<h2>${group}</h2>`;
+
+    groupSection.innerHTML = `<h2>${group}</h2>`;
 
       // Ajoutez chaque résultat à la section
       groupResults.forEach(result => {
