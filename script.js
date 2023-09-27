@@ -202,10 +202,30 @@ function scrollToTop() {
 
 function handleSearch(event, data) {
     const searchTerm = event.target.value.toLowerCase();
-    const filteredResults = data.filter(item =>
-        (item.abreviation.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").startsWith(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) ||
-        (item.signification.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").startsWith(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, "")))
-    );
+    const filteredResults = data.filter(item => {
+        // Vérifiez d'abord si item.abreviation est défini avant d'appeler toLowerCase()
+        const abbreviation = item.abreviation || "";
+        // Vérifiez d'abord si item.signification est défini avant d'appeler toLowerCase()
+        const signification = item.signification || "";
+
+        // Vérifiez si l'abréviation ou une des significations commence par le terme de recherche
+        const abbreviationMatch = abbreviation
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .startsWith(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+        
+        const significationMatch = item.significations && Array.isArray(item.significations) &&
+            item.significations.some(signification => 
+                signification
+                    .toLowerCase()
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "")
+                    .startsWith(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
+            );
+
+        return abbreviationMatch || significationMatch;
+    });
     applyActiveFilters(filteredResults);
 }
 
