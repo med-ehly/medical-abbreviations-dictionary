@@ -203,30 +203,36 @@ function scrollToTop() {
 function handleSearch(event, data) {
     const searchTerm = event.target.value.toLowerCase();
     const filteredResults = data.filter(item => {
-        // Vérifiez d'abord si item.abreviation est défini avant d'appeler toLowerCase()
-        const abbreviation = item.abreviation || "";
-        // Vérifiez d'abord si item.signification est défini avant d'appeler toLowerCase()
-        const signification = item.signification || "";
+        // Vérifiez si le terme de recherche est contenu dans l'abréviation ou la signification
+        const abbreviationMatch = abbreviationMatches(item.abreviation, searchTerm);
+        const significationMatch = significationMatches(item.signification, searchTerm);
 
-        // Vérifiez si l'abréviation ou une des significations commence par le terme de recherche
-        const abbreviationMatch = abbreviation
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .startsWith(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
-        
-        const significationMatch = item.significations && Array.isArray(item.significations) &&
-            item.significations.some(signification => 
-                signification
-                    .toLowerCase()
-                    .normalize("NFD")
-                    .replace(/[\u0300-\u036f]/g, "")
-                    .startsWith(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
-            );
+        // Vérifiez si les filtres sont actifs et si l'élément correspond aux filtres
+        const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
+        const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
 
-        return abbreviationMatch || significationMatch;
+        // Retournez le résultat uniquement si la recherche et les filtres correspondent
+        return (abbreviationMatch || significationMatch) && categoryMatches && typeMatches;
     });
     applyActiveFilters(filteredResults);
+}
+
+function abbreviationMatches(abbreviation, searchTerm) {
+    if (!abbreviation) return false;
+    return abbreviation
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .includes(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+}
+
+function significationMatches(signification, searchTerm) {
+    if (!signification) return false;
+    return signification
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .includes(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
 }
 
 function displayResults(results){
