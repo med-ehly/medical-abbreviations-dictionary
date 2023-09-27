@@ -206,15 +206,27 @@ function handleSearch(event, data) {
         // Vérifiez si le terme de recherche est contenu dans l'abréviation ou la signification
         const abbreviationMatch = abbreviationMatches(item.abreviation, searchTerm);
         const significationMatch = significationMatches(item.signification, searchTerm);
+        const significationsMatch = significationsMatches(item.significations, searchTerm);
+
 
         // Vérifiez si les filtres sont actifs et si l'élément correspond aux filtres
         const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
         const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
 
         // Retournez le résultat uniquement si la recherche et les filtres correspondent
-        return (abbreviationMatch || significationMatch) && categoryMatches && typeMatches;
+        return (abbreviationMatch || significationMatch || significationsMatch) && categoryMatches && typeMatches;
     });
     applyActiveFilters(filteredResults);
+}
+function significationsMatches(significations, searchTerm) {
+    if (!significations || !Array.isArray(significations)) return false;
+    return significations.some(signification =>
+        signification
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .includes(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
+    );
 }
 
 function abbreviationMatches(abbreviation, searchTerm) {
@@ -234,6 +246,7 @@ function significationMatches(signification, searchTerm) {
         .replace(/[\u0300-\u036f]/g, "")
         .includes(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
 }
+
 
 function displayResults(results){
    resultsList.innerHTML = '';
