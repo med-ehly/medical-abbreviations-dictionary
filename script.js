@@ -140,13 +140,13 @@ for (const group in groupedResults) {
           // Add each signification to the container
           result.significations.forEach((signification, index) => {
             const descriptionText = document.createElement("p");
-            descriptionText.innerHTML = `› ${signification}`;
+            descriptionText.innerHTML = `↠ ${signification}`;
             descriptionContainer.appendChild(descriptionText);
           });
         } else {
           // If there's only one signification, display it
           const descriptionText = document.createElement("p");
-          descriptionText.innerHTML = `› ${result.signification}`;
+          descriptionText.innerHTML = `↠ ${result.signification}`;
           descriptionContainer.appendChild(descriptionText);
         }
 
@@ -270,13 +270,13 @@ for (const group in groupedResults) {
           // Add each signification to the container
           result.significations.forEach((signification, index) => {
             const descriptionText = document.createElement("p");
-            descriptionText.innerHTML = `› ${signification}`;
+            descriptionText.innerHTML = `↠ ${signification}`;
             descriptionContainer.appendChild(descriptionText);
           });
         } else {
           // If there's only one signification, display it
           const descriptionText = document.createElement("p");
-          descriptionText.innerHTML = `› ${result.signification}`;
+          descriptionText.innerHTML = `↠ ${result.signification}`;
           descriptionContainer.appendChild(descriptionText);
         }
 
