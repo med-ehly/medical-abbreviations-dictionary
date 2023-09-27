@@ -142,12 +142,14 @@ header {
   font-size: medium;
   padding: 10px;
   font-variant: small-caps;
+  font-family: Arial, sans-serif;
 }
 
 .type-section h2 {
-  font-size: 16px;
+  font-size: 20px;
   margin-bottom: 30px;
   margin-top: 30px;
+  font-family: Arial, sans-serif;
 }
 
 /* Ajoutez ce CSS dans votre feuille de style CSS */
@@ -164,6 +166,7 @@ header {
   padding: 3px;
   z-index: 1;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
 }
 
 .description-container {
@@ -183,6 +186,7 @@ table td {
 .description-text {
     margin: 0;
     padding-right: 10px; /* Espacement entre la signification et l'icône */
+  font-family: Arial, sans-serif;
 }
 
 .icon-link-container {
@@ -203,7 +207,7 @@ table td {
 }
 
 .type-section li abbr {
-    font-weight: bold; /* Mettez en gras l'abréviation */
+    font-weight: bolder; /* Mettez en gras l'abréviation */
 }
 
 .type-section li .description-container p {
