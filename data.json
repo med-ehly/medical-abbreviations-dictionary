@@ -12,7 +12,11 @@
     "signification": "Ponction Lombaire",
     "categorie": "Neurologie",
     "type": "Diagnostic",
-    "langue": "(eng)"
+    "langue": "(eng)",
+     "urls": [
+      "http://example1.com",
+      "http://example2.com"
+    ]
   },
  {
     "abreviation": "a.",
