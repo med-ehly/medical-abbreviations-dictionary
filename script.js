@@ -88,49 +88,28 @@ function displaySearchResults(results) {
   }
 
   results.forEach(result => {
-    const row = document.createElement("li");
-    const abbrCell = document.createElement("abbr");
-    abbrCell.textContent = result.abreviation;
-    row.appendChild(abbrCell);
-
     const groupSection = document.createElement("div");
     groupSection.classList.add("type-section");
 
-    groupSection.innerHTML = `<h2>${result.type || "SYMBOLE"}</h2>`;
+    const typeHeading = document.createElement("h2");
+    typeHeading.textContent = result.type || "SYMBOLE";
+    groupSection.appendChild(typeHeading);
 
-    const descriptionContainer = document.createElement("div");
-    descriptionContainer.classList.add("description-container");
+    const resultList = document.createElement("ul"); // Utilisation d'une liste non ordonnée pour les résultats
+    resultList.classList.add("result-list");
 
-    if (result.significations && Array.isArray(result.significations)) {
-      result.significations.forEach(signification => {
-        const descriptionText = document.createElement("p");
-        descriptionText.innerHTML = `➤ ${signification.signification}`;
-        descriptionContainer.appendChild(descriptionText);
+    result.significations.forEach(signification => {
+      const listItem = document.createElement("li");
+      listItem.classList.add("result-item");
 
-        if (signification.url) {
-          const iconAndLinkContainer = document.createElement("div");
-          iconAndLinkContainer.classList.add("icon-link-container");
-          const icon = document.createElement("img");
-          icon.src = "monicone.svg";
-          icon.alt = "Lien externe";
-          icon.style.cursor = "pointer";
-          icon.classList.add("icon-class");
+      const descriptionText = document.createElement("p");
+      descriptionText.innerHTML = `➤ ${signification.signification}`;
+      listItem.appendChild(descriptionText);
 
-          icon.addEventListener("click", () => {
-            window.open(signification.url, "_blank");
-          });
+      if (signification.url) {
+        const iconContainer = document.createElement("div");
+        iconContainer.classList.add("icon-container");
 
-          iconAndLinkContainer.appendChild(icon);
-          descriptionContainer.appendChild(iconAndLinkContainer);
-        }
-      });
-    }
-
-    const iconAndLinkContainer = document.createElement("div");
-    iconAndLinkContainer.classList.add("icon-link-container");
-
-    if (result.urls && Array.isArray(result.urls)) {
-      result.urls.forEach(url => {
         const icon = document.createElement("img");
         icon.src = "monicone.svg";
         icon.alt = "Lien externe";
@@ -138,41 +117,21 @@ function displaySearchResults(results) {
         icon.classList.add("icon-class");
 
         icon.addEventListener("click", () => {
-          window.open(url, "_blank");
+          window.open(signification.url, "_blank");
         });
 
-        iconAndLinkContainer.appendChild(icon);
-      });
-    } else if (result.url) {
-      const icon = document.createElement("img");
-      icon.src = "monicone.svg";
-      icon.alt = "Lien externe";
-      icon.style.cursor = "pointer";
-      icon.classList.add("icon-class");
+        iconContainer.appendChild(icon);
+        listItem.appendChild(iconContainer);
+      }
 
-      icon.addEventListener("click", () => {
-        window.open(result.url, "_blank");
-      });
+      resultList.appendChild(listItem);
+    });
 
-      iconAndLinkContainer.appendChild(icon);
-    }
-
-    const languePopover = document.createElement("div");
-    languePopover.classList.add("langue-popover");
-    languePopover.textContent = result.langue;
-
-    iconAndLinkContainer.appendChild(languePopover);
-
-    row.appendChild(descriptionContainer);
-    row.appendChild(iconAndLinkContainer);
-    groupSection.appendChild(row);
-
-    row.addEventListener('mouseenter', handleMouseEnter);
-    row.addEventListener('mouseleave', handleMouseLeave);
-
+    groupSection.appendChild(resultList);
     resultsList.appendChild(groupSection);
   });
 }
+
 
 
 function scrollToTop() {
@@ -238,49 +197,28 @@ function displayResults(results){
   }
     
  results.forEach(result => {
-    const row = document.createElement("li");
-    const abbrCell = document.createElement("abbr");
-    abbrCell.textContent = result.abreviation;
-    row.appendChild(abbrCell);
-
     const groupSection = document.createElement("div");
     groupSection.classList.add("type-section");
 
-    groupSection.innerHTML = `<h2>${result.type || "SYMBOLE"}</h2>`;
+    const typeHeading = document.createElement("h2");
+    typeHeading.textContent = result.type || "SYMBOLE";
+    groupSection.appendChild(typeHeading);
 
-    const descriptionContainer = document.createElement("div");
-    descriptionContainer.classList.add("description-container");
+    const resultList = document.createElement("ul"); // Utilisation d'une liste non ordonnée pour les résultats
+    resultList.classList.add("result-list");
 
-    if (result.significations && Array.isArray(result.significations)) {
-      result.significations.forEach(signification => {
-        const descriptionText = document.createElement("p");
-        descriptionText.innerHTML = `➤ ${signification.signification}`;
-        descriptionContainer.appendChild(descriptionText);
+    result.significations.forEach(signification => {
+      const listItem = document.createElement("li");
+      listItem.classList.add("result-item");
 
-        if (signification.url) {
-          const iconAndLinkContainer = document.createElement("div");
-          iconAndLinkContainer.classList.add("icon-link-container");
-          const icon = document.createElement("img");
-          icon.src = "monicone.svg";
-          icon.alt = "Lien externe";
-          icon.style.cursor = "pointer";
-          icon.classList.add("icon-class");
+      const descriptionText = document.createElement("p");
+      descriptionText.innerHTML = `➤ ${signification.signification}`;
+      listItem.appendChild(descriptionText);
 
-          icon.addEventListener("click", () => {
-            window.open(signification.url, "_blank");
-          });
+      if (signification.url) {
+        const iconContainer = document.createElement("div");
+        iconContainer.classList.add("icon-container");
 
-          iconAndLinkContainer.appendChild(icon);
-          descriptionContainer.appendChild(iconAndLinkContainer);
-        }
-      });
-    }
-
-    const iconAndLinkContainer = document.createElement("div");
-    iconAndLinkContainer.classList.add("icon-link-container");
-
-    if (result.urls && Array.isArray(result.urls)) {
-      result.urls.forEach(url => {
         const icon = document.createElement("img");
         icon.src = "monicone.svg";
         icon.alt = "Lien externe";
@@ -288,38 +226,17 @@ function displayResults(results){
         icon.classList.add("icon-class");
 
         icon.addEventListener("click", () => {
-          window.open(url, "_blank");
+          window.open(signification.url, "_blank");
         });
 
-        iconAndLinkContainer.appendChild(icon);
-      });
-    } else if (result.url) {
-      const icon = document.createElement("img");
-      icon.src = "monicone.svg";
-      icon.alt = "Lien externe";
-      icon.style.cursor = "pointer";
-      icon.classList.add("icon-class");
+        iconContainer.appendChild(icon);
+        listItem.appendChild(iconContainer);
+      }
 
-      icon.addEventListener("click", () => {
-        window.open(result.url, "_blank");
-      });
+      resultList.appendChild(listItem);
+    });
 
-      iconAndLinkContainer.appendChild(icon);
-    }
-
-    const languePopover = document.createElement("div");
-    languePopover.classList.add("langue-popover");
-    languePopover.textContent = result.langue;
-
-    iconAndLinkContainer.appendChild(languePopover);
-
-    row.appendChild(descriptionContainer);
-    row.appendChild(iconAndLinkContainer);
-    groupSection.appendChild(row);
-
-    row.addEventListener('mouseenter', handleMouseEnter);
-    row.addEventListener('mouseleave', handleMouseLeave);
-
+    groupSection.appendChild(resultList);
     resultsList.appendChild(groupSection);
   });
 }
