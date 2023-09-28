@@ -142,33 +142,61 @@ function displaySearchResults(results) {
             descriptionText.innerHTML = `➤ ${signification}`;
             descriptionContainer.appendChild(descriptionText);
 
-            // Create an icon and link container for each signification
-            const iconAndLinkContainer = document.createElement("div");
-            iconAndLinkContainer.classList.add("icon-link-container");
+           // Create an icon and link container for each signification
+if (result.urls && Array.isArray(result.urls)) {
+  result.urls.forEach((url, index) => {
+    const iconAndLinkContainer = document.createElement("div");
+    iconAndLinkContainer.classList.add("icon-link-container");
 
-            if (result.url) {
-              const icon = document.createElement("img");
-              icon.src = "monicone.svg";
-              icon.alt = "Lien externe";
-              icon.style.cursor = "pointer";
-              icon.classList.add("icon-class");
+    const icon = document.createElement("img");
+    icon.src = "monicone.svg";
+    icon.alt = "Lien externe";
+    icon.style.cursor = "pointer";
+    icon.classList.add("icon-class");
 
-              icon.addEventListener("click", () => {
-                window.open(result.url, "_blank");
-              });
+    icon.addEventListener("click", () => {
+      window.open(url, "_blank");
+    });
 
-              iconAndLinkContainer.appendChild(icon);
-            }
+    iconAndLinkContainer.appendChild(icon);
 
-            // Create a "langue popover" element for each signification
-            const languePopover = document.createElement("div");
-            languePopover.classList.add("langue-popover");
-            languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
+    // Create a "langue popover" element for each signification
+    const languePopover = document.createElement("div");
+    languePopover.classList.add("langue-popover");
+    languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
 
-            iconAndLinkContainer.appendChild(languePopover);
+    iconAndLinkContainer.appendChild(languePopover);
 
-            // Add the iconAndLinkContainer to the description container
-            descriptionContainer.appendChild(iconAndLinkContainer);
+    // Add the iconAndLinkContainer to the description container
+    descriptionContainer.appendChild(iconAndLinkContainer);
+  });
+} else if (result.url) {
+  // Handle the case where there is only one URL (for backward compatibility)
+  const iconAndLinkContainer = document.createElement("div");
+  iconAndLinkContainer.classList.add("icon-link-container");
+
+  const icon = document.createElement("img");
+  icon.src = "monicone.svg";
+  icon.alt = "Lien externe";
+  icon.style.cursor = "pointer";
+  icon.classList.add("icon-class");
+
+  icon.addEventListener("click", () => {
+    window.open(result.url, "_blank");
+  });
+
+  iconAndLinkContainer.appendChild(icon);
+
+  // Create a "langue popover" element for the single signification
+  const languePopover = document.createElement("div");
+  languePopover.classList.add("langue-popover");
+  languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
+
+  iconAndLinkContainer.appendChild(languePopover);
+
+  // Add the iconAndLinkContainer to the description container
+  descriptionContainer.appendChild(iconAndLinkContainer);
+}
 
             // Add the descriptionContainer to the row
             row.appendChild(descriptionContainer);
@@ -289,7 +317,7 @@ function displayResults(results){
     return;
   }
     
-// Créez un objet pour stocker les résultats groupés par type
+  // Créez un objet pour stocker les résultats groupés par type
   const groupedResults = {};
 
   results.forEach(result => {
@@ -345,33 +373,61 @@ function displayResults(results){
             descriptionText.innerHTML = `➤ ${signification}`;
             descriptionContainer.appendChild(descriptionText);
 
-            // Create an icon and link container for each signification
-            const iconAndLinkContainer = document.createElement("div");
-            iconAndLinkContainer.classList.add("icon-link-container");
+           // Create an icon and link container for each signification
+if (result.urls && Array.isArray(result.urls)) {
+  result.urls.forEach((url, index) => {
+    const iconAndLinkContainer = document.createElement("div");
+    iconAndLinkContainer.classList.add("icon-link-container");
 
-            if (result.url) {
-              const icon = document.createElement("img");
-              icon.src = "monicone.svg";
-              icon.alt = "Lien externe";
-              icon.style.cursor = "pointer";
-              icon.classList.add("icon-class");
+    const icon = document.createElement("img");
+    icon.src = "monicone.svg";
+    icon.alt = "Lien externe";
+    icon.style.cursor = "pointer";
+    icon.classList.add("icon-class");
 
-              icon.addEventListener("click", () => {
-                window.open(result.url, "_blank");
-              });
+    icon.addEventListener("click", () => {
+      window.open(url, "_blank");
+    });
 
-              iconAndLinkContainer.appendChild(icon);
-            }
+    iconAndLinkContainer.appendChild(icon);
 
-            // Create a "langue popover" element for each signification
-            const languePopover = document.createElement("div");
-            languePopover.classList.add("langue-popover");
-            languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
+    // Create a "langue popover" element for each signification
+    const languePopover = document.createElement("div");
+    languePopover.classList.add("langue-popover");
+    languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
 
-            iconAndLinkContainer.appendChild(languePopover);
+    iconAndLinkContainer.appendChild(languePopover);
 
-            // Add the iconAndLinkContainer to the description container
-            descriptionContainer.appendChild(iconAndLinkContainer);
+    // Add the iconAndLinkContainer to the description container
+    descriptionContainer.appendChild(iconAndLinkContainer);
+  });
+} else if (result.url) {
+  // Handle the case where there is only one URL (for backward compatibility)
+  const iconAndLinkContainer = document.createElement("div");
+  iconAndLinkContainer.classList.add("icon-link-container");
+
+  const icon = document.createElement("img");
+  icon.src = "monicone.svg";
+  icon.alt = "Lien externe";
+  icon.style.cursor = "pointer";
+  icon.classList.add("icon-class");
+
+  icon.addEventListener("click", () => {
+    window.open(result.url, "_blank");
+  });
+
+  iconAndLinkContainer.appendChild(icon);
+
+  // Create a "langue popover" element for the single signification
+  const languePopover = document.createElement("div");
+  languePopover.classList.add("langue-popover");
+  languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
+
+  iconAndLinkContainer.appendChild(languePopover);
+
+  // Add the iconAndLinkContainer to the description container
+  descriptionContainer.appendChild(iconAndLinkContainer);
+}
 
             // Add the descriptionContainer to the row
             row.appendChild(descriptionContainer);
@@ -428,6 +484,7 @@ function displayResults(results){
     }
   }
 }
+
 
 // Ajoutez une fonction pour gérer l'affichage du popover lors du hover
 function handleMouseEnter(event) {
