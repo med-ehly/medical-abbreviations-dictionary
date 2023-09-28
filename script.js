@@ -87,92 +87,29 @@ function displaySearchResults(results) {
     return;
   }
 
-  const groupedResults = {};
-
   results.forEach(result => {
-    const type = (result.type || "SYMBOLE").toUpperCase();
+    const row = document.createElement("li");
+    const abbrCell = document.createElement("abbr");
+    abbrCell.textContent = result.abreviation;
+    row.appendChild(abbrCell);
 
-    if (!groupedResults[type]) {
-      groupedResults[type] = [];
-    }
+    const groupSection = document.createElement("div");
+    groupSection.classList.add("type-section");
 
-    groupedResults[type].push(result);
-  });
+    groupSection.innerHTML = `<h2>${result.type || "SYMBOLE"}</h2>`;
 
-  let isFirstType = true;
+    const descriptionContainer = document.createElement("div");
+    descriptionContainer.classList.add("description-container");
 
-  for (const group in groupedResults) {
-    if (groupedResults.hasOwnProperty(group)) {
-      const groupResults = groupedResults[group];
-      const groupSection = document.createElement("div");
-      groupSection.classList.add("type-section");
+    if (result.significations && Array.isArray(result.significations)) {
+      result.significations.forEach(signification => {
+        const descriptionText = document.createElement("p");
+        descriptionText.innerHTML = `➤ ${signification.signification}`;
+        descriptionContainer.appendChild(descriptionText);
 
-      if (!isFirstType) {
-        const separator = document.createElement("hr");
-        groupSection.appendChild(separator);
-      } else {
-        isFirstType = false;
-      }
-
-      groupSection.innerHTML = `<h2>${group}</h2>`;
-
-      // Ajoutez chaque résultat à la section
-groupResults.forEach(result => {
-  const row = document.createElement("li");
-  const abbrCell = document.createElement("abbr");
-  abbrCell.textContent = result.abreviation;
-  row.appendChild(abbrCell);
-
-  // Créez une icône de lien pour chaque signification s'il y a des URLs
-  if (result.significations && Array.isArray(result.significations)) {
-    result.significations.forEach(signification => {
-      const descriptionContainer = document.createElement("div");
-      descriptionContainer.classList.add("description-container");
-      const descriptionText = document.createElement("p");
-      descriptionText.innerHTML = `➤ ${signification.signification}`;
-      descriptionContainer.appendChild(descriptionText);
-
-      if (signification.url) {
-        const iconAndLinkContainer = document.createElement("div");
-        iconAndLinkContainer.classList.add("icon-link-container");
-        const icon = document.createElement("img");
-        icon.src = "monicone.svg";
-        icon.alt = "Lien externe";
-        icon.style.cursor = "pointer";
-        icon.classList.add("icon-class");
-
-        icon.addEventListener("click", () => {
-          window.open(signification.url, "_blank");
-        });
-
-        iconAndLinkContainer.appendChild(icon);
-        descriptionContainer.appendChild(iconAndLinkContainer);
-      }
-
-      row.appendChild(descriptionContainer);
-    });
-  }
-
-        const iconAndLinkContainer = document.createElement("div");
-        iconAndLinkContainer.classList.add("icon-link-container");
-
-        if (result.urls && Array.isArray(result.urls)) {
-          // Handle multiple URLs
-          result.urls.forEach(url => {
-            const icon = document.createElement("img");
-            icon.src = "monicone.svg";
-            icon.alt = "Lien externe";
-            icon.style.cursor = "pointer";
-            icon.classList.add("icon-class");
-
-            icon.addEventListener("click", () => {
-              window.open(url, "_blank");
-            });
-
-            iconAndLinkContainer.appendChild(icon);
-          });
-        } else if (result.url) {
-          // Handle a single URL (for backward compatibility)
+        if (signification.url) {
+          const iconAndLinkContainer = document.createElement("div");
+          iconAndLinkContainer.classList.add("icon-link-container");
           const icon = document.createElement("img");
           icon.src = "monicone.svg";
           icon.alt = "Lien externe";
@@ -180,29 +117,63 @@ groupResults.forEach(result => {
           icon.classList.add("icon-class");
 
           icon.addEventListener("click", () => {
-            window.open(result.url, "_blank");
+            window.open(signification.url, "_blank");
           });
 
           iconAndLinkContainer.appendChild(icon);
+          descriptionContainer.appendChild(iconAndLinkContainer);
         }
+      });
+    }
 
-        const languePopover = document.createElement("div");
-        languePopover.classList.add("langue-popover");
-        languePopover.textContent = result.langue;
+    const iconAndLinkContainer = document.createElement("div");
+    iconAndLinkContainer.classList.add("icon-link-container");
 
-        iconAndLinkContainer.appendChild(languePopover);
+    if (result.urls && Array.isArray(result.urls)) {
+      result.urls.forEach(url => {
+        const icon = document.createElement("img");
+        icon.src = "monicone.svg";
+        icon.alt = "Lien externe";
+        icon.style.cursor = "pointer";
+        icon.classList.add("icon-class");
 
-        row.appendChild(iconAndLinkContainer);
-        groupSection.appendChild(row);
+        icon.addEventListener("click", () => {
+          window.open(url, "_blank");
+        });
 
-        row.addEventListener('mouseenter', handleMouseEnter);
-        row.addEventListener('mouseleave', handleMouseLeave);
+        iconAndLinkContainer.appendChild(icon);
+      });
+    } else if (result.url) {
+      const icon = document.createElement("img");
+      icon.src = "monicone.svg";
+      icon.alt = "Lien externe";
+      icon.style.cursor = "pointer";
+      icon.classList.add("icon-class");
+
+      icon.addEventListener("click", () => {
+        window.open(result.url, "_blank");
       });
 
-      resultsList.appendChild(groupSection);
+      iconAndLinkContainer.appendChild(icon);
     }
-  }
+
+    const languePopover = document.createElement("div");
+    languePopover.classList.add("langue-popover");
+    languePopover.textContent = result.langue;
+
+    iconAndLinkContainer.appendChild(languePopover);
+
+    row.appendChild(descriptionContainer);
+    row.appendChild(iconAndLinkContainer);
+    groupSection.appendChild(row);
+
+    row.addEventListener('mouseenter', handleMouseEnter);
+    row.addEventListener('mouseleave', handleMouseLeave);
+
+    resultsList.appendChild(groupSection);
+  });
 }
+
 
 function scrollToTop() {
     window.scrollTo({
@@ -266,92 +237,29 @@ function displayResults(results){
     return;
   }
     
- const groupedResults = {};
+ results.forEach(result => {
+    const row = document.createElement("li");
+    const abbrCell = document.createElement("abbr");
+    abbrCell.textContent = result.abreviation;
+    row.appendChild(abbrCell);
 
-  results.forEach(result => {
-    const type = (result.type || "SYMBOLE").toUpperCase();
+    const groupSection = document.createElement("div");
+    groupSection.classList.add("type-section");
 
-    if (!groupedResults[type]) {
-      groupedResults[type] = [];
-    }
+    groupSection.innerHTML = `<h2>${result.type || "SYMBOLE"}</h2>`;
 
-    groupedResults[type].push(result);
-  });
+    const descriptionContainer = document.createElement("div");
+    descriptionContainer.classList.add("description-container");
 
-  let isFirstType = true;
+    if (result.significations && Array.isArray(result.significations)) {
+      result.significations.forEach(signification => {
+        const descriptionText = document.createElement("p");
+        descriptionText.innerHTML = `➤ ${signification.signification}`;
+        descriptionContainer.appendChild(descriptionText);
 
-  for (const group in groupedResults) {
-    if (groupedResults.hasOwnProperty(group)) {
-      const groupResults = groupedResults[group];
-      const groupSection = document.createElement("div");
-      groupSection.classList.add("type-section");
-
-      if (!isFirstType) {
-        const separator = document.createElement("hr");
-        groupSection.appendChild(separator);
-      } else {
-        isFirstType = false;
-      }
-
-      groupSection.innerHTML = `<h2>${group}</h2>`;
-
-      // Ajoutez chaque résultat à la section
-groupResults.forEach(result => {
-  const row = document.createElement("li");
-  const abbrCell = document.createElement("abbr");
-  abbrCell.textContent = result.abreviation;
-  row.appendChild(abbrCell);
-
-  // Créez une icône de lien pour chaque signification s'il y a des URLs
-  if (result.significations && Array.isArray(result.significations)) {
-    result.significations.forEach(signification => {
-      const descriptionContainer = document.createElement("div");
-      descriptionContainer.classList.add("description-container");
-      const descriptionText = document.createElement("p");
-      descriptionText.innerHTML = `➤ ${signification.signification}`;
-      descriptionContainer.appendChild(descriptionText);
-
-      if (signification.url) {
-        const iconAndLinkContainer = document.createElement("div");
-        iconAndLinkContainer.classList.add("icon-link-container");
-        const icon = document.createElement("img");
-        icon.src = "monicone.svg";
-        icon.alt = "Lien externe";
-        icon.style.cursor = "pointer";
-        icon.classList.add("icon-class");
-
-        icon.addEventListener("click", () => {
-          window.open(signification.url, "_blank");
-        });
-
-        iconAndLinkContainer.appendChild(icon);
-        descriptionContainer.appendChild(iconAndLinkContainer);
-      }
-
-      row.appendChild(descriptionContainer);
-    });
-  }
-
-        const iconAndLinkContainer = document.createElement("div");
-        iconAndLinkContainer.classList.add("icon-link-container");
-
-        if (result.urls && Array.isArray(result.urls)) {
-          // Handle multiple URLs
-          result.urls.forEach(url => {
-            const icon = document.createElement("img");
-            icon.src = "monicone.svg";
-            icon.alt = "Lien externe";
-            icon.style.cursor = "pointer";
-            icon.classList.add("icon-class");
-
-            icon.addEventListener("click", () => {
-              window.open(url, "_blank");
-            });
-
-            iconAndLinkContainer.appendChild(icon);
-          });
-        } else if (result.url) {
-          // Handle a single URL (for backward compatibility)
+        if (signification.url) {
+          const iconAndLinkContainer = document.createElement("div");
+          iconAndLinkContainer.classList.add("icon-link-container");
           const icon = document.createElement("img");
           icon.src = "monicone.svg";
           icon.alt = "Lien externe";
@@ -359,29 +267,63 @@ groupResults.forEach(result => {
           icon.classList.add("icon-class");
 
           icon.addEventListener("click", () => {
-            window.open(result.url, "_blank");
+            window.open(signification.url, "_blank");
           });
 
           iconAndLinkContainer.appendChild(icon);
+          descriptionContainer.appendChild(iconAndLinkContainer);
         }
+      });
+    }
 
-        const languePopover = document.createElement("div");
-        languePopover.classList.add("langue-popover");
-        languePopover.textContent = result.langue;
+    const iconAndLinkContainer = document.createElement("div");
+    iconAndLinkContainer.classList.add("icon-link-container");
 
-        iconAndLinkContainer.appendChild(languePopover);
+    if (result.urls && Array.isArray(result.urls)) {
+      result.urls.forEach(url => {
+        const icon = document.createElement("img");
+        icon.src = "monicone.svg";
+        icon.alt = "Lien externe";
+        icon.style.cursor = "pointer";
+        icon.classList.add("icon-class");
 
-        row.appendChild(iconAndLinkContainer);
-        groupSection.appendChild(row);
+        icon.addEventListener("click", () => {
+          window.open(url, "_blank");
+        });
 
-        row.addEventListener('mouseenter', handleMouseEnter);
-        row.addEventListener('mouseleave', handleMouseLeave);
+        iconAndLinkContainer.appendChild(icon);
+      });
+    } else if (result.url) {
+      const icon = document.createElement("img");
+      icon.src = "monicone.svg";
+      icon.alt = "Lien externe";
+      icon.style.cursor = "pointer";
+      icon.classList.add("icon-class");
+
+      icon.addEventListener("click", () => {
+        window.open(result.url, "_blank");
       });
 
-      resultsList.appendChild(groupSection);
+      iconAndLinkContainer.appendChild(icon);
     }
-  }
+
+    const languePopover = document.createElement("div");
+    languePopover.classList.add("langue-popover");
+    languePopover.textContent = result.langue;
+
+    iconAndLinkContainer.appendChild(languePopover);
+
+    row.appendChild(descriptionContainer);
+    row.appendChild(iconAndLinkContainer);
+    groupSection.appendChild(row);
+
+    row.addEventListener('mouseenter', handleMouseEnter);
+    row.addEventListener('mouseleave', handleMouseLeave);
+
+    resultsList.appendChild(groupSection);
+  });
 }
+
 
 // Ajoutez une fonction pour gérer l'affichage du popover lors du hover
 function handleMouseEnter(event) {
