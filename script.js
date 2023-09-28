@@ -86,7 +86,7 @@ function displaySearchResults(results) {
     return;
   }
     
-  // Créez un objet pour stocker les résultats groupés par type
+// Créez un objet pour stocker les résultats groupés par type
   const groupedResults = {};
 
   results.forEach(result => {
@@ -101,27 +101,27 @@ function displaySearchResults(results) {
     groupedResults[type].push(result);
   });
 
-  // Parcourez les groupes et ajoutez les résultats à la liste
-  let isFirstType = true; // Initialize a flag to track the first type
+ // Parcourez les groupes et ajoutez les résultats à la liste
+let isFirstType = true; // Initialize a flag to track the first type
 
-  for (const group in groupedResults) {
-    if (groupedResults.hasOwnProperty(group)) {
-      const groupResults = groupedResults[group];
+for (const group in groupedResults) {
+  if (groupedResults.hasOwnProperty(group)) {
+    const groupResults = groupedResults[group];
 
-      // Créez une section pour le groupe (type ou "SYMBOLE")
-      const groupSection = document.createElement("div");
-      groupSection.classList.add("type-section");
+    // Créez une section pour le groupe (type ou "SYMBOLE")
+    const groupSection = document.createElement("div");
+    groupSection.classList.add("type-section");
 
-      // Add a separator line before the type name if it's not the first type
-      if (!isFirstType) {
-        const separator = document.createElement("hr");
-        groupSection.appendChild(separator);
-      } else {
-        // If it's the first type, set the flag to false
-        isFirstType = false;
-      }
+    // Add a separator line before the type name if it's not the first type
+    if (!isFirstType) {
+      const separator = document.createElement("hr");
+      groupSection.appendChild(separator);
+    } else {
+      // If it's the first type, set the flag to false
+      isFirstType = false;
+    }
 
-      groupSection.innerHTML = `<h2>${group}</h2>`;
+    groupSection.innerHTML = `<h2>${group}</h2>`;
 
       // Ajoutez chaque résultat à la section
       groupResults.forEach(result => {
@@ -130,117 +130,56 @@ function displaySearchResults(results) {
         abbrCell.textContent = result.abreviation;
         row.appendChild(abbrCell);
 
-        // Check if there are multiple significations
+        // Create a container for the significations
+        const descriptionContainer = document.createElement("div");
+        descriptionContainer.classList.add("description-container");
+
+       // Check if there are multiple significations
         if (result.significations && Array.isArray(result.significations)) {
+           
           // Add each signification to the container
           result.significations.forEach((signification, index) => {
-            // Create a container for the significations
-            const descriptionContainer = document.createElement("div");
-            descriptionContainer.classList.add("description-container");
-
             const descriptionText = document.createElement("p");
             descriptionText.innerHTML = `➤ ${signification}`;
             descriptionContainer.appendChild(descriptionText);
-
-           // Create an icon and link container for each signification
-if (result.urls && Array.isArray(result.urls)) {
-  result.urls.forEach((url, index) => {
-    const iconAndLinkContainer = document.createElement("div");
-    iconAndLinkContainer.classList.add("icon-link-container");
-
-    const icon = document.createElement("img");
-    icon.src = "monicone.svg";
-    icon.alt = "Lien externe";
-    icon.style.cursor = "pointer";
-    icon.classList.add("icon-class");
-
-    icon.addEventListener("click", () => {
-      window.open(url, "_blank");
-    });
-
-    iconAndLinkContainer.appendChild(icon);
-
-    // Create a "langue popover" element for each signification
-    const languePopover = document.createElement("div");
-    languePopover.classList.add("langue-popover");
-    languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
-
-    iconAndLinkContainer.appendChild(languePopover);
-
-    // Add the iconAndLinkContainer to the description container
-    descriptionContainer.appendChild(iconAndLinkContainer);
-  });
-} else if (result.url) {
-  // Handle the case where there is only one URL (for backward compatibility)
-  const iconAndLinkContainer = document.createElement("div");
-  iconAndLinkContainer.classList.add("icon-link-container");
-
-  const icon = document.createElement("img");
-  icon.src = "monicone.svg";
-  icon.alt = "Lien externe";
-  icon.style.cursor = "pointer";
-  icon.classList.add("icon-class");
-
-  icon.addEventListener("click", () => {
-    window.open(result.url, "_blank");
-  });
-
-  iconAndLinkContainer.appendChild(icon);
-
-  // Create a "langue popover" element for the single signification
-  const languePopover = document.createElement("div");
-  languePopover.classList.add("langue-popover");
-  languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
-
-  iconAndLinkContainer.appendChild(languePopover);
-
-  // Add the iconAndLinkContainer to the description container
-  descriptionContainer.appendChild(iconAndLinkContainer);
-}
-
-            // Add the descriptionContainer to the row
-            row.appendChild(descriptionContainer);
           });
         } else {
           // If there's only one signification, display it
-          const descriptionContainer = document.createElement("div");
-          descriptionContainer.classList.add("description-container");
-
           const descriptionText = document.createElement("p");
           descriptionText.innerHTML = `➤ ${result.signification}`;
           descriptionContainer.appendChild(descriptionText);
-
-          // Create an icon and link container for the single signification
-          const iconAndLinkContainer = document.createElement("div");
-          iconAndLinkContainer.classList.add("icon-link-container");
-
-          if (result.url) {
-            const icon = document.createElement("img");
-            icon.src = "monicone.svg";
-            icon.alt = "Lien externe";
-            icon.style.cursor = "pointer";
-            icon.classList.add("icon-class");
-
-            icon.addEventListener("click", () => {
-              window.open(result.url, "_blank");
-            });
-
-            iconAndLinkContainer.appendChild(icon);
-          }
-
-          // Create a "langue popover" element for the single signification
-          const languePopover = document.createElement("div");
-          languePopover.classList.add("langue-popover");
-          languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
-
-          iconAndLinkContainer.appendChild(languePopover);
-
-          // Add the iconAndLinkContainer to the description container
-          descriptionContainer.appendChild(iconAndLinkContainer);
-
-          // Add the descriptionContainer to the row
-          row.appendChild(descriptionContainer);
         }
+
+        // Add the descriptionContainer to the row
+        row.appendChild(descriptionContainer);
+
+        // Créez un conteneur pour l'icône et le lien
+        const iconAndLinkContainer = document.createElement("div");
+        iconAndLinkContainer.classList.add("icon-link-container");
+
+        if (result.url) {
+          const icon = document.createElement("img");
+          icon.src = "monicone.svg";
+          icon.alt = "Lien externe";
+          icon.style.cursor = "pointer";
+          icon.classList.add("icon-class");
+
+          icon.addEventListener("click", () => {
+            window.open(result.url, "_blank");
+          });
+
+          iconAndLinkContainer.appendChild(icon);
+        }
+
+        // Create a "langue popover" element for both single and multiple significations
+        const languePopover = document.createElement("div");
+        languePopover.classList.add("langue-popover");
+        languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
+
+        iconAndLinkContainer.appendChild(languePopover);
+
+        // Add the iconAndLinkContainer to the row
+        row.appendChild(iconAndLinkContainer);
 
         groupSection.appendChild(row);
 
@@ -253,7 +192,6 @@ if (result.urls && Array.isArray(result.urls)) {
     }
   }
 }
-
 
 function scrollToTop() {
     window.scrollTo({
@@ -317,7 +255,7 @@ function displayResults(results){
     return;
   }
     
-  // Créez un objet pour stocker les résultats groupés par type
+// Créez un objet pour stocker les résultats groupés par type
   const groupedResults = {};
 
   results.forEach(result => {
@@ -332,27 +270,27 @@ function displayResults(results){
     groupedResults[type].push(result);
   });
 
-  // Parcourez les groupes et ajoutez les résultats à la liste
-  let isFirstType = true; // Initialize a flag to track the first type
+ // Parcourez les groupes et ajoutez les résultats à la liste
+let isFirstType = true; // Initialize a flag to track the first type
 
-  for (const group in groupedResults) {
-    if (groupedResults.hasOwnProperty(group)) {
-      const groupResults = groupedResults[group];
+for (const group in groupedResults) {
+  if (groupedResults.hasOwnProperty(group)) {
+    const groupResults = groupedResults[group];
 
-      // Créez une section pour le groupe (type ou "SYMBOLE")
-      const groupSection = document.createElement("div");
-      groupSection.classList.add("type-section");
+    // Créez une section pour le groupe (type ou "SYMBOLE")
+    const groupSection = document.createElement("div");
+    groupSection.classList.add("type-section");
 
-      // Add a separator line before the type name if it's not the first type
-      if (!isFirstType) {
-        const separator = document.createElement("hr");
-        groupSection.appendChild(separator);
-      } else {
-        // If it's the first type, set the flag to false
-        isFirstType = false;
-      }
+    // Add a separator line before the type name if it's not the first type
+    if (!isFirstType) {
+      const separator = document.createElement("hr");
+      groupSection.appendChild(separator);
+    } else {
+      // If it's the first type, set the flag to false
+      isFirstType = false;
+    }
 
-      groupSection.innerHTML = `<h2>${group}</h2>`;
+    groupSection.innerHTML = `<h2>${group}</h2>`;
 
       // Ajoutez chaque résultat à la section
       groupResults.forEach(result => {
@@ -361,117 +299,56 @@ function displayResults(results){
         abbrCell.textContent = result.abreviation;
         row.appendChild(abbrCell);
 
-        // Check if there are multiple significations
+        // Create a container for the significations
+        const descriptionContainer = document.createElement("div");
+        descriptionContainer.classList.add("description-container");
+
+       // Check if there are multiple significations
         if (result.significations && Array.isArray(result.significations)) {
+                      
           // Add each signification to the container
           result.significations.forEach((signification, index) => {
-            // Create a container for the significations
-            const descriptionContainer = document.createElement("div");
-            descriptionContainer.classList.add("description-container");
-
             const descriptionText = document.createElement("p");
             descriptionText.innerHTML = `➤ ${signification}`;
             descriptionContainer.appendChild(descriptionText);
-
-           // Create an icon and link container for each signification
-if (result.urls && Array.isArray(result.urls)) {
-  result.urls.forEach((url, index) => {
-    const iconAndLinkContainer = document.createElement("div");
-    iconAndLinkContainer.classList.add("icon-link-container");
-
-    const icon = document.createElement("img");
-    icon.src = "monicone.svg";
-    icon.alt = "Lien externe";
-    icon.style.cursor = "pointer";
-    icon.classList.add("icon-class");
-
-    icon.addEventListener("click", () => {
-      window.open(url, "_blank");
-    });
-
-    iconAndLinkContainer.appendChild(icon);
-
-    // Create a "langue popover" element for each signification
-    const languePopover = document.createElement("div");
-    languePopover.classList.add("langue-popover");
-    languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
-
-    iconAndLinkContainer.appendChild(languePopover);
-
-    // Add the iconAndLinkContainer to the description container
-    descriptionContainer.appendChild(iconAndLinkContainer);
-  });
-} else if (result.url) {
-  // Handle the case where there is only one URL (for backward compatibility)
-  const iconAndLinkContainer = document.createElement("div");
-  iconAndLinkContainer.classList.add("icon-link-container");
-
-  const icon = document.createElement("img");
-  icon.src = "monicone.svg";
-  icon.alt = "Lien externe";
-  icon.style.cursor = "pointer";
-  icon.classList.add("icon-class");
-
-  icon.addEventListener("click", () => {
-    window.open(result.url, "_blank");
-  });
-
-  iconAndLinkContainer.appendChild(icon);
-
-  // Create a "langue popover" element for the single signification
-  const languePopover = document.createElement("div");
-  languePopover.classList.add("langue-popover");
-  languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
-
-  iconAndLinkContainer.appendChild(languePopover);
-
-  // Add the iconAndLinkContainer to the description container
-  descriptionContainer.appendChild(iconAndLinkContainer);
-}
-
-            // Add the descriptionContainer to the row
-            row.appendChild(descriptionContainer);
           });
         } else {
           // If there's only one signification, display it
-          const descriptionContainer = document.createElement("div");
-          descriptionContainer.classList.add("description-container");
-
           const descriptionText = document.createElement("p");
           descriptionText.innerHTML = `➤ ${result.signification}`;
           descriptionContainer.appendChild(descriptionText);
-
-          // Create an icon and link container for the single signification
-          const iconAndLinkContainer = document.createElement("div");
-          iconAndLinkContainer.classList.add("icon-link-container");
-
-          if (result.url) {
-            const icon = document.createElement("img");
-            icon.src = "monicone.svg";
-            icon.alt = "Lien externe";
-            icon.style.cursor = "pointer";
-            icon.classList.add("icon-class");
-
-            icon.addEventListener("click", () => {
-              window.open(result.url, "_blank");
-            });
-
-            iconAndLinkContainer.appendChild(icon);
-          }
-
-          // Create a "langue popover" element for the single signification
-          const languePopover = document.createElement("div");
-          languePopover.classList.add("langue-popover");
-          languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
-
-          iconAndLinkContainer.appendChild(languePopover);
-
-          // Add the iconAndLinkContainer to the description container
-          descriptionContainer.appendChild(iconAndLinkContainer);
-
-          // Add the descriptionContainer to the row
-          row.appendChild(descriptionContainer);
         }
+
+        // Add the descriptionContainer to the row
+        row.appendChild(descriptionContainer);
+
+        // Créez un conteneur pour l'icône et le lien
+        const iconAndLinkContainer = document.createElement("div");
+        iconAndLinkContainer.classList.add("icon-link-container");
+
+        if (result.url) {
+          const icon = document.createElement("img");
+          icon.src = "monicone.svg";
+          icon.alt = "Lien externe";
+          icon.style.cursor = "pointer";
+          icon.classList.add("icon-class");
+
+          icon.addEventListener("click", () => {
+            window.open(result.url, "_blank");
+          });
+
+          iconAndLinkContainer.appendChild(icon);
+        }
+
+        // Create a "langue popover" element for both single and multiple significations
+        const languePopover = document.createElement("div");
+        languePopover.classList.add("langue-popover");
+        languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
+
+        iconAndLinkContainer.appendChild(languePopover);
+
+        // Add the iconAndLinkContainer to the row
+        row.appendChild(iconAndLinkContainer);
 
         groupSection.appendChild(row);
 
@@ -485,7 +362,6 @@ if (result.urls && Array.isArray(result.urls)) {
   }
 }
 
-
 // Ajoutez une fonction pour gérer l'affichage du popover lors du hover
 function handleMouseEnter(event) {
   const row = event.currentTarget;
@@ -497,8 +373,8 @@ function handleMouseEnter(event) {
   if (langueContent) {
     // Calculer la position en fonction de l'élément cible
     const rowRect = row.getBoundingClientRect();
-    const top = rowRect.bottom + window.scrollY - 19;
-    const left = rowRect.right + window.scrollX - 18; 
+    const top = rowRect.bottom + window.scrollY - 21;
+    const left = rowRect.right + window.scrollX - 28; 
 
     // Appliquer la position calculée au popover
     popover.style.top = `${top}px`;
