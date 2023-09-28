@@ -116,27 +116,42 @@ function displaySearchResults(results) {
 
       groupSection.innerHTML = `<h2>${group}</h2>`;
 
-      groupResults.forEach(result => {
-        const row = document.createElement("li");
-        const abbrCell = document.createElement("abbr");
-        abbrCell.textContent = result.abreviation;
-        row.appendChild(abbrCell);
+      // Ajoutez chaque résultat à la section
+groupResults.forEach(result => {
+  const row = document.createElement("li");
+  const abbrCell = document.createElement("abbr");
+  abbrCell.textContent = result.abreviation;
+  row.appendChild(abbrCell);
 
-        const descriptionContainer = document.createElement("div");
-        descriptionContainer.classList.add("description-container");
+  // Créez une icône de lien pour chaque signification s'il y a des URLs
+  if (result.significations && Array.isArray(result.significations)) {
+    result.significations.forEach(signification => {
+      const descriptionContainer = document.createElement("div");
+      descriptionContainer.classList.add("description-container");
+      const descriptionText = document.createElement("p");
+      descriptionText.innerHTML = `➤ ${signification.signification}`;
+      descriptionContainer.appendChild(descriptionText);
 
-        // Check if there are multiple significations or a single signification
-        const significations = Array.isArray(result.significations)
-          ? result.significations
-          : [result.signification]; // Convert single signification to an array
+      if (signification.url) {
+        const iconAndLinkContainer = document.createElement("div");
+        iconAndLinkContainer.classList.add("icon-link-container");
+        const icon = document.createElement("img");
+        icon.src = "monicone.svg";
+        icon.alt = "Lien externe";
+        icon.style.cursor = "pointer";
+        icon.classList.add("icon-class");
 
-        significations.forEach(signification => {
-          const descriptionText = document.createElement("p");
-          descriptionText.innerHTML = `➤ ${signification}`;
-          descriptionContainer.appendChild(descriptionText);
+        icon.addEventListener("click", () => {
+          window.open(signification.url, "_blank");
         });
 
-        row.appendChild(descriptionContainer);
+        iconAndLinkContainer.appendChild(icon);
+        descriptionContainer.appendChild(iconAndLinkContainer);
+      }
+
+      row.appendChild(descriptionContainer);
+    });
+  }
 
         const iconAndLinkContainer = document.createElement("div");
         iconAndLinkContainer.classList.add("icon-link-container");
@@ -251,7 +266,7 @@ function displayResults(results){
     return;
   }
     
-  const groupedResults = {};
+ const groupedResults = {};
 
   results.forEach(result => {
     const type = (result.type || "SYMBOLE").toUpperCase();
@@ -280,27 +295,42 @@ function displayResults(results){
 
       groupSection.innerHTML = `<h2>${group}</h2>`;
 
-      groupResults.forEach(result => {
-        const row = document.createElement("li");
-        const abbrCell = document.createElement("abbr");
-        abbrCell.textContent = result.abreviation;
-        row.appendChild(abbrCell);
+      // Ajoutez chaque résultat à la section
+groupResults.forEach(result => {
+  const row = document.createElement("li");
+  const abbrCell = document.createElement("abbr");
+  abbrCell.textContent = result.abreviation;
+  row.appendChild(abbrCell);
 
-        const descriptionContainer = document.createElement("div");
-        descriptionContainer.classList.add("description-container");
+  // Créez une icône de lien pour chaque signification s'il y a des URLs
+  if (result.significations && Array.isArray(result.significations)) {
+    result.significations.forEach(signification => {
+      const descriptionContainer = document.createElement("div");
+      descriptionContainer.classList.add("description-container");
+      const descriptionText = document.createElement("p");
+      descriptionText.innerHTML = `➤ ${signification.signification}`;
+      descriptionContainer.appendChild(descriptionText);
 
-        // Check if there are multiple significations or a single signification
-        const significations = Array.isArray(result.significations)
-          ? result.significations
-          : [result.signification]; // Convert single signification to an array
+      if (signification.url) {
+        const iconAndLinkContainer = document.createElement("div");
+        iconAndLinkContainer.classList.add("icon-link-container");
+        const icon = document.createElement("img");
+        icon.src = "monicone.svg";
+        icon.alt = "Lien externe";
+        icon.style.cursor = "pointer";
+        icon.classList.add("icon-class");
 
-        significations.forEach(signification => {
-          const descriptionText = document.createElement("p");
-          descriptionText.innerHTML = `➤ ${signification}`;
-          descriptionContainer.appendChild(descriptionText);
+        icon.addEventListener("click", () => {
+          window.open(signification.url, "_blank");
         });
 
-        row.appendChild(descriptionContainer);
+        iconAndLinkContainer.appendChild(icon);
+        descriptionContainer.appendChild(iconAndLinkContainer);
+      }
+
+      row.appendChild(descriptionContainer);
+    });
+  }
 
         const iconAndLinkContainer = document.createElement("div");
         iconAndLinkContainer.classList.add("icon-link-container");
