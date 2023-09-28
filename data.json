@@ -1,11 +1,7 @@
 [
  {
   "abreviation": "AVC",
-  "significations": [
-    "Accident Vasculaire Cérébral",
-    "Autre Signification 1",
-    "Autre Signification 2"
-  ],
+  "signification": "Accident Vasculaire Cérébral",
   "categorie": "Neurologie",
   "type": "Diagnostic",
   "langue": "(fr)",
@@ -17,6 +13,17 @@
     "categorie": "Neurologie",
     "type": "Diagnostic",
     "langue": "(eng)"
+  },
+ {
+    "abreviation": "a.",
+    "significations": [
+     "Antérieur", 
+     "Artère",
+     "Albumine"
+     ],
+    "categorie": "Neurologie",
+    "type": "Diagnostic",
+    "langue": "(fr)"
   },
   {
     "abreviation": "RXi",
