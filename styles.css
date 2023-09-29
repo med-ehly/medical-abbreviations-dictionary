@@ -182,15 +182,16 @@ table td {
     padding: 5px;
 }
 
-.description-text {
-    margin: 0;
-    padding-right: 10px; /* Espacement entre la signification et l'icône */
-  font-family: Arial, sans-serif;
+.signification-container {
+  display: flex; /* Utilisez flexbox pour disposer les éléments horizontalement */
+  /* flex-direction: column; */ /* Supprimez cette ligne ou mettez-la en commentaire pour éviter l'empilement vertical */
+  padding-right: 10px; /* Espacement entre la signification et l'icône */
 }
 
 .icon-link-container {
-    text-align: right; /* Alignez l'icône à droite */
+  text-align: right;
 }
+
 
 .icon-class {
   width: 24px;
