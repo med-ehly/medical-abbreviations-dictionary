@@ -24,8 +24,8 @@ function applyActiveFilters(data) {
     // Appliquez les filtres en fonction de l'état des filtres
     const filteredResults = data.filter(item => {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
-        const categoryMatches = activecategoryFilterss.length === 0 || activecategoryFilterss.some(category => item.categorie.includes(category));
-        const typeMatches = activetypeFilterss.length === 0 || activetypeFilterss.some(type => item.type.includes(type));
+        const categoryMatches = activeCategoryFilters.length === 0 || activeCategoryFilters.some(category => item.categorie.includes(category));
+        const typeMatches = activeTypeFilters.length === 0 || activeTypeFilters.some(type => item.type.includes(type));
 
         // Vérifiez si le filtre "Symbole" est actif et que l'élément est de type "SYMBOLE"
         if (isSymbolFilterActive && item.type.includes("SYMBOLE")) {
@@ -521,8 +521,9 @@ resetFiltersButton.addEventListener("click", () => {
     resetFilters();
 });
 
+// Fonction pour gérer le clic sur le bouton de filtre "Symbole"
 function handleSymbolFilterButtonClick() {
-    const isFilterActive = symbolFilterButton.classList.contains("active");
+    const isFilterActive = activeSymbolButton.classList.contains("active");
 
     // Désactivez tous les autres filtres actifs
     letterButtons.forEach(letterButton => {
@@ -533,38 +534,34 @@ function handleSymbolFilterButtonClick() {
     categoryButtons.forEach(categoryButton => {
         categoryButton.classList.remove("active");
     });
-    activeCategoryButton = null;
-    active = null;
+    activeCategoryFilters = [];
 
     typeButtons.forEach(typeButton => {
         typeButton.classList.remove("active");
     });
-    activeTypeButton = null;
-    activetypeFilters = null;
+    activeTypeFilters = [];
 
     // Si le filtre "Symbole" n'est pas actif, activez-le
     if (!isFilterActive) {
-        symbolFilterButton.classList.add("active");
-        activeSymbolButton = symbolFilterButton;
+        activeSymbolButton.classList.add("active");
         activeSymbolFilter = "SYMBOLE";
 
         const filteredResults = sortedData.filter(item => {
-            return activeSymbolFilter === null || (item.symbole === "SYMBOLE");
+            return activeSymbolFilter === null || (item.type === "SYMBOLE");
         });
 
         displayResults(filteredResults);
     } else {
         // Si le filtre "Symbole" est désactivé, réinitialisez les filtres
-        symbolFilterButton.classList.remove("active");
-        activeSymbolButton = null;
+        activeSymbolButton.classList.remove("active");
         activeSymbolFilter = null;
         applyActiveFilters(sortedData);
     }
 }
 
-
 // Associez la fonction handleSymbolFilterButtonClick au clic sur le bouton de filtre "Symbole"
 symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
+
                     
             const allCategories = ["Anesthésie", "Cardiologie", "CEGDC", "CCVT", "Dermatologie", "Endocrinologie", "Gastrologie", "Génétique", "Gériatrie", "Gynécologie", "Hémato-Onco", "Immuno-Allergie", "Med Interne", "Infectio", "Néphrologie", "Neurochirurgie", "Neurologie", "Ophtalmologie", "ORL", "Orthopédie", "Pédiatrie", "Physiatrie", "Plastie", "Pneumologie", "Psychiatrie", "Rhumatologie", "Urologie"];
             const allTypes = ["Anatomie", "Diagnostic", "Examen", "Médication", "Traitement", "+ Général"];
