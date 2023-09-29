@@ -110,6 +110,7 @@ header {
   padding-left: 10px;
   padding-right: 10px;
   margin-top: 20px; 
+  margin-bottom: 10px;
   border-top: 1px solid #ccc;
   border-left: 1px solid #ccc; /* Ajouter une bordure à gauche */
   border-right: 1px solid #ccc;
@@ -186,6 +187,16 @@ table td {
   display: flex; /* Utilisez flexbox pour disposer les éléments horizontalement */
   /* flex-direction: column; */ /* Supprimez cette ligne ou mettez-la en commentaire pour éviter l'empilement vertical */
   padding-right: 10px; /* Espacement entre la signification et l'icône */
+}
+
+.signification-container p {
+  margin: 0;
+  margin-right: 5px; /* Réduisez la marge à droite pour rapprocher la signification/icone */
+  color: black;
+  text-align: right;
+  font-size: medium;
+  font-variant: small-caps;
+  font-family: Arial, sans-serif;
 }
 
 .icon-link-container {
