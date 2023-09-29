@@ -131,7 +131,7 @@ function displaySearchResults(results) {
         abbrCell.textContent = result.abreviation;
         row.appendChild(abbrCell);
 
-        // Create a container for the significations and icons
+        // Create a container for the significations
         const descriptionContainer = document.createElement("div");
         descriptionContainer.classList.add("description-container");
 
@@ -274,7 +274,7 @@ function displayResults(results){
     return;
   }
     
- // Créez un objet pour stocker les résultats groupés par type
+  // Créez un objet pour stocker les résultats groupés par type
   const groupedResults = {};
 
   results.forEach(result => {
@@ -318,7 +318,7 @@ function displayResults(results){
         abbrCell.textContent = result.abreviation;
         row.appendChild(abbrCell);
 
-        // Create a container for the significations and icons
+        // Create a container for the significations
         const descriptionContainer = document.createElement("div");
         descriptionContainer.classList.add("description-container");
 
