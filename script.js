@@ -87,7 +87,7 @@ function displaySearchResults(results) {
     return;
   }
 
-  results.forEach(result => {
+   results.forEach(result => {
     const groupSection = document.createElement("div");
     groupSection.classList.add("type-section");
 
@@ -98,10 +98,16 @@ function displaySearchResults(results) {
     const resultList = document.createElement("ul"); // Utilisation d'une liste non ordonnée pour les résultats
     resultList.classList.add("result-list");
 
-    result.significations.forEach(signification => {
-      const listItem = document.createElement("li");
-      listItem.classList.add("result-item");
+    // Créez un seul élément de liste pour l'abréviation et les significations
+    const listItem = document.createElement("li");
+    listItem.classList.add("result-item");
 
+    const abbreviationText = document.createElement("p");
+    abbreviationText.classList.add("abbreviation-text");
+    abbreviationText.textContent = result.abreviation;
+    listItem.appendChild(abbreviationText);
+
+    result.significations.forEach(signification => {
       const descriptionText = document.createElement("p");
       descriptionText.innerHTML = `➤ ${signification.signification}`;
       listItem.appendChild(descriptionText);
@@ -123,10 +129,9 @@ function displaySearchResults(results) {
         iconContainer.appendChild(icon);
         listItem.appendChild(iconContainer);
       }
-
-      resultList.appendChild(listItem);
     });
 
+    resultList.appendChild(listItem);
     groupSection.appendChild(resultList);
     resultsList.appendChild(groupSection);
   });
@@ -207,10 +212,16 @@ function displayResults(results){
     const resultList = document.createElement("ul"); // Utilisation d'une liste non ordonnée pour les résultats
     resultList.classList.add("result-list");
 
-    result.significations.forEach(signification => {
-      const listItem = document.createElement("li");
-      listItem.classList.add("result-item");
+    // Créez un seul élément de liste pour l'abréviation et les significations
+    const listItem = document.createElement("li");
+    listItem.classList.add("result-item");
 
+    const abbreviationText = document.createElement("p");
+    abbreviationText.classList.add("abbreviation-text");
+    abbreviationText.textContent = result.abreviation;
+    listItem.appendChild(abbreviationText);
+
+    result.significations.forEach(signification => {
       const descriptionText = document.createElement("p");
       descriptionText.innerHTML = `➤ ${signification.signification}`;
       listItem.appendChild(descriptionText);
@@ -232,15 +243,13 @@ function displayResults(results){
         iconContainer.appendChild(icon);
         listItem.appendChild(iconContainer);
       }
-
-      resultList.appendChild(listItem);
     });
 
+    resultList.appendChild(listItem);
     groupSection.appendChild(resultList);
     resultsList.appendChild(groupSection);
   });
 }
-
 
 // Ajoutez une fonction pour gérer l'affichage du popover lors du hover
 function handleMouseEnter(event) {
