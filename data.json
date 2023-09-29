@@ -327,5 +327,15 @@
     "abreviation": "Ω",
     "signification": "Ohm",
     "symbole": "SYMBOLE"
-  }
+  },
+ {
+    "abreviation": "A.C.R",
+     "significations": [
+     {"signification":"Artère Centrale de la Rétine"}, 
+     {"signification":"Anévrisme Cérébral rupturé"}
+     ],
+    "categorie": "Neurologie",
+    "type": "Diagnostic",
+    "langue": "(fr)"
+  },
 ]
