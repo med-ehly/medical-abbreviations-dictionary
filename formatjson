@@ -1,0 +1,40 @@
+// Exemple de fichier JSON 
+
+[
+ {
+    "abreviation": "x",
+    "significations": [
+     {
+      "signification": "Nombre de fois"
+    },
+     {
+      "signification": "Par"
+    }
+     ],
+    "symbole": "SYMBOLE"
+  },
+ {
+  "abreviation": "AVC",
+  "significations": [
+    {
+      "signification": "Accident Vasculaire Cérébral",
+      "url": "https://www.google.ca/"
+    },
+    {
+      "signification": "Autre Signification",
+      "url": "http://www.ooq.org/fr/trouver-un-optom%C3%A9triste/optometrist"
+    }
+  ],
+  "categorie": "Neurologie",
+  "type": "Diagnostic",
+  "langue": "(fr)"
+},
+ {
+    "abreviation": "AVC",
+    "signification": "Accident Vasculaire Cérébral",
+    "url": "https://www.google.ca/",
+    "categorie": "Neurologie",
+    "type": "Diagnostic",
+    "langue": "(fr)"
+  }
+]
