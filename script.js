@@ -87,7 +87,7 @@ function displaySearchResults(results) {
     return;
   }
 
-     // Créez un objet pour stocker les résultats groupés par type
+  // Créez un objet pour stocker les résultats groupés par type
   const groupedResults = {};
 
   results.forEach(result => {
@@ -131,22 +131,22 @@ function displaySearchResults(results) {
         abbrCell.textContent = result.abreviation;
         row.appendChild(abbrCell);
 
-        // Create a container for the significations
+        // Create a container for the significations and icons
         const descriptionContainer = document.createElement("div");
         descriptionContainer.classList.add("description-container");
 
         // Check if there are multiple significations
         if (result.significations && Array.isArray(result.significations)) {
-          // Add each signification to the container
+          // Add each signification and its icon to the container
           result.significations.forEach(signification => {
+            const significationContainer = document.createElement("div");
+            significationContainer.classList.add("signification-container");
+
             const descriptionText = document.createElement("p");
             descriptionText.innerHTML = `➤ ${signification.signification}`;
-            descriptionContainer.appendChild(descriptionText);
+            significationContainer.appendChild(descriptionText);
 
             if (signification.url) {
-              const iconAndLinkContainer = document.createElement("div");
-              iconAndLinkContainer.classList.add("icon-link-container");
-
               const icon = document.createElement("img");
               icon.src = "monicone.svg";
               icon.alt = "Lien externe";
@@ -157,22 +157,21 @@ function displaySearchResults(results) {
                 window.open(signification.url, "_blank");
               });
 
-              iconAndLinkContainer.appendChild(icon);
-
-              // Add the iconAndLinkContainer to the descriptionContainer
-              descriptionContainer.appendChild(iconAndLinkContainer);
+              significationContainer.appendChild(icon);
             }
+
+            descriptionContainer.appendChild(significationContainer);
           });
         } else {
-          // If there's only one signification, display it
+          // If there's only one signification, display it along with its icon
+          const significationContainer = document.createElement("div");
+          significationContainer.classList.add("signification-container");
+
           const descriptionText = document.createElement("p");
           descriptionText.innerHTML = `➤ ${result.signification}`;
-          descriptionContainer.appendChild(descriptionText);
+          significationContainer.appendChild(descriptionText);
 
           if (result.url) {
-            const iconAndLinkContainer = document.createElement("div");
-            iconAndLinkContainer.classList.add("icon-link-container");
-
             const icon = document.createElement("img");
             icon.src = "monicone.svg";
             icon.alt = "Lien externe";
@@ -183,11 +182,10 @@ function displaySearchResults(results) {
               window.open(result.url, "_blank");
             });
 
-            iconAndLinkContainer.appendChild(icon);
-
-            // Add the iconAndLinkContainer to the descriptionContainer
-            descriptionContainer.appendChild(iconAndLinkContainer);
+            significationContainer.appendChild(icon);
           }
+
+          descriptionContainer.appendChild(significationContainer);
         }
 
         // Add the descriptionContainer to the row
@@ -212,6 +210,7 @@ function displaySearchResults(results) {
     }
   }
 }
+
 
 function scrollToTop() {
     window.scrollTo({
@@ -275,7 +274,7 @@ function displayResults(results){
     return;
   }
     
-  // Créez un objet pour stocker les résultats groupés par type
+ // Créez un objet pour stocker les résultats groupés par type
   const groupedResults = {};
 
   results.forEach(result => {
@@ -319,22 +318,22 @@ function displayResults(results){
         abbrCell.textContent = result.abreviation;
         row.appendChild(abbrCell);
 
-        // Create a container for the significations
+        // Create a container for the significations and icons
         const descriptionContainer = document.createElement("div");
         descriptionContainer.classList.add("description-container");
 
         // Check if there are multiple significations
         if (result.significations && Array.isArray(result.significations)) {
-          // Add each signification to the container
+          // Add each signification and its icon to the container
           result.significations.forEach(signification => {
+            const significationContainer = document.createElement("div");
+            significationContainer.classList.add("signification-container");
+
             const descriptionText = document.createElement("p");
             descriptionText.innerHTML = `➤ ${signification.signification}`;
-            descriptionContainer.appendChild(descriptionText);
+            significationContainer.appendChild(descriptionText);
 
             if (signification.url) {
-              const iconAndLinkContainer = document.createElement("div");
-              iconAndLinkContainer.classList.add("icon-link-container");
-
               const icon = document.createElement("img");
               icon.src = "monicone.svg";
               icon.alt = "Lien externe";
@@ -345,22 +344,21 @@ function displayResults(results){
                 window.open(signification.url, "_blank");
               });
 
-              iconAndLinkContainer.appendChild(icon);
-
-              // Add the iconAndLinkContainer to the descriptionContainer
-              descriptionContainer.appendChild(iconAndLinkContainer);
+              significationContainer.appendChild(icon);
             }
+
+            descriptionContainer.appendChild(significationContainer);
           });
         } else {
-          // If there's only one signification, display it
+          // If there's only one signification, display it along with its icon
+          const significationContainer = document.createElement("div");
+          significationContainer.classList.add("signification-container");
+
           const descriptionText = document.createElement("p");
           descriptionText.innerHTML = `➤ ${result.signification}`;
-          descriptionContainer.appendChild(descriptionText);
+          significationContainer.appendChild(descriptionText);
 
           if (result.url) {
-            const iconAndLinkContainer = document.createElement("div");
-            iconAndLinkContainer.classList.add("icon-link-container");
-
             const icon = document.createElement("img");
             icon.src = "monicone.svg";
             icon.alt = "Lien externe";
@@ -371,11 +369,10 @@ function displayResults(results){
               window.open(result.url, "_blank");
             });
 
-            iconAndLinkContainer.appendChild(icon);
-
-            // Add the iconAndLinkContainer to the descriptionContainer
-            descriptionContainer.appendChild(iconAndLinkContainer);
+            significationContainer.appendChild(icon);
           }
+
+          descriptionContainer.appendChild(significationContainer);
         }
 
         // Add the descriptionContainer to the row
