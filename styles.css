@@ -136,7 +136,7 @@ header {
 /* Update the style of the description (right side) */
 #resultsList p {
   flex: 2; /* Allow the p to take more space */
-  margin: 5px 0;
+  margin: 5px;
   color: black;
   text-align: right;
   font-size: medium;
@@ -192,7 +192,7 @@ table td {
   margin-right: 5px; /* Réduisez la marge à droite pour rapprocher la signification/icone */
   color: black;
   text-align: right;
-  font-size: medium;
+  font-size: 15px;
   font-variant: small-caps;
   font-family: Arial, sans-serif;
 }
