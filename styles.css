@@ -171,7 +171,6 @@ header {
 .description-container {
   display: flex;
   flex-direction: column;
-  padding-right: 10px;
 }
 
 table {
@@ -186,7 +185,6 @@ table td {
 .signification-container {
   display: flex; /* Utilisez flexbox pour disposer les éléments horizontalement */
   /* flex-direction: column; */ /* Supprimez cette ligne ou mettez-la en commentaire pour éviter l'empilement vertical */
-  padding-right: 10px; /* Espacement entre la signification et l'icône */
 }
 
 .signification-container p {
