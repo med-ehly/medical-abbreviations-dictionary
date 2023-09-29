@@ -5,9 +5,9 @@ const resultsList = document.getElementById("resultsList");
 // Variables pour les filtres actifs
 let activeLetterFilter = null;
 let activeLetterButton = null;
-let activeCategoryFilters = [];
+let activecategoryFilterss = [];
 let activeCategoryButtons = [];
-let activeTypeFilters = [];
+let activetypeFilterss = [];
 let activeTypeButtons = [];
 let activeSymbolButton = null;
 let activeSymbolFilter = null;
@@ -24,8 +24,8 @@ function applyActiveFilters(data) {
     // Appliquez les filtres en fonction de l'état des filtres
     const filteredResults = data.filter(item => {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
-        const categoryMatches = activeCategoryFilters.length === 0 || activeCategoryFilters.some(category => item.categorie.includes(category));
-        const typeMatches = activeTypeFilters.length === 0 || activeTypeFilters.some(type => item.type.includes(type));
+        const categoryMatches = activecategoryFilterss.length === 0 || activecategoryFilterss.some(category => item.categorie.includes(category));
+        const typeMatches = activetypeFilterss.length === 0 || activetypeFilterss.some(type => item.type.includes(type));
 
         // Vérifiez si le filtre "Symbole" est actif et que l'élément est de type "SYMBOLE"
         if (isSymbolFilterActive && item.type.includes("SYMBOLE")) {
@@ -229,8 +229,8 @@ function handleSearch(event, data) {
 
 
         // Vérifiez si les filtres sont actifs et si l'élément correspond aux filtres
-        const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
-        const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
+        const categoryMatches = !activecategoryFilters || item.categorie === activecategoryFilters;
+        const typeMatches = !activetypeFilters || item.type === activetypeFilters;
 
         // Retournez le résultat uniquement si la recherche et les filtres correspondent
         return (abbreviationMatch || significationMatch || significationsMatch) && categoryMatches && typeMatches;
@@ -494,14 +494,14 @@ elementsWithPopover.forEach(element => {
         categoryButton.classList.remove("active");
     });
     activeCategoryButton = null;
-    activeCategoryFilter = null;
+    activecategoryFilters = null;
 
     // Réinitialisez les filtres de type
     typeButtons.forEach(typeButton => {
         typeButton.classList.remove("active");
     });
     activeTypeButton = null;
-    activeTypeFilter = null;
+    activetypeFilters = null;
 
               // Effacez le contenu de la barre de recherche
     const searchInput = document.getElementById("searchInput"); // Remplacez "searchInput" par l'ID de votre champ de recherche
@@ -534,13 +534,13 @@ function handleSymbolFilterButtonClick() {
         categoryButton.classList.remove("active");
     });
     activeCategoryButton = null;
-    activeCategoryFilter = null;
+    active = null;
 
     typeButtons.forEach(typeButton => {
         typeButton.classList.remove("active");
     });
     activeTypeButton = null;
-    activeTypeFilter = null;
+    activetypeFilters = null;
 
     // Si le filtre "Symbole" n'est pas actif, activez-le
     if (!isFilterActive) {
@@ -569,17 +569,17 @@ symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
             const allCategories = ["Anesthésie", "Cardiologie", "CEGDC", "CCVT", "Dermatologie", "Endocrinologie", "Gastrologie", "Génétique", "Gériatrie", "Gynécologie", "Hémato-Onco", "Immuno-Allergie", "Med Interne", "Infectio", "Néphrologie", "Neurochirurgie", "Neurologie", "Ophtalmologie", "ORL", "Orthopédie", "Pédiatrie", "Physiatrie", "Plastie", "Pneumologie", "Psychiatrie", "Rhumatologie", "Urologie"];
             const allTypes = ["Anatomie", "Diagnostic", "Examen", "Médication", "Traitement", "+ Général"];
 
-            const categoryFilter = document.querySelector(".category-filter");
-            categoryFilter.innerHTML = "<h2>Catégories</h2>";
+            const  = document.querySelector(".category-filter");
+            .innerHTML = "<h2>Catégories</h2>";
             allCategories.forEach(category => {
-                const categoryButton = createFilterButton(category, "data-category", sortedData, handleCategoryFilterButtonClick);
-                categoryFilter.appendChild(categoryButton);
+                const categoryButton = createFilterButton(category, "data-category", sortedData, handleButtonClick);
+                categoryFilters.appendChild(categoryButton);
             });
-            const typeFilter = document.querySelector(".type-filter");
-            typeFilter.innerHTML = "<h2>Types</h2>";
+            const typeFilters = document.querySelector(".type-filter");
+            typeFilters.innerHTML = "<h2>Types</h2>";
             allTypes.forEach(type => {
-                const typeButton = createFilterButton(type, "data-type", sortedData, handleTypeFilterButtonClick);
-                typeFilter.appendChild(typeButton);
+                const typeButton = createFilterButton(type, "data-type", sortedData, handletypeFiltersButtonClick);
+                typeFilters.appendChild(typeButton);
             });
             const categoryButtons = document.querySelectorAll(".category-button");
             const typeButtons = document.querySelectorAll(".type-button");
@@ -596,9 +596,9 @@ symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
                 }
                 return button;
             }
-            function handleCategoryFilterButtonClick(button) {
-                const selectedCategoryFilter = button.getAttribute("data-category");
-                const isCategoryFilterActive = button.classList.contains("active");
+            function handlecategoryFiltersButtonClick(button) {
+                const selectedcategoryFilters = button.getAttribute("data-category");
+                const iscategoryFiltersActive = button.classList.contains("active");
 
                  // Désactivez le filtre "Symbole" si actif
                 if (activeSymbolButton) {
@@ -607,25 +607,25 @@ symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
                 activeSymbolFilter = null;
                 }
                 
-                if (!isCategoryFilterActive) {
+                if (!iscategoryFiltersActive) {
                     // Désactivez le bouton de catégorie actif s'il y en a un
                     if (activeCategoryButton) {
                         activeCategoryButton.classList.remove("active");
                     }
                     button.classList.add("active");
                     activeCategoryButton = button;
-                    activeCategoryFilter = selectedCategoryFilter;
+                    activecategoryFilters = selectedcategoryFilters;
                 } else {
                     button.classList.remove("active");
                     activeCategoryButton = null;
-                    activeCategoryFilter = null;
+                    activecategoryFilters = null;
                 }
                 applyActiveFilters(sortedData);
                 scrollToTop();
             }
-            function handleTypeFilterButtonClick(button) {
-                const selectedTypeFilter = button.getAttribute("data-type");
-                const isTypeFilterActive = button.classList.contains("active");
+            function handletypeFiltersButtonClick(button) {
+                const selectedtypeFilters = button.getAttribute("data-type");
+                const istypeFiltersActive = button.classList.contains("active");
 
                  // Désactivez le filtre "Symbole" si actif
                 if (activeSymbolButton) {
@@ -634,18 +634,18 @@ symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
                 activeSymbolFilter = null;
                 }
                 
-                if (!isTypeFilterActive) {
+                if (!istypeFiltersActive) {
                     // Désactivez le bouton de type actif s'il y en a un
                     if (activeTypeButton) {
                         activeTypeButton.classList.remove("active");
                     }
                     button.classList.add("active");
                     activeTypeButton = button;
-                    activeTypeFilter = selectedTypeFilter;
+                    activetypeFilters = selectedtypeFilters;
                 } else {
                     button.classList.remove("active");
                     activeTypeButton = null;
-                    activeTypeFilter = null;
+                    activetypeFilters = null;
                 }
                 applyActiveFilters(sortedData);
                 scrollToTop();
