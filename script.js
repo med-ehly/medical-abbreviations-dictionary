@@ -5,10 +5,10 @@ const resultsList = document.getElementById("resultsList");
 // Variables pour les filtres actifs
 let activeLetterFilter = null;
 let activeLetterButton = null;
-let activeCategoryFilter = null;
-let activeCategoryButton = null;
-let activeTypeButton = null;
-let activeTypeFilter = null;
+let activeCategoryFilters = [];
+let activeCategoryButtons = [];
+let activeTypeFilters = [];
+let activeTypeButtons = [];
 let activeSymbolButton = null;
 let activeSymbolFilter = null;
 
@@ -24,11 +24,11 @@ function applyActiveFilters(data) {
     // Appliquez les filtres en fonction de l'état des filtres
     const filteredResults = data.filter(item => {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
-        const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
-        const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
+        const categoryMatches = activeCategoryFilters.length === 0 || activeCategoryFilters.some(category => item.categorie.includes(category));
+        const typeMatches = activeTypeFilters.length === 0 || activeTypeFilters.some(type => item.type.includes(type));
 
         // Vérifiez si le filtre "Symbole" est actif et que l'élément est de type "SYMBOLE"
-        if (isSymbolFilterActive && item.type === "SYMBOLE") {
+        if (isSymbolFilterActive && item.type.includes("SYMBOLE")) {
             return true;
         }
 
