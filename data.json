@@ -2,8 +2,12 @@
  {
     "abreviation": "x",
     "significations": [
-     "Nombre de fois", 
-     "Par"
+     {
+      "signification": "Nombre de fois"
+    },
+     {
+      "signification": "Par"
+    },
      ],
     "symbole": "SYMBOLE"
   },
@@ -22,5 +26,13 @@
   "categorie": "Neurologie",
   "type": "Diagnostic",
   "langue": "(fr)"
-}
+},
+ {
+    "abreviation": "AVC",
+    "signification": "Accident Vasculaire Cérébral",
+    "url": "https://www.google.ca/",
+    "categorie": "Neurologie",
+    "type": "Diagnostic",
+    "langue": "(fr)"
+  }
 ]
