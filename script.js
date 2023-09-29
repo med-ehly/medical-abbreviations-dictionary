@@ -562,64 +562,101 @@ function handleSymbolFilterButtonClick() {
 // Associez la fonction handleSymbolFilterButtonClick au clic sur le bouton de filtre "Symbole"
 symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
 
-                    
-            const allCategories = ["Anesthésie", "Cardiologie", "CEGDC", "CCVT", "Dermatologie", "Endocrinologie", "Gastrologie", "Génétique", "Gériatrie", "Gynécologie", "Hémato-Onco", "Immuno-Allergie", "Med Interne", "Infectio", "Néphrologie", "Neurochirurgie", "Neurologie", "Ophtalmologie", "ORL", "Orthopédie", "Pédiatrie", "Physiatrie", "Plastie", "Pneumologie", "Psychiatrie", "Rhumatologie", "Urologie"];
-            const allTypes = ["Anatomie", "Diagnostic", "Examen", "Médication", "Traitement", "+ Général"];
+          // Récupérez les éléments DOM pour les filtres de catégorie et de type
+const categoryFilters = document.querySelector(".category-filter");
+categoryFilters.innerHTML = "<h2>Catégories</h2>";
 
-            const  = document.querySelector(".category-filter");
-            .innerHTML = "<h2>Catégories</h2>";
-            allCategories.forEach(category => {
-                const categoryButton = createFilterButton(category, "data-category", sortedData, handleButtonClick);
-                categoryFilters.appendChild(categoryButton);
-            });
-            const typeFilters = document.querySelector(".type-filter");
-            typeFilters.innerHTML = "<h2>Types</h2>";
-            allTypes.forEach(type => {
-                const typeButton = createFilterButton(type, "data-type", sortedData, handletypeFiltersButtonClick);
-                typeFilters.appendChild(typeButton);
-            });
-            const categoryButtons = document.querySelectorAll(".category-button");
-            const typeButtons = document.querySelectorAll(".type-button");
-            function createFilterButton(text, attribute, data, filterFunction) {
-                const button = document.createElement("button");
-                button.textContent = text;
-                button.setAttribute(attribute, text);
-                button.addEventListener("click", () => filterFunction(button, sortedData));
-                // Ajoutez une classe CSS pour distinguer les boutons de catégories des boutons de types
-                if (attribute === "data-category") {
-                    button.classList.add("category-button");
-                } else if (attribute === "data-type") {
-                    button.classList.add("type-button");
-                }
-                return button;
-            }
-            function handlecategoryFiltersButtonClick(button) {
-                const selectedcategoryFilters = button.getAttribute("data-category");
-                const iscategoryFiltersActive = button.classList.contains("active");
+const typeFilters = document.querySelector(".type-filter");
+typeFilters.innerHTML = "<h2>Types</h2>";
 
-                 // Désactivez le filtre "Symbole" si actif
-                if (activeSymbolButton) {
-                activeSymbolButton.classList.remove("active");
-                activeSymbolButton = null;
-                activeSymbolFilter = null;
-                }
-                
-                if (!iscategoryFiltersActive) {
-                    // Désactivez le bouton de catégorie actif s'il y en a un
-                    if (activeCategoryButton) {
-                        activeCategoryButton.classList.remove("active");
-                    }
-                    button.classList.add("active");
-                    activeCategoryButton = button;
-                    activecategoryFilters = selectedcategoryFilters;
-                } else {
-                    button.classList.remove("active");
-                    activeCategoryButton = null;
-                    activecategoryFilters = null;
-                }
-                applyActiveFilters(sortedData);
-                scrollToTop();
-            }
+const allCategories = ["Anesthésie", "Cardiologie", "CEGDC", "CCVT", "Dermatologie", "Endocrinologie", "Gastrologie", "Génétique", "Gériatrie", "Gynécologie", "Hémato-Onco", "Immuno-Allergie", "Med Interne", "Infectio", "Néphrologie", "Neurochirurgie", "Neurologie", "Ophtalmologie", "ORL", "Orthopédie", "Pédiatrie", "Physiatrie", "Plastie", "Pneumologie", "Psychiatrie", "Rhumatologie", "Urologie"];
+const allTypes = ["Anatomie", "Diagnostic", "Examen", "Médication", "Traitement", "+ Général"];
+
+allCategories.forEach(category => {
+    const categoryButton = createFilterButton(category, "data-category", sortedData, handleCategoryFiltersButtonClick);
+    categoryFilters.appendChild(categoryButton);
+});
+
+allTypes.forEach(type => {
+    const typeButton = createFilterButton(type, "data-type", sortedData, handleTypeFiltersButtonClick);
+    typeFilters.appendChild(typeButton);
+});
+
+const categoryButtons = document.querySelectorAll(".category-button");
+const typeButtons = document.querySelectorAll(".type-button");
+
+function createFilterButton(text, attribute, data, filterFunction) {
+    const button = document.createElement("button");
+    button.textContent = text;
+    button.setAttribute(attribute, text);
+    button.addEventListener("click", () => filterFunction(button, sortedData));
+    
+    // Ajoutez une classe CSS pour distinguer les boutons de catégories des boutons de types
+    if (attribute === "data-category") {
+        button.classList.add("category-button");
+    } else if (attribute === "data-type") {
+        button.classList.add("type-button");
+    }
+    
+    return button;
+}
+
+function handleCategoryFiltersButtonClick(button) {
+    const selectedCategoryFilters = button.getAttribute("data-category");
+    const isCategoryFiltersActive = button.classList.contains("active");
+
+    // Désactivez le filtre "Symbole" si actif
+    if (activeSymbolButton) {
+        activeSymbolButton.classList.remove("active");
+        activeSymbolButton = null;
+        activeSymbolFilter = null;
+    }
+
+    if (!isCategoryFiltersActive) {
+        // Désactivez le bouton de catégorie actif s'il y en a un
+        if (activeCategoryButton) {
+            activeCategoryButton.classList.remove("active");
+        }
+        button.classList.add("active");
+        activeCategoryButton = button;
+        activeCategoryFilters = selectedCategoryFilters;
+    } else {
+        button.classList.remove("active");
+        activeCategoryButton = null;
+        activeCategoryFilters = null;
+    }
+    applyActiveFilters(sortedData);
+    scrollToTop();
+}
+
+function handleTypeFiltersButtonClick(button) {
+    const selectedTypeFilters = button.getAttribute("data-type");
+    const isTypeFiltersActive = button.classList.contains("active");
+
+    // Désactivez le filtre "Symbole" si actif
+    if (activeSymbolButton) {
+        activeSymbolButton.classList.remove("active");
+        activeSymbolButton = null;
+        activeSymbolFilter = null;
+    }
+
+    if (!isTypeFiltersActive) {
+        // Désactivez le bouton de type actif s'il y en a un
+        if (activeTypeButton) {
+            activeTypeButton.classList.remove("active");
+        }
+        button.classList.add("active");
+        activeTypeButton = button;
+        activeTypeFilters = selectedTypeFilters;
+    } else {
+        button.classList.remove("active");
+        activeTypeButton = null;
+        activeTypeFilters = null;
+    }
+    applyActiveFilters(sortedData);
+    scrollToTop();
+}
+
             function handletypeFiltersButtonClick(button) {
                 const selectedtypeFilters = button.getAttribute("data-type");
                 const istypeFiltersActive = button.classList.contains("active");
