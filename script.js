@@ -237,10 +237,11 @@ function handleSearch(event, data) {
     });
     applyActiveFilters(filteredResults);
 }
+
 function significationsMatches(significations, searchTerm) {
     if (!significations || !Array.isArray(significations)) return false;
-    return significations.some(signification =>
-        signification
+    return significations.some(significationObj =>
+        significationObj.signification
             .toLowerCase()
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
