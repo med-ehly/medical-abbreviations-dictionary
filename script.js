@@ -1,4 +1,4 @@
-// Constantes pour les sélecteurs DOM
+ // Constantes pour les sélecteurs DOM
 const searchInput = document.getElementById("searchInput");
 const resultsList = document.getElementById("resultsList");
 
@@ -7,8 +7,8 @@ let activeLetterFilter = null;
 let activeLetterButton = null;
 let activeCategoryFilter = null;
 let activeCategoryButton = null;
-let activeTypeFilter = null;
 let activeTypeButton = null;
+let activeTypeFilter = null;
 let activeSymbolButton = null;
 let activeSymbolFilter = null;
 
@@ -16,7 +16,7 @@ function applyActiveFilters(data) {
     console.log("Applying active filters...");
 
     // Créez un groupe pour les résultats avec le type "SYMBOLE"
-    const symboleResults = data.filter(item => item.type.includes("SYMBOLE"));
+    const symboleResults = data.filter(item => item.type === "SYMBOLE");
 
     // Vérifiez si le filtre "Symbole" est actif
     const isSymbolFilterActive = activeSymbolFilter === "SYMBOLE";
@@ -24,11 +24,11 @@ function applyActiveFilters(data) {
     // Appliquez les filtres en fonction de l'état des filtres
     const filteredResults = data.filter(item => {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
-        const categoryMatches = !activeCategoryFilter || item.categorie.includes(activeCategoryFilter);
-        const typeMatches = !activeTypeFilter || item.type.includes(activeTypeFilter);
+        const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
+        const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
 
         // Vérifiez si le filtre "Symbole" est actif et que l'élément est de type "SYMBOLE"
-        if (isSymbolFilterActive && item.type.includes("SYMBOLE")) {
+        if (isSymbolFilterActive && item.type === "SYMBOLE") {
             return true;
         }
 
@@ -112,6 +112,15 @@ function displaySearchResults(results) {
       // Créez une section pour le groupe (type ou "SYMBOLE")
       const groupSection = document.createElement("div");
       groupSection.classList.add("type-section");
+
+      // Add a separator line before the type name if it's not the first type
+      if (!isFirstType) {
+        const separator = document.createElement("hr");
+        groupSection.appendChild(separator);
+      } else {
+        // If it's the first type, set the flag to false
+        isFirstType = false;
+      }
 
       groupSection.innerHTML = `<h2>${group}</h2>`;
 
@@ -506,7 +515,7 @@ elementsWithPopover.forEach(element => {
     scrollToTop();
 }
 
-const resetFiltersButton = document.getElementById("resetFiltersButton");
+const resetFiltersButton = document.getElementById("resetFiltersButton"); // Remplacez "resetFiltersButton" par l'ID de votre bouton de réinitialisation
 
 resetFiltersButton.addEventListener("click", () => {
     resetFilters();
