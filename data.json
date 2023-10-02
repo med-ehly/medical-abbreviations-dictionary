@@ -7,6 +7,12 @@
   "langue": "(fr)",
   "url": "http://requin.reg05.rtss.qc.ca/"
 },
+ {
+    "abreviation": "A.B.C",
+    "signification": "Signification de ABC",
+    "categories": ["CCVT", "CEGDC"], // Use an array for categories
+    "types": ["Anatomie", "Examen"] // Use an array for types
+}
   {
     "abreviation": "PL",
     "signification": "Ponction Lombaire",
