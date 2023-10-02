@@ -27,7 +27,7 @@ function applyActiveFilters(data) {
     // Appliquez les filtres en fonction de l'état des filtres
     const filteredResults = data.filter(item => {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
-        const categoryMatches = !isCategoryFilterActive || item.categorie.includes(activeCategoryFilter);
+        const categoryMatches = !isCategoryFilterActive || (item.categorie && item.categorie.includes(activeCategoryFilter));
         const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
 
         // Vérifiez si le filtre "Symbole" est actif et que l'élément est de type "SYMBOLE"
