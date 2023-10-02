@@ -5,8 +5,10 @@ const resultsList = document.getElementById("resultsList");
 // Variables pour les filtres actifs
 let activeLetterFilter = null;
 let activeLetterButton = null;
-let activeCategoryFilter = null; // Garder une seule catégorie active
-let activeTypeFilter = null; // Garder un seul type actif
+let activeCategoryFilter = null;
+let activeCategoryButton = null;
+let activeTypeFilter = null;
+let activeTypeButton = null;
 let activeSymbolButton = null;
 let activeSymbolFilter = null;
 
@@ -110,15 +112,6 @@ function displaySearchResults(results) {
       // Créez une section pour le groupe (type ou "SYMBOLE")
       const groupSection = document.createElement("div");
       groupSection.classList.add("type-section");
-
-      // Add a separator line before the type name if it's not the first type
-      if (!isFirstType) {
-        const separator = document.createElement("hr");
-        groupSection.appendChild(separator);
-      } else {
-        // If it's the first type, set the flag to false
-        isFirstType = false;
-      }
 
       groupSection.innerHTML = `<h2>${group}</h2>`;
 
@@ -513,7 +506,7 @@ elementsWithPopover.forEach(element => {
     scrollToTop();
 }
 
-const resetFiltersButton = document.getElementById("resetFiltersButton"); // Remplacez "resetFiltersButton" par l'ID de votre bouton de réinitialisation
+const resetFiltersButton = document.getElementById("resetFiltersButton");
 
 resetFiltersButton.addEventListener("click", () => {
     resetFilters();
