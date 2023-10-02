@@ -88,30 +88,29 @@ function displaySearchResults(results) {
     return;
   }
 
-  // Créez un objet pour stocker les résultats groupés par type
+  // Create an object to store results grouped by type
   const groupedResults = {};
 
   results.forEach(result => {
-   const type = (typeof result.type === "string" ? result.type : "SYMBOLE").toString().toUpperCase();
     const type = (result.type || "SYMBOLE").toUpperCase();
 
-    // Créez un groupe s'il n'existe pas encore
+    // Create a group if it doesn't exist yet
     if (!groupedResults[type]) {
       groupedResults[type] = [];
     }
 
-    // Ajoutez le résultat au groupe correspondant
+    // Add the result to the corresponding group
     groupedResults[type].push(result);
   });
 
-  // Parcourez les groupes et ajoutez les résultats à la liste
+  // Iterate through the groups and add the results to the list
   let isFirstType = true; // Initialize a flag to track the first type
 
   for (const group in groupedResults) {
     if (groupedResults.hasOwnProperty(group)) {
       const groupResults = groupedResults[group];
 
-      // Créez une section pour le groupe (type ou "SYMBOLE")
+      // Create a section for the group (type or "SYMBOLE")
       const groupSection = document.createElement("div");
       groupSection.classList.add("type-section");
 
@@ -126,7 +125,7 @@ function displaySearchResults(results) {
 
       groupSection.innerHTML = `<h2>${group}</h2>`;
 
-      // Ajoutez chaque résultat à la section
+      // Add each result to the section
       groupResults.forEach(result => {
         const row = document.createElement("li");
         const abbrCell = document.createElement("abbr");
@@ -203,7 +202,7 @@ function displaySearchResults(results) {
 
         groupSection.appendChild(row);
 
-        // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
+        // Add event listeners for hover (mouseenter and mouseleave) to each <li> element
         row.addEventListener('mouseenter', handleMouseEnter);
         row.addEventListener('mouseleave', handleMouseLeave);
       });
@@ -212,7 +211,6 @@ function displaySearchResults(results) {
     }
   }
 }
-
 
 function scrollToTop() {
     window.scrollTo({
@@ -270,37 +268,36 @@ function significationMatches(signification, searchTerm) {
 }
 
 
-function displayResults(results){
-   resultsList.innerHTML = '';
+function displayResults(results) {
+  resultsList.innerHTML = '';
   if (results.length === 0) {
     resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
     return;
   }
-    
-  // Créez un objet pour stocker les résultats groupés par type
+
+  // Create an object to store results grouped by type
   const groupedResults = {};
 
   results.forEach(result => {
-   const type = (typeof result.type === "string" ? result.type : "SYMBOLE").toString().toUpperCase();
     const type = (result.type || "SYMBOLE").toUpperCase();
 
-    // Créez un groupe s'il n'existe pas encore
+    // Create a group if it doesn't exist yet
     if (!groupedResults[type]) {
       groupedResults[type] = [];
     }
 
-    // Ajoutez le résultat au groupe correspondant
+    // Add the result to the corresponding group
     groupedResults[type].push(result);
   });
 
-  // Parcourez les groupes et ajoutez les résultats à la liste
+  // Iterate through the groups and add the results to the list
   let isFirstType = true; // Initialize a flag to track the first type
 
   for (const group in groupedResults) {
     if (groupedResults.hasOwnProperty(group)) {
       const groupResults = groupedResults[group];
 
-      // Créez une section pour le groupe (type ou "SYMBOLE")
+      // Create a section for the group (type or "SYMBOLE")
       const groupSection = document.createElement("div");
       groupSection.classList.add("type-section");
 
@@ -315,7 +312,7 @@ function displayResults(results){
 
       groupSection.innerHTML = `<h2>${group}</h2>`;
 
-      // Ajoutez chaque résultat à la section
+      // Add each result to the section
       groupResults.forEach(result => {
         const row = document.createElement("li");
         const abbrCell = document.createElement("abbr");
@@ -392,7 +389,7 @@ function displayResults(results){
 
         groupSection.appendChild(row);
 
-        // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
+        // Add event listeners for hover (mouseenter and mouseleave) to each <li> element
         row.addEventListener('mouseenter', handleMouseEnter);
         row.addEventListener('mouseleave', handleMouseLeave);
       });
