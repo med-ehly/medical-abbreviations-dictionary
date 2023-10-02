@@ -7,12 +7,6 @@
   "langue": "(fr)",
   "url": "http://requin.reg05.rtss.qc.ca/"
 },
- {
-    "abreviation": "A.B.C",
-    "signification": "Signification de ABC",
-    "categorie": ["CCVT", "CEGDC"],
-    "type": ["Anatomie", "Examen"]
-},
   {
     "abreviation": "PL",
     "signification": "Ponction Lombaire",
