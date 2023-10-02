@@ -10,8 +10,8 @@
  {
     "abreviation": "A.B.C",
     "signification": "Signification de ABC",
-    "categories": ["CCVT", "CEGDC"],
-    "types": ["Anatomie", "Examen"] 
+    "categorie": ["CCVT", "CEGDC"],
+    "type": ["Anatomie", "Examen"]
 },
   {
     "abreviation": "PL",
