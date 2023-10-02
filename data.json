@@ -2,7 +2,7 @@
  {
   "abreviation": "AVC",
   "signification": "Accident Vasculaire Cérébral",
-  "categorie": "Neurologie",
+  "categorie": ["Neurologie", "CCVT"],
   "type": "Diagnostic",
   "langue": "(fr)",
   "url": "http://requin.reg05.rtss.qc.ca/"
