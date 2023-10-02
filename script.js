@@ -16,7 +16,8 @@ function applyActiveFilters(data) {
     console.log("Applying active filters...");
 
     // Créez un groupe pour les résultats avec le type "SYMBOLE"
-    const symboleResults = data.filter(item => item.type === "SYMBOLE");
+    const type = (typeof result.type === "string" ? result.type : "SYMBOLE").toUpperCase();
+    const symboleResults = data.filter(item => type === "SYMBOLE");
 
     // Vérifiez si le filtre "Symbole" est actif
     const isSymbolFilterActive = activeSymbolFilter === "SYMBOLE";
