@@ -10,9 +10,9 @@
  {
     "abreviation": "A.B.C",
     "signification": "Signification de ABC",
-    "categories": ["CCVT", "CEGDC"], // Use an array for categories
-    "types": ["Anatomie", "Examen"] // Use an array for types
-}
+    "categories": ["CCVT", "CEGDC"],
+    "types": ["Anatomie", "Examen"] 
+},
   {
     "abreviation": "PL",
     "signification": "Ponction Lombaire",
