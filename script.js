@@ -92,7 +92,7 @@ function displaySearchResults(results) {
   const groupedResults = {};
 
   results.forEach(result => {
-    const type = (result.type || "SYMBOLE").toUpperCase();
+     const type = (typeof result.type === 'string' ? result.type : 'SYMBOLE').toUpperCase();
 
     // Create a group if it doesn't exist yet
     if (!groupedResults[type]) {
@@ -279,7 +279,7 @@ function displayResults(results) {
   const groupedResults = {};
 
   results.forEach(result => {
-    const type = (result.type || "SYMBOLE").toUpperCase();
+     const type = (typeof result.type === 'string' ? result.type : 'SYMBOLE').toUpperCase();
 
     // Create a group if it doesn't exist yet
     if (!groupedResults[type]) {
