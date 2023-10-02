@@ -16,8 +16,7 @@ function applyActiveFilters(data) {
     console.log("Applying active filters...");
 
     // Créez un groupe pour les résultats avec le type "SYMBOLE"
-    const type = (typeof result.type === "string" ? result.type : "SYMBOLE").toUpperCase();
-    const symboleResults = data.filter(item => type === "SYMBOLE");
+    const symboleResults = data.filter(item => item.type === "SYMBOLE");
 
     // Vérifiez si le filtre "Symbole" est actif
     const isSymbolFilterActive = activeSymbolFilter === "SYMBOLE";
@@ -88,29 +87,29 @@ function displaySearchResults(results) {
     return;
   }
 
-  // Create an object to store results grouped by type
+  // Créez un objet pour stocker les résultats groupés par type
   const groupedResults = {};
 
   results.forEach(result => {
-     const type = (typeof result.type === 'string' ? result.type : 'SYMBOLE').toUpperCase();
+    const type = (result.type || "SYMBOLE").toUpperCase();
 
-    // Create a group if it doesn't exist yet
+    // Créez un groupe s'il n'existe pas encore
     if (!groupedResults[type]) {
       groupedResults[type] = [];
     }
 
-    // Add the result to the corresponding group
+    // Ajoutez le résultat au groupe correspondant
     groupedResults[type].push(result);
   });
 
-  // Iterate through the groups and add the results to the list
+  // Parcourez les groupes et ajoutez les résultats à la liste
   let isFirstType = true; // Initialize a flag to track the first type
 
   for (const group in groupedResults) {
     if (groupedResults.hasOwnProperty(group)) {
       const groupResults = groupedResults[group];
 
-      // Create a section for the group (type or "SYMBOLE")
+      // Créez une section pour le groupe (type ou "SYMBOLE")
       const groupSection = document.createElement("div");
       groupSection.classList.add("type-section");
 
@@ -125,7 +124,7 @@ function displaySearchResults(results) {
 
       groupSection.innerHTML = `<h2>${group}</h2>`;
 
-      // Add each result to the section
+      // Ajoutez chaque résultat à la section
       groupResults.forEach(result => {
         const row = document.createElement("li");
         const abbrCell = document.createElement("abbr");
@@ -202,7 +201,7 @@ function displaySearchResults(results) {
 
         groupSection.appendChild(row);
 
-        // Add event listeners for hover (mouseenter and mouseleave) to each <li> element
+        // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
         row.addEventListener('mouseenter', handleMouseEnter);
         row.addEventListener('mouseleave', handleMouseLeave);
       });
@@ -211,6 +210,7 @@ function displaySearchResults(results) {
     }
   }
 }
+
 
 function scrollToTop() {
     window.scrollTo({
@@ -268,36 +268,36 @@ function significationMatches(signification, searchTerm) {
 }
 
 
-function displayResults(results) {
-  resultsList.innerHTML = '';
+function displayResults(results){
+   resultsList.innerHTML = '';
   if (results.length === 0) {
     resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
     return;
   }
-
-  // Create an object to store results grouped by type
+    
+  // Créez un objet pour stocker les résultats groupés par type
   const groupedResults = {};
 
   results.forEach(result => {
-     const type = (typeof result.type === 'string' ? result.type : 'SYMBOLE').toUpperCase();
+    const type = (result.type || "SYMBOLE").toUpperCase();
 
-    // Create a group if it doesn't exist yet
+    // Créez un groupe s'il n'existe pas encore
     if (!groupedResults[type]) {
       groupedResults[type] = [];
     }
 
-    // Add the result to the corresponding group
+    // Ajoutez le résultat au groupe correspondant
     groupedResults[type].push(result);
   });
 
-  // Iterate through the groups and add the results to the list
+  // Parcourez les groupes et ajoutez les résultats à la liste
   let isFirstType = true; // Initialize a flag to track the first type
 
   for (const group in groupedResults) {
     if (groupedResults.hasOwnProperty(group)) {
       const groupResults = groupedResults[group];
 
-      // Create a section for the group (type or "SYMBOLE")
+      // Créez une section pour le groupe (type ou "SYMBOLE")
       const groupSection = document.createElement("div");
       groupSection.classList.add("type-section");
 
@@ -312,7 +312,7 @@ function displayResults(results) {
 
       groupSection.innerHTML = `<h2>${group}</h2>`;
 
-      // Add each result to the section
+      // Ajoutez chaque résultat à la section
       groupResults.forEach(result => {
         const row = document.createElement("li");
         const abbrCell = document.createElement("abbr");
@@ -389,7 +389,7 @@ function displayResults(results) {
 
         groupSection.appendChild(row);
 
-        // Add event listeners for hover (mouseenter and mouseleave) to each <li> element
+        // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
         row.addEventListener('mouseenter', handleMouseEnter);
         row.addEventListener('mouseleave', handleMouseLeave);
       });
@@ -410,7 +410,7 @@ function handleMouseEnter(event) {
   if (langueContent) {
     // Calculer la position en fonction de l'élément cible
     const rowRect = row.getBoundingClientRect();
-    const top = rowRect.bottom + window.scrollY - 15;
+    const top = rowRect.bottom + window.scrollY - 19;
     const left = rowRect.right + window.scrollX - 18; 
 
     // Appliquer la position calculée au popover
@@ -596,63 +596,60 @@ symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
                 }
                 return button;
             }
-           function handleCategoryFilterButtonClick(button) {
-    const selectedCategoryFilter = button.getAttribute("data-category");
-    const isCategoryFilterActive = button.classList.contains("active");
+            function handleCategoryFilterButtonClick(button) {
+                const selectedCategoryFilter = button.getAttribute("data-category");
+                const isCategoryFilterActive = button.classList.contains("active");
 
-    // Désactivez le filtre "Symbole" si actif
-    if (activeSymbolButton) {
-        activeSymbolButton.classList.remove("active");
-        activeSymbolButton = null;
-        activeSymbolFilter = null;
-    }
-
-    if (!isCategoryFilterActive) {
-        // Désactivez le bouton de catégorie actif s'il y en a un
-        if (activeCategoryButton) {
-            activeCategoryButton.classList.remove("active");
-        }
-        button.classList.add("active");
-        activeCategoryButton = button;
-        activeCategoryFilter = selectedCategoryFilter;
-    } else {
-        button.classList.remove("active");
-        activeCategoryButton = null;
-        activeCategoryFilter = null;
-    }
-
-    applyActiveFilters(sortedData);
-    scrollToTop();
-}
-
+                 // Désactivez le filtre "Symbole" si actif
+                if (activeSymbolButton) {
+                activeSymbolButton.classList.remove("active");
+                activeSymbolButton = null;
+                activeSymbolFilter = null;
+                }
+                
+                if (!isCategoryFilterActive) {
+                    // Désactivez le bouton de catégorie actif s'il y en a un
+                    if (activeCategoryButton) {
+                        activeCategoryButton.classList.remove("active");
+                    }
+                    button.classList.add("active");
+                    activeCategoryButton = button;
+                    activeCategoryFilter = selectedCategoryFilter;
+                } else {
+                    button.classList.remove("active");
+                    activeCategoryButton = null;
+                    activeCategoryFilter = null;
+                }
+                applyActiveFilters(sortedData);
+                scrollToTop();
+            }
             function handleTypeFilterButtonClick(button) {
-    const selectedTypeFilter = button.getAttribute("data-type");
-    const isTypeFilterActive = button.classList.contains("active");
+                const selectedTypeFilter = button.getAttribute("data-type");
+                const isTypeFilterActive = button.classList.contains("active");
 
-    // Désactivez le filtre "Symbole" si actif
-    if (activeSymbolButton) {
-        activeSymbolButton.classList.remove("active");
-        activeSymbolButton = null;
-        activeSymbolFilter = null;
-    }
-
-    if (!isTypeFilterActive) {
-        // Désactivez le bouton de type actif s'il y en a un
-        if (activeTypeButton) {
-            activeTypeButton.classList.remove("active");
-        }
-        button.classList.add("active");
-        activeTypeButton = button;
-        activeTypeFilter = selectedTypeFilter;
-    } else {
-        button.classList.remove("active");
-        activeTypeButton = null;
-        activeTypeFilter = null;
-    }
-
-    applyActiveFilters(sortedData);
-    scrollToTop();
-}
+                 // Désactivez le filtre "Symbole" si actif
+                if (activeSymbolButton) {
+                activeSymbolButton.classList.remove("active");
+                activeSymbolButton = null;
+                activeSymbolFilter = null;
+                }
+                
+                if (!isTypeFilterActive) {
+                    // Désactivez le bouton de type actif s'il y en a un
+                    if (activeTypeButton) {
+                        activeTypeButton.classList.remove("active");
+                    }
+                    button.classList.add("active");
+                    activeTypeButton = button;
+                    activeTypeFilter = selectedTypeFilter;
+                } else {
+                    button.classList.remove("active");
+                    activeTypeButton = null;
+                    activeTypeFilter = null;
+                }
+                applyActiveFilters(sortedData);
+                scrollToTop();
+            }
         })
         .catch(error => {
             console.error("Une erreur s'est produite lors du chargement des données.", error);
