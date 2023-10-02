@@ -596,60 +596,63 @@ symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
                 }
                 return button;
             }
-            function handleCategoryFilterButtonClick(button) {
-                const selectedCategoryFilter = button.getAttribute("data-category");
-                const isCategoryFilterActive = button.classList.contains("active");
+           function handleCategoryFilterButtonClick(button) {
+    const selectedCategoryFilter = button.getAttribute("data-category");
+    const isCategoryFilterActive = button.classList.contains("active");
 
-                 // Désactivez le filtre "Symbole" si actif
-                if (activeSymbolButton) {
-                activeSymbolButton.classList.remove("active");
-                activeSymbolButton = null;
-                activeSymbolFilter = null;
-                }
-                
-                if (!isCategoryFilterActive) {
-                    // Désactivez le bouton de catégorie actif s'il y en a un
-                    if (activeCategoryButton) {
-                        activeCategoryButton.classList.remove("active");
-                    }
-                    button.classList.add("active");
-                    activeCategoryButton = button;
-                    activeCategoryFilter = selectedCategoryFilter;
-                } else {
-                    button.classList.remove("active");
-                    activeCategoryButton = null;
-                    activeCategoryFilter = null;
-                }
-                applyActiveFilters(sortedData);
-                scrollToTop();
-            }
+    // Désactivez le filtre "Symbole" si actif
+    if (activeSymbolButton) {
+        activeSymbolButton.classList.remove("active");
+        activeSymbolButton = null;
+        activeSymbolFilter = null;
+    }
+
+    if (!isCategoryFilterActive) {
+        // Désactivez le bouton de catégorie actif s'il y en a un
+        if (activeCategoryButton) {
+            activeCategoryButton.classList.remove("active");
+        }
+        button.classList.add("active");
+        activeCategoryButton = button;
+        activeCategoryFilter = selectedCategoryFilter;
+    } else {
+        button.classList.remove("active");
+        activeCategoryButton = null;
+        activeCategoryFilter = null;
+    }
+
+    applyActiveFilters(sortedData);
+    scrollToTop();
+}
+
             function handleTypeFilterButtonClick(button) {
-                const selectedTypeFilter = button.getAttribute("data-type");
-                const isTypeFilterActive = button.classList.contains("active");
+    const selectedTypeFilter = button.getAttribute("data-type");
+    const isTypeFilterActive = button.classList.contains("active");
 
-                 // Désactivez le filtre "Symbole" si actif
-                if (activeSymbolButton) {
-                activeSymbolButton.classList.remove("active");
-                activeSymbolButton = null;
-                activeSymbolFilter = null;
-                }
-                
-                if (!isTypeFilterActive) {
-                    // Désactivez le bouton de type actif s'il y en a un
-                    if (activeTypeButton) {
-                        activeTypeButton.classList.remove("active");
-                    }
-                    button.classList.add("active");
-                    activeTypeButton = button;
-                    activeTypeFilter = selectedTypeFilter;
-                } else {
-                    button.classList.remove("active");
-                    activeTypeButton = null;
-                    activeTypeFilter = null;
-                }
-                applyActiveFilters(sortedData);
-                scrollToTop();
-            }
+    // Désactivez le filtre "Symbole" si actif
+    if (activeSymbolButton) {
+        activeSymbolButton.classList.remove("active");
+        activeSymbolButton = null;
+        activeSymbolFilter = null;
+    }
+
+    if (!isTypeFilterActive) {
+        // Désactivez le bouton de type actif s'il y en a un
+        if (activeTypeButton) {
+            activeTypeButton.classList.remove("active");
+        }
+        button.classList.add("active");
+        activeTypeButton = button;
+        activeTypeFilter = selectedTypeFilter;
+    } else {
+        button.classList.remove("active");
+        activeTypeButton = null;
+        activeTypeFilter = null;
+    }
+
+    applyActiveFilters(sortedData);
+    scrollToTop();
+}
         })
         .catch(error => {
             console.error("Une erreur s'est produite lors du chargement des données.", error);
