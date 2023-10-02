@@ -92,6 +92,7 @@ function displaySearchResults(results) {
   const groupedResults = {};
 
   results.forEach(result => {
+   const type = (typeof result.type === "string" ? result.type : "SYMBOLE").toString().toUpperCase();
     const type = (result.type || "SYMBOLE").toUpperCase();
 
     // Créez un groupe s'il n'existe pas encore
@@ -280,6 +281,7 @@ function displayResults(results){
   const groupedResults = {};
 
   results.forEach(result => {
+   const type = (typeof result.type === "string" ? result.type : "SYMBOLE").toString().toUpperCase();
     const type = (result.type || "SYMBOLE").toUpperCase();
 
     // Créez un groupe s'il n'existe pas encore
