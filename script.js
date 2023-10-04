@@ -1,4 +1,4 @@
- // Constantes pour les sélecteurs DOM
+// Constantes pour les sélecteurs DOM
 const searchInput = document.getElementById("searchInput");
 const resultsList = document.getElementById("resultsList");
 
@@ -11,9 +11,9 @@ let activeFilters = {
 };
 
 function applyActiveFilters(data) {
-    console.log("Applying active filters...");
+  console.log("Applying active filters...");
 
-    const filteredResults = data.filter(item => {
+  const filteredResults = data.filter(item => {
     const letterMatches =
       !activeFilters.letter ||
       item.abreviation.charAt(0).toLowerCase() === activeFilters.letter.toLowerCase();
@@ -32,7 +32,7 @@ function applyActiveFilters(data) {
   displayResults(filteredResults);
 }
 
- function handleMouseEnter(event) {
+function handleMouseEnter(event) {
   const popover = event.currentTarget.querySelector(".langue-popover");
   if (popover) {
     popover.style.display = "block";
@@ -47,29 +47,29 @@ function handleMouseLeave(event) {
 }
 
 function sortDataAlphabeticallyWithFallback(data) {
-    // Divisez les données en deux groupes : celles avec une catégorie "type" et celles sans
-    const withTypeCategory = data.filter(item => item.type !== undefined && item.type !== null);
-    const withoutTypeCategory = data.filter(item => item.type === undefined || item.type === null);
+  // Divisez les données en deux groupes : celles avec une catégorie "type" et celles sans
+  const withTypeCategory = data.filter(item => item.type !== undefined && item.type !== null);
+  const withoutTypeCategory = data.filter(item => item.type === undefined || item.type === null);
 
-    // Triez d'abord les éléments avec une catégorie "type" par abréviation
-    const sortedWithTypeCategory = withTypeCategory.sort((a, b) => a.abreviation.localeCompare(b.abreviation));
+  // Triez d'abord les éléments avec une catégorie "type" par abréviation
+  const sortedWithTypeCategory = withTypeCategory.sort((a, b) => a.abreviation.localeCompare(b.abreviation));
 
-    // Ensuite, triez les éléments sans catégorie "type" comme s'ils avaient la catégorie "symbole"
-    const sortedWithoutTypeCategory = withoutTypeCategory.sort((a, b) => {
-        if (a.type === "SYMBOLE" && b.type !== "SYMBOLE") {
-            return 1; // "a" (SYMBOLE) va à la fin
-        } else if (a.type !== "SYMBOLE" && b.type === "SYMBOLE") {
-            return -1; // "b" (SYMBOLE) va à la fin
-        } else {
-            // Si les deux ont la même catégorie ou aucune catégorie, triez par abréviation
-            return a.abreviation.localeCompare(b.abreviation);
-        }
-    });
+  // Ensuite, triez les éléments sans catégorie "type" comme s'ils avaient la catégorie "symbole"
+  const sortedWithoutTypeCategory = withoutTypeCategory.sort((a, b) => {
+    if (a.type === "SYMBOLE" && b.type !== "SYMBOLE") {
+      return 1; // "a" (SYMBOLE) va à la fin
+    } else if (a.type !== "SYMBOLE" && b.type === "SYMBOLE") {
+      return -1; // "b" (SYMBOLE) va à la fin
+    } else {
+      // Si les deux ont la même catégorie ou aucune catégorie, triez par abréviation
+      return a.abreviation.localeCompare(b.abreviation);
+    }
+  });
 
-    // Fusionnez les deux groupes triés
-    const sortedData = sortedWithTypeCategory.concat(sortedWithoutTypeCategory);
+  // Fusionnez les deux groupes triés
+  const sortedData = sortedWithTypeCategory.concat(sortedWithoutTypeCategory);
 
-    return sortedData;
+  return sortedData;
 }
 
 function displaySearchResults(results) {
@@ -80,7 +80,7 @@ function displaySearchResults(results) {
     return;
   }
 
- // Créez un objet pour stocker les résultats groupés par type
+  // Créez un objet pour stocker les résultats groupés par type
   const groupedResults = {};
 
   results.forEach(result => {
@@ -104,7 +104,7 @@ function displaySearchResults(results) {
       });
     }
   });
- 
+
   // Parcourez les groupes et ajoutez les résultats à la liste
   let isFirstType = true; // Initialize a flag to track the first type
 
@@ -145,13 +145,13 @@ function displaySearchResults(results) {
             const significationContainer = document.createElement("div");
             significationContainer.classList.add("signification-container");
 
-           // Check if the signification matches the active category filter
-    const matchesCategory = signification.type === activeCategoryFilter;
+            // Check if the signification matches the active category filter
+            const matchesCategory = signification.type === activeCategoryFilter;
 
-    // Add a CSS class to highlight the matching signification
-    if (matchesCategory) {
-        significationContainer.classList.add("highlighted-signification");
-    }
+            // Add a CSS class to highlight the matching signification
+            if (matchesCategory) {
+              significationContainer.classList.add("highlighted-signification");
+            }
 
             const descriptionText = document.createElement("p");
             descriptionText.innerHTML = `➤ ${signification.signification}`;
@@ -222,71 +222,68 @@ function displaySearchResults(results) {
   }
 }
 
-
 function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth" // Cela permettra une animation de défilement en douceur
-    });
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth", // Cela permettra une animation de défilement en douceur
+  });
 }
 
 function handleSearch(event, data) {
-    const searchTerm = event.target.value.toLowerCase();
-    const filteredResults = data.filter(item => {
-        // Vérifiez si le terme de recherche est contenu dans l'abréviation ou la signification
-        const abbreviationMatch = abbreviationMatches(item.abreviation, searchTerm);
-        const significationMatch = significationMatches(item.signification, searchTerm);
-        const significationsMatch = significationsMatches(item.significations, searchTerm);
+  const searchTerm = event.target.value.toLowerCase();
+  const filteredResults = data.filter(item => {
+    // Vérifiez si le terme de recherche est contenu dans l'abréviation ou la signification
+    const abbreviationMatch = abbreviationMatches(item.abreviation, searchTerm);
+    const significationMatch = significationMatches(item.signification, searchTerm);
+    const significationsMatch = significationsMatches(item.significations, searchTerm);
 
+    // Vérifiez si les filtres sont actifs et si l'élément correspond aux filtres
+    const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
+    const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
 
-        // Vérifiez si les filtres sont actifs et si l'élément correspond aux filtres
-        const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
-        const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
-
-        // Retournez le résultat uniquement si la recherche et les filtres correspondent
-        return (abbreviationMatch || significationMatch || significationsMatch) && categoryMatches && typeMatches;
-    });
-    applyActiveFilters(filteredResults);
+    // Retournez le résultat uniquement si la recherche et les filtres correspondent
+    return (abbreviationMatch || significationMatch || significationsMatch) && categoryMatches && typeMatches;
+  });
+  applyActiveFilters(filteredResults);
 }
 
 function significationsMatches(significations, searchTerm) {
-    if (!significations || !Array.isArray(significations)) return false;
-    return significations.some(significationObj =>
-        significationObj.signification
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .includes(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
-    );
+  if (!significations || !Array.isArray(significations)) return false;
+  return significations.some(significationObj =>
+    significationObj.signification
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .includes(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
+  );
 }
 
 function abbreviationMatches(abbreviation, searchTerm) {
-    if (!abbreviation) return false;
-    return abbreviation
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .includes(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+  if (!abbreviation) return false;
+  return abbreviation
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .includes(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
 }
 
 function significationMatches(signification, searchTerm) {
-    if (!signification) return false;
-    return signification
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .includes(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+  if (!signification) return false;
+  return signification
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .includes(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
 }
 
-
-function displayResults(results){
-   resultsList.innerHTML = '';
+function displayResults(results) {
+  resultsList.innerHTML = '';
   if (results.length === 0) {
     resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
     return;
   }
-    
- // Créez un objet pour stocker les résultats groupés par type
+
+  // Créez un objet pour stocker les résultats groupés par type
   const groupedResults = {};
 
   results.forEach(result => {
@@ -310,7 +307,7 @@ function displayResults(results){
       });
     }
   });
- 
+
   // Parcourez les groupes et ajoutez les résultats à la liste
   let isFirstType = true; // Initialize a flag to track the first type
 
@@ -351,13 +348,13 @@ function displayResults(results){
             const significationContainer = document.createElement("div");
             significationContainer.classList.add("signification-container");
 
-           // Check if the signification matches the active category filter
-    const matchesCategory = signification.type === activeCategoryFilter;
+            // Check if the signification matches the active category filter
+            const matchesCategory = signification.type === activeCategoryFilter;
 
-    // Add a CSS class to highlight the matching signification
-    if (matchesCategory) {
-        significationContainer.classList.add("highlighted-signification");
-    }
+            // Add a CSS class to highlight the matching signification
+            if (matchesCategory) {
+              significationContainer.classList.add("highlighted-signification");
+            }
 
             const descriptionText = document.createElement("p");
             descriptionText.innerHTML = `➤ ${signification.signification}`;
@@ -440,7 +437,7 @@ function handleMouseEnter(event) {
     // Calculer la position en fonction de l'élément cible
     const rowRect = row.getBoundingClientRect();
     const top = rowRect.bottom + window.scrollY - 12;
-    const left = rowRect.right + window.scrollX - 18; 
+    const left = rowRect.right + window.scrollX - 18;
 
     // Appliquer la position calculée au popover
     popover.style.top = `${top}px`;
@@ -451,172 +448,162 @@ function handleMouseEnter(event) {
   }
 }
 
-
 // Ajoutez un gestionnaire d'événements pour le survol (mouseenter) de chaque élément <li>
 document.querySelectorAll('.type-section li').forEach(row => {
   row.addEventListener('mouseenter', handleMouseEnter);
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("data.json")
-        .then(response => response.json())
-        .then(data => {
-            const sortedData = sortDataAlphabeticallyWithFallback(data);
-            displaySearchResults(sortedData);
-            searchInput.addEventListener("input", event => handleSearch(event, sortedData));
-            const letterButtons = document.querySelectorAll(".letter-button");
-            const symbolFilterButton = document.getElementById("symbolFilterButton");
-            
-            // Fonction pour gérer le clic sur une lettre
-            function handleLetterButtonClick(button) {
-                const selectedLetter = button.getAttribute("data-letter");
-                const isFilterActive = button.classList.contains("active");
-                if (!isFilterActive) {
-                    // Désactivez toutes les autres lettres sélectionnées
-                    letterButtons.forEach(letterButton => {
-                        letterButton.classList.remove("active");
-                    });
-                    button.classList.add("active");
-                    activeLetterButton = selectedLetter; // Mettez à jour la variable globale activeLetterButton
-                     // Désactivez le bouton "Symbole" s'il est actif
-                if (activeSymbolButton) {
-                activeSymbolButton.classList.remove("active");
-                activeSymbolButton = null;
-                activeSymbolFilter = null;
-                    }
-                } else {
-                    button.classList.remove("active");
-                    activeLetterButton = null; // Réinitialisez le filtre de lettre actif
-                }
-                applyActiveFilters(sortedData);
-            }
-            // Associez la fonction handleLetterButtonClick au clic sur chaque bouton de lettre
-            letterButtons.forEach(button => {
-                button.addEventListener("click", () => {
-                    handleLetterButtonClick(button);
-                });
-            });
+  fetch("data.json")
+    .then(response => response.json())
+    .then(data => {
+      const sortedData = sortDataAlphabeticallyWithFallback(data);
+      displaySearchResults(sortedData);
+      searchInput.addEventListener("input", event => handleSearch(event, sortedData));
+      const letterButtons = document.querySelectorAll(".letter-button");
+      const symbolFilterButton = document.getElementById("symbolFilterButton");
 
-// Attachez les gestionnaires d'événements aux éléments qui nécessitent des popovers de langue
-const elementsWithPopover = document.querySelectorAll('.element-with-popover');
+      // Fonction pour gérer le clic sur une lettre
+      function handleLetterButtonClick(button) {
+        const selectedLetter = button.getAttribute("data-letter");
+        const isFilterActive = button.classList.contains("active");
+        if (!isFilterActive) {
+          // Désactivez toutes les autres lettres sélectionnées
+          letterButtons.forEach(letterButton => {
+            letterButton.classList.remove("active");
+          });
+          button.classList.add("active");
+          activeLetterButton = selectedLetter; // Mettez à jour la variable globale activeLetterButton
+          // Désactivez le bouton "Symbole" s'il est actif
+          if (activeSymbolButton) {
+            activeSymbolButton.classList.remove("active");
+            activeSymbolButton = null;
+            activeSymbolFilter = null;
+          }
+        } else {
+          button.classList.remove("active");
+          activeLetterButton = null; // Réinitialisez le filtre de lettre actif
+        }
+        applyActiveFilters(sortedData);
+      }
+      // Associez la fonction handleLetterButtonClick au clic sur chaque bouton de lettre
+      letterButtons.forEach(button => {
+        button.addEventListener("click", () => {
+          handleLetterButtonClick(button);
+        });
+      });
 
-elementsWithPopover.forEach(element => {
-  element.addEventListener('mouseenter', handleMouseEnter);
-  element.addEventListener('mouseleave', handleMouseLeave);
-});
-          function resetFilters() {
-    // Réinitialisez les filtres de lettre
-    letterButtons.forEach(letterButton => {
-        letterButton.classList.remove("active");
+      // Attachez les gestionnaires d'événements aux éléments qui nécessitent des popovers de langue
+      const elementsWithPopover = document.querySelectorAll('.element-with-popover');
+
+      elementsWithPopover.forEach(element => {
+        element.addEventListener('mouseenter', handleMouseEnter);
+        element.addEventListener('mouseleave', handleMouseLeave);
+      });
+
+      function resetFilters() {
+        // Réinitialisez les filtres de lettre
+        letterButtons.forEach(letterButton => {
+          letterButton.classList.remove("active");
+        });
+        activeLetterButton = null;
+
+        // Réinitialisez le filtre "Symbole"
+        if (activeSymbolButton) {
+          activeSymbolButton.classList.remove("active");
+          activeSymbolButton = null;
+          activeSymbolFilter = null;
+        }
+
+        // Réinitialisez les filtres de catégorie
+        categoryButtons.forEach(categoryButton => {
+          categoryButton.classList.remove("active");
+        });
+        activeCategoryButton = null;
+        activeCategoryFilter = null;
+
+        // Réinitialisez les filtres de type
+        typeButtons.forEach(typeButton => {
+          typeButton.classList.remove("active");
+        });
+        activeTypeButton = null;
+        activeTypeFilter = null;
+
+        // Effacez le contenu de la barre de recherche
+        const searchInput = document.getElementById("searchInput"); // Remplacez "searchInput" par l'ID de votre champ de recherche
+        if (searchInput) {
+          searchInput.value = "";
+        }
+
+        // Appliquez les filtres réinitialisés aux données
+        applyActiveFilters(sortedData);
+        scrollToTop();
+      }
+
+      const resetFiltersButton = document.getElementById("resetFiltersButton"); // Remplacez "resetFiltersButton" par l'ID de votre bouton de réinitialisation
+
+      resetFiltersButton.addEventListener("click", () => {
+        resetFilters();
+      });
+
+      // Handle symbol filter button click
+      function handleSymbolFilterButtonClick() {
+        activeFilters.symbol = !activeFilters.symbol;
+
+        if (activeFilters.symbol) {
+          // If the symbol filter is active, deactivate other filters
+          activeFilters.letter = null;
+          activeFilters.category = null;
+          activeFilters.type = null;
+        }
+
+        applyActiveFilters(sortedData);
+      }
+
+      // Add an event listener to the symbol filter button
+      symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
+
+      // Handle category filter button click
+      function handleCategoryFilterButtonClick(button) {
+        const selectedCategoryFilter = button.getAttribute("data-category");
+        activeFilters.category = activeFilters.category === selectedCategoryFilter ? null : selectedCategoryFilter;
+
+        if (activeFilters.category) {
+          // If a category filter is active, deactivate the symbol filter
+          activeFilters.symbol = false;
+          activeSymbolButton.classList.remove("active");
+          activeSymbolButton = null;
+        }
+
+        applyActiveFilters(sortedData);
+      }
+
+      // Add event listeners to category filter buttons
+      categoryButtons.forEach(button => {
+        button.addEventListener("click", () => {
+          handleCategoryFilterButtonClick(button);
+        });
+      });
+
+      // Handle type filter button click
+      function handleTypeFilterButtonClick(button) {
+        const selectedTypeFilter = button.getAttribute("data-type");
+        activeFilters.type = activeFilters.type === selectedTypeFilter ? null : selectedTypeFilter;
+
+        applyActiveFilters(sortedData);
+      }
+
+      // Add event listeners to type filter buttons
+      typeButtons.forEach(button => {
+        button.addEventListener("click", () => {
+          handleTypeFilterButtonClick(button);
+        });
+      });
+
+      // Initialize the filters and display data on page load
+      resetFilters();
+    })
+    .catch(error => {
+      console.error("Error fetching data:", error);
     });
-    activeLetterButton = null;
-
-    // Réinitialisez le filtre "Symbole"
-    if (activeSymbolButton) {
-        activeSymbolButton.classList.remove("active");
-        activeSymbolButton = null;
-        activeSymbolFilter = null;
-    }
-
-    // Réinitialisez les filtres de catégorie
-    categoryButtons.forEach(categoryButton => {
-        categoryButton.classList.remove("active");
-    });
-    activeCategoryButton = null;
-    activeCategoryFilter = null;
-
-    // Réinitialisez les filtres de type
-    typeButtons.forEach(typeButton => {
-        typeButton.classList.remove("active");
-    });
-    activeTypeButton = null;
-    activeTypeFilter = null;
-
-              // Effacez le contenu de la barre de recherche
-    const searchInput = document.getElementById("searchInput"); // Remplacez "searchInput" par l'ID de votre champ de recherche
-    if (searchInput) {
-        searchInput.value = "";
-    }
-
-
-    // Appliquez les filtres réinitialisés aux données
-    applyActiveFilters(sortedData);
-    scrollToTop();
-}
-
-const resetFiltersButton = document.getElementById("resetFiltersButton"); // Remplacez "resetFiltersButton" par l'ID de votre bouton de réinitialisation
-
-resetFiltersButton.addEventListener("click", () => {
-    resetFilters();
 });
-
-
-// Handle symbol filter button click
-function handleSymbolFilterButtonClick() {
-  activeFilters.symbol = !activeFilters.symbol;
-
-  if (activeFilters.symbol) {
-    // If the symbol filter is active, deactivate other filters
-    activeFilters.letter = null;
-    activeFilters.category = null;
-    activeFilters.type = null;
-  }
-
-  applyActiveFilters(sortedData);
-}
-
-// Add an event listener to the symbol filter button
-symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
-
-// Handle category filter button click
-function handleCategoryFilterButtonClick(button) {
-  const selectedCategoryFilter = button.getAttribute("data-category");
-  activeFilters.category = activeFilters.category === selectedCategoryFilter ? null : selectedCategoryFilter;
-
-  if (activeFilters.category) {
-    activeFilters.letter = null;
-    activeFilters.type = null;
-    activeFilters.symbol = false;
-  }
-
-  applyActiveFilters(sortedData);
-}
-
-         // Add an event listener to each category filter button
-categoryButtons.forEach(button => {
-  button.addEventListener("click", () => handleCategoryFilterButtonClick(button));
-});
-
-// Handle type filter button click
-function handleTypeFilterButtonClick(button) {
-  const selectedTypeFilter = button.getAttribute("data-type");
-  activeFilters.type = activeFilters.type === selectedTypeFilter ? null : selectedTypeFilter;
-
-  if (activeFilters.type) {
-    activeFilters.letter = null;
-    activeFilters.category = null;
-    activeFilters.symbol = false;
-  }
-
-  applyActiveFilters(sortedData);
-}
-
-// Add an event listener to each type filter button
-typeButtons.forEach(button => {
-  button.addEventListener("click", () => handleTypeFilterButtonClick(button));
-});
-
-// Add an event listener to the reset filters button
-resetFiltersButton.addEventListener("click", () => {
-  activeFilters = {
-    letter: null,
-    category: null,
-    type: null,
-    symbol: false,
-  };
-
-  applyActiveFilters(sortedData);
-});
-
-// Add an event listener to the search input
-searchInput.addEventListener("input", event => handleSearch(event, sortedData));
