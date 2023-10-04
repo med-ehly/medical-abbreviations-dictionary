@@ -155,6 +155,14 @@ function displaySearchResults(results) {
             const significationContainer = document.createElement("div");
             significationContainer.classList.add("signification-container");
 
+           // Check if the signification matches the active category filter
+    const matchesCategory = signification.type === activeCategoryFilter;
+
+    // Add a CSS class to highlight the matching signification
+    if (matchesCategory) {
+        significationContainer.classList.add("highlighted-signification");
+    }
+
             const descriptionText = document.createElement("p");
             descriptionText.innerHTML = `➤ ${signification.signification}`;
             significationContainer.appendChild(descriptionText);
@@ -352,6 +360,14 @@ function displayResults(results){
           result.significations.forEach(signification => {
             const significationContainer = document.createElement("div");
             significationContainer.classList.add("signification-container");
+
+           // Check if the signification matches the active category filter
+    const matchesCategory = signification.type === activeCategoryFilter;
+
+    // Add a CSS class to highlight the matching signification
+    if (matchesCategory) {
+        significationContainer.classList.add("highlighted-signification");
+    }
 
             const descriptionText = document.createElement("p");
             descriptionText.innerHTML = `➤ ${signification.signification}`;
