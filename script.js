@@ -623,6 +623,15 @@ symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
                     activeCategoryButton = null;
                     activeCategoryFilter = null;
                 }
+
+             // Apply filters based on the updated category filter
+  const filteredResults = sortedData.filter(item => {
+    return (
+      activeCategoryFilter === null ||
+      (Array.isArray(item.categorie) && item.categorie.includes(activeCategoryFilter))
+    );
+  });
+
                 applyActiveFilters(sortedData);
                 scrollToTop();
             }
