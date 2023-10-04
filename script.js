@@ -90,28 +90,30 @@ function displaySearchResults(results) {
     return;
   }
 
-// Créez un objet pour stocker les résultats groupés par type
-const groupedResults = {};
+ // Créez un objet pour stocker les résultats groupés par type
+  const groupedResults = {};
 
-results.forEach(result => {
-  let types = result.type || ["SYMBOLE"]; // Initialize types as an array
+  results.forEach(result => {
+    if (result.significations && Array.isArray(result.significations)) {
+      result.significations.forEach(signification => {
+        const type = signification.type || "SYMBOLE";
+        const typeKey = type.toUpperCase();
 
-  // Ensure "types" is an array
-  if (!Array.isArray(types)) {
-    types = [types];
-  }
+        // Créez un groupe s'il n'existe pas encore
+        if (!groupedResults[typeKey]) {
+          groupedResults[typeKey] = [];
+        }
 
-  types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
-
-  // Créez un groupe pour chaque type
-  types.forEach(type => {
-    if (!groupedResults[type]) {
-      groupedResults[type] = [];
+        // Push the result along with its type
+        groupedResults[typeKey].push({
+          abreviation: result.abreviation,
+          signification: signification.signification,
+          url: signification.url,
+          langue: result.langue,
+        });
+      });
     }
-
-    groupedResults[type].push(result);
   });
-});
  
   // Parcourez les groupes et ajoutez les résultats à la liste
   let isFirstType = true; // Initialize a flag to track the first type
@@ -286,28 +288,30 @@ function displayResults(results){
     return;
   }
     
-// Créez un objet pour stocker les résultats groupés par type
-const groupedResults = {};
+ // Créez un objet pour stocker les résultats groupés par type
+  const groupedResults = {};
 
-results.forEach(result => {
-  let types = result.type || ["SYMBOLE"]; // Initialize types as an array
+  results.forEach(result => {
+    if (result.significations && Array.isArray(result.significations)) {
+      result.significations.forEach(signification => {
+        const type = signification.type || "SYMBOLE";
+        const typeKey = type.toUpperCase();
 
-  // Ensure "types" is an array
-  if (!Array.isArray(types)) {
-    types = [types];
-  }
+        // Créez un groupe s'il n'existe pas encore
+        if (!groupedResults[typeKey]) {
+          groupedResults[typeKey] = [];
+        }
 
-  types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
-
-  // Créez un groupe pour chaque type
-  types.forEach(type => {
-    if (!groupedResults[type]) {
-      groupedResults[type] = [];
+        // Push the result along with its type
+        groupedResults[typeKey].push({
+          abreviation: result.abreviation,
+          signification: signification.signification,
+          url: signification.url,
+          langue: result.langue,
+        });
+      });
     }
-
-    groupedResults[type].push(result);
   });
-});
  
   // Parcourez les groupes et ajoutez les résultats à la liste
   let isFirstType = true; // Initialize a flag to track the first type
