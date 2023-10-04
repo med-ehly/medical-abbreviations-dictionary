@@ -2,44 +2,34 @@
 const searchInput = document.getElementById("searchInput");
 const resultsList = document.getElementById("resultsList");
 
-// Variables pour les filtres actifs
-let activeLetterFilter = null;
-let activeLetterButton = null;
-let activeCategoryFilter = null;
-let activeCategoryButton = null;
-let activeTypeButton = null;
-let activeTypeFilter = null;
-let activeSymbolButton = null;
-let activeSymbolFilter = null;
+// Variables for active filters
+let activeFilters = {
+  letter: null,
+  category: null,
+  type: null,
+  symbol: false,
+};
 
 function applyActiveFilters(data) {
     console.log("Applying active filters...");
 
-    // Créez un groupe pour les résultats avec le type "SYMBOLE"
-    const symboleResults = data.filter(item => item.type === "SYMBOLE");
-
-    // Vérifiez si le filtre "Symbole" est actif
-    const isSymbolFilterActive = activeSymbolFilter === "SYMBOLE";
-
-    // Vérifiez si le filtre "Catégorie" est actif
-    const isCategoryFilterActive = activeCategoryFilter !== null;
- 
-    // Appliquez les filtres en fonction de l'état des filtres
     const filteredResults = data.filter(item => {
-        const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
-        const categoryMatches = !isCategoryFilterActive || (item.categorie && item.categorie.includes(activeCategoryFilter));
-        const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
+    const letterMatches =
+      !activeFilters.letter ||
+      item.abreviation.charAt(0).toLowerCase() === activeFilters.letter.toLowerCase();
+    const categoryMatches =
+      !activeFilters.category ||
+      (item.categorie && item.categorie.includes(activeFilters.category));
+    const typeMatches = !activeFilters.type || item.type === activeFilters.type;
 
-        // Vérifiez si le filtre "Symbole" est actif et que l'élément est de type "SYMBOLE"
-        if (isSymbolFilterActive && item.type === "SYMBOLE") {
-            return true;
-        }
+    if (activeFilters.symbol && item.type === "SYMBOLE") {
+      return true;
+    }
 
-        // Vérifiez si d'autres filtres correspondent également
-        return letterMatches && categoryMatches && typeMatches;
-    });
+    return letterMatches && categoryMatches && typeMatches;
+  });
 
-    displayResults(filteredResults);
+  displayResults(filteredResults);
 }
 
  function handleMouseEnter(event) {
@@ -560,155 +550,73 @@ resetFiltersButton.addEventListener("click", () => {
     resetFilters();
 });
 
+
+// Handle symbol filter button click
 function handleSymbolFilterButtonClick() {
-    const isFilterActive = symbolFilterButton.classList.contains("active");
+  activeFilters.symbol = !activeFilters.symbol;
 
-    // Désactivez tous les autres filtres actifs
-    letterButtons.forEach(letterButton => {
-        letterButton.classList.remove("active");
-    });
-    activeLetterButton = null;
+  if (activeFilters.symbol) {
+    // If the symbol filter is active, deactivate other filters
+    activeFilters.letter = null;
+    activeFilters.category = null;
+    activeFilters.type = null;
+  }
 
-    categoryButtons.forEach(categoryButton => {
-        categoryButton.classList.remove("active");
-    });
-    activeCategoryButton = null;
-    activeCategoryFilter = null;
-
-    typeButtons.forEach(typeButton => {
-        typeButton.classList.remove("active");
-    });
-    activeTypeButton = null;
-    activeTypeFilter = null;
-
-    // Si le filtre "Symbole" n'est pas actif, activez-le
-    if (!isFilterActive) {
-        symbolFilterButton.classList.add("active");
-        activeSymbolButton = symbolFilterButton;
-        activeSymbolFilter = "SYMBOLE";
-
-        const filteredResults = sortedData.filter(item => {
-            return activeSymbolFilter === null || (item.symbole === "SYMBOLE");
-        });
-
-        displayResults(filteredResults);
-    } else {
-        // Si le filtre "Symbole" est désactivé, réinitialisez les filtres
-        symbolFilterButton.classList.remove("active");
-        activeSymbolButton = null;
-        activeSymbolFilter = null;
-        applyActiveFilters(sortedData);
-    }
+  applyActiveFilters(sortedData);
 }
 
-
-// Associez la fonction handleSymbolFilterButtonClick au clic sur le bouton de filtre "Symbole"
+// Add an event listener to the symbol filter button
 symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
-                    
-            const allCategories = ["Anesthésie", "Cardiologie", "CEGDC", "CCVT", "Dermatologie", "Endocrinologie", "Gastrologie", "Génétique", "Gériatrie", "Gynécologie", "Hémato-Onco", "Immuno-Allergie", "Med Interne", "Infectio", "Néphrologie", "Neurochirurgie", "Neurologie", "Ophtalmologie", "ORL", "Orthopédie", "Pédiatrie", "Physiatrie", "Plastie", "Pneumologie", "Psychiatrie", "Rhumatologie", "Urologie"];
-            const allTypes = ["Anatomie", "Diagnostic", "Examen", "Médication", "Traitement", "+ Général"];
 
-            const categoryFilter = document.querySelector(".category-filter");
-            categoryFilter.innerHTML = "<h2>Catégories</h2>";
-            allCategories.forEach(category => {
-                const categoryButton = createFilterButton(category, "data-category", sortedData, handleCategoryFilterButtonClick);
-                categoryFilter.appendChild(categoryButton);
-            });
-            const typeFilter = document.querySelector(".type-filter");
-            typeFilter.innerHTML = "<h2>Types</h2>";
-            allTypes.forEach(type => {
-                const typeButton = createFilterButton(type, "data-type", sortedData, handleTypeFilterButtonClick);
-                typeFilter.appendChild(typeButton);
-            });
-            const categoryButtons = document.querySelectorAll(".category-button");
-            const typeButtons = document.querySelectorAll(".type-button");
-            function createFilterButton(text, attribute, data, filterFunction) {
-                const button = document.createElement("button");
-                button.textContent = text;
-                button.setAttribute(attribute, text);
-                button.addEventListener("click", () => filterFunction(button, sortedData));
-                // Ajoutez une classe CSS pour distinguer les boutons de catégories des boutons de types
-                if (attribute === "data-category") {
-                    button.classList.add("category-button");
-                } else if (attribute === "data-type") {
-                    button.classList.add("type-button");
-                }
-                return button;
-            }
-            function handleCategoryFilterButtonClick(button) {
-                const selectedCategoryFilter = button.getAttribute("data-category");
-                const isCategoryFilterActive = button.classList.contains("active");
+// Handle category filter button click
+function handleCategoryFilterButtonClick(button) {
+  const selectedCategoryFilter = button.getAttribute("data-category");
+  activeFilters.category = activeFilters.category === selectedCategoryFilter ? null : selectedCategoryFilter;
 
-                 // Désactivez le filtre "Symbole" si actif
-                if (activeSymbolButton) {
-                activeSymbolButton.classList.remove("active");
-                activeSymbolButton = null;
-                activeSymbolFilter = null;
-                }
-                
-                if (!isCategoryFilterActive) {
-                    // Désactivez le bouton de catégorie actif s'il y en a un
-                    if (activeCategoryButton) {
-                        activeCategoryButton.classList.remove("active");
-                    }
-                    button.classList.add("active");
-                    activeCategoryButton = button;
-                    activeCategoryFilter = selectedCategoryFilter;
-                } else {
-                    button.classList.remove("active");
-                    activeCategoryButton = null;
-                    activeCategoryFilter = null;
-                }
+  if (activeFilters.category) {
+    activeFilters.letter = null;
+    activeFilters.type = null;
+    activeFilters.symbol = false;
+  }
 
-             // Apply filters based on the updated category filter
-  const filteredResults = sortedData.filter(item => {
-    return (
-      activeCategoryFilter === null ||
-      (Array.isArray(item.categorie) && item.categorie.includes(activeCategoryFilter))
-    );
-  });
+  applyActiveFilters(sortedData);
+}
 
-                applyActiveFilters(sortedData);
-                scrollToTop();
-            }
-            function handleTypeFilterButtonClick(button) {
-                const selectedTypeFilter = button.getAttribute("data-type");
-                const isTypeFilterActive = button.classList.contains("active");
-
-                 // Désactivez le filtre "Symbole" si actif
-                if (activeSymbolButton) {
-                activeSymbolButton.classList.remove("active");
-                activeSymbolButton = null;
-                activeSymbolFilter = null;
-                }
-                
-                if (!isTypeFilterActive) {
-                    // Désactivez le bouton de type actif s'il y en a un
-                    if (activeTypeButton) {
-                        activeTypeButton.classList.remove("active");
-                    }
-                    button.classList.add("active");
-                    activeTypeButton = button;
-                    activeTypeFilter = selectedTypeFilter;
-                } else {
-                    button.classList.remove("active");
-                    activeTypeButton = null;
-                    activeTypeFilter = null;
-                }
-
-             // Apply filters based on the updated type filter
-  const filteredResults = sortedData.filter(item => {
-    return (
-      activeTypeFilter === null ||
-      (Array.isArray(item.type) && item.type.includes(activeTypeFilter))
-    );
-  });
-
-                applyActiveFilters(sortedData);
-                scrollToTop();
-            }
-        })
-        .catch(error => {
-            console.error("Une erreur s'est produite lors du chargement des données.", error);
-        });
+         // Add an event listener to each category filter button
+categoryButtons.forEach(button => {
+  button.addEventListener("click", () => handleCategoryFilterButtonClick(button));
 });
+
+// Handle type filter button click
+function handleTypeFilterButtonClick(button) {
+  const selectedTypeFilter = button.getAttribute("data-type");
+  activeFilters.type = activeFilters.type === selectedTypeFilter ? null : selectedTypeFilter;
+
+  if (activeFilters.type) {
+    activeFilters.letter = null;
+    activeFilters.category = null;
+    activeFilters.symbol = false;
+  }
+
+  applyActiveFilters(sortedData);
+}
+
+// Add an event listener to each type filter button
+typeButtons.forEach(button => {
+  button.addEventListener("click", () => handleTypeFilterButtonClick(button));
+});
+
+// Add an event listener to the reset filters button
+resetFiltersButton.addEventListener("click", () => {
+  activeFilters = {
+    letter: null,
+    category: null,
+    type: null,
+    symbol: false,
+  };
+
+  applyActiveFilters(sortedData);
+});
+
+// Add an event listener to the search input
+searchInput.addEventListener("input", event => handleSearch(event, sortedData));
