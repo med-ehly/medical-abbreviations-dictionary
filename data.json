@@ -1,4 +1,17 @@
 [
+  {
+    "abreviation": "A",
+    "significations": [
+      {
+        "signification": "Artère",
+        "type": "Anatomie"
+      },
+      {
+        "signification": "Antérieur",
+        "type": "Général"
+      }
+    ]
+  },
  {
   "abreviation": "AVC",
   "signification": "Accident Vasculaire Cérébral",
