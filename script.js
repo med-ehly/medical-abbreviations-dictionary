@@ -90,26 +90,28 @@ function displaySearchResults(results) {
     return;
   }
 
- // Créez un objet pour stocker les résultats groupés par type
+// Créez un objet pour stocker les résultats groupés par type
 const groupedResults = {};
 
 results.forEach(result => {
-  let type = (result.type || "SYMBOLE");
+  let types = result.type || ["SYMBOLE"]; // Initialize types as an array
 
-  // Ensure "type" is a string, even if it's an array
-    if (!Array.isArray(type)) {
-      type = type.join(", ");
+  // Ensure "types" is an array
+  if (!Array.isArray(types)) {
+    types = [types];
+  }
+
+  types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
+
+  // Créez un groupe pour chaque type
+  types.forEach(type => {
+    if (!groupedResults[type]) {
+      groupedResults[type] = [];
     }
- 
-    type = type.toUpperCase();
 
- // Créez un groupe s'il n'existe pas encore
-      if (!groupedResults[type]) {
-        groupedResults[type] = [];
-      }
-
-      groupedResults[type].push(result);
+    groupedResults[type].push(result);
   });
+});
  
   // Parcourez les groupes et ajoutez les résultats à la liste
   let isFirstType = true; // Initialize a flag to track the first type
@@ -284,27 +286,29 @@ function displayResults(results){
     return;
   }
     
- // Créez un objet pour stocker les résultats groupés par type
+// Créez un objet pour stocker les résultats groupés par type
 const groupedResults = {};
 
 results.forEach(result => {
-  let type = (result.type || "SYMBOLE");
+  let types = result.type || ["SYMBOLE"]; // Initialize types as an array
 
-  // Ensure "type" is a string, even if it's an array
-    if (!Array.isArray(type)) {
-      type = type.join(", ");
+  // Ensure "types" is an array
+  if (!Array.isArray(types)) {
+    types = [types];
+  }
+
+  types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
+
+  // Créez un groupe pour chaque type
+  types.forEach(type => {
+    if (!groupedResults[type]) {
+      groupedResults[type] = [];
     }
- 
-    type = type.toUpperCase();
 
- // Créez un groupe s'il n'existe pas encore
-      if (!groupedResults[type]) {
-        groupedResults[type] = [];
-      }
-
-      groupedResults[type].push(result);
+    groupedResults[type].push(result);
   });
-
+});
+ 
   // Parcourez les groupes et ajoutez les résultats à la liste
   let isFirstType = true; // Initialize a flag to track the first type
 
