@@ -97,7 +97,7 @@ results.forEach(result => {
   let type = (result.type || "SYMBOLE");
 
   // Ensure "type" is a string, even if it's an array
-    if (!Array.isArray(types)) {
+    if (!Array.isArray(type)) {
       type = type.join(", ");
     }
  
@@ -291,7 +291,7 @@ results.forEach(result => {
   let type = (result.type || "SYMBOLE");
 
   // Ensure "type" is a string, even if it's an array
-    if (!Array.isArray(types)) {
+    if (!Array.isArray(type)) {
       type = type.join(", ");
     }
  
