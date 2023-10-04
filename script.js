@@ -96,14 +96,12 @@ const groupedResults = {};
 results.forEach(result => {
   let type = (result.type || "SYMBOLE");
 
-  // Ensure "types" is an array
+  // Ensure "type" is a string, even if it's an array
     if (!Array.isArray(types)) {
-      types = [types];
+      type = type.join(", ");
     }
-
-    // Loop through each type
-    types.forEach(type => {
-      type = type.toUpperCase();
+ 
+    type = type.toUpperCase();
 
  // Créez un groupe s'il n'existe pas encore
       if (!groupedResults[type]) {
@@ -111,7 +109,6 @@ results.forEach(result => {
       }
 
       groupedResults[type].push(result);
-    });
   });
  
   // Parcourez les groupes et ajoutez les résultats à la liste
@@ -287,20 +284,18 @@ function displayResults(results){
     return;
   }
     
-  // Créez un objet pour stocker les résultats groupés par type
+ // Créez un objet pour stocker les résultats groupés par type
 const groupedResults = {};
 
 results.forEach(result => {
   let type = (result.type || "SYMBOLE");
 
-  // Ensure "types" is an array
+  // Ensure "type" is a string, even if it's an array
     if (!Array.isArray(types)) {
-      types = [types];
+      type = type.join(", ");
     }
-
-    // Loop through each type
-    types.forEach(type => {
-      type = type.toUpperCase();
+ 
+    type = type.toUpperCase();
 
  // Créez un groupe s'il n'existe pas encore
       if (!groupedResults[type]) {
@@ -308,7 +303,6 @@ results.forEach(result => {
       }
 
       groupedResults[type].push(result);
-    });
   });
 
   // Parcourez les groupes et ajoutez les résultats à la liste
