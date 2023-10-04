@@ -659,6 +659,15 @@ symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
                     activeTypeButton = null;
                     activeTypeFilter = null;
                 }
+
+             // Apply filters based on the updated type filter
+  const filteredResults = sortedData.filter(item => {
+    return (
+      activeTypeFilter === null ||
+      (Array.isArray(item.type) && item.type.includes(activeTypeFilter))
+    );
+  });
+
                 applyActiveFilters(sortedData);
                 scrollToTop();
             }
