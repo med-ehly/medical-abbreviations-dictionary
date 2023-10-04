@@ -90,21 +90,28 @@ function displaySearchResults(results) {
     return;
   }
 
-  // Créez un objet pour stocker les résultats groupés par type
-  const groupedResults = {};
+ // Créez un objet pour stocker les résultats groupés par type
+const groupedResults = {};
 
-  results.forEach(result => {
-    const type = (result.type || "SYMBOLE").toUpperCase();
+results.forEach(result => {
+  let type = (result.type || "SYMBOLE");
 
-    // Créez un groupe s'il n'existe pas encore
-    if (!groupedResults[type]) {
-      groupedResults[type] = [];
-    }
+  // Ensure "type" is a string, even if it's an array
+  if (Array.isArray(type)) {
+    // If "type" is an array, join its elements into a single string
+    type = type.join(", ");
+  }
 
-    // Ajoutez le résultat au groupe correspondant
-    groupedResults[type].push(result);
-  });
+  type = type.toUpperCase();
 
+  // Créez un groupe s'il n'existe pas encore
+  if (!groupedResults[type]) {
+    groupedResults[type] = [];
+  }
+
+  groupedResults[type].push(result);
+});
+ 
   // Parcourez les groupes et ajoutez les résultats à la liste
   let isFirstType = true; // Initialize a flag to track the first type
 
@@ -279,19 +286,26 @@ function displayResults(results){
   }
     
   // Créez un objet pour stocker les résultats groupés par type
-  const groupedResults = {};
+const groupedResults = {};
 
-  results.forEach(result => {
-    const type = (result.type || "SYMBOLE").toUpperCase();
+results.forEach(result => {
+  let type = (result.type || "SYMBOLE");
 
-    // Créez un groupe s'il n'existe pas encore
-    if (!groupedResults[type]) {
-      groupedResults[type] = [];
-    }
+  // Ensure "type" is a string, even if it's an array
+  if (Array.isArray(type)) {
+    // If "type" is an array, join its elements into a single string
+    type = type.join(", ");
+  }
 
-    // Ajoutez le résultat au groupe correspondant
-    groupedResults[type].push(result);
-  });
+  type = type.toUpperCase();
+
+  // Créez un groupe s'il n'existe pas encore
+  if (!groupedResults[type]) {
+    groupedResults[type] = [];
+  }
+
+  groupedResults[type].push(result);
+});
 
   // Parcourez les groupes et ajoutez les résultats à la liste
   let isFirstType = true; // Initialize a flag to track the first type
