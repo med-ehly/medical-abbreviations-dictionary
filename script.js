@@ -690,10 +690,9 @@ symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
 
      // If a type filter is active, show only the selected type for each item
     if (activeTypeFilter) {
-        filteredResults = filteredResults.map(item => ({
-            ...item,
-            type: [activeTypeFilter],
-        }));
+        filteredResults.forEach(item => {
+            item.type = [activeTypeFilter];
+        });
     }
 
     applyActiveFilters(filteredResults);
