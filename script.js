@@ -32,11 +32,6 @@ function applyActiveFilters(data) {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
         const categoryMatches = !isCategoryFilterActive || (item.categorie && item.categorie.includes(activeCategoryFilter));
 
-        // Vérifiez si le filtre "Symbole" est actif et que l'élément est de type "SYMBOLE"
-        if (isSymbolFilterActive && item.type === "SYMBOLE") {
-            return true;
-        }
-
         // Gestion des filtres de type
         if (isTypeFilterActive) {
             // Vérifiez si l'élément correspond au type actif
@@ -50,12 +45,18 @@ function applyActiveFilters(data) {
             }
         }
 
+        // Vérifiez si le filtre "Symbole" est actif et que l'élément est de type "SYMBOLE"
+        if (isSymbolFilterActive && item.type === "SYMBOLE") {
+            return true;
+        }
+
         // Vérifiez si d'autres filtres correspondent également
         return letterMatches && categoryMatches;
     });
 
     displayResults(filteredResults);
 }
+
 
 
  function handleMouseEnter(event) {
