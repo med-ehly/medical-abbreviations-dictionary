@@ -23,24 +23,40 @@ function applyActiveFilters(data) {
 
     // Vérifiez si le filtre "Catégorie" est actif
     const isCategoryFilterActive = activeCategoryFilter !== null;
- 
+
+    // Vérifiez si le filtre "Type" est actif
+    const isTypeFilterActive = activeTypeFilter !== null;
+
     // Appliquez les filtres en fonction de l'état des filtres
     const filteredResults = data.filter(item => {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
         const categoryMatches = !isCategoryFilterActive || (item.categorie && item.categorie.includes(activeCategoryFilter));
-        const typeMatches = !activeTypeFilter || (item.type && item.type.includes(activeTypeFilter));
 
         // Vérifiez si le filtre "Symbole" est actif et que l'élément est de type "SYMBOLE"
         if (isSymbolFilterActive && item.type === "SYMBOLE") {
             return true;
         }
 
+        // Gestion des filtres de type
+        if (isTypeFilterActive) {
+            // Vérifiez si l'élément correspond au type actif
+            if (item.type === activeTypeFilter) {
+                return true;
+            } else {
+                // Vérifiez si l'élément partage le type avec le type actif (excluant "SYMBOLE")
+                if (activeTypeFilter !== "SYMBOLE" && item.type === "SYMBOLE") {
+                    return false; // Ne pas inclure l'élément si le type est partagé avec "SYMBOLE"
+                }
+            }
+        }
+
         // Vérifiez si d'autres filtres correspondent également
-        return letterMatches && categoryMatches && typeMatches;
+        return letterMatches && categoryMatches;
     });
 
     displayResults(filteredResults);
 }
+
 
  function handleMouseEnter(event) {
   const popover = event.currentTarget.querySelector(".langue-popover");
