@@ -676,13 +676,27 @@ symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
                     activeTypeFilter = null;
                 }
 
-             // Apply filters based on the updated type filter
-  const filteredResults = sortedData.filter(item => {
-    return (
-      activeTypeFilter === null ||
-      (Array.isArray(item.type) && item.type.includes(activeTypeFilter))
-    );
-  });
+             // Appliquez les filtres en fonction du type sélectionné
+    const filteredResults = sortedData.filter(item => {
+        // Vérifiez si l'élément a le type sélectionné comme type principal
+        if (Array.isArray(item.type) && item.type.includes(activeTypeFilter)) {
+            // Si oui, retournez true pour inclure l'élément
+            return true;
+        }
+
+        // Sinon, vérifiez si l'élément a d'autres types et si le type sélectionné est parmi eux
+        if (
+            Array.isArray(item.type) &&
+            item.type.includes(activeTypeFilter) &&
+            item.type.length > 1
+        ) {
+            // Si oui, retournez true pour inclure l'élément
+            return true;
+        }
+
+        // Si aucun des cas ci-dessus n'est vrai, retournez false pour exclure l'élément
+        return false;
+    });
 
                 applyActiveFilters(sortedData);
                 scrollToTop();
