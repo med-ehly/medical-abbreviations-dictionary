@@ -656,41 +656,49 @@ symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
                 applyActiveFilters(sortedData);
                 scrollToTop();
             }
-            function handleTypeFilterButtonClick(button) {
-                const selectedTypeFilter = button.getAttribute("data-type");
-                const isTypeFilterActive = button.classList.contains("active");
+           function handleTypeFilterButtonClick(button) {
+    const selectedTypeFilter = button.getAttribute("data-type");
+    const isTypeFilterActive = button.classList.contains("active");
 
-                 // Désactivez le filtre "Symbole" si actif
-                if (activeSymbolButton) {
-                activeSymbolButton.classList.remove("active");
-                activeSymbolButton = null;
-                activeSymbolFilter = null;
-                }
-                
-                if (!isTypeFilterActive) {
-                    // Désactivez le bouton de type actif s'il y en a un
-                    if (activeTypeButton) {
-                        activeTypeButton.classList.remove("active");
-                    }
-                    button.classList.add("active");
-                    activeTypeButton = button;
-                    activeTypeFilter = selectedTypeFilter;
-                } else {
-                    button.classList.remove("active");
-                    activeTypeButton = null;
-                    activeTypeFilter = null;
-                }
+    // Désactivez le filtre "Symbole" si actif
+    if (activeSymbolButton) {
+        activeSymbolButton.classList.remove("active");
+        activeSymbolButton = null;
+        activeSymbolFilter = null;
+    }
 
-            // Appliquez les filtres en fonction du type sélectionné
+    if (!isTypeFilterActive) {
+        // Désactivez le bouton de type actif s'il y en a un
+        if (activeTypeButton) {
+            activeTypeButton.classList.remove("active");
+        }
+        button.classList.add("active");
+        activeTypeButton = button;
+        activeTypeFilter = selectedTypeFilter;
+    } else {
+        button.classList.remove("active");
+        activeTypeButton = null;
+        activeTypeFilter = null;
+    }
+
+    // Appliquez les filtres en fonction du type sélectionné
     const filteredResults = sortedData.filter(item => {
-        // Vérifiez si l'élément a le type sélectionné comme type principal
+        // Vérifiez si l'élément a le type sélectionné parmi ses types
         const types = item.type || ["SYMBOLE"];
         return types.includes(selectedTypeFilter);
     });
 
-                applyActiveFilters(sortedData);
-                scrollToTop();
-            }
+    // If a type filter is active, show only the selected type for each item
+    if (activeTypeFilter) {
+        filteredResults.forEach(item => {
+            item.type = [activeTypeFilter];
+        });
+    }
+
+    applyActiveFilters(filteredResults);
+    scrollToTop();
+}
+
         })
         .catch(error => {
             console.error("Une erreur s'est produite lors du chargement des données.", error);
