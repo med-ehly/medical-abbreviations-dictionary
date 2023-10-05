@@ -21,6 +21,13 @@
   "url": "http://requin.reg05.rtss.qc.ca/"
 },
   {
+  "abreviation": "test",
+  "signification": "test1",
+  "type": ["Examen", "+ Général"],
+  "langue": "(fr)",
+  "url": "http://requin.reg05.rtss.qc.ca/"
+},
+  {
     "abreviation": "PL",
     "signification": "Ponction Lombaire",
     "categorie": "Neurologie",
