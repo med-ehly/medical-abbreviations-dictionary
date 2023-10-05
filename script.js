@@ -688,11 +688,12 @@ symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
         return types.includes(selectedTypeFilter);
     });
 
-    // If a type filter is active, show only the selected type for each item
+     // If a type filter is active, show only the selected type for each item
     if (activeTypeFilter) {
-        filteredResults.forEach(item => {
-            item.type = [activeTypeFilter];
-        });
+        filteredResults = filteredResults.map(item => ({
+            ...item,
+            type: [activeTypeFilter],
+        }));
     }
 
     applyActiveFilters(filteredResults);
