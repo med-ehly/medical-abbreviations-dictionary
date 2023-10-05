@@ -31,19 +31,7 @@ function applyActiveFilters(data) {
     const filteredResults = data.filter(item => {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
         const categoryMatches = !isCategoryFilterActive || (item.categorie && item.categorie.includes(activeCategoryFilter));
-
-        // Gestion des filtres de type
-        if (isTypeFilterActive) {
-            // Vérifiez si l'élément correspond au type actif
-            if (item.type === activeTypeFilter) {
-                return true;
-            } else {
-                // Vérifiez si l'élément partage le type avec le type actif (excluant "SYMBOLE")
-                if (activeTypeFilter !== "SYMBOLE" && item.type === "SYMBOLE") {
-                    return false; // Ne pas inclure l'élément si le type est partagé avec "SYMBOLE"
-                }
-            }
-        }
+        const typeMatches = !isTypeFilterActive || (item.type && item.type.includes(activeTypeFilter));
 
         // Vérifiez si le filtre "Symbole" est actif et que l'élément est de type "SYMBOLE"
         if (isSymbolFilterActive && item.type === "SYMBOLE") {
@@ -51,7 +39,7 @@ function applyActiveFilters(data) {
         }
 
         // Vérifiez si d'autres filtres correspondent également
-        return letterMatches && categoryMatches;
+        return letterMatches && categoryMatches && typeMatches;
     });
 
     displayResults(filteredResults);
@@ -693,26 +681,11 @@ symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
                     activeTypeFilter = null;
                 }
 
-             // Appliquez les filtres en fonction du type sélectionné
+            // Appliquez les filtres en fonction du type sélectionné
     const filteredResults = sortedData.filter(item => {
         // Vérifiez si l'élément a le type sélectionné comme type principal
-        if (Array.isArray(item.type) && item.type.includes(activeTypeFilter)) {
-            // Si oui, retournez true pour inclure l'élément
-            return true;
-        }
-
-        // Sinon, vérifiez si l'élément a d'autres types et si le type sélectionné est parmi eux
-        if (
-            Array.isArray(item.type) &&
-            item.type.includes(activeTypeFilter) &&
-            item.type.length > 1
-        ) {
-            // Si oui, retournez true pour inclure l'élément
-            return true;
-        }
-
-        // Si aucun des cas ci-dessus n'est vrai, retournez false pour exclure l'élément
-        return false;
+        const types = item.type || ["SYMBOLE"];
+        return types.includes(selectedTypeFilter);
     });
 
                 applyActiveFilters(sortedData);
