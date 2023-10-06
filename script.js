@@ -15,35 +15,32 @@ let activeSymbolFilter = null;
 function applyActiveFilters(data) {
     console.log("Applying active filters...");
 
-    // Créez un groupe pour les résultats avec le type "SYMBOLE"
-    const symboleResults = data.filter(item => item.type === "SYMBOLE");
+    // Create a set to track the abbreviations that have been added under the active type
+    const addedAbbreviations = new Set();
 
-    // Vérifiez si le filtre "Symbole" est actif
+    // Create a set to track the active types
+    const activeTypes = new Set();
+
+    // Check if the "Symbole" filter is active
     const isSymbolFilterActive = activeSymbolFilter === "SYMBOLE";
 
-    // Vérifiez si le filtre "Catégorie" est actif
-    const isCategoryFilterActive = activeCategoryFilter !== null;
- 
-    // Utilisez un ensemble pour suivre les éléments déjà ajoutés sous le type actif
-    const addedItems = new Set();
-
-    // Appliquez les filtres en fonction de l'état des filtres
+    // Filter the results based on the active filters
     const filteredResults = data.filter(item => {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
-        const categoryMatches = !isCategoryFilterActive || (item.categorie && item.categorie.includes(activeCategoryFilter));
+        const categoryMatches = !activeCategoryFilter || (item.categorie && item.categorie.includes(activeCategoryFilter));
         const typeMatches = !activeTypeFilter || (item.type && item.type.includes(activeTypeFilter));
 
-        // Vérifiez si le filtre "Symbole" est actif et que l'élément est de type "SYMBOLE"
         if (isSymbolFilterActive && item.type === "SYMBOLE") {
-            addedItems.add(item.abreviation); // Ajoutez l'abréviation à l'ensemble
+            activeTypes.add("SYMBOLE"); // Add "SYMBOLE" to the active types
             return true;
         }
 
-        // Vérifiez si d'autres filtres correspondent également
         if (letterMatches && categoryMatches && typeMatches) {
-            // Vérifiez si l'abréviation n'a pas déjà été ajoutée sous un autre type
-            if (!addedItems.has(item.abreviation)) {
-                addedItems.add(item.abreviation);
+            activeTypes.add(item.type); // Add the item's type to the active types
+
+            // Check if the abbreviation has already been added under the active type
+            if (!addedAbbreviations.has(item.abreviation)) {
+                addedAbbreviations.add(item.abreviation);
                 return true;
             }
         }
@@ -51,8 +48,20 @@ function applyActiveFilters(data) {
         return false;
     });
 
-    displayResults(filteredResults);
+    // If "SYMBOLE" is in activeTypes, clear other active types
+    if (activeTypes.has("SYMBOLE")) {
+        activeTypes.clear();
+        activeTypes.add("SYMBOLE");
+    }
+
+    // Filter the results again to ensure only one type is active
+    const finalFilteredResults = filteredResults.filter(item => {
+        return activeTypes.has("SYMBOLE") || activeTypes.has(item.type);
+    });
+
+    displayResults(finalFilteredResults);
 }
+
 
 
  function handleMouseEnter(event) {
