@@ -21,17 +21,11 @@ function applyActiveFilters(data) {
     // Vérifiez si le filtre "Symbole" est actif
     const isSymbolFilterActive = activeSymbolFilter === "SYMBOLE";
 
-    // Vérifiez si le filtre "Catégorie" est actif
-    const isCategoryFilterActive = activeCategoryFilter !== null;
-
-    // Vérifiez si le filtre "Type" est actif
-    const isTypeFilterActive = activeTypeFilter !== null;
-
     // Appliquez les filtres en fonction de l'état des filtres
     const filteredResults = data.filter(item => {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
-        const categoryMatches = !isCategoryFilterActive || (item.categorie && item.categorie.includes(activeCategoryFilter));
-        const typeMatches = !isTypeFilterActive || (item.type && item.type.includes(activeTypeFilter));
+        const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
+        const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
 
         // Vérifiez si le filtre "Symbole" est actif et que l'élément est de type "SYMBOLE"
         if (isSymbolFilterActive && item.type === "SYMBOLE") {
@@ -44,8 +38,6 @@ function applyActiveFilters(data) {
 
     displayResults(filteredResults);
 }
-
-
 
  function handleMouseEnter(event) {
   const popover = event.currentTarget.querySelector(".langue-popover");
@@ -95,29 +87,21 @@ function displaySearchResults(results) {
     return;
   }
 
-// Créez un objet pour stocker les résultats groupés par type
-const groupedResults = {};
+  // Créez un objet pour stocker les résultats groupés par type
+  const groupedResults = {};
 
-results.forEach(result => {
-  let types = result.type || ["SYMBOLE"]; // Initialize types as an array
+  results.forEach(result => {
+    const type = (result.type || "SYMBOLE").toUpperCase();
 
-  // Ensure "types" is an array
-  if (!Array.isArray(types)) {
-    types = [types];
-  }
-
-  types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
-
-  // Créez un groupe pour chaque type
-  types.forEach(type => {
+    // Créez un groupe s'il n'existe pas encore
     if (!groupedResults[type]) {
       groupedResults[type] = [];
     }
 
+    // Ajoutez le résultat au groupe correspondant
     groupedResults[type].push(result);
   });
-});
- 
+
   // Parcourez les groupes et ajoutez les résultats à la liste
   let isFirstType = true; // Initialize a flag to track the first type
 
@@ -291,29 +275,21 @@ function displayResults(results){
     return;
   }
     
-// Créez un objet pour stocker les résultats groupés par type
-const groupedResults = {};
+  // Créez un objet pour stocker les résultats groupés par type
+  const groupedResults = {};
 
-results.forEach(result => {
-  let types = result.type || ["SYMBOLE"]; // Initialize types as an array
+  results.forEach(result => {
+    const type = (result.type || "SYMBOLE").toUpperCase();
 
-  // Ensure "types" is an array
-  if (!Array.isArray(types)) {
-    types = [types];
-  }
-
-  types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
-
-  // Créez un groupe pour chaque type
-  types.forEach(type => {
+    // Créez un groupe s'il n'existe pas encore
     if (!groupedResults[type]) {
       groupedResults[type] = [];
     }
 
+    // Ajoutez le résultat au groupe correspondant
     groupedResults[type].push(result);
   });
-});
- 
+
   // Parcourez les groupes et ajoutez les résultats à la liste
   let isFirstType = true; // Initialize a flag to track the first type
 
@@ -644,61 +620,36 @@ symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
                     activeCategoryButton = null;
                     activeCategoryFilter = null;
                 }
-
-             // Apply filters based on the updated category filter
-  const filteredResults = sortedData.filter(item => {
-    return (
-      activeCategoryFilter === null ||
-      (Array.isArray(item.categorie) && item.categorie.includes(activeCategoryFilter))
-    );
-  });
-
                 applyActiveFilters(sortedData);
                 scrollToTop();
             }
-           function handleTypeFilterButtonClick(button) {
-    const selectedTypeFilter = button.getAttribute("data-type");
-    const isTypeFilterActive = button.classList.contains("active");
+            function handleTypeFilterButtonClick(button) {
+                const selectedTypeFilter = button.getAttribute("data-type");
+                const isTypeFilterActive = button.classList.contains("active");
 
-    // Désactivez le filtre "Symbole" si actif
-    if (activeSymbolButton) {
-        activeSymbolButton.classList.remove("active");
-        activeSymbolButton = null;
-        activeSymbolFilter = null;
-    }
-
-    if (!isTypeFilterActive) {
-        // Désactivez le bouton de type actif s'il y en a un
-        if (activeTypeButton) {
-            activeTypeButton.classList.remove("active");
-        }
-        button.classList.add("active");
-        activeTypeButton = button;
-        activeTypeFilter = selectedTypeFilter;
-    } else {
-        button.classList.remove("active");
-        activeTypeButton = null;
-        activeTypeFilter = null;
-    }
-
-    // Appliquez les filtres en fonction du type sélectionné
-    const filteredResults = sortedData.filter(item => {
-        // Vérifiez si l'élément a le type sélectionné parmi ses types
-        const types = item.type || ["SYMBOLE"];
-        return types.includes(selectedTypeFilter);
-    });
-
-     // If a type filter is active, show only the selected type for each item
-    if (activeTypeFilter) {
-        filteredResults.forEach(item => {
-            item.type = [activeTypeFilter];
-        });
-    }
-
-    applyActiveFilters(filteredResults);
-    scrollToTop();
-}
-
+                 // Désactivez le filtre "Symbole" si actif
+                if (activeSymbolButton) {
+                activeSymbolButton.classList.remove("active");
+                activeSymbolButton = null;
+                activeSymbolFilter = null;
+                }
+                
+                if (!isTypeFilterActive) {
+                    // Désactivez le bouton de type actif s'il y en a un
+                    if (activeTypeButton) {
+                        activeTypeButton.classList.remove("active");
+                    }
+                    button.classList.add("active");
+                    activeTypeButton = button;
+                    activeTypeFilter = selectedTypeFilter;
+                } else {
+                    button.classList.remove("active");
+                    activeTypeButton = null;
+                    activeTypeFilter = null;
+                }
+                applyActiveFilters(sortedData);
+                scrollToTop();
+            }
         })
         .catch(error => {
             console.error("Une erreur s'est produite lors du chargement des données.", error);
