@@ -39,15 +39,16 @@ function applyActiveFilters(data) {
             activeTypes.add(item.type); // Add the item's type to the active types
 
            // Check if the abbreviation has already been added under the active type
-        if (typeMatches) {
-            if (!addedAbbreviations.has(item.abreviation)) {
-                addedAbbreviations.add(item.abreviation);
-                return true;
+            if (typeMatches) {
+                if (!addedAbbreviations.has(item.abreviation)) {
+                    addedAbbreviations.add(item.abreviation);
+                    return true;
+                }
             }
         }
 
         return false;
-    });
+    }); // <-- Closing parenthesis added here
 
     // If "SYMBOLE" is in activeTypes, clear other active types
     if (activeTypes.has("SYMBOLE")) {
