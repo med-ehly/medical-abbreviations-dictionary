@@ -24,6 +24,9 @@ function applyActiveFilters(data) {
     // Vérifiez si le filtre "Catégorie" est actif
     const isCategoryFilterActive = activeCategoryFilter !== null;
  
+    // Utilisez un ensemble pour suivre les éléments déjà ajoutés sous le type actif
+    const addedItems = new Set();
+
     // Appliquez les filtres en fonction de l'état des filtres
     const filteredResults = data.filter(item => {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
@@ -32,15 +35,25 @@ function applyActiveFilters(data) {
 
         // Vérifiez si le filtre "Symbole" est actif et que l'élément est de type "SYMBOLE"
         if (isSymbolFilterActive && item.type === "SYMBOLE") {
+            addedItems.add(item.abreviation); // Ajoutez l'abréviation à l'ensemble
             return true;
         }
 
         // Vérifiez si d'autres filtres correspondent également
-        return letterMatches && categoryMatches && typeMatches;
+        if (letterMatches && categoryMatches && typeMatches) {
+            // Vérifiez si l'abréviation n'a pas déjà été ajoutée sous un autre type
+            if (!addedItems.has(item.abreviation)) {
+                addedItems.add(item.abreviation);
+                return true;
+            }
+        }
+
+        return false;
     });
 
     displayResults(filteredResults);
 }
+
 
  function handleMouseEnter(event) {
   const popover = event.currentTarget.querySelector(".langue-popover");
