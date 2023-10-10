@@ -312,32 +312,31 @@ function significationMatches(signification, searchTerm) {
 }
 
 
-function displayResults(results){
-   resultsList.innerHTML = '';
+function displayResults(results) {
+  resultsList.innerHTML = '';
   if (results.length === 0) {
     resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
     return;
   }
     
-// Créez un objet pour stocker les résultats groupés par type
-const groupedResults = {};
+  // Create an object to store the results grouped by type
+  const groupedResults = {};
 
   results.forEach(result => {
     // Get the types as an array and convert them to uppercase
-    const types = (result.type || ["SYMBOLE"]).map(type => type.toUpperCase());
+    const types = Array.isArray(result.type) ? result.type.map(type => type.toUpperCase()) : ["SYMBOLE"];
 
     types.forEach(type => {
       if (!groupedResults[type]) {
         groupedResults[type] = [];
       }
      
-  // Check if the result is not already in the group for this type
+      // Check if the result is not already in the group for this type
       if (!groupedResults[type].some(r => r.abreviation === result.abreviation)) {
         groupedResults[type].push(result);
       }
     });
   });
-     
 
   for (const group in groupedResults) {
     if (groupedResults.hasOwnProperty(group)) {
