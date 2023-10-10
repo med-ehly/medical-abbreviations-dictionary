@@ -312,30 +312,31 @@ function significationMatches(signification, searchTerm) {
 }
 
 
-function displayResults(results) {
+function displayResults(results, selectedType) {
   resultsList.innerHTML = '';
   if (results.length === 0) {
     resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
     return;
   }
     
-  // Create an object to store the results grouped by type
+  // Filter the results to include only the selected type
+  const filteredResults = results.filter(result => {
+    const types = Array.isArray(result.type) ? result.type.map(type => type.toUpperCase()) : ["SYMBOLE"];
+    return types.includes(selectedType.toUpperCase());
+  });
+
+  // Create an object to store the filtered results grouped by type
   const groupedResults = {};
 
-  results.forEach(result => {
-    // Get the types as an array and convert them to uppercase
-    const types = Array.isArray(result.type) ? result.type.map(type => type.toUpperCase()) : ["SYMBOLE"];
+  filteredResults.forEach(result => {
+    if (!groupedResults[selectedType]) {
+      groupedResults[selectedType] = [];
+    }
 
-    types.forEach(type => {
-      if (!groupedResults[type]) {
-        groupedResults[type] = [];
-      }
-     
-      // Check if the result is not already in the group for this type
-      if (!groupedResults[type].some(r => r.abreviation === result.abreviation)) {
-        groupedResults[type].push(result);
-      }
-    });
+    // Check if the result is not already in the group for this type
+    if (!groupedResults[selectedType].some(r => r.abreviation === result.abreviation)) {
+      groupedResults[selectedType].push(result);
+    }
   });
 
   for (const group in groupedResults) {
@@ -423,6 +424,7 @@ function displayResults(results) {
     }
   }
 }
+
 
 // Ajoutez une fonction pour gérer l'affichage du popover lors du hover
 function handleMouseEnter(event) {
