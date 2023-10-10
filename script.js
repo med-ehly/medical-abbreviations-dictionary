@@ -12,6 +12,9 @@ let activeTypeFilter = null;
 let activeSymbolButton = null;
 let activeSymbolFilter = null;
 
+// Variable to keep track of the active filter type
+let activeFilterType = null;
+
 function applyActiveFilters(data) {
     console.log("Applying active filters...");
 
@@ -24,7 +27,7 @@ function applyActiveFilters(data) {
     // Check if the "Symbole" filter is active
     const isSymbolFilterActive = activeSymbolFilter === "SYMBOLE";
 
-    // Filter the results based on the active filters
+   // Filter the results based on the active filters
     const filteredResults = data.filter(item => {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
         const categoryMatches = !activeCategoryFilter || (item.categorie && item.categorie.includes(activeCategoryFilter));
@@ -48,7 +51,7 @@ function applyActiveFilters(data) {
         }
 
         return false;
-    }); // <-- Closing parenthesis added here
+    }); 
 
     // If "SYMBOLE" is in activeTypes, clear other active types
     if (activeTypes.has("SYMBOLE")) {
@@ -64,7 +67,13 @@ function applyActiveFilters(data) {
     displayResults(finalFilteredResults);
 }
 
+function handleTypeFilterClick(type) {
+    // Update the active filter type
+    activeFilterType = type;
 
+    // Apply the active filters
+    applyActiveFilters(yourDataArray); // Replace with your data array
+}
 
  function handleMouseEnter(event) {
   const popover = event.currentTarget.querySelector(".langue-popover");
