@@ -322,62 +322,41 @@ function displayResults(results){
 // Créez un objet pour stocker les résultats groupés par type
 const groupedResults = {};
 
-results.forEach(result => {
-  let types = result.type || ["SYMBOLE"]; // Initialize types as an array
+  results.forEach(result => {
+    // Get the types as an array and convert them to uppercase
+    const types = (result.type || ["SYMBOLE"]).map(type => type.toUpperCase());
 
-  // Ensure "types" is an array
-  if (!Array.isArray(types)) {
-    types = [types];
-  }
-
-  types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
-
-  // Créez un groupe pour chaque type
-  types.forEach(type => {
-    if (!groupedResults[type]) {
-      groupedResults[type] = [];
-    }
-
-    groupedResults[type].push(result);
+    types.forEach(type => {
+      if (!groupedResults[type]) {
+        groupedResults[type] = [];
+      }
+     
+  // Check if the result is not already in the group for this type
+      if (!groupedResults[type].some(r => r.abreviation === result.abreviation)) {
+        groupedResults[type].push(result);
+      }
+    });
   });
-});
- 
-  // Parcourez les groupes et ajoutez les résultats à la liste
-  let isFirstType = true; // Initialize a flag to track the first type
+     
 
   for (const group in groupedResults) {
     if (groupedResults.hasOwnProperty(group)) {
       const groupResults = groupedResults[group];
 
-      // Créez une section pour le groupe (type ou "SYMBOLE")
       const groupSection = document.createElement("div");
       groupSection.classList.add("type-section");
-
-      // Add a separator line before the type name if it's not the first type
-      if (!isFirstType) {
-        const separator = document.createElement("hr");
-        groupSection.appendChild(separator);
-      } else {
-        // If it's the first type, set the flag to false
-        isFirstType = false;
-      }
-
       groupSection.innerHTML = `<h2>${group}</h2>`;
 
-      // Ajoutez chaque résultat à la section
       groupResults.forEach(result => {
         const row = document.createElement("li");
         const abbrCell = document.createElement("abbr");
         abbrCell.textContent = result.abreviation;
         row.appendChild(abbrCell);
 
-        // Create a container for the significations
         const descriptionContainer = document.createElement("div");
         descriptionContainer.classList.add("description-container");
 
-        // Check if there are multiple significations
         if (result.significations && Array.isArray(result.significations)) {
-          // Add each signification and its icon to the container
           result.significations.forEach(signification => {
             const significationContainer = document.createElement("div");
             significationContainer.classList.add("signification-container");
@@ -403,7 +382,6 @@ results.forEach(result => {
             descriptionContainer.appendChild(significationContainer);
           });
         } else {
-          // If there's only one signification, display it along with its icon
           const significationContainer = document.createElement("div");
           significationContainer.classList.add("signification-container");
 
@@ -428,20 +406,16 @@ results.forEach(result => {
           descriptionContainer.appendChild(significationContainer);
         }
 
-        // Add the descriptionContainer to the row
         row.appendChild(descriptionContainer);
 
-        // Create a "langue popover" element for both single and multiple significations
         const languePopover = document.createElement("div");
         languePopover.classList.add("langue-popover");
-        languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
+        languePopover.textContent = result.langue;
 
-        // Add the languePopover to the row
         row.appendChild(languePopover);
 
         groupSection.appendChild(row);
 
-        // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
         row.addEventListener('mouseenter', handleMouseEnter);
         row.addEventListener('mouseleave', handleMouseLeave);
       });
