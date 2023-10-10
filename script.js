@@ -11,7 +11,6 @@ let activeTypeButton = null;
 let activeTypeFilter = null;
 let activeSymbolButton = null;
 let activeSymbolFilter = null;
-let activeTypeFilter = null; 
 
 function applyActiveFilters(data) {
     console.log("Applying active filters...");
