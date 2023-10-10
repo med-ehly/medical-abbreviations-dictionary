@@ -137,34 +137,24 @@ results.forEach(result => {
   });
 });
  
-  // Parcourez les groupes et ajoutez les résultats à la liste
-  let isFirstType = true; // Initialize a flag to track the first type
-
   for (const group in groupedResults) {
     if (groupedResults.hasOwnProperty(group)) {
-      const groupResults = groupedResults[group];
+      // Vérifiez si le groupe correspond au filtre actif (par exemple, "ANATOMIE")
+      if (group === activeTypeFilter) {
+        const groupResults = groupedResults[group];
 
-      // Créez une section pour le groupe (type ou "SYMBOLE")
-      const groupSection = document.createElement("div");
-      groupSection.classList.add("type-section");
-
-      // Add a separator line before the type name if it's not the first type
-      if (!isFirstType) {
-        const separator = document.createElement("hr");
-        groupSection.appendChild(separator);
-      } else {
-        // If it's the first type, set the flag to false
-        isFirstType = false;
-      }
+        // Créez une section pour le groupe (type ou "SYMBOLE")
+        const groupSection = document.createElement("div");
+        groupSection.classList.add("type-section");
 
       groupSection.innerHTML = `<h2>${group}</h2>`;
 
-      // Ajoutez chaque résultat à la section
-      groupResults.forEach(result => {
-        const row = document.createElement("li");
-        const abbrCell = document.createElement("abbr");
-        abbrCell.textContent = result.abreviation;
-        row.appendChild(abbrCell);
+     // Ajoutez chaque résultat à la section
+        groupResults.forEach(result => {
+          const row = document.createElement("li");
+          const abbrCell = document.createElement("abbr");
+          abbrCell.textContent = result.abreviation;
+          row.appendChild(abbrCell);
 
         // Create a container for the significations
         const descriptionContainer = document.createElement("div");
@@ -305,11 +295,11 @@ function significationMatches(signification, searchTerm) {
 
 function displayResults(results){
    resultsList.innerHTML = '';
-  if (results.length === 0) {
+   if (results.length === 0) {
     resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
     return;
   }
-    
+
 // Créez un objet pour stocker les résultats groupés par type
 const groupedResults = {};
 
@@ -333,34 +323,24 @@ results.forEach(result => {
   });
 });
  
-  // Parcourez les groupes et ajoutez les résultats à la liste
-  let isFirstType = true; // Initialize a flag to track the first type
-
   for (const group in groupedResults) {
     if (groupedResults.hasOwnProperty(group)) {
-      const groupResults = groupedResults[group];
+      // Vérifiez si le groupe correspond au filtre actif (par exemple, "ANATOMIE")
+      if (group === activeTypeFilter) {
+        const groupResults = groupedResults[group];
 
-      // Créez une section pour le groupe (type ou "SYMBOLE")
-      const groupSection = document.createElement("div");
-      groupSection.classList.add("type-section");
-
-      // Add a separator line before the type name if it's not the first type
-      if (!isFirstType) {
-        const separator = document.createElement("hr");
-        groupSection.appendChild(separator);
-      } else {
-        // If it's the first type, set the flag to false
-        isFirstType = false;
-      }
+        // Créez une section pour le groupe (type ou "SYMBOLE")
+        const groupSection = document.createElement("div");
+        groupSection.classList.add("type-section");
 
       groupSection.innerHTML = `<h2>${group}</h2>`;
 
-      // Ajoutez chaque résultat à la section
-      groupResults.forEach(result => {
-        const row = document.createElement("li");
-        const abbrCell = document.createElement("abbr");
-        abbrCell.textContent = result.abreviation;
-        row.appendChild(abbrCell);
+     // Ajoutez chaque résultat à la section
+        groupResults.forEach(result => {
+          const row = document.createElement("li");
+          const abbrCell = document.createElement("abbr");
+          abbrCell.textContent = result.abreviation;
+          row.appendChild(abbrCell);
 
         // Create a container for the significations
         const descriptionContainer = document.createElement("div");
