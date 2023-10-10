@@ -15,29 +15,56 @@ let activeSymbolFilter = null;
 function applyActiveFilters(data) {
     console.log("Applying active filters...");
 
-    // Créez un groupe pour les résultats avec le type "SYMBOLE"
-    const symboleResults = data.filter(item => item.type === "SYMBOLE");
+    // Create a set to track the abbreviations that have been added under the active type
+    const addedAbbreviations = new Set();
 
-    // Vérifiez si le filtre "Symbole" est actif
+    // Create a set to track the active types
+    const activeTypes = new Set();
+
+    // Check if the "Symbole" filter is active
     const isSymbolFilterActive = activeSymbolFilter === "SYMBOLE";
 
-    // Appliquez les filtres en fonction de l'état des filtres
+    // Filter the results based on the active filters
     const filteredResults = data.filter(item => {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
-        const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
-        const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
+        const categoryMatches = !activeCategoryFilter || (item.categorie && item.categorie.includes(activeCategoryFilter));
+        const typeMatches = !activeTypeFilter || (item.type && item.type.includes(activeTypeFilter));
 
-        // Vérifiez si le filtre "Symbole" est actif et que l'élément est de type "SYMBOLE"
         if (isSymbolFilterActive && item.type === "SYMBOLE") {
+            activeTypes.add("SYMBOLE"); // Add "SYMBOLE" to the active types
             return true;
         }
 
-        // Vérifiez si d'autres filtres correspondent également
-        return letterMatches && categoryMatches && typeMatches;
+        if (letterMatches && categoryMatches && typeMatches) {
+            activeTypes.add(item.type); // Add the item's type to the active types
+
+           // Check if the abbreviation has already been added under the active type
+            if (typeMatches) {
+                if (!addedAbbreviations.has(item.abreviation)) {
+                    addedAbbreviations.add(item.abreviation);
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }); // <-- Closing parenthesis added here
+
+    // If "SYMBOLE" is in activeTypes, clear other active types
+    if (activeTypes.has("SYMBOLE")) {
+        activeTypes.clear();
+        activeTypes.add("SYMBOLE");
+    }
+
+    // Filter the results again to ensure only one type is active
+    const finalFilteredResults = filteredResults.filter(item => {
+        return activeTypes.has("SYMBOLE") || activeTypes.has(item.type);
     });
 
-    displayResults(filteredResults);
+    displayResults(finalFilteredResults);
 }
+
+
 
  function handleMouseEnter(event) {
   const popover = event.currentTarget.querySelector(".langue-popover");
@@ -87,21 +114,29 @@ function displaySearchResults(results) {
     return;
   }
 
-  // Créez un objet pour stocker les résultats groupés par type
-  const groupedResults = {};
+// Créez un objet pour stocker les résultats groupés par type
+const groupedResults = {};
 
-  results.forEach(result => {
-    const type = (result.type || "SYMBOLE").toUpperCase();
+results.forEach(result => {
+  let types = result.type || ["SYMBOLE"]; // Initialize types as an array
 
-    // Créez un groupe s'il n'existe pas encore
+  // Ensure "types" is an array
+  if (!Array.isArray(types)) {
+    types = [types];
+  }
+
+  types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
+
+  // Créez un groupe pour chaque type
+  types.forEach(type => {
     if (!groupedResults[type]) {
       groupedResults[type] = [];
     }
 
-    // Ajoutez le résultat au groupe correspondant
     groupedResults[type].push(result);
   });
-
+});
+ 
   // Parcourez les groupes et ajoutez les résultats à la liste
   let isFirstType = true; // Initialize a flag to track the first type
 
@@ -275,21 +310,29 @@ function displayResults(results){
     return;
   }
     
-  // Créez un objet pour stocker les résultats groupés par type
-  const groupedResults = {};
+// Créez un objet pour stocker les résultats groupés par type
+const groupedResults = {};
 
-  results.forEach(result => {
-    const type = (result.type || "SYMBOLE").toUpperCase();
+results.forEach(result => {
+  let types = result.type || ["SYMBOLE"]; // Initialize types as an array
 
-    // Créez un groupe s'il n'existe pas encore
+  // Ensure "types" is an array
+  if (!Array.isArray(types)) {
+    types = [types];
+  }
+
+  types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
+
+  // Créez un groupe pour chaque type
+  types.forEach(type => {
     if (!groupedResults[type]) {
       groupedResults[type] = [];
     }
 
-    // Ajoutez le résultat au groupe correspondant
     groupedResults[type].push(result);
   });
-
+});
+ 
   // Parcourez les groupes et ajoutez les résultats à la liste
   let isFirstType = true; // Initialize a flag to track the first type
 
@@ -620,6 +663,15 @@ symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
                     activeCategoryButton = null;
                     activeCategoryFilter = null;
                 }
+
+             // Apply filters based on the updated category filter
+  const filteredResults = sortedData.filter(item => {
+    return (
+      activeCategoryFilter === null ||
+      (Array.isArray(item.categorie) && item.categorie.includes(activeCategoryFilter))
+    );
+  });
+
                 applyActiveFilters(sortedData);
                 scrollToTop();
             }
@@ -647,6 +699,15 @@ symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
                     activeTypeButton = null;
                     activeTypeFilter = null;
                 }
+
+             // Apply filters based on the updated type filter
+  const filteredResults = sortedData.filter(item => {
+    return (
+      activeTypeFilter === null ||
+      (Array.isArray(item.type) && item.type.includes(activeTypeFilter))
+    );
+  });
+
                 applyActiveFilters(sortedData);
                 scrollToTop();
             }
