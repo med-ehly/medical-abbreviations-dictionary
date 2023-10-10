@@ -123,74 +123,82 @@ function displaySearchResults(results) {
     return;
   }
 
-// Créez un objet pour stocker les résultats groupés par type
-const groupedResults = {};
+// Check if selectedType is defined and not null
+  if (selectedType !== undefined && selectedType !== null) {
+    // Filter the results to include only the selected type
+    const filteredResults = results.filter(result => {
+      if (result.type) {
+        const types = Array.isArray(result.type) ? result.type.map(type => type.toUpperCase()) : ["SYMBOLE"];
+        return types.includes(selectedType.toUpperCase());
+      }
+      return false; // If result.type is undefined, exclude the item from the filtered results
+    });
 
-results.forEach(result => {
-  let types = result.type || ["SYMBOLE"]; // Initialize types as an array
+    // Create an object to store the filtered results grouped by type
+    const groupedResults = {};
 
-  // Ensure "types" is an array
-  if (!Array.isArray(types)) {
-    types = [types];
-  }
-
-  types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
-
-  // Créez un groupe pour chaque type
-  types.forEach(type => {
-    if (!groupedResults[type]) {
-      groupedResults[type] = [];
-    }
-
-    groupedResults[type].push(result);
-  });
-});
- 
-  // Parcourez les groupes et ajoutez les résultats à la liste
-  let isFirstType = true; // Initialize a flag to track the first type
-
-  for (const group in groupedResults) {
-    if (groupedResults.hasOwnProperty(group)) {
-      const groupResults = groupedResults[group];
-
-      // Créez une section pour le groupe (type ou "SYMBOLE")
-      const groupSection = document.createElement("div");
-      groupSection.classList.add("type-section");
-
-      // Add a separator line before the type name if it's not the first type
-      if (!isFirstType) {
-        const separator = document.createElement("hr");
-        groupSection.appendChild(separator);
-      } else {
-        // If it's the first type, set the flag to false
-        isFirstType = false;
+    filteredResults.forEach(result => {
+      if (!groupedResults[selectedType]) {
+        groupedResults[selectedType] = [];
       }
 
-      groupSection.innerHTML = `<h2>${group}</h2>`;
+      // Check if the result is not already in the group for this type
+      if (!groupedResults[selectedType].some(r => r.abreviation === result.abreviation)) {
+        groupedResults[selectedType].push(result);
+      }
+    });
 
-      // Ajoutez chaque résultat à la section
-      groupResults.forEach(result => {
-        const row = document.createElement("li");
-        const abbrCell = document.createElement("abbr");
-        abbrCell.textContent = result.abreviation;
-        row.appendChild(abbrCell);
+    for (const group in groupedResults) {
+      if (groupedResults.hasOwnProperty(group)) {
+        const groupResults = groupedResults[group];
 
-        // Create a container for the significations
-        const descriptionContainer = document.createElement("div");
-        descriptionContainer.classList.add("description-container");
+        const groupSection = document.createElement("div");
+        groupSection.classList.add("type-section");
+        groupSection.innerHTML = `<h2>${group}</h2>`;
 
-        // Check if there are multiple significations
-        if (result.significations && Array.isArray(result.significations)) {
-          // Add each signification and its icon to the container
-          result.significations.forEach(signification => {
+        groupResults.forEach(result => {
+          const row = document.createElement("li");
+          const abbrCell = document.createElement("abbr");
+          abbrCell.textContent = result.abreviation;
+          row.appendChild(abbrCell);
+
+          const descriptionContainer = document.createElement("div");
+          descriptionContainer.classList.add("description-container");
+
+          if (result.significations && Array.isArray(result.significations)) {
+            result.significations.forEach(signification => {
+              const significationContainer = document.createElement("div");
+              significationContainer.classList.add("signification-container");
+
+              const descriptionText = document.createElement("p");
+              descriptionText.innerHTML = `➤ ${signification.signification}`;
+              significationContainer.appendChild(descriptionText);
+
+              if (signification.url) {
+                const icon = document.createElement("img");
+                icon.src = "monicone.svg";
+                icon.alt = "Lien externe";
+                icon.style.cursor = "pointer";
+                icon.classList.add("icon-class");
+
+                icon.addEventListener("click", () => {
+                  window.open(signification.url, "_blank");
+                });
+
+                significationContainer.appendChild(icon);
+              }
+
+              descriptionContainer.appendChild(significationContainer);
+            });
+          } else {
             const significationContainer = document.createElement("div");
             significationContainer.classList.add("signification-container");
 
             const descriptionText = document.createElement("p");
-            descriptionText.innerHTML = `➤ ${signification.signification}`;
+            descriptionText.innerHTML = `➤ ${result.signification}`;
             significationContainer.appendChild(descriptionText);
 
-            if (signification.url) {
+            if (result.url) {
               const icon = document.createElement("img");
               icon.src = "monicone.svg";
               icon.alt = "Lien externe";
@@ -198,63 +206,34 @@ results.forEach(result => {
               icon.classList.add("icon-class");
 
               icon.addEventListener("click", () => {
-                window.open(signification.url, "_blank");
+                window.open(result.url, "_blank");
               });
 
               significationContainer.appendChild(icon);
             }
 
             descriptionContainer.appendChild(significationContainer);
-          });
-        } else {
-          // If there's only one signification, display it along with its icon
-          const significationContainer = document.createElement("div");
-          significationContainer.classList.add("signification-container");
-
-          const descriptionText = document.createElement("p");
-          descriptionText.innerHTML = `➤ ${result.signification}`;
-          significationContainer.appendChild(descriptionText);
-
-          if (result.url) {
-            const icon = document.createElement("img");
-            icon.src = "monicone.svg";
-            icon.alt = "Lien externe";
-            icon.style.cursor = "pointer";
-            icon.classList.add("icon-class");
-
-            icon.addEventListener("click", () => {
-              window.open(result.url, "_blank");
-            });
-
-            significationContainer.appendChild(icon);
           }
 
-          descriptionContainer.appendChild(significationContainer);
-        }
+          row.appendChild(descriptionContainer);
 
-        // Add the descriptionContainer to the row
-        row.appendChild(descriptionContainer);
+          const languePopover = document.createElement("div");
+          languePopover.classList.add("langue-popover");
+          languePopover.textContent = result.langue;
 
-        // Create a "langue popover" element for both single and multiple significations
-        const languePopover = document.createElement("div");
-        languePopover.classList.add("langue-popover");
-        languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
+          row.appendChild(languePopover);
 
-        // Add the languePopover to the row
-        row.appendChild(languePopover);
+          groupSection.appendChild(row);
 
-        groupSection.appendChild(row);
+          row.addEventListener('mouseenter', handleMouseEnter);
+          row.addEventListener('mouseleave', handleMouseLeave);
+        });
 
-        // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
-        row.addEventListener('mouseenter', handleMouseEnter);
-        row.addEventListener('mouseleave', handleMouseLeave);
-      });
-
-      resultsList.appendChild(groupSection);
+        resultsList.appendChild(groupSection);
+      }
     }
   }
 }
-
 
 function scrollToTop() {
     window.scrollTo({
