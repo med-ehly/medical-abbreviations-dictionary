@@ -114,6 +114,9 @@ function displaySearchResults(results) {
     return;
   }
 
+  // Créez un ensemble pour stocker les identifiants uniques des résultats déjà affichés sous le type actif
+  const displayedResults = new Set();
+
   // Créez un objet pour stocker les résultats groupés par type
   const groupedResults = {};
 
@@ -131,6 +134,16 @@ function displaySearchResults(results) {
     types.forEach(type => {
       if (!groupedResults[type]) {
         groupedResults[type] = [];
+      }
+
+      // Vérifiez si le résultat n'a pas déjà été affiché sous le type actif
+      if (type === activeTypeFilter && displayedResults.has(result.id)) {
+        return; // Ignorer ce résultat
+      }
+
+      // Si le type correspond à l'actif, ajoutez-le à l'ensemble des résultats affichés
+      if (type === activeTypeFilter) {
+        displayedResults.add(result.id);
       }
 
       groupedResults[type].push(result);
@@ -293,10 +306,14 @@ function significationMatches(signification, searchTerm) {
 
 function displayResults(results){
    resultsList.innerHTML = '';
-if (results.length === 0) {
+
+   if (results.length === 0) {
     resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
     return;
   }
+
+  // Créez un ensemble pour stocker les identifiants uniques des résultats déjà affichés sous le type actif
+  const displayedResults = new Set();
 
   // Créez un objet pour stocker les résultats groupés par type
   const groupedResults = {};
@@ -315,6 +332,16 @@ if (results.length === 0) {
     types.forEach(type => {
       if (!groupedResults[type]) {
         groupedResults[type] = [];
+      }
+
+      // Vérifiez si le résultat n'a pas déjà été affiché sous le type actif
+      if (type === activeTypeFilter && displayedResults.has(result.id)) {
+        return; // Ignorer ce résultat
+      }
+
+      // Si le type correspond à l'actif, ajoutez-le à l'ensemble des résultats affichés
+      if (type === activeTypeFilter) {
+        displayedResults.add(result.id);
       }
 
       groupedResults[type].push(result);
