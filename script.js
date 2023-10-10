@@ -318,57 +318,83 @@ function displayResults(results, selectedType) {
     resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
     return;
   }
-    
-  // Filter the results to include only the selected type
-  const filteredResults = results.filter(result => {
-    if (result.type) {
-      const types = Array.isArray(result.type) ? result.type.map(type => type.toUpperCase()) : ["SYMBOLE"];
-      return types.includes(selectedType.toUpperCase());
-    }
-    return false; // If result.type is undefined, exclude the item from the filtered results
-  });
 
-  // Create an object to store the filtered results grouped by type
-  const groupedResults = {};
+  // Check if selectedType is defined and not null
+  if (selectedType !== undefined && selectedType !== null) {
+    // Filter the results to include only the selected type
+    const filteredResults = results.filter(result => {
+      if (result.type) {
+        const types = Array.isArray(result.type) ? result.type.map(type => type.toUpperCase()) : ["SYMBOLE"];
+        return types.includes(selectedType.toUpperCase());
+      }
+      return false; // If result.type is undefined, exclude the item from the filtered results
+    });
 
-  filteredResults.forEach(result => {
-    if (!groupedResults[selectedType]) {
-      groupedResults[selectedType] = [];
-    }
+    // Create an object to store the filtered results grouped by type
+    const groupedResults = {};
 
-    // Check if the result is not already in the group for this type
-    if (!groupedResults[selectedType].some(r => r.abreviation === result.abreviation)) {
-      groupedResults[selectedType].push(result);
-    }
-  });
+    filteredResults.forEach(result => {
+      if (!groupedResults[selectedType]) {
+        groupedResults[selectedType] = [];
+      }
 
-  for (const group in groupedResults) {
-    if (groupedResults.hasOwnProperty(group)) {
-      const groupResults = groupedResults[group];
+      // Check if the result is not already in the group for this type
+      if (!groupedResults[selectedType].some(r => r.abreviation === result.abreviation)) {
+        groupedResults[selectedType].push(result);
+      }
+    });
 
-      const groupSection = document.createElement("div");
-      groupSection.classList.add("type-section");
-      groupSection.innerHTML = `<h2>${group}</h2>`;
+    for (const group in groupedResults) {
+      if (groupedResults.hasOwnProperty(group)) {
+        const groupResults = groupedResults[group];
 
-      groupResults.forEach(result => {
-        const row = document.createElement("li");
-        const abbrCell = document.createElement("abbr");
-        abbrCell.textContent = result.abreviation;
-        row.appendChild(abbrCell);
+        const groupSection = document.createElement("div");
+        groupSection.classList.add("type-section");
+        groupSection.innerHTML = `<h2>${group}</h2>`;
 
-        const descriptionContainer = document.createElement("div");
-        descriptionContainer.classList.add("description-container");
+        groupResults.forEach(result => {
+          const row = document.createElement("li");
+          const abbrCell = document.createElement("abbr");
+          abbrCell.textContent = result.abreviation;
+          row.appendChild(abbrCell);
 
-        if (result.significations && Array.isArray(result.significations)) {
-          result.significations.forEach(signification => {
+          const descriptionContainer = document.createElement("div");
+          descriptionContainer.classList.add("description-container");
+
+          if (result.significations && Array.isArray(result.significations)) {
+            result.significations.forEach(signification => {
+              const significationContainer = document.createElement("div");
+              significationContainer.classList.add("signification-container");
+
+              const descriptionText = document.createElement("p");
+              descriptionText.innerHTML = `➤ ${signification.signification}`;
+              significationContainer.appendChild(descriptionText);
+
+              if (signification.url) {
+                const icon = document.createElement("img");
+                icon.src = "monicone.svg";
+                icon.alt = "Lien externe";
+                icon.style.cursor = "pointer";
+                icon.classList.add("icon-class");
+
+                icon.addEventListener("click", () => {
+                  window.open(signification.url, "_blank");
+                });
+
+                significationContainer.appendChild(icon);
+              }
+
+              descriptionContainer.appendChild(significationContainer);
+            });
+          } else {
             const significationContainer = document.createElement("div");
             significationContainer.classList.add("signification-container");
 
             const descriptionText = document.createElement("p");
-            descriptionText.innerHTML = `➤ ${signification.signification}`;
+            descriptionText.innerHTML = `➤ ${result.signification}`;
             significationContainer.appendChild(descriptionText);
 
-            if (signification.url) {
+            if (result.url) {
               const icon = document.createElement("img");
               icon.src = "monicone.svg";
               icon.alt = "Lien externe";
@@ -376,54 +402,31 @@ function displayResults(results, selectedType) {
               icon.classList.add("icon-class");
 
               icon.addEventListener("click", () => {
-                window.open(signification.url, "_blank");
+                window.open(result.url, "_blank");
               });
 
               significationContainer.appendChild(icon);
             }
 
             descriptionContainer.appendChild(significationContainer);
-          });
-        } else {
-          const significationContainer = document.createElement("div");
-          significationContainer.classList.add("signification-container");
-
-          const descriptionText = document.createElement("p");
-          descriptionText.innerHTML = `➤ ${result.signification}`;
-          significationContainer.appendChild(descriptionText);
-
-          if (result.url) {
-            const icon = document.createElement("img");
-            icon.src = "monicone.svg";
-            icon.alt = "Lien externe";
-            icon.style.cursor = "pointer";
-            icon.classList.add("icon-class");
-
-            icon.addEventListener("click", () => {
-              window.open(result.url, "_blank");
-            });
-
-            significationContainer.appendChild(icon);
           }
 
-          descriptionContainer.appendChild(significationContainer);
-        }
+          row.appendChild(descriptionContainer);
 
-        row.appendChild(descriptionContainer);
+          const languePopover = document.createElement("div");
+          languePopover.classList.add("langue-popover");
+          languePopover.textContent = result.langue;
 
-        const languePopover = document.createElement("div");
-        languePopover.classList.add("langue-popover");
-        languePopover.textContent = result.langue;
+          row.appendChild(languePopover);
 
-        row.appendChild(languePopover);
+          groupSection.appendChild(row);
 
-        groupSection.appendChild(row);
+          row.addEventListener('mouseenter', handleMouseEnter);
+          row.addEventListener('mouseleave', handleMouseLeave);
+        });
 
-        row.addEventListener('mouseenter', handleMouseEnter);
-        row.addEventListener('mouseleave', handleMouseLeave);
-      });
-
-      resultsList.appendChild(groupSection);
+        resultsList.appendChild(groupSection);
+      }
     }
   }
 }
