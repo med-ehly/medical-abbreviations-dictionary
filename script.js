@@ -321,8 +321,11 @@ function displayResults(results, selectedType) {
     
   // Filter the results to include only the selected type
   const filteredResults = results.filter(result => {
-    const types = Array.isArray(result.type) ? result.type.map(type => type.toUpperCase()) : ["SYMBOLE"];
-    return types.includes(selectedType.toUpperCase());
+    if (result.type) {
+      const types = Array.isArray(result.type) ? result.type.map(type => type.toUpperCase()) : ["SYMBOLE"];
+      return types.includes(selectedType.toUpperCase());
+    }
+    return false; // If result.type is undefined, exclude the item from the filtered results
   });
 
   // Create an object to store the filtered results grouped by type
