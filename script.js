@@ -117,7 +117,7 @@ function displaySearchResults(results) {
 
       groupedResults[type].push(result);
     });
-  }
+});
 
   // Parcourez les groupes et ajoutez les résultats à la liste
   let isFirstType = true; // Initialize a flag to track the first type
@@ -307,7 +307,7 @@ function displayResults(results) {
 
       groupedResults[type].push(result);
     });
-  }
+});
 
   // Parcourez les groupes et ajoutez les résultats à la liste
   let isFirstType = true; // Initialize a flag to track the first type
