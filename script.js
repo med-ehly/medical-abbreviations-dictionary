@@ -236,6 +236,7 @@ function scrollToTop() {
         behavior: "smooth" // Cela permettra une animation de défilement en douceur
     });
 }
+
 function handleSearch(event, data) {
     const searchTerm = event.target.value.toLowerCase();
     const filteredResults = data.filter(item => {
@@ -256,7 +257,8 @@ function searchMatches(item, searchTerm) {
 
 function matchesString(text, searchTerm) {
     if (!text) return false;
-    return normalizeAndCompare(text, searchTerm);
+    const normalizedText = normalizeString(text);
+    return normalizedText.includes(searchTerm);
 }
 
 function matchesSignifications(significations, searchTerm) {
@@ -264,12 +266,13 @@ function matchesSignifications(significations, searchTerm) {
     return significations.some(significationObj => normalizeAndCompare(significationObj.signification, searchTerm));
 }
 
-function normalizeAndCompare(text, searchTerm) {
+function normalizeString(text) {
     return text
         .toLowerCase()
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
-        .includes(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+        .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "") // Supprime la ponctuation
+        .replace(/\s/g, ""); // Supprime les espaces
 }
 
 function displayResults(results){
