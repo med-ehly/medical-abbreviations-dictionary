@@ -491,7 +491,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
 
-          function resetFilters() {
+function resetFilters() {
     // Réinitialisez les filtres de lettre
     letterButtons.forEach(letterButton => {
         letterButton.classList.remove("active");
@@ -519,19 +519,17 @@ document.addEventListener("DOMContentLoaded", () => {
     activeTypeButton = null;
     activeTypeFilter = null;
 
-              // Effacez le contenu de la barre de recherche
-    const searchInput = document.getElementById("searchInput"); // Remplacez "searchInput" par l'ID de votre champ de recherche
+    const searchInput = document.getElementById("searchInput");
     if (searchInput) {
         searchInput.value = "";
     }
-
 
     // Appliquez les filtres réinitialisés aux données
     applyActiveFilters(sortedData);
     scrollToTop();
 }
 
-const resetFiltersButton = document.getElementById("resetFiltersButton"); // Remplacez "resetFiltersButton" par l'ID de votre bouton de réinitialisation
+const resetFiltersButton = document.getElementById("resetFiltersButton");
 
 resetFiltersButton.addEventListener("click", () => {
     resetFilters();
