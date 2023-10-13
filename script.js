@@ -15,8 +15,8 @@ let activeSymbolFilter = null;
 function applyActiveFilters(data) {
     console.log("Applying active filters...");
 
-    // Create a set to track the abbreviations that have been added under the active type
-    const addedAbbreviations = new Set();
+    // Create a map to track added abbreviations for each type
+    const addedAbbreviations = new Map();
 
     // Create a set to track the active types
     const activeTypes = new Set();
@@ -30,25 +30,27 @@ function applyActiveFilters(data) {
         const categoryMatches = !activeCategoryFilter || (item.categorie && item.categorie.includes(activeCategoryFilter));
         const typeMatches = !activeTypeFilter || (item.type && item.type.includes(activeTypeFilter));
 
-        if (isSymbolFilterActive && item.type === "SYMBOLE") {
-            activeTypes.add("SYMBOLE"); // Add "SYMBOLE" to the active types
+        if (activeSymbolFilter === "SYMBOLE" && item.type === "SYMBOLE") {
+            activeTypes.add("SYMBOLE");
             return true;
         }
 
         if (letterMatches && categoryMatches && typeMatches) {
-            activeTypes.add(item.type); // Add the item's type to the active types
+            activeTypes.add(item.type);
 
-           // Check if the abbreviation has already been added under the active type
-            if (typeMatches) {
-                if (!addedAbbreviations.has(item.abreviation)) {
-                    addedAbbreviations.add(item.abreviation);
-                    return true;
-                }
+            // Check if the abbreviation has already been added under the active type
+            if (!addedAbbreviations.has(item.type)) {
+                addedAbbreviations.set(item.type, new Set());
+            }
+
+            if (!addedAbbreviations.get(item.type).has(item.abreviation)) {
+                addedAbbreviations.get(item.type).add(item.abreviation);
+                return true;
             }
         }
 
         return false;
-    }); // <-- Closing parenthesis added here
+    });
 
     // If "SYMBOLE" is in activeTypes, clear other active types
     if (activeTypes.has("SYMBOLE")) {
@@ -56,14 +58,13 @@ function applyActiveFilters(data) {
         activeTypes.add("SYMBOLE");
     }
 
-    // Filter the results again to ensure only one type is active
+    // Filter the results to ensure only one type is active
     const finalFilteredResults = filteredResults.filter(item => {
         return activeTypes.has("SYMBOLE") || activeTypes.has(item.type);
     });
 
     displayResults(finalFilteredResults);
 }
-
 
 
  function handleMouseEnter(event) {
