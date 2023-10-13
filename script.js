@@ -64,22 +64,6 @@ function applyActiveFilters(data) {
     displayResults(finalFilteredResults);
 }
 
-
-
- function handleMouseEnter(event) {
-  const popover = event.currentTarget.querySelector(".langue-popover");
-  if (popover) {
-    popover.style.display = "block";
-  }
-}
-
-function handleMouseLeave(event) {
-  const popover = event.currentTarget.querySelector(".langue-popover");
-  if (popover) {
-    popover.style.display = "none";
-  }
-}
-
 function sortDataAlphabeticallyWithFallback(data) {
     // Divisez les données en deux groupes : celles avec une catégorie "type" et celles sans
     const withTypeCategory = data.filter(item => item.type !== undefined && item.type !== null);
@@ -442,29 +426,31 @@ results.forEach(result => {
   }
 }
 
-// Ajoutez une fonction pour gérer l'affichage du popover lors du hover
 function handleMouseEnter(event) {
   const row = event.currentTarget;
   const popover = row.querySelector('.langue-popover');
 
-  // Vérifier si le contenu de la popover n'est pas vide
-  const langueContent = popover.textContent.trim(); // Récupérez le contenu de la popover en supprimant les espaces inutiles
+  if (popover) {
+    const langueContent = popover.textContent.trim();
 
-  if (langueContent) {
-    // Calculer la position en fonction de l'élément cible
-    const rowRect = row.getBoundingClientRect();
-    const top = rowRect.bottom + window.scrollY - 12;
-    const left = rowRect.right + window.scrollX - 18; 
+    if (langueContent) {
+      const rowRect = row.getBoundingClientRect();
+      const top = rowRect.bottom + window.scrollY - 12;
+      const left = rowRect.right + window.scrollX - 18;
 
-    // Appliquer la position calculée au popover
-    popover.style.top = `${top}px`;
-    popover.style.left = `${left}px`;
-
-    // Afficher le popover
-    popover.style.display = 'block';
+      popover.style.top = `${top}px`;
+      popover.style.left = `${left}px`;
+      popover.style.display = 'block';
+    }
   }
 }
 
+function handleMouseLeave(event) {
+  const popover = event.currentTarget.querySelector(".langue-popover");
+  if (popover) {
+    popover.style.display = "none";
+  }
+}
 
 // Ajoutez un gestionnaire d'événements pour le survol (mouseenter) de chaque élément <li>
 document.querySelectorAll('.type-section li').forEach(row => {
