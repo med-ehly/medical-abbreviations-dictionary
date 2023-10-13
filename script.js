@@ -236,55 +236,41 @@ function scrollToTop() {
         behavior: "smooth" // Cela permettra une animation de défilement en douceur
     });
 }
-
 function handleSearch(event, data) {
     const searchTerm = event.target.value.toLowerCase();
     const filteredResults = data.filter(item => {
-        // Vérifiez si le terme de recherche est contenu dans l'abréviation ou la signification
-        const abbreviationMatch = abbreviationMatches(item.abreviation, searchTerm);
-        const significationMatch = significationMatches(item.signification, searchTerm);
-        const significationsMatch = significationsMatches(item.significations, searchTerm);
-
-
-        // Vérifiez si les filtres sont actifs et si l'élément correspond aux filtres
+        const matchesSearch = searchMatches(item, searchTerm);
         const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
         const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
-
-        // Retournez le résultat uniquement si la recherche et les filtres correspondent
-        return (abbreviationMatch || significationMatch || significationsMatch) && categoryMatches && typeMatches;
+        return matchesSearch && categoryMatches && typeMatches;
     });
     applyActiveFilters(filteredResults);
 }
 
-function significationsMatches(significations, searchTerm) {
+function searchMatches(item, searchTerm) {
+    const abbreviationMatch = matchesString(item.abreviation, searchTerm);
+    const significationMatch = matchesString(item.signification, searchTerm);
+    const significationsMatch = matchesSignifications(item.significations, searchTerm);
+    return abbreviationMatch || significationMatch || significationsMatch;
+}
+
+function matchesString(text, searchTerm) {
+    if (!text) return false;
+    return normalizeAndCompare(text, searchTerm);
+}
+
+function matchesSignifications(significations, searchTerm) {
     if (!significations || !Array.isArray(significations)) return false;
-    return significations.some(significationObj =>
-        significationObj.signification
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .includes(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
-    );
+    return significations.some(significationObj => normalizeAndCompare(significationObj.signification, searchTerm));
 }
 
-function abbreviationMatches(abbreviation, searchTerm) {
-    if (!abbreviation) return false;
-    return abbreviation
+function normalizeAndCompare(text, searchTerm) {
+    return text
         .toLowerCase()
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
         .includes(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
 }
-
-function significationMatches(signification, searchTerm) {
-    if (!signification) return false;
-    return signification
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .includes(searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
-}
-
 
 function displayResults(results){
    resultsList.innerHTML = '';
