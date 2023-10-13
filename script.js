@@ -230,7 +230,6 @@ results.forEach(result => {
   }
 }
 
-
 function scrollToTop() {
     window.scrollTo({
         top: 0,
@@ -451,11 +450,6 @@ function handleMouseLeave(event) {
     popover.style.display = "none";
   }
 }
-
-// Ajoutez un gestionnaire d'événements pour le survol (mouseenter) de chaque élément <li>
-document.querySelectorAll('.type-section li').forEach(row => {
-  row.addEventListener('mouseenter', handleMouseEnter);
-});
 
 document.addEventListener("DOMContentLoaded", () => {
     fetch("data.json")
