@@ -92,40 +92,44 @@ function sortDataAlphabeticallyWithFallback(data) {
 
 function displaySearchResults(results) {
   resultsList.innerHTML = '';
-
   if (results.length === 0) {
     resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
     return;
   }
 
-// Créez un objet pour stocker les résultats groupés par type
-const groupedResults = {};
+ // Créez un objet pour stocker les résultats groupés par type
+  const groupedResults = {};
 
-results.forEach(result => {
-  let types = result.type || ["SYMBOLE"]; // Initialize types as an array
+  results.forEach(result => {
+    let types = result.type || ["SYMBOLE"]; // Initialize types as an array
 
-  // Ensure "types" is an array
-  if (!Array.isArray(types)) {
-    types = [types];
-  }
-
-  types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
-
-  // Créez un groupe pour chaque type
-  types.forEach(type => {
-    if (!groupedResults[type]) {
-      groupedResults[type] = [];
+    // Ensure "types" is an array
+    if (!Array.isArray(types)) {
+      types = [types];
     }
 
-    groupedResults[type].push(result);
-  });
-});
- 
+    types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
+
+    // Créez un groupe pour chaque type
+    types.forEach(type => {
+      if (!groupedResults[type]) {
+        groupedResults[type] = [];
+      }
+
+      groupedResults[type].push(result);
+    });
+  }
+
   // Parcourez les groupes et ajoutez les résultats à la liste
   let isFirstType = true; // Initialize a flag to track the first type
+  const activeType = activeTypeFilter && activeTypeFilter.toUpperCase(); // Get the active type filter
 
   for (const group in groupedResults) {
     if (groupedResults.hasOwnProperty(group)) {
+      if (activeType && group !== activeType) {
+        continue; // Skip this type if the activeType is set and doesn't match
+      }
+
       const groupResults = groupedResults[group];
 
       // Créez une section pour le groupe (type ou "SYMBOLE")
@@ -220,7 +224,7 @@ results.forEach(result => {
 
         groupSection.appendChild(row);
 
-        // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
+        // Ajoutez les gestionnaires d'événements au survol (mouseenter and mouseleave) pour chaque élément <li>
         row.addEventListener('mouseenter', handleMouseEnter);
         row.addEventListener('mouseleave', handleMouseLeave);
       });
@@ -276,41 +280,46 @@ function normalizeString(text) {
         .replace(/\s/g, ""); // Supprime les espaces
 }
 
-function displayResults(results){
-   resultsList.innerHTML = '';
+function displayResults(results) {
+  resultsList.innerHTML = '';
   if (results.length === 0) {
     resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
     return;
   }
-    
-// Créez un objet pour stocker les résultats groupés par type
-const groupedResults = {};
 
-results.forEach(result => {
-  let types = result.type || ["SYMBOLE"]; // Initialize types as an array
+  // Créez un objet pour stocker les résultats groupés par type
+  const groupedResults = {};
 
-  // Ensure "types" is an array
-  if (!Array.isArray(types)) {
-    types = [types];
-  }
+  results.forEach(result => {
+    let types = result.type || ["SYMBOLE"]; // Initialize types as an array
 
-  types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
-
-  // Créez un groupe pour chaque type
-  types.forEach(type => {
-    if (!groupedResults[type]) {
-      groupedResults[type] = [];
+    // Ensure "types" is an array
+    if (!Array.isArray(types)) {
+      types = [types];
     }
 
-    groupedResults[type].push(result);
-  });
-});
- 
+    types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
+
+    // Créez un groupe pour chaque type
+    types.forEach(type => {
+      if (!groupedResults[type]) {
+        groupedResults[type] = [];
+      }
+
+      groupedResults[type].push(result);
+    });
+  }
+
   // Parcourez les groupes et ajoutez les résultats à la liste
   let isFirstType = true; // Initialize a flag to track the first type
+  const activeType = activeTypeFilter && activeTypeFilter.toUpperCase(); // Get the active type filter
 
   for (const group in groupedResults) {
     if (groupedResults.hasOwnProperty(group)) {
+      if (activeType && group !== activeType) {
+        continue; // Skip this type if the activeType is set and doesn't match
+      }
+
       const groupResults = groupedResults[group];
 
       // Créez une section pour le groupe (type ou "SYMBOLE")
@@ -405,7 +414,7 @@ results.forEach(result => {
 
         groupSection.appendChild(row);
 
-        // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
+        // Ajoutez les gestionnaires d'événements au survol (mouseenter and mouseleave) pour chaque élément <li>
         row.addEventListener('mouseenter', handleMouseEnter);
         row.addEventListener('mouseleave', handleMouseLeave);
       });
