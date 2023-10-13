@@ -524,7 +524,8 @@ function resetFilters() {
         searchInput.value = "";
     }
 
-
+    // Appliquez les filtres réinitialisés aux données
+    applyActiveFilters(sortedData);
     scrollToTop();
 }
 
