@@ -239,8 +239,9 @@ function scrollToTop() {
 
 function handleSearch(event, data) {
     const searchTerm = event.target.value.toLowerCase();
+    const normalizedSearchTerm = normalizeString(searchTerm);
     const filteredResults = data.filter(item => {
-        const matchesSearch = searchMatches(item, searchTerm);
+        const matchesSearch = searchMatches(item, normalizedSearchTerm);
         const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
         const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
         return matchesSearch && categoryMatches && typeMatches;
@@ -263,7 +264,7 @@ function matchesString(text, searchTerm) {
 
 function matchesSignifications(significations, searchTerm) {
     if (!significations || !Array.isArray(significations)) return false;
-    return significations.some(significationObj => normalizeAndCompare(significationObj.signification, searchTerm));
+    return significations.some(significationObj => normalizeString(significationObj.signification).includes(searchTerm));
 }
 
 function normalizeString(text) {
