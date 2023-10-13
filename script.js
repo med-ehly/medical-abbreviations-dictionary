@@ -15,8 +15,8 @@ let activeSymbolFilter = null;
 function applyActiveFilters(data) {
     console.log("Applying active filters...");
 
-    // Create a map to track added abbreviations for each type
-    const addedAbbreviations = new Map();
+    // Create a set to track the abbreviations that have been added under the active type
+    const addedAbbreviations = new Set();
 
     // Create a set to track the active types
     const activeTypes = new Set();
@@ -30,27 +30,25 @@ function applyActiveFilters(data) {
         const categoryMatches = !activeCategoryFilter || (item.categorie && item.categorie.includes(activeCategoryFilter));
         const typeMatches = !activeTypeFilter || (item.type && item.type.includes(activeTypeFilter));
 
-        if (activeSymbolFilter === "SYMBOLE" && item.type === "SYMBOLE") {
-            activeTypes.add("SYMBOLE");
+        if (isSymbolFilterActive && item.type === "SYMBOLE") {
+            activeTypes.add("SYMBOLE"); // Add "SYMBOLE" to the active types
             return true;
         }
 
         if (letterMatches && categoryMatches && typeMatches) {
-            activeTypes.add(item.type);
+            activeTypes.add(item.type); // Add the item's type to the active types
 
-            // Check if the abbreviation has already been added under the active type
-            if (!addedAbbreviations.has(item.type)) {
-                addedAbbreviations.set(item.type, new Set());
-            }
-
-            if (!addedAbbreviations.get(item.type).has(item.abreviation)) {
-                addedAbbreviations.get(item.type).add(item.abreviation);
-                return true;
+           // Check if the abbreviation has already been added under the active type
+            if (typeMatches) {
+                if (!addedAbbreviations.has(item.abreviation)) {
+                    addedAbbreviations.add(item.abreviation);
+                    return true;
+                }
             }
         }
 
         return false;
-    });
+    }); // <-- Closing parenthesis added here
 
     // If "SYMBOLE" is in activeTypes, clear other active types
     if (activeTypes.has("SYMBOLE")) {
@@ -58,13 +56,14 @@ function applyActiveFilters(data) {
         activeTypes.add("SYMBOLE");
     }
 
-    // Filter the results to ensure only one type is active
+    // Filter the results again to ensure only one type is active
     const finalFilteredResults = filteredResults.filter(item => {
         return activeTypes.has("SYMBOLE") || activeTypes.has(item.type);
     });
 
     displayResults(finalFilteredResults);
 }
+
 
 
  function handleMouseEnter(event) {
@@ -115,41 +114,31 @@ function displaySearchResults(results) {
     return;
   }
 
-  // Créez un ensemble pour stocker les identifiants uniques des résultats déjà affichés sous le type actif
-  const displayedResults = new Set();
+// Créez un objet pour stocker les résultats groupés par type
+const groupedResults = {};
 
-  // Créez un objet pour stocker les résultats groupés par type
-  const groupedResults = {};
+results.forEach(result => {
+  let types = result.type || ["SYMBOLE"]; // Initialize types as an array
 
-  results.forEach(result => {
-    let types = result.type || ["SYMBOLE"]; // Initialize types as an array
+  // Ensure "types" is an array
+  if (!Array.isArray(types)) {
+    types = [types];
+  }
 
-    // Ensure "types" is an array
-    if (!Array.isArray(types)) {
-      types = [types];
+  types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
+
+  // Créez un groupe pour chaque type
+  types.forEach(type => {
+    if (!groupedResults[type]) {
+      groupedResults[type] = [];
     }
 
-    types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
-
-    // Créez un groupe pour chaque type
-    types.forEach(type => {
-      if (!groupedResults[type]) {
-        groupedResults[type] = [];
-      }
-
-      // Vérifiez si le résultat n'a pas déjà été affiché sous le type actif
-      if (type === activeTypeFilter && displayedResults.has(result.id)) {
-        return; // Ignorer ce résultat
-      }
-
-      // Si le type correspond à l'actif, ajoutez-le à l'ensemble des résultats affichés
-      if (type === activeTypeFilter) {
-        displayedResults.add(result.id);
-      }
-
-      groupedResults[type].push(result);
-    });
+    groupedResults[type].push(result);
   });
+});
+ 
+  // Parcourez les groupes et ajoutez les résultats à la liste
+  let isFirstType = true; // Initialize a flag to track the first type
 
   for (const group in groupedResults) {
     if (groupedResults.hasOwnProperty(group)) {
@@ -158,6 +147,15 @@ function displaySearchResults(results) {
       // Créez une section pour le groupe (type ou "SYMBOLE")
       const groupSection = document.createElement("div");
       groupSection.classList.add("type-section");
+
+      // Add a separator line before the type name if it's not the first type
+      if (!isFirstType) {
+        const separator = document.createElement("hr");
+        groupSection.appendChild(separator);
+      } else {
+        // If it's the first type, set the flag to false
+        isFirstType = false;
+      }
 
       groupSection.innerHTML = `<h2>${group}</h2>`;
 
@@ -305,100 +303,144 @@ function significationMatches(signification, searchTerm) {
 }
 
 
-function displayResults(results, activeTypeFilter) {
-  resultsList.innerHTML = '';
-
+function displayResults(results){
+   resultsList.innerHTML = '';
   if (results.length === 0) {
     resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
     return;
   }
+    
+// Créez un objet pour stocker les résultats groupés par type
+const groupedResults = {};
 
-  // Filter results for the active type
-  const activeResults = results.filter(result => {
-    const types = result.type || ["SYMBOLE"];
-    return types.map(type => type.toUpperCase()).includes(activeTypeFilter);
-  });
+results.forEach(result => {
+  let types = result.type || ["SYMBOLE"]; // Initialize types as an array
 
-  for (const result of activeResults) {
-    const row = document.createElement("li");
-    const abbrCell = document.createElement("abbr");
-    abbrCell.textContent = result.abreviation;
-    row.appendChild(abbrCell);
+  // Ensure "types" is an array
+  if (!Array.isArray(types)) {
+    types = [types];
+  }
 
-    // Create a container for the significations
-    const descriptionContainer = document.createElement("div");
-    descriptionContainer.classList.add("description-container");
+  types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
 
-    if (result.significations && Array.isArray(result.significations)) {
-      // Add each signification and its icon to the container
-      result.significations.forEach(signification => {
-        const significationContainer = document.createElement("div");
-        significationContainer.classList.add("signification-container");
-
-        const descriptionText = document.createElement("p");
-        descriptionText.innerHTML = `➤ ${signification.signification}`;
-        significationContainer.appendChild(descriptionText);
-
-        if (signification.url) {
-          const icon = document.createElement("img");
-          icon.src = "monicone.svg";
-          icon.alt = "Lien externe";
-          icon.style.cursor = "pointer";
-          icon.classList.add("icon-class");
-
-          icon.addEventListener("click", () => {
-            window.open(signification.url, "_blank");
-          });
-
-          significationContainer.appendChild(icon);
-        }
-
-        descriptionContainer.appendChild(significationContainer);
-      });
-    } else {
-      // If there's only one signification, display it along with its icon
-      const significationContainer = document.createElement("div");
-      significationContainer.classList.add("signification-container");
-
-      const descriptionText = document.createElement("p");
-      descriptionText.innerHTML = `➤ ${result.signification}`;
-      significationContainer.appendChild(descriptionText);
-
-      if (result.url) {
-        const icon = document.createElement("img");
-        icon.src = "monicone.svg";
-        icon.alt = "Lien externe";
-        icon.style.cursor = "pointer";
-        icon.classList.add("icon-class");
-
-        icon.addEventListener("click", () => {
-          window.open(result.url, "_blank");
-        });
-
-        significationContainer.appendChild(icon);
-      }
-
-      descriptionContainer.appendChild(significationContainer);
+  // Créez un groupe pour chaque type
+  types.forEach(type => {
+    if (!groupedResults[type]) {
+      groupedResults[type] = [];
     }
 
-    // Add the descriptionContainer to the row
-    row.appendChild(descriptionContainer);
+    groupedResults[type].push(result);
+  });
+});
+ 
+  // Parcourez les groupes et ajoutez les résultats à la liste
+  let isFirstType = true; // Initialize a flag to track the first type
 
-    // Create a "langue popover" element for both single and multiple significations
-    const languePopover = document.createElement("div");
-    languePopover.classList.add("langue-popover");
-    languePopover.textContent = result.langue; // Get the language from the JSON data
+  for (const group in groupedResults) {
+    if (groupedResults.hasOwnProperty(group)) {
+      const groupResults = groupedResults[group];
 
-    row.appendChild(descriptionContainer);
-    row.appendChild(languePopover);
-    resultsList.appendChild(row);
+      // Créez une section pour le groupe (type ou "SYMBOLE")
+      const groupSection = document.createElement("div");
+      groupSection.classList.add("type-section");
 
-    // Add event handlers for hover events
-    row.addEventListener('mouseenter', handleMouseEnter);
-    row.addEventListener('mouseleave', handleMouseLeave);
+      // Add a separator line before the type name if it's not the first type
+      if (!isFirstType) {
+        const separator = document.createElement("hr");
+        groupSection.appendChild(separator);
+      } else {
+        // If it's the first type, set the flag to false
+        isFirstType = false;
+      }
+
+      groupSection.innerHTML = `<h2>${group}</h2>`;
+
+      // Ajoutez chaque résultat à la section
+      groupResults.forEach(result => {
+        const row = document.createElement("li");
+        const abbrCell = document.createElement("abbr");
+        abbrCell.textContent = result.abreviation;
+        row.appendChild(abbrCell);
+
+        // Create a container for the significations
+        const descriptionContainer = document.createElement("div");
+        descriptionContainer.classList.add("description-container");
+
+        // Check if there are multiple significations
+        if (result.significations && Array.isArray(result.significations)) {
+          // Add each signification and its icon to the container
+          result.significations.forEach(signification => {
+            const significationContainer = document.createElement("div");
+            significationContainer.classList.add("signification-container");
+
+            const descriptionText = document.createElement("p");
+            descriptionText.innerHTML = `➤ ${signification.signification}`;
+            significationContainer.appendChild(descriptionText);
+
+            if (signification.url) {
+              const icon = document.createElement("img");
+              icon.src = "monicone.svg";
+              icon.alt = "Lien externe";
+              icon.style.cursor = "pointer";
+              icon.classList.add("icon-class");
+
+              icon.addEventListener("click", () => {
+                window.open(signification.url, "_blank");
+              });
+
+              significationContainer.appendChild(icon);
+            }
+
+            descriptionContainer.appendChild(significationContainer);
+          });
+        } else {
+          // If there's only one signification, display it along with its icon
+          const significationContainer = document.createElement("div");
+          significationContainer.classList.add("signification-container");
+
+          const descriptionText = document.createElement("p");
+          descriptionText.innerHTML = `➤ ${result.signification}`;
+          significationContainer.appendChild(descriptionText);
+
+          if (result.url) {
+            const icon = document.createElement("img");
+            icon.src = "monicone.svg";
+            icon.alt = "Lien externe";
+            icon.style.cursor = "pointer";
+            icon.classList.add("icon-class");
+
+            icon.addEventListener("click", () => {
+              window.open(result.url, "_blank");
+            });
+
+            significationContainer.appendChild(icon);
+          }
+
+          descriptionContainer.appendChild(significationContainer);
+        }
+
+        // Add the descriptionContainer to the row
+        row.appendChild(descriptionContainer);
+
+        // Create a "langue popover" element for both single and multiple significations
+        const languePopover = document.createElement("div");
+        languePopover.classList.add("langue-popover");
+        languePopover.textContent = result.langue; // Récupérez la langue à partir des données JSON
+
+        // Add the languePopover to the row
+        row.appendChild(languePopover);
+
+        groupSection.appendChild(row);
+
+        // Ajoutez les gestionnaires d'événements au survol (mouseenter et mouseleave) pour chaque élément <li>
+        row.addEventListener('mouseenter', handleMouseEnter);
+        row.addEventListener('mouseleave', handleMouseLeave);
+      });
+
+      resultsList.appendChild(groupSection);
+    }
   }
 }
-
 
 // Ajoutez une fonction pour gérer l'affichage du popover lors du hover
 function handleMouseEnter(event) {
