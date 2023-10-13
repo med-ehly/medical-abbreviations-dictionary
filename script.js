@@ -96,8 +96,7 @@ function displaySearchResults(results) {
     resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
     return;
   }
-
- // Créez un objet pour stocker les résultats groupés par type
+// Créez un objet pour stocker les résultats groupés par type
   const groupedResults = {};
 
   results.forEach(result => {
