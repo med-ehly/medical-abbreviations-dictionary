@@ -248,6 +248,7 @@ table td {
 .category-filter h2,
 .type-filter h2 {
   margin: 0 auto;
+  margin-top: 20px;
 }
 
 /* Style for category and type filters */
