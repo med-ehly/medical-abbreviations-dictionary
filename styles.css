@@ -229,16 +229,18 @@ table td {
   margin-top: 20px;
 }
 
-/* Style for filter columns */
+/* Style of the filter columns */
 .filter-column {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* Center the content horizontally */
+  width: 30%; /* Adjust the width as needed */
+  margin: 0 auto; /* Center the filter column horizontally */
 }
 
 /* Style for center column */
 .center-column {
-  width: 100%; /* Make the width 100% for responsiveness */
+  width: 40%; /* Adjust the width as needed */
   margin: 0 auto;
 }
 
