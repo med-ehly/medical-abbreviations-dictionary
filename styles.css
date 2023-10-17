@@ -1,16 +1,17 @@
-/* Réinitialisation des styles par défaut du navigateur */
+/* Reset default browser styles */
 body, h1, ul, li {
   margin: 0;
   padding: 0;
+  box-sizing: border-box; /* Include padding and border in element's total width/height */
 }
 
-/* Style du fond de page */
+/* Page background style */
 body {
-  background-color: #f5f5f5; /* Couleur de fond pâle */
+  background-color: #f5f5f5;
   font-family: Arial, sans-serif;
 }
 
-/* Style du header */
+/* Header style */
 header {
   background-color: #4e42d4;
   color: white;
@@ -18,11 +19,11 @@ header {
   padding: 20px;
 }
 
-/* Style du champ de recherche */
+/* Search input style */
 #searchInput {
-  display: block; /* Mettre en bloc pour que les marges fonctionnent */
-  margin: 0 auto; /* Centrer horizontalement */
-  width: 80%;
+  display: block;
+  margin: 0 auto;
+  width: 100%; /* Make the input width 100% for responsiveness */
   margin-top: 10px;
   padding: 10px;
   font-size: 16px;
@@ -31,16 +32,17 @@ header {
   margin-bottom: 10px;
 }
 
+/* Alphabet section style */
 .alphabet {
   display: flex;
   justify-content: center;
   margin-top: 10px;
 }
 
+/* Common style for buttons */
 .letter-button,
-.letter-button-symbol, 
+.letter-button-symbol,
 .category-button,
-.letter-button, 
 .type-button {
   padding: 5px 10px;
   font-size: 13px;
@@ -51,12 +53,10 @@ header {
   margin: 0 3px;
 }
 
-.letter-button-symbol:hover {
-  border-color: #4e42d4 !important;
-}
-
+/* Hover and active styles for buttons */
+.letter-button-symbol:hover,
 .letter-button.active,
-.letter-button-symbol.active, 
+.letter-button-symbol.active,
 .category-button.active,
 .letter-button.active,
 .type-button.active {
@@ -66,7 +66,7 @@ header {
 }
 
 .letter-button:hover,
-.letter-button-symbol:hover, 
+.letter-button-symbol:hover,
 .category-button:hover,
 .letter-button:hover,
 .type-button:hover {
@@ -74,7 +74,7 @@ header {
 }
 
 .letter-button.active:hover,
-.letter-button-symbol.active:hover, /* Ajoutez le sélecteur du bouton des symboles actif survolé ici */
+.letter-button-symbol.active:hover,
 .category-button.active:hover,
 .letter-button.active:hover,
 .type-button.active:hover {
@@ -82,60 +82,54 @@ header {
   color: black;
 }
 
-/* Style du conteneur des résultats */
+/* Results container style */
 .results-container {
   background-color: white;
   padding: 10px;
-  border-radius: 10px; /* Arrondir les coins */
-  box-shadow: 0 0 0 2px rgb(0 0 0 / 12%);
-  width: 70%; /* Largeur des résultats */
-  margin: 0 auto; /* Centrer horizontalement */
+  border-radius: 10px;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.12);
+  width: 100%; /* Make the width 100% for responsiveness */
+  margin: 0 auto;
   margin-top: 20px;
-  margin-bottom: 20px; 
-  text-align: center; /* Centrer le contenu */
+  margin-bottom: 20px;
+  text-align: center;
 }
 
+/* Results list style */
 #resultsList {
   list-style: none;
   padding: 0;
-  margin: 0; /* Réinitialiser la marge *
-  width: 90; /* Largeur des résultats */
-  margin: 0 auto; /* Centrer horizontalement */
+  margin: 0;
 }
 
-/* Update the style of list items */
+/* Style for list items */
 #resultsList li {
-  display: flex; /* Use flexbox to align items horizontally */
-  align-items: center; /* Center items vertically within the list item */
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-top: 20px; 
-  margin-bottom: 10px;
-  border-top: 1px solid #ccc;
-  border-left: 1px solid #ccc; /* Ajouter une bordure à gauche */
-  border-right: 1px solid #ccc;
-  background-color: #f5f5f573;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin: 10px 0; /* Adjust margin for spacing between items */
+  border: 1px solid #ccc;
   border-radius: 5px;
-  font-family: Arial, sans-serif; /* Changer la police */
+  font-family: Arial, sans-serif;
 }
 
 #resultsList li:last-child {
-  border-bottom: 1px solid #ccc; /* Ajouter la bordure en bas uniquement au dernier élément */
+  border-bottom: 1px solid #ccc;
 }
 
-/* Update the style of the abbr (left side) */
+/* Style for abbreviation (left side) */
 #resultsList abbr {
-  flex: 1; /* Allow the abbr to take available space */
-  text-align: left; /* Align text to the left */
-  margin-right: 10px; /* Add some spacing between abbr and p */
+  flex: 1;
+  text-align: left;
+  margin-right: 10px;
   font-size: 28px;
   font-weight: bolder;
   padding: 10px;
 }
 
-/* Update the style of the description (right side) */
+/* Style for description (right side) */
 #resultsList p {
-  flex: 2; /* Allow the p to take more space */
+  flex: 2;
   margin: 5px;
   color: black;
   text-align: right;
@@ -144,6 +138,7 @@ header {
   font-family: Arial, sans-serif;
 }
 
+/* Type section heading style */
 .type-section h2 {
   font-size: 20px;
   margin-bottom: 30px;
@@ -151,7 +146,7 @@ header {
   font-family: Arial, sans-serif;
 }
 
-/* Ajoutez ce CSS dans votre feuille de style CSS */
+/* Language popover style */
 .langue-popover {
   display: none;
   max-width: 50px;
@@ -168,28 +163,30 @@ header {
   font-family: Arial, sans-serif;
 }
 
+/* Description container style */
 .description-container {
   display: flex;
   flex-direction: column;
 }
 
+/* Table style */
 table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 table td {
-    padding: 5px;
+  padding: 5px;
 }
 
+/* Signification container style */
 .signification-container {
-  display: flex; /* Utilisez flexbox pour disposer les éléments horizontalement */
-  /* flex-direction: column; */ /* Supprimez cette ligne ou mettez-la en commentaire pour éviter l'empilement vertical */
+  display: flex;
+  margin-right: 5px; /* Reduce the right margin for spacing between signification and icon */
 }
 
 .signification-container p {
   margin: 0;
-  margin-right: 5px; /* Réduisez la marge à droite pour rapprocher la signification/icone */
   color: black;
   text-align: right;
   font-size: 15px;
@@ -197,99 +194,82 @@ table td {
   font-family: Arial, sans-serif;
 }
 
+/* Icon link container style */
 .icon-link-container {
   text-align: right;
 }
-
 
 .icon-class {
   width: 24px;
   height: 24px;
 }
 
-/* Styles pour les cases d'items */
+/* Style for item boxes */
 .type-section li {
-    background-color: #fff; /* Changez la couleur de fond selon vos préférences */
-    border: 1px solid #ccc; /* Ajoutez une bordure pour délimiter les cases */
-    padding: 5px; /* Ajoutez une marge intérieure pour l'apparence */
-    margin: 5px 0; /* Ajoutez une marge extérieure pour l'espacement entre les cases */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
 }
 
 .type-section li abbr {
-    font-weight: bolder; /* Mettez en gras l'abréviation */
+  font-weight: bolder;
 }
 
 .type-section li .description-container p {
-    font-size: 14px; /* Changez la taille de la police pour la description */
-    color: #666; /* Changez la couleur du texte pour la description */
+  font-size: 14px;
+  color: #666;
 }
 
-/* Style des colonnes de filtre et de la liste des résultats */
+/* Style for filter and results columns */
 .filters-and-list {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between; /* Utiliser space-between pour espacer les colonnes */
+  justify-content: space-between;
   margin-top: 20px;
 }
 
-/* Style des colonnes de filtre */
+/* Style for filter columns */
 .filter-column {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Retirez la largeur */
 }
 
-/* Style de la colonne du centre */
+/* Style for center column */
 .center-column {
-  width: 80%; /* Largeur de la colonne du centre */
-  margin: 0 auto; /* Centrer horizontalement */
+  width: 100%; /* Make the width 100% for responsiveness */
+  margin: 0 auto;
 }
 
-.category-filter h2 {
-  margin-bottom: 10px;
-  margin-left: 50px;
-}
-
+/* Style for category and type filter headings */
+.category-filter h2,
 .type-filter h2 {
   margin-bottom: 10px;
-  margin-left: 70px;
 }
 
-.category-filter { 
-  margin-left: 280px; 
-  margin-right: 20px; 
-  margin-bottom: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
+/* Style for category and type filters */
+.category-filter,
 .type-filter {
-  margin-right: 280px; 
-  margin-left: 20px; 
   margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-/* Style des boutons de filtre dans les colonnes */
+/* Style for filter buttons in columns */
 .filter-column .category-button,
 .filter-column .type-button {
   margin: 5px;
-  width: 200px; /* Ajustez la largeur des boutons selon vos préférences */
-  padding: 10px; /* Ajustez le rembourrage des boutons selon vos préférences */
+  width: 100%; /* Make the buttons width 100% for responsiveness */
+  padding: 10px;
   text-transform: uppercase;
 }
 
-
+/* Style for the reset filters button */
 #resetFiltersButton {
   margin-right: 10px;
   border: 3px solid #ccc;
   color: white;
   background-color: #4e42d4;
-}
-
-#filterControls {
 }
