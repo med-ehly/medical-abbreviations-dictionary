@@ -247,7 +247,7 @@ table td {
 /* Style for category and type filter headings */
 .category-filter h2,
 .type-filter h2 {
-  margin-bottom: 10px;
+  margin: 0 auto;
 }
 
 /* Style for category and type filters */
