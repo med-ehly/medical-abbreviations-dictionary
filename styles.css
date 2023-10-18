@@ -50,6 +50,7 @@ header {
   border: 1px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
+  text-overflow: ellipsis;
   margin: 0 3px;
 }
 
