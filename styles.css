@@ -192,6 +192,8 @@ table td {
 .signification-container {
   display: flex;
   margin-right: 5px; 
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .signification-container p {
