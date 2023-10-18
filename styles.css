@@ -5,6 +5,7 @@ body, h1, ul, li {
   box-sizing: border-box; /* Include padding and border in element's total width/height */
   white-space: nowrap;
   text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 /* Page background style */
