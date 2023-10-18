@@ -2,10 +2,9 @@
 body, h1, ul, li {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; /* Include padding and border in element's total width/height */
+  box-sizing: border-box; 
   white-space: nowrap;
   text-overflow: ellipsis;
-  overflow: hidden;
 }
 
 /* Page background style */
@@ -99,6 +98,7 @@ header {
   margin-top: 20px;
   margin-bottom: 20px;
   text-align: center;
+  overflow: hidden;
 }
 
 /* Results list style */
@@ -188,7 +188,7 @@ table td {
 /* Signification container style */
 .signification-container {
   display: flex;
-  margin-right: 5px; /* Reduce the right margin for spacing between signification and icon */
+  margin-right: 5px; 
 }
 
 .signification-container p {
@@ -239,14 +239,14 @@ table td {
 .filter-column {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center the content horizontally */
-  width: 30%; /* Adjust the width as needed */
-  margin: 0 auto; /* Center the filter column horizontally */
+  align-items: center; 
+  width: 30%; 
+  margin: 0 auto; 
 }
 
 /* Style for center column */
 .center-column {
-  width: 40%; /* Adjust the width as needed */
+  width: 40%; 
   margin: 0 auto;
 }
 
@@ -254,7 +254,7 @@ table td {
 .category-filter h2,
 .type-filter h2 {
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 2%;
 }
 
 /* Style for category and type filters */
