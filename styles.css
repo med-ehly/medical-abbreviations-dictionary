@@ -119,6 +119,7 @@ header {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-family: Arial, sans-serif;
+  overflow: hidden;
 }
 
 #resultsList li:last-child {
