@@ -20,16 +20,24 @@
   "langue": "(fr)",
   "url": "http://requin.reg05.rtss.qc.ca/"
 },
-  {
+{
   "abreviation": "test",
-   "significations": [
-     {"signification":"test1"},
-     {"signification":"test2"}
-     ],
-  "type": ["Examen", "+ Général"],
-  "langue": "(fr)",
-  "url": "http://requin.reg05.rtss.qc.ca/"
-},
+  "significations": [
+    {
+      "signification": "test1",
+      "type": ["Examen", "+ Général"],
+      "langue": "(fr)",
+      "url": "http://requin.reg05.rtss.qc.ca/"
+    },
+    {
+      "signification": "test2",
+      "type": ["Examen", "+ Général"],
+      "langue": "(fr)",
+      "url": "http://requin.reg05.rtss.qc.ca/"
+    }
+  ]
+}
+
   {
     "abreviation": "PL",
     "signification": "Ponction Lombaire",
