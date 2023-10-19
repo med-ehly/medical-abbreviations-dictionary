@@ -24,15 +24,15 @@ function applyActiveFilters(data) {
     // Check if the "Symbole" filter is active
     const isSymbolFilterActive = activeSymbolFilter === "SYMBOLE";
 
-    // Filter the results based on the active filters
+   // Filter the results based on the active filters
     const filteredResults = data.filter(item => {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
         const categoryMatches = !activeCategoryFilter || (item.categorie && item.categorie.includes(activeCategoryFilter));
 
-     // Check if "type" is directly present in the item
+        // Check if "type" is directly present in the item
         const typeMatches = !activeTypeFilter || (item.type && item.type.includes(activeTypeFilter));
 
-     // Check if "type" is nested within "significations"
+        // Check if "type" is nested within "significations"
         if (!typeMatches && item.significations) {
             typeMatches = item.significations.some(signification => signification.type === activeTypeFilter);
         }
@@ -42,20 +42,21 @@ function applyActiveFilters(data) {
             return true;
         }
 
-        if (letterMatches && categoryMatches && typeMatches) {
-            activeTypes.add(item.type); 
-
-           // Check if the abbreviation has already been added under the active type
+        if (letterMatches && categoryMatches) {
             if (typeMatches) {
-                if (!addedAbbreviations.has(item.abreviation)) {
-                    addedAbbreviations.add(item.abreviation);
+                activeTypes.add(item.type); // Add the item's type to the active types
+                return true;
+            } else if (item.significations) {
+                const significationTypes = item.significations.map(signification => signification.type);
+                if (significationTypes.includes(activeTypeFilter)) {
+                    activeTypes.add(activeTypeFilter); // Add the active type to the active types
                     return true;
                 }
             }
         }
 
         return false;
-    }); 
+    });
 
     // If "SYMBOLE" is in activeTypes, clear other active types
     if (activeTypes.has("SYMBOLE")) {
