@@ -99,6 +99,7 @@ header {
   margin-bottom: 20px;
   text-align: center;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Results list style */
@@ -120,6 +121,7 @@ header {
   border-radius: 5px;
   font-family: Arial, sans-serif;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #resultsList li:last-child {
@@ -146,6 +148,7 @@ header {
   font-variant: small-caps;
   font-family: Arial, sans-serif;
   overflow: auto;
+  text-overflow: ellipsis;
 }
 
 /* Type section heading style */
