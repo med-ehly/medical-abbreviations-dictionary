@@ -28,7 +28,14 @@ function applyActiveFilters(data) {
     const filteredResults = data.filter(item => {
         const letterMatches = !activeLetterButton || item.abreviation.charAt(0).toLowerCase() === activeLetterButton.toLowerCase();
         const categoryMatches = !activeCategoryFilter || (item.categorie && item.categorie.includes(activeCategoryFilter));
+
+     // Check if "type" is directly present in the item
         const typeMatches = !activeTypeFilter || (item.type && item.type.includes(activeTypeFilter));
+
+     // Check if "type" is nested within "significations"
+        if (!typeMatches && item.significations) {
+            typeMatches = item.significations.some(signification => signification.type === activeTypeFilter);
+        }
 
         if (isSymbolFilterActive && item.type === "SYMBOLE") {
             activeTypes.add("SYMBOLE"); // Add "SYMBOLE" to the active types
@@ -36,7 +43,7 @@ function applyActiveFilters(data) {
         }
 
         if (letterMatches && categoryMatches && typeMatches) {
-            activeTypes.add(item.type); // Add the item's type to the active types
+            activeTypes.add(item.type); 
 
            // Check if the abbreviation has already been added under the active type
             if (typeMatches) {
