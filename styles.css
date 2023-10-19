@@ -268,14 +268,22 @@ table td {
   margin-top: 2%;
 }
 
-/* Style for category and type filters */
-.category-filter,
+.category-filter {
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 40%;
+  margin-left: 120px;
+}
+
 .type-filter {
   margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 40%;
+  margin-right: 120px;
 }
 
 /* Style for filter buttons in columns */
