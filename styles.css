@@ -214,6 +214,7 @@ table td {
 /* Icon link container style */
 .icon-link-container {
   text-align: right;
+  margin-top: 10px;
 }
 
 .icon-class {
