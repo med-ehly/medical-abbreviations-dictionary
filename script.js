@@ -245,7 +245,7 @@ function addToGroupedResults(groupedResults, result) {
             groupedResults[type] = [];
         }
         groupedResults[type].push(result);
-    }
+    });
 }
 
 function scrollToTop() {
@@ -466,8 +466,9 @@ function addToGroupedResults(groupedResults, result) {
             groupedResults[type] = [];
         }
         groupedResults[type].push(result);
-    }
+    });
 }
+
 
 function handleMouseEnter(event) {
   const row = event.currentTarget;
