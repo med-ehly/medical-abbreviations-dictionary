@@ -101,50 +101,41 @@ function displaySearchResults(results) {
     const groupedResults = {};
 
     results.forEach(result => {
-        // Initialize types as an array
         let types = result.type || ["SYMBOLE"];
-
-        // Ensure "types" is an array
         if (!Array.isArray(types)) {
             types = [types];
         }
+        types = types.map(type => type.toUpperCase());
 
-        types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
-
-        // Create a group for each type
-        types.forEach(type => {
-            if (!groupedResults[type]) {
-                groupedResults[type] = [];
-            }
-
-            groupedResults[type].push(result);
-        });
+        // Check if "significations" is an array
+        if (result.significations && Array.isArray(result.significations)) {
+            result.significations.forEach(signification => {
+                signification.type = types; // Assign the type(s) to each signification
+                addToGroupedResults(groupedResults, signification);
+            });
+        } else {
+            addToGroupedResults(groupedResults, result);
+        }
     });
 
-    // Initialize a flag to track the first type
     let isFirstType = true;
-
-    // Get the active type filter
     const activeType = activeTypeFilter && activeTypeFilter.toUpperCase();
 
     for (const group in groupedResults) {
         if (groupedResults.hasOwnProperty(group)) {
             if (activeType && group !== activeType) {
-                continue; // Skip this type if the activeType is set and doesn't match
+                continue;
             }
 
             const groupResults = groupedResults[group];
-
-            // Create a section for the group (type or "SYMBOLE")
             const groupSection = document.createElement("div");
             groupSection.classList.add("type-section");
 
-            // Add a separator line before the type name if it's not the first type
             if (!isFirstType) {
                 const separator = document.createElement("hr");
                 groupSection.appendChild(separator);
             } else {
-                isFirstType = false; // Set the flag to false for subsequent types
+                isFirstType = false;
             }
 
             groupSection.innerHTML = `<h2>${group}</h2>`;
@@ -158,10 +149,16 @@ function displaySearchResults(results) {
                 const descriptionContainer = document.createElement("div");
                 descriptionContainer.classList.add("description-container");
 
-                if (result.significations) {
+              if (result.significations) {
     result.significations.forEach(signification => {
         const significationContainer = document.createElement("div");
         significationContainer.classList.add("signification-container");
+
+        if (signification.type) {
+            const typeContainer = document.createElement("div");
+            typeContainer.textContent = signification.type.join(', '); // Display type(s)
+            significationContainer.appendChild(typeContainer);
+        }
 
         const descriptionText = document.createElement("p");
         descriptionText.innerHTML = `➤ ${signification.signification}`;
@@ -188,32 +185,36 @@ function displaySearchResults(results) {
         descriptionContainer.appendChild(significationContainer);
     });
 } else {
-                    // Handle the case where there's only one signification
-                    const significationContainer = document.createElement("div");
-                    significationContainer.classList.add("signification-container");
+    // Handle the case where there's only one signification
+    const significationContainer = document.createElement("div");
+    significationContainer.classList.add("signification-container");
 
-                    const descriptionText = document.createElement("p");
-                    descriptionText.innerHTML = `➤ ${result.signification}`;
-                    significationContainer.appendChild(descriptionText);
+    if (result.type) {
+        const typeContainer = document.createElement("div");
+        typeContainer.textContent = result.type.join(', '); // Display type(s)
+        significationContainer.appendChild(typeContainer);
+    }
 
-                    if (result.url) {
-                        const icon = document.createElement("img");
-                        icon.src = "monicone.svg";
-                        icon.alt = "Lien externe";
-                        icon.style.cursor = "pointer";
-                        icon.classList.add("icon-class");
+    const descriptionText = document.createElement("p");
+    descriptionText.innerHTML = `➤ ${result.signification}`;
+    significationContainer.appendChild(descriptionText);
 
-                        icon.addEventListener("click", () => {
-                            window.open(result.url, "_blank");
-                        });
+    if (result.url) {
+        const icon = document.createElement("img");
+        icon.src = "monicone.svg";
+        icon.alt = "Lien externe";
+        icon.style.cursor = "pointer";
+        icon.classList.add("icon-class");
 
-                        significationContainer.appendChild(icon);
-                    }
+        icon.addEventListener("click", () => {
+            window.open(result.url, "_blank");
+        });
 
-                    descriptionContainer.appendChild(significationContainer);
-                }
+        significationContainer.appendChild(icon);
+    }
 
-                row.appendChild(descriptionContainer);
+    descriptionContainer.appendChild(significationContainer);
+}
 
                 const languePopover = document.createElement("div");
                 languePopover.classList.add("langue-popover");
@@ -232,6 +233,20 @@ function displaySearchResults(results) {
     }
 }
 
+function addToGroupedResults(groupedResults, result) {
+    let types = result.type;
+    if (!Array.isArray(types)) {
+        types = [types];
+    }
+    types = types.map(type => type.toUpperCase());
+
+    types.forEach(type => {
+        if (!groupedResults[type]) {
+            groupedResults[type] = [];
+        }
+        groupedResults[type].push(result);
+    }
+}
 
 function scrollToTop() {
     window.scrollTo({
@@ -302,54 +317,46 @@ function displayResults(results) {
     return;
   }
 
-  // Create an object to store the results grouped by type
+ 
+    // Create an object to store the results grouped by type
     const groupedResults = {};
 
     results.forEach(result => {
-        // Initialize types as an array
         let types = result.type || ["SYMBOLE"];
-
-        // Ensure "types" is an array
         if (!Array.isArray(types)) {
             types = [types];
         }
+        types = types.map(type => type.toUpperCase());
 
-        types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
-
-        // Create a group for each type
-        types.forEach(type => {
-            if (!groupedResults[type]) {
-                groupedResults[type] = [];
-            }
-
-            groupedResults[type].push(result);
-        });
+        // Check if "significations" is an array
+        if (result.significations && Array.isArray(result.significations)) {
+            result.significations.forEach(signification => {
+                signification.type = types; // Assign the type(s) to each signification
+                addToGroupedResults(groupedResults, signification);
+            });
+        } else {
+            addToGroupedResults(groupedResults, result);
+        }
     });
 
-    // Initialize a flag to track the first type
     let isFirstType = true;
-
-    // Get the active type filter
     const activeType = activeTypeFilter && activeTypeFilter.toUpperCase();
 
     for (const group in groupedResults) {
         if (groupedResults.hasOwnProperty(group)) {
             if (activeType && group !== activeType) {
-                continue; // Skip this type if the activeType is set and doesn't match
+                continue;
             }
 
             const groupResults = groupedResults[group];
-
-            // Create a section for the group (type or "SYMBOLE")
             const groupSection = document.createElement("div");
             groupSection.classList.add("type-section");
 
-            // Add a separator line before the type name if it's not the first type
             if (!isFirstType) {
                 const separator = document.createElement("hr");
                 groupSection.appendChild(separator);
             } else {
-                isFirstType = false; // Set the flag to false for subsequent types
+                isFirstType = false;
             }
 
             groupSection.innerHTML = `<h2>${group}</h2>`;
@@ -363,10 +370,16 @@ function displayResults(results) {
                 const descriptionContainer = document.createElement("div");
                 descriptionContainer.classList.add("description-container");
 
-               if (result.significations) {
+              if (result.significations) {
     result.significations.forEach(signification => {
         const significationContainer = document.createElement("div");
         significationContainer.classList.add("signification-container");
+
+        if (signification.type) {
+            const typeContainer = document.createElement("div");
+            typeContainer.textContent = signification.type.join(', '); // Display type(s)
+            significationContainer.appendChild(typeContainer);
+        }
 
         const descriptionText = document.createElement("p");
         descriptionText.innerHTML = `➤ ${signification.signification}`;
@@ -393,32 +406,36 @@ function displayResults(results) {
         descriptionContainer.appendChild(significationContainer);
     });
 } else {
-                    // Handle the case where there's only one signification
-                    const significationContainer = document.createElement("div");
-                    significationContainer.classList.add("signification-container");
+    // Handle the case where there's only one signification
+    const significationContainer = document.createElement("div");
+    significationContainer.classList.add("signification-container");
 
-                    const descriptionText = document.createElement("p");
-                    descriptionText.innerHTML = `➤ ${result.signification}`;
-                    significationContainer.appendChild(descriptionText);
+    if (result.type) {
+        const typeContainer = document.createElement("div");
+        typeContainer.textContent = result.type.join(', '); // Display type(s)
+        significationContainer.appendChild(typeContainer);
+    }
 
-                    if (result.url) {
-                        const icon = document.createElement("img");
-                        icon.src = "monicone.svg";
-                        icon.alt = "Lien externe";
-                        icon.style.cursor = "pointer";
-                        icon.classList.add("icon-class");
+    const descriptionText = document.createElement("p");
+    descriptionText.innerHTML = `➤ ${result.signification}`;
+    significationContainer.appendChild(descriptionText);
 
-                        icon.addEventListener("click", () => {
-                            window.open(result.url, "_blank");
-                        });
+    if (result.url) {
+        const icon = document.createElement("img");
+        icon.src = "monicone.svg";
+        icon.alt = "Lien externe";
+        icon.style.cursor = "pointer";
+        icon.classList.add("icon-class");
 
-                        significationContainer.appendChild(icon);
-                    }
+        icon.addEventListener("click", () => {
+            window.open(result.url, "_blank");
+        });
 
-                    descriptionContainer.appendChild(significationContainer);
-                }
+        significationContainer.appendChild(icon);
+    }
 
-                row.appendChild(descriptionContainer);
+    descriptionContainer.appendChild(significationContainer);
+}
 
                 const languePopover = document.createElement("div");
                 languePopover.classList.add("langue-popover");
@@ -434,6 +451,21 @@ function displayResults(results) {
 
             resultsList.appendChild(groupSection);
         }
+    }
+}
+
+function addToGroupedResults(groupedResults, result) {
+    let types = result.type;
+    if (!Array.isArray(types)) {
+        types = [types];
+    }
+    types = types.map(type => type.toUpperCase());
+
+    types.forEach(type => {
+        if (!groupedResults[type]) {
+            groupedResults[type] = [];
+        }
+        groupedResults[type].push(result);
     }
 }
 
