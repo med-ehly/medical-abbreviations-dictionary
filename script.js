@@ -102,10 +102,12 @@ function displaySearchResults(results) {
 
     results.forEach(result => {
         let types = result.type || ["SYMBOLE"];
-        if (!Array.isArray(types)) {
-            types = [types];
-        }
-        types = types.map(type => type.toUpperCase());
+if (!Array.isArray(types)) {
+    types = [types];
+}
+types = types.filter(Boolean); // Filter out any undefined or falsy values
+types = types.map(type => (type && type.toUpperCase()) || "SYMBOLE");
+
 
         // Check if "significations" is an array
         if (result.significations && Array.isArray(result.significations)) {
