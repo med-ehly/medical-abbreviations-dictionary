@@ -320,15 +320,17 @@ function displayResults(results) {
   }
 
  
-    // Create an object to store the results grouped by type
+     // Create an object to store the results grouped by type
     const groupedResults = {};
 
     results.forEach(result => {
         let types = result.type || ["SYMBOLE"];
-        if (!Array.isArray(types)) {
-            types = [types];
-        }
-        types = types.map(type => type.toUpperCase());
+if (!Array.isArray(types)) {
+    types = [types];
+}
+types = types.filter(Boolean); // Filter out any undefined or falsy values
+types = types.map(type => (type && type.toUpperCase()) || "SYMBOLE");
+
 
         // Check if "significations" is an array
         if (result.significations && Array.isArray(result.significations)) {
