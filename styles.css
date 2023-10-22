@@ -38,7 +38,7 @@ header {
 .alphabet {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 25px;
   margin-bottom: 10px;
 }
 
@@ -287,6 +287,19 @@ table td {
   align-items: flex-start;
   width: 40%;
   margin-right: 110px;
+}
+
+.highlighted {
+  background: linear-gradient(90deg, #CAC6F1, pink) !important;
+  background-color: #F5FF80 !important;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+  font-weight: bold !important;
+}
+
+.highlight {
+  background-color: yellow;
+  font-weight: bold;
 }
 
 /* Style for filter buttons in columns */
