@@ -153,6 +153,12 @@ function displaySearchResults(results) {
             significationContainer.classList.add("signification-container");
 
             const descriptionText = document.createElement("p");
+
+            // Check if the signification should be highlighted
+            if (signification.highlight) {
+              descriptionText.classList.add("highlighted"); // You can define a CSS class for highlighting
+            }
+
             descriptionText.innerHTML = `➤ ${signification.signification}`;
             significationContainer.appendChild(descriptionText);
 
@@ -221,7 +227,6 @@ function displaySearchResults(results) {
   }
 }
 
-
 function scrollToTop() {
   window.scrollTo({
     top: 0,
@@ -230,22 +235,39 @@ function scrollToTop() {
 }
 
 function handleSearch(event, data) {
-  const searchTerm = event.target.value.toLowerCase();
+  const searchTerm = (event.target.value || '').toLowerCase();
   const normalizedSearchTerm = normalizeString(searchTerm);
   const filteredResults = data.filter(item => {
-    const matchesSearch = searchMatches(item, normalizedSearchTerm);
-    const categoryMatches = !activeCategoryFilter || item.categorie === activeCategoryFilter;
-    // Check if "type" is directly present in the item
-    const typeMatches = !activeTypeFilter || item.type === activeTypeFilter;
-    // Check if "type" is nested within "significations"
-    if (!typeMatches && item.significations) {
-      typeMatches = item.significations.some(signification => signification.type === activeTypeFilter);
+    // Ensure "item" is defined and has the expected structure
+    if (!item || !item.abreviation) {
+      return false;
     }
 
-    return matchesSearch && categoryMatches && typeMatches;
+    const matchesSearch = searchMatches(item, normalizedSearchTerm);
+
+    // Check if "item.categorie" is an array (if it's defined)
+    const categoryMatches = !activeCategoryFilter || (
+      Array.isArray(item.categorie) && item.categorie.includes(activeCategoryFilter)
+    );
+
+    // Check if "item.type" is an array (if it's defined)
+    const typeMatches = !activeTypeFilter || (
+      Array.isArray(item.type) && item.type.includes(activeTypeFilter)
+    );
+
+    // Check if "item.significations" is an array (if it's defined)
+    const significationMatches = !activeTypeFilter || (
+      Array.isArray(item.significations) &&
+      item.significations.some(signification => signification.type === activeTypeFilter)
+    );
+    // Exclude "symbole" from the search results
+    const isSymbole = item.symbole === "SYMBOLE";
+
+    return matchesSearch && categoryMatches && typeMatches && !isSymbole;
   });
   applyActiveFilters(filteredResults);
 }
+
 
 function searchMatches(item, searchTerm) {
   const abbreviationMatch = matchesString(item.abreviation, searchTerm);
@@ -273,13 +295,19 @@ function matchesSignifications(significations, searchTerm) {
 }
 
 function normalizeString(text) {
+  if (typeof text !== 'string') {
+    return '';
+  }
+
   return text
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "") // Supprime la ponctuation
-    .replace(/\s/g, ""); // Supprime les espaces
+    .replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, "") // Remove punctuation
+    .replace(/\s/g, ""); // Remove spaces
 }
+
+
 
 function displayResults(results) {
   resultsList.innerHTML = '';
@@ -312,9 +340,6 @@ function displayResults(results) {
     });
   });
 
-  // Initialize a flag to track the first type
-  let isFirstType = true;
-
   // Get the active type filter
   const activeType = activeTypeFilter && activeTypeFilter.toUpperCase();
 
@@ -329,14 +354,6 @@ function displayResults(results) {
       // Create a section for the group (type or "SYMBOLE")
       const groupSection = document.createElement("div");
       groupSection.classList.add("type-section");
-
-      // Add a separator line before the type name if it's not the first type
-      if (!isFirstType) {
-        const separator = document.createElement("hr");
-        groupSection.appendChild(separator);
-      } else {
-        isFirstType = false; // Set the flag to false for subsequent types
-      }
 
       groupSection.innerHTML = `<h2>${group}</h2>`;
 
@@ -355,6 +372,10 @@ function displayResults(results) {
             significationContainer.classList.add("signification-container");
 
             const descriptionText = document.createElement("p");
+            // Check if the signification should be highlighted
+            if (signification.highlight) {
+              descriptionText.classList.add("highlighted"); // You can define a CSS class for highlighting
+            }
             descriptionText.innerHTML = `➤ ${signification.signification}`;
             significationContainer.appendChild(descriptionText);
 
@@ -459,25 +480,35 @@ document.addEventListener("DOMContentLoaded", () => {
       function handleLetterButtonClick(button) {
         const selectedLetter = button.getAttribute("data-letter");
         const isFilterActive = button.classList.contains("active");
+
         if (!isFilterActive) {
           // Désactivez toutes les autres lettres sélectionnées
           letterButtons.forEach(letterButton => {
             letterButton.classList.remove("active");
           });
+
+          // Filter out items with "symbole" set to "SYMBOLE"
+          const filteredData = sortedData.filter(item => item.symbole !== "SYMBOLE");
+
           button.classList.add("active");
           activeLetterButton = selectedLetter; // Mettez à jour la variable globale activeLetterButton
+
           // Désactivez le bouton "Symbole" s'il est actif
           if (activeSymbolButton) {
             activeSymbolButton.classList.remove("active");
             activeSymbolButton = null;
             activeSymbolFilter = null;
           }
+
+          applyActiveFilters(filteredData); // Apply filters to the filtered data
         } else {
           button.classList.remove("active");
           activeLetterButton = null; // Réinitialisez le filtre de lettre actif
+          applyActiveFilters(sortedData); // Apply filters to the original data
         }
-        applyActiveFilters(sortedData);
       }
+
+
       // Associez la fonction handleLetterButtonClick au clic sur chaque bouton de lettre
       letterButtons.forEach(button => {
         button.addEventListener("click", () => {
@@ -487,7 +518,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       function resetFilters() {
         // Réinitialisez les filtres de lettre
-        letterButtons.forEach(letterButton => {
+        letterButtons.forEach((letterButton) => {
           letterButton.classList.remove("active");
         });
         activeLetterButton = null;
@@ -500,23 +531,45 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Réinitialisez les filtres de catégorie
-        categoryButtons.forEach(categoryButton => {
+        categoryButtons.forEach((categoryButton) => {
           categoryButton.classList.remove("active");
         });
         activeCategoryButton = null;
         activeCategoryFilter = null;
 
         // Réinitialisez les filtres de type
-        typeButtons.forEach(typeButton => {
+        typeButtons.forEach((typeButton) => {
           typeButton.classList.remove("active");
         });
         activeTypeButton = null;
         activeTypeFilter = null;
 
+        // Reset the "highlight" property to false for each signification in your data if there are no active type filters
+        if (!activeTypeFilter) {
+          data.forEach(item => {
+            if (item.significations) {
+              item.significations.forEach(signification => {
+                signification.highlight = false;
+              });
+            }
+          });
+
+          // Remove the "highlighted" class from DOM elements
+          const highlightedSignifications = document.querySelectorAll(".signification-container .highlighted");
+          highlightedSignifications.forEach(significationElement => {
+            significationElement.classList.remove("highlighted");
+          });
+        }
         const searchInput = document.getElementById("searchInput");
         if (searchInput) {
           searchInput.value = "";
         }
+
+        // Remove highlighting from the elements
+        const highlightedElements = document.querySelectorAll(".highlighted");
+        highlightedElements.forEach((element) => {
+          element.classList.remove("highlighted");
+        });
 
         // Appliquez les filtres réinitialisés aux données
         applyActiveFilters(sortedData);
@@ -528,6 +581,8 @@ document.addEventListener("DOMContentLoaded", () => {
       resetFiltersButton.addEventListener("click", () => {
         resetFilters();
       });
+
+
 
       function handleSymbolFilterButtonClick() {
         const isFilterActive = symbolFilterButton.classList.contains("active");
@@ -644,13 +699,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const selectedTypeFilter = button.getAttribute("data-type");
         const isTypeFilterActive = button.classList.contains("active");
 
-        // Désactivez le filtre "Symbole" si actif
-        if (activeSymbolButton) {
-          activeSymbolButton.classList.remove("active");
-          activeSymbolButton = null;
-          activeSymbolFilter = null;
-        }
-
         if (!isTypeFilterActive) {
           // Désactivez le bouton de type actif s'il y en a un
           if (activeTypeButton) {
@@ -663,14 +711,31 @@ document.addEventListener("DOMContentLoaded", () => {
           button.classList.remove("active");
           activeTypeButton = null;
           activeTypeFilter = null;
+
+          // Remove the "highlighted" class from matching elements
+          const highlightedElements = document.querySelectorAll(".signification-container .highlighted");
+          highlightedElements.forEach((element) => {
+            element.classList.remove("highlighted");
+          });
         }
 
         // Apply filters based on the updated type filter
         const filteredResults = sortedData.filter(item => {
           return (
             activeTypeFilter === null ||
-            (Array.isArray(item.type) && item.type.includes(activeTypeFilter))
+            (Array.isArray(item.type) && item.type.includes(activeTypeFilter)) ||
+            (Array.isArray(item.significations) &&
+              item.significations.some(signification => signification.type === activeTypeFilter))
           );
+        });
+
+        // Highlight the matching significations
+        filteredResults.forEach(item => {
+          if (item.significations) {
+            item.significations.forEach(signification => {
+              signification.highlight = signification.type === activeTypeFilter;
+            });
+          }
         });
 
         applyActiveFilters(sortedData);
