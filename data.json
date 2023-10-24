@@ -32,7 +32,7 @@
       },
       {
         "signification": "test2",
-        "type": ["Examen", "+ Général"],
+        "type": ["Examen", "Labos"],
         "langue": "(fr)",
         "url": "http://requin.reg05.rtss.qc.ca/"
       }
