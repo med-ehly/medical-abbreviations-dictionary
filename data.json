@@ -1,64 +1,5 @@
 [
-    {
-      "abreviation": "A",
-      "significations": [
-        {
-          "signification": "Artère",
-          "type": "Anatomie"
-        },
-        {
-          "signification": "Antérieur",
-          "type": "+ Général"
-        }
-      ],
-      "type": ["+ Général", "Anatomie"]
-    },
    {
-    "abreviation": "AVC",
-    "signification": "Accident Vasculaire Cérébral",
-    "categorie": ["Neurologie", "CCVT"],
-    "type": ["Diagnostic", "Anatomie"],
-    "langue": "(fr)",
-    "url": "http://requin.reg05.rtss.qc.ca/"
-  },
-  {
-    "abreviation": "test",
-    "significations": [
-      {
-        "signification": "test1",
-        "type": ["Examen", "+ Général"],
-        "langue": "(fr)",
-        "url": "http://requin.reg05.rtss.qc.ca/"
-      },
-      {
-        "signification": "test2",
-        "type": ["Examen", "Labos"],
-        "langue": "(fr)",
-        "url": "http://requin.reg05.rtss.qc.ca/"
-      }
-    ]
-  },
-    {
-      "abreviation": "PL",
-      "signification": "Ponction Lombaire",
-      "categorie": "Neurologie",
-      "type": "Diagnostic",
-      "langue": "(eng)"
-    },
-    {
-      "abreviation": "RXi",
-      "signification": "Radiographie",
-      "type": "Anatomie",
-      "popover": "Description détaillée de la Radiographie..."
-    },
-    {
-      "abreviation": "HCNT",
-      "signification": "Hémorragie Cérébrale Non Traumatique",
-      "categorie": "Neurologie",
-      "type": "Diagnostic",
-      "langue": "(fr)"
-    },
-    {
       "abreviation": "c̅",
       "signification": "Avec",
       "symbole": "SYMBOLE"
@@ -358,15 +299,5 @@
       "abreviation": "Ω",
       "signification": "Ohm",
       "symbole": "SYMBOLE"
-    },
-   {
-      "abreviation": "A.C.R",
-       "significations": [
-       {"signification":"Artère Centrale de la Rétine"}, 
-       {"signification":"Anévrisme Cérébral rupturé"}
-       ],
-      "categorie": "Neurologie",
-      "type": "Diagnostic",
-      "langue": "(fr)"
     }
   ]
