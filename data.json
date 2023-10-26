@@ -5,7 +5,8 @@
        {"signification":"Aorte"},
        {"signification":"Aortique"}
        ],
-    "langue": "(fr)"
+      "type": "Anatomie",
+      "langue": "(fr)"
    },
    {
       "abreviation": "c̅",
