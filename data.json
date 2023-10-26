@@ -9,6 +9,17 @@
       "langue": "(fr)"
    },
    {
+    "abreviation": "A.",
+     "significations": [
+       {"signification":"Antérieur",
+         "type": "+ Général"},
+       {"signification":"Albumine",
+         "type": "Labos"}
+       ],
+      "type": ["+ Général", "Labos"],
+      "langue": "(fr)"
+   },
+   {
       "abreviation": "c̅",
       "signification": "Avec",
       "symbole": "SYMBOLE"
