@@ -1,5 +1,13 @@
 [
    {
+    "abreviation": "A°",
+     "significations": [
+       {"signification":"Aorte"},
+       {"signification":"Aortique"}
+       ],
+    "langue": "(fr)"
+   },
+   {
       "abreviation": "c̅",
       "signification": "Avec",
       "symbole": "SYMBOLE"
