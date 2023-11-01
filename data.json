@@ -429,5 +429,12 @@
     "langue": "(fr)",
     "signification": "testing1",
     "url": "https://www.facebook.com/"
+  },
+  {
+    "abreviation": "test2",
+    "type": "",
+    "categorie": "",
+    "langue": "",
+    "signification": "testing2"
   }
 ]
