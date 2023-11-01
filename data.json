@@ -1,5 +1,16 @@
 [
    {
+        "abreviation": "AVC",
+        "signification": "Accident Vasculaire Cérébral",
+        "categorie": [
+            "Neurologie",
+            "CCVT"
+        ],
+        "type": "Diagnostic",
+        "langue": "(fr)",
+        "url": "http://requin.reg05.rtss.qc.ca/"
+    },
+   {
     "abreviation": "A°",
      "significations": [
        {"signification":"Aorte"},
@@ -7,7 +18,7 @@
        ],
       "type": "Anatomie",
       "langue": "(fr)",
-      "url": "facebook.com"
+      "url": "http://facebook.com"
    },
    {
     "abreviation": "A.",
