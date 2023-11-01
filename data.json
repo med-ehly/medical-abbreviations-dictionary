@@ -13,12 +13,12 @@
    {
     "abreviation": "A°",
      "significations": [
-       {"signification":"Aorte"},
+       {"signification":"Aorte",
+       "url": "http://facebook.com"},
        {"signification":"Aortique"}
        ],
       "type": "Anatomie",
-      "langue": "(fr)",
-      "url": "http://facebook.com"
+      "langue": "(fr)"
    },
    {
     "abreviation": "A.",
