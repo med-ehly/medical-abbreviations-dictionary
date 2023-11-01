@@ -426,5 +426,12 @@
     "abreviation": "Î©",
     "signification": "Ohm",
     "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "test",
+    "significations": "testing",
+    "type": "Examen",
+    "categorie": "Gériatrie",
+    "langue": "(fr)"
   }
 ]
