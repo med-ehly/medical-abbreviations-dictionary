@@ -421,5 +421,13 @@
     "categorie": "ORL",
     "langue": "(fr)",
     "signification": "testing"
+  },
+  {
+    "abreviation": "test1",
+    "type": "Diagnostic",
+    "categorie": "ORL",
+    "langue": "(fr)",
+    "signification": "testing1",
+    "url": "https://www.facebook.com/"
   }
 ]
