@@ -184,8 +184,8 @@ function displaySearchResults(results) {
           });
         } else {
           // Handle the case where there's only one signification
-          const significationContainer = document.createElement("div");
-          significationContainer.classList.add("signification-container");
+          const iconLinkContainer = document.createElement("div");
+          iconLinkContainer.classList.add("icon-link-container");
 
           const descriptionText = document.createElement("p");
           descriptionText.innerHTML = `➤ ${result.signification}`;
@@ -202,7 +202,8 @@ function displaySearchResults(results) {
               window.open(result.url, "_blank");
             });
 
-            significationContainer.appendChild(icon);
+            iconLinkContainer.appendChild(icon);
+            significationContainer.appendChild(iconLinkContainer);
           }
 
           descriptionContainer.appendChild(significationContainer);
@@ -316,7 +317,7 @@ function displayResults(results) {
     return;
   }
 
-  // Create an object to store the results grouped by type
+   // Create an object to store the results grouped by type
   const groupedResults = {};
 
   results.forEach(result => {
@@ -372,14 +373,19 @@ function displayResults(results) {
             significationContainer.classList.add("signification-container");
 
             const descriptionText = document.createElement("p");
+
             // Check if the signification should be highlighted
             if (signification.highlight) {
               descriptionText.classList.add("highlighted"); // You can define a CSS class for highlighting
             }
+
             descriptionText.innerHTML = `➤ ${signification.signification}`;
             significationContainer.appendChild(descriptionText);
 
             if (signification.url) {
+              const iconLinkContainer = document.createElement("div");
+              iconLinkContainer.classList.add("icon-link-container");
+
               const icon = document.createElement("img");
               icon.src = "monicone.svg";
               icon.alt = "Lien externe";
@@ -390,15 +396,16 @@ function displayResults(results) {
                 window.open(signification.url, "_blank");
               });
 
-              significationContainer.appendChild(icon);
+              iconLinkContainer.appendChild(icon);
+              significationContainer.appendChild(iconLinkContainer);
             }
 
             descriptionContainer.appendChild(significationContainer);
           });
         } else {
           // Handle the case where there's only one signification
-          const significationContainer = document.createElement("div");
-          significationContainer.classList.add("signification-container");
+          const iconLinkContainer = document.createElement("div");
+          iconLinkContainer.classList.add("icon-link-container");
 
           const descriptionText = document.createElement("p");
           descriptionText.innerHTML = `➤ ${result.signification}`;
@@ -415,7 +422,8 @@ function displayResults(results) {
               window.open(result.url, "_blank");
             });
 
-            significationContainer.appendChild(icon);
+            iconLinkContainer.appendChild(icon);
+            significationContainer.appendChild(iconLinkContainer);
           }
 
           descriptionContainer.appendChild(significationContainer);
