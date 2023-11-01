@@ -426,14 +426,5 @@
     "abreviation": "Ω",
     "signification": "Ohm",
     "symbole": "SYMBOLE"
-  },
-  {
-    "abreviation": "test",
-    "significations": [
-      "testing"
-    ],
-    "type": "Diagnostic",
-    "categorie": "Neurochirurgie",
-    "langue": "(fr)"
   }
 ]
