@@ -97,132 +97,96 @@ function displaySearchResults(results) {
     return;
   }
 
-  // Create an object to store the results grouped by type
+    // Create an object to store the results grouped by type
   const groupedResults = {};
-
   results.forEach(result => {
     // Initialize types as an array
     let types = result.type || ["SYMBOLE"];
-
     // Ensure "types" is an array
     if (!Array.isArray(types)) {
       types = [types];
     }
-
     types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
-
     // Create a group for each type
     types.forEach(type => {
       if (!groupedResults[type]) {
         groupedResults[type] = [];
       }
-
       groupedResults[type].push(result);
     });
   });
-
   // Get the active type filter
   const activeType = activeTypeFilter && activeTypeFilter.toUpperCase();
-
   for (const group in groupedResults) {
     if (groupedResults.hasOwnProperty(group)) {
       if (activeType && group !== activeType) {
         continue; // Skip this type if the activeType is set and doesn't match
       }
-
       const groupResults = groupedResults[group];
-
       // Create a section for the group (type or "SYMBOLE")
       const groupSection = document.createElement("div");
       groupSection.classList.add("type-section");
-
       groupSection.innerHTML = `<h2>${group}</h2>`;
-
       groupResults.forEach(result => {
         const row = document.createElement("li");
         const abbrCell = document.createElement("abbr");
         abbrCell.textContent = result.abreviation;
         row.appendChild(abbrCell);
-
         const descriptionContainer = document.createElement("div");
         descriptionContainer.classList.add("description-container");
-
         if (result.significations) {
           result.significations.forEach(signification => {
             const significationContainer = document.createElement("div");
             significationContainer.classList.add("signification-container");
-
             const descriptionText = document.createElement("p");
-
             // Check if the signification should be highlighted
             if (signification.highlight) {
               descriptionText.classList.add("highlighted"); // You can define a CSS class for highlighting
             }
-
             descriptionText.innerHTML = `➤ ${signification.signification}`;
             significationContainer.appendChild(descriptionText);
-
             if (signification.url) {
-              const iconLinkContainer = document.createElement("div");
-              iconLinkContainer.classList.add("icon-link-container");
-
               const icon = document.createElement("img");
               icon.src = "monicone.svg";
               icon.alt = "Lien externe";
               icon.style.cursor = "pointer";
               icon.classList.add("icon-class");
-
               icon.addEventListener("click", () => {
                 window.open(signification.url, "_blank");
               });
-
-              iconLinkContainer.appendChild(icon);
-              significationContainer.appendChild(iconLinkContainer);
+              significationContainer.appendChild(icon);
             }
-
             descriptionContainer.appendChild(significationContainer);
           });
         } else {
           // Handle the case where there's only one signification
-          const iconLinkContainer = document.createElement("div");
-          iconLinkContainer.classList.add("icon-link-container");
-
+          const significationContainer = document.createElement("div");
+          significationContainer.classList.add("signification-container");
           const descriptionText = document.createElement("p");
           descriptionText.innerHTML = `➤ ${result.signification}`;
           significationContainer.appendChild(descriptionText);
-
           if (result.url) {
             const icon = document.createElement("img");
             icon.src = "monicone.svg";
             icon.alt = "Lien externe";
             icon.style.cursor = "pointer";
             icon.classList.add("icon-class");
-
             icon.addEventListener("click", () => {
               window.open(result.url, "_blank");
             });
-
-            iconLinkContainer.appendChild(icon);
-            significationContainer.appendChild(iconLinkContainer);
+            significationContainer.appendChild(icon);
           }
-
           descriptionContainer.appendChild(significationContainer);
         }
-
         row.appendChild(descriptionContainer);
-
         const languePopover = document.createElement("div");
         languePopover.classList.add("langue-popover");
         languePopover.textContent = result.langue;
-
         row.appendChild(languePopover);
-
         groupSection.appendChild(row);
-
         row.addEventListener('mouseenter', handleMouseEnter);
         row.addEventListener('mouseleave', handleMouseLeave);
       });
-
       resultsList.appendChild(groupSection);
     }
   }
@@ -317,132 +281,96 @@ function displayResults(results) {
     return;
   }
 
-   // Create an object to store the results grouped by type
+     // Create an object to store the results grouped by type
   const groupedResults = {};
-
   results.forEach(result => {
     // Initialize types as an array
     let types = result.type || ["SYMBOLE"];
-
     // Ensure "types" is an array
     if (!Array.isArray(types)) {
       types = [types];
     }
-
     types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
-
     // Create a group for each type
     types.forEach(type => {
       if (!groupedResults[type]) {
         groupedResults[type] = [];
       }
-
       groupedResults[type].push(result);
     });
   });
-
   // Get the active type filter
   const activeType = activeTypeFilter && activeTypeFilter.toUpperCase();
-
   for (const group in groupedResults) {
     if (groupedResults.hasOwnProperty(group)) {
       if (activeType && group !== activeType) {
         continue; // Skip this type if the activeType is set and doesn't match
       }
-
       const groupResults = groupedResults[group];
-
       // Create a section for the group (type or "SYMBOLE")
       const groupSection = document.createElement("div");
       groupSection.classList.add("type-section");
-
       groupSection.innerHTML = `<h2>${group}</h2>`;
-
       groupResults.forEach(result => {
         const row = document.createElement("li");
         const abbrCell = document.createElement("abbr");
         abbrCell.textContent = result.abreviation;
         row.appendChild(abbrCell);
-
         const descriptionContainer = document.createElement("div");
         descriptionContainer.classList.add("description-container");
-
         if (result.significations) {
           result.significations.forEach(signification => {
             const significationContainer = document.createElement("div");
             significationContainer.classList.add("signification-container");
-
             const descriptionText = document.createElement("p");
-
             // Check if the signification should be highlighted
             if (signification.highlight) {
               descriptionText.classList.add("highlighted"); // You can define a CSS class for highlighting
             }
-
             descriptionText.innerHTML = `➤ ${signification.signification}`;
             significationContainer.appendChild(descriptionText);
-
             if (signification.url) {
-              const iconLinkContainer = document.createElement("div");
-              iconLinkContainer.classList.add("icon-link-container");
-
               const icon = document.createElement("img");
               icon.src = "monicone.svg";
               icon.alt = "Lien externe";
               icon.style.cursor = "pointer";
               icon.classList.add("icon-class");
-
               icon.addEventListener("click", () => {
                 window.open(signification.url, "_blank");
               });
-
-              iconLinkContainer.appendChild(icon);
-              significationContainer.appendChild(iconLinkContainer);
+              significationContainer.appendChild(icon);
             }
-
             descriptionContainer.appendChild(significationContainer);
           });
         } else {
           // Handle the case where there's only one signification
-          const iconLinkContainer = document.createElement("div");
-          iconLinkContainer.classList.add("icon-link-container");
-
+          const significationContainer = document.createElement("div");
+          significationContainer.classList.add("signification-container");
           const descriptionText = document.createElement("p");
           descriptionText.innerHTML = `➤ ${result.signification}`;
           significationContainer.appendChild(descriptionText);
-
           if (result.url) {
             const icon = document.createElement("img");
             icon.src = "monicone.svg";
             icon.alt = "Lien externe";
             icon.style.cursor = "pointer";
             icon.classList.add("icon-class");
-
             icon.addEventListener("click", () => {
               window.open(result.url, "_blank");
             });
-
-            iconLinkContainer.appendChild(icon);
-            significationContainer.appendChild(iconLinkContainer);
+            significationContainer.appendChild(icon);
           }
-
           descriptionContainer.appendChild(significationContainer);
         }
-
         row.appendChild(descriptionContainer);
-
         const languePopover = document.createElement("div");
         languePopover.classList.add("langue-popover");
         languePopover.textContent = result.langue;
-
         row.appendChild(languePopover);
-
         groupSection.appendChild(row);
-
         row.addEventListener('mouseenter', handleMouseEnter);
         row.addEventListener('mouseleave', handleMouseLeave);
       });
-
       resultsList.appendChild(groupSection);
     }
   }
