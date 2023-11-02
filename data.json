@@ -423,5 +423,12 @@
   {
     "abreviation": "test111",
     "signification": "testagain"
+  },
+  {
+    "abreviation": "testing",
+    "signification": "testingagain",
+    "type": "Anatomie",
+    "categorie": "Med Interne",
+    "langue": "(fr)"
   }
 ]
