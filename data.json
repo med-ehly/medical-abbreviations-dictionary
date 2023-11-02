@@ -430,5 +430,16 @@
     "type": "Anatomie",
     "categorie": "Med Interne",
     "langue": "(fr)"
+  },
+  {
+    "type": [
+      "Médication"
+    ],
+    "categorie": [
+      "Neurochirurgie"
+    ],
+    "abreviation": "another test",
+    "signification": "this is another test i am trying",
+    "langue": "(fr)"
   }
 ]
