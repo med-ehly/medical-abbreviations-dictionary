@@ -449,5 +449,16 @@
     ],
     "abreviation": "test3",
     "signification": "testing3"
+  },
+  {
+    "abreviation": "test4",
+    "signification": "testing4",
+    "type": [
+      "Examen",
+      "Médication"
+    ],
+    "categorie": [
+      ""
+    ]
   }
 ]
