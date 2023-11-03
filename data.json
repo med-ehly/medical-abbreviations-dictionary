@@ -467,5 +467,16 @@
     "type": [
       "Anatomie"
     ]
+  },
+  {
+    "abreviation": "test6",
+    "signification": "testing6",
+    "type": [
+      "Labos",
+      "Médication"
+    ],
+    "categorie": [
+      ""
+    ]
   }
 ]
