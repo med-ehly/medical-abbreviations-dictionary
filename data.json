@@ -427,5 +427,16 @@
     "significations": [
       "testing"
     ]
+  },
+  {
+    "type": [
+      "Traitement",
+      "Médication"
+    ],
+    "categorie": [
+      ""
+    ],
+    "abreviation": "test1",
+    "signification": "testing1"
   }
 ]
