@@ -486,5 +486,13 @@
       "Labos",
       "Examen"
     ]
+  },
+  {
+    "abreviation": "test8",
+    "signification": "testing8",
+    "categorie": [
+      "Infectio",
+      "Génétique"
+    ]
   }
 ]
