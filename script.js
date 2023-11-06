@@ -635,6 +635,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const selectedTypeFilter = button.getAttribute("data-type");
         const isTypeFilterActive = button.classList.contains("active");
 
+         // Désactivez le bouton "Symbole" s'il est actif
+          if (activeSymbolButton) {
+            activeSymbolButton.classList.remove("active");
+            activeSymbolButton = null;
+            activeSymbolFilter = null;
+          }
+        
         if (!isTypeFilterActive) {
           // Désactivez le bouton de type actif s'il y en a un
           if (activeTypeButton) {
