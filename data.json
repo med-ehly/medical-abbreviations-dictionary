@@ -425,5 +425,16 @@
     "abreviation": "test1",
     "signification": "testing1",
     "type": "Diagnostic"
+  },
+  {
+    "abreviation": "testttt",
+    "significations": [
+      {
+        "signification": "tstttttt"
+      },
+      {
+        "signification": "tesrrrrrrrrrrrr"
+      }
+    ]
   }
 ]
