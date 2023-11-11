@@ -444,5 +444,11 @@
     "signification": "jhjh",
     "type": "Diagnostic",
     "categorie": "CEGDC"
+  },
+  {
+    "abreviation": "j",
+    "signification": "jjj",
+    "type": "Médication",
+    "categorie": "Endocrinologie"
   }
 ]
