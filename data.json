@@ -418,5 +418,17 @@
   {
     "abreviation": "test",
     "signification": "testing"
+  },
+  {
+    "abreviation": "test1",
+    "signification": "testing",
+    "significations": [
+      {
+        "signification": "testing1"
+      },
+      {
+        "signification": "testing2"
+      }
+    ]
   }
 ]
