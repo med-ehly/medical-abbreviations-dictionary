@@ -455,5 +455,11 @@
     "abreviation": "jjjjjj",
     "signification": "mmmmmmmmmm",
     "type": "Examen"
+  },
+  {
+    "abreviation": "nnnnnnnnn",
+    "signification": "nnnnnnnnnnnn",
+    "type": "Traitement",
+    "categorie": "Gastrologie"
   }
 ]
