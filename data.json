@@ -436,5 +436,18 @@
         "signification": "tesrrrrrrrrrrrr"
       }
     ]
+  },
+  {
+    "abreviation": "testgggggggg",
+    "significations": [
+      {
+        "signification": "tstttttt"
+      },
+      {
+        "signification": "tesrrrrrrrrrrrr"
+      }
+    ],
+    "type": "Examen",
+    "signification": "hgygyuguyguyguy"
   }
 ]
