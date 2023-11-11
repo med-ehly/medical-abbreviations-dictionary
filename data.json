@@ -425,5 +425,14 @@
     "abreviation": "kk",
     "signification": "kkkkkkk",
     "type": "Anatomie"
+  },
+  {
+    "abreviation": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+    "signification": "nuhuh",
+    "type": [
+      "Diagnostic",
+      "Médication",
+      "Diagnostic"
+    ]
   }
 ]
