@@ -1,1 +1,323 @@
-%5B%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22A%C3%82%C2%B0%22%2C%0A%20%20%20%20%22significations%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Aorte%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Aortique%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22type%22%3A%20%22Anatomie%22%2C%0A%20%20%20%20%22langue%22%3A%20%22(fr)%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22A.%22%2C%0A%20%20%20%20%22significations%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Ant%C3%83%C2%A9rieur%22%2C%0A%20%20%20%20%20%20%20%20%22type%22%3A%20%22%2B%20G%C3%83%C2%A9n%C3%83%C2%A9ral%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Albumine%22%2C%0A%20%20%20%20%20%20%20%20%22type%22%3A%20%22Labos%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22type%22%3A%20%5B%0A%20%20%20%20%20%20%22%2B%20G%C3%83%C2%A9n%C3%83%C2%A9ral%22%2C%0A%20%20%20%20%20%20%22Labos%22%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22langue%22%3A%20%22(fr)%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22c%C3%8C%C2%85%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Avec%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22x%22%2C%0A%20%20%20%20%22significations%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Nombre%20de%20fois%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Par%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%A2%C2%99%C2%80%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Femme%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%A2%C2%99%C2%82%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Homme%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%83%C2%98%22%2C%0A%20%20%20%20%22significations%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Sans%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Absence%20de%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Aucun%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%A2%C2%99%C2%A5%22%2C%0A%20%20%20%20%22significations%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Cardio%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Cardiaque%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Coeur%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%A2%C2%86%C2%91%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Augment%C3%83%C2%A9%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%A2%C2%86%C2%93%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Diminu%C3%83%C2%A9%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%8E%C2%A8%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Psychiatrie%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%A2%C2%80%C2%A0%22%2C%0A%20%20%20%20%22significations%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22D%C3%83%C2%A9c%C3%83%C2%A8s%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Mort%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%2B%2B%2B%22%2C%0A%20%20%20%20%22significations%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Important%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Significatif%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%A2%C2%96%C2%B3%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Changement%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%A2%C2%96%C2%B3%C3%A2%C2%96%C2%B3%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Poumon%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%A2%C2%96%C2%A1%22%2C%0A%20%20%20%20%22significations%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Demand%C3%83%C2%A9%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Prescrit%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%82%C2%A9%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Consultation%20avec%20un%20m%C3%83%C2%A9decin%20sp%C3%83%C2%A9cialiste%20ou%20un%20professionnel%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%A2%C2%86%C2%92%22%2C%0A%20%20%20%20%22significations%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Aboutit%20%C3%83%C2%A0%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Entra%C3%83%C2%AEne%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Implique%20la%20cons%C3%83%C2%A9quence%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%3D%22%2C%0A%20%20%20%20%22significations%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Continu%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Implique%20l'%C3%83%C2%A9galit%C3%83%C2%A9%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%A2%C2%89%C2%A0%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Diff%C3%83%C2%A9rent%20de%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%A2%C2%89%C2%88%22%2C%0A%20%20%20%20%22significations%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Environ%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Presque%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Peu%20diff%C3%83%C2%A9rent%20de%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%2F%2F%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Parall%C3%83%C2%A8le%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22I%22%2C%0A%20%20%20%20%22significations%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Primaire%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Primitif%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22II%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Secondaire%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22(%2B)%22%2C%0A%20%20%20%20%22significations%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Implique%20l'exc%C3%83%C2%A8s%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Plus%20positif%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22(-)%22%2C%0A%20%20%20%20%22significations%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Implique%20le%20manque%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Moins%20n%C3%83%C2%A9gatif%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%82%C2%B1%22%2C%0A%20%20%20%20%22significations%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Plus%20ou%20moins%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22soit%20positif%2C%20soit%20n%C3%83%C2%A9gatif%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22~%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Alternatif%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%A2%C2%80%C2%98%22%2C%0A%20%20%20%20%22significations%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Minute%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Angle%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%3E%22%2C%0A%20%20%20%20%22significations%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Sup%C3%83%C2%A9rieur%20%C3%83%C2%A0%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Plus%20grand%20que%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%3C%22%2C%0A%20%20%20%20%22significations%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Inf%C3%83%C2%A9rieur%20%C3%83%C2%A0%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Plus%20petit%20que%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%A2%C2%89%C2%A4%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Inf%C3%83%C2%A9rieur%20ou%20%C3%83%C2%A9gale%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%A2%C2%88%C2%9E%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Infini%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%AA%C2%93%C2%95%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Perpendiculaire%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%82%C2%B0%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Degr%C3%83%C2%A9%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%82%C2%BD%22%2C%0A%20%20%20%20%22signification%22%3A%20%22H%C3%83%C2%A9mi%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%A2%C2%80%C2%B3%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Seconde%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%82%C2%B5%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Micron%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%86%C2%9F%22%2C%0A%20%20%20%20%22signification%22%3A%20%22N%C3%83%C2%A9gatif%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22(a%22%2C%0A%20%20%20%20%22significations%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Jusqu'%C3%83%C2%A0%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Environ%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%8E%C2%BB%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Lambda%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%23%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Fracture%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%82%C2%B5%C3%82%C2%B5%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Micromicron%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22XY-Y%22%2C%0A%20%20%20%20%22significations%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Homme%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22H%C3%83%C2%A9t%C3%83%C2%A9rochromosome%20m%C3%83%C2%A2le%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22XX-X%22%2C%0A%20%20%20%20%22significations%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22Femme%22%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22signification%22%3A%20%22H%C3%83%C2%A9t%C3%83%C2%A9rochromosome%20femelle%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%82%C2%AE%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Marque%20d%C3%83%C2%A9pos%C3%83%C2%A9e%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%8E%C2%B2%22%2C%0A%20%20%20%20%22signification%22%3A%20%22B%C3%83%C2%AAta%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%8E%C2%B1%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Alpha%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%8F%C2%92%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Gamma%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22%C3%8E%C2%A9%22%2C%0A%20%20%20%20%22signification%22%3A%20%22Ohm%22%2C%0A%20%20%20%20%22symbole%22%3A%20%22SYMBOLE%22%0A%20%20%7D%2C%0A%20%20%7B%0A%20%20%20%20%22abreviation%22%3A%20%22test%22%2C%0A%20%20%20%20%22signification%22%3A%20%22testing%22%2C%0A%20%20%20%20%22type%22%3A%20%5B%0A%20%20%20%20%20%20%22Traitement%22%2C%0A%20%20%20%20%20%20%22Diagnostic%22%0A%20%20%20%20%5D%0A%20%20%7D%0A%5D
+[
+    {
+     "abreviation": "A°",
+      "significations": [
+        {"signification":"Aorte"},
+        {"signification":"Aortique"}
+        ],
+       "type": "Anatomie",
+       "langue": "(fr)"
+    },
+    {
+     "abreviation": "A.",
+      "significations": [
+        {"signification":"Antérieur",
+          "type": "+ Général"},
+        {"signification":"Albumine",
+          "type": "Labos"}
+        ],
+       "type": ["+ Général", "Labos"],
+       "langue": "(fr)"
+    },
+    {
+       "abreviation": "c̅",
+       "signification": "Avec",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "x",
+       "significations": [
+        {"signification":"Nombre de fois"},
+        {"signification":"Par"}
+        ],
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "♀",
+       "signification": "Femme",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "♂",
+       "signification": "Homme",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "Ø",
+       "significations": [
+        {"signification":"Sans"}, 
+        {"signification":"Absence de"},
+        {"signification":"Aucun"}
+        ], 
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "♥",
+      "significations": [
+        {"signification":"Cardio"}, 
+        {"signification":"Cardiaque"},
+        {"signification":"Coeur"}
+        ],
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "↑",
+       "signification": "Augmenté",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "↓",
+       "signification": "Diminué",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "Ψ",
+       "signification": "Psychiatrie",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "†",
+       "significations": [
+        {"signification":"Décès"}, 
+        {"signification":"Mort"}
+        ],
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "+++",
+       "significations": [
+        {"signification":"Important"}, 
+        {"signification":"Significatif"}
+        ],
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "△",
+       "signification": "Changement",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "△△",
+       "signification": "Poumon",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "□",
+       "significations": [
+        {"signification":"Demandé"}, 
+        {"signification":"Prescrit"}
+        ],
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "©",
+       "signification": "Consultation avec un médecin spécialiste ou un professionnel",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "→",
+       "significations": [
+        {"signification":"Aboutit à"}, 
+        {"signification":"Entraîne"},
+        {"signification":"Implique la conséquence"}
+        ],
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "=",
+       "significations": [
+        {"signification":"Continu"}, 
+        {"signification":"Implique l'égalité"}
+        ],
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "≠",
+       "signification": "Différent de",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "≈",
+       "significations": [
+        {"signification":"Environ"}, 
+        {"signification":"Presque"},
+        {"signification":"Peu différent de"}
+        ],
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "//",
+       "signification": "Parallèle",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "I",
+       "significations": [
+        {"signification":"Primaire"}, 
+        {"signification":"Primitif"}
+        ],
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "II",
+       "signification": "Secondaire",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "(+)",
+       "significations": [
+        {"signification":"Implique l'excès"}, 
+        {"signification":"Plus positif"}
+        ],
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "(-)",
+       "significations": [
+        {"signification":"Implique le manque"}, 
+        {"signification":"Moins négatif"}
+        ],
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "±",
+       "significations": [
+        {"signification":"Plus ou moins"}, 
+        {"signification":"soit positif, soit négatif"}
+        ],
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "~",
+       "signification": "Alternatif",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "‘",
+       "significations": [
+        {"signification":"Minute"}, 
+        {"signification":"Angle"}
+        ],
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": ">",
+       "significations": [
+        {"signification":"Supérieur à"}, 
+        {"signification":"Plus grand que"}
+        ],
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "<",
+       "significations": [
+        {"signification":"Inférieur à"}, 
+        {"signification":"Plus petit que"}
+        ],
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "≤",
+       "signification": "Inférieur ou égale",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "∞",
+       "signification": "Infini",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "ꓕ",
+       "signification": "Perpendiculaire",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "°",
+       "signification": "Degré",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "½",
+       "signification": "Hémi",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "″",
+       "signification": "Seconde",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "µ",
+       "signification": "Micron",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "Ɵ",
+       "signification": "Négatif",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "(a",
+       "significations": [
+        {"signification":"Jusqu'à"}, 
+        {"signification":"Environ"}
+        ],
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "λ",
+       "signification": "Lambda",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "#",
+       "signification": "Fracture",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "µµ",
+       "signification": "Micromicron",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "XY-Y",
+       "significations": [
+        {"signification":"Homme"}, 
+        {"signification":"Hétérochromosome mâle"}
+        ],
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "XX-X",
+       "significations": [
+        {"signification":"Femme"}, 
+        {"signification":"Hétérochromosome femelle"}
+        ],
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "®",
+       "signification": "Marque déposée",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "β",
+       "signification": "Bêta",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "α",
+       "signification": "Alpha",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "ϒ",
+       "signification": "Gamma",
+       "symbole": "SYMBOLE"
+     },
+     {
+       "abreviation": "Ω",
+       "signification": "Ohm",
+       "symbole": "SYMBOLE"
+     }
+   ]
