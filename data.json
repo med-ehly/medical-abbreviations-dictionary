@@ -418,5 +418,14 @@
   {
     "abreviation": "test",
     "signification": "testing"
+  },
+  {
+    "abreviation": "testttttt",
+    "signification": "kjkjl",
+    "type": "Examen",
+    "categorie": [
+      "Néphrologie",
+      "Endocrinologie"
+    ]
   }
 ]
