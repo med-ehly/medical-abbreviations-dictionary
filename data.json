@@ -466,5 +466,11 @@
     "abreviation": "jjjjjjj",
     "signification": "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",
     "categorie": "Dermatologie"
+  },
+  {
+    "abreviation": "kkkkkkkkkkk",
+    "signification": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+    "type": "Examen",
+    "categorie": "CCVT"
   }
 ]
