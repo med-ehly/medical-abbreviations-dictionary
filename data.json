@@ -418,5 +418,12 @@
   {
     "abreviation": "s",
     "signification": "ss"
+  },
+  {
+    "abreviation": "rewr",
+    "signification": "dsfdsf",
+    "type": [
+      "Anatomie"
+    ]
   }
 ]
