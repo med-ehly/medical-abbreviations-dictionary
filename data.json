@@ -420,5 +420,10 @@
     "signification": "testing",
     "type": "Anatomie",
     "langue": "(fr)"
+  },
+  {
+    "abreviation": "test1",
+    "signification": "testing1",
+    "type": "Diagnostic"
   }
 ]
