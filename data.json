@@ -426,5 +426,14 @@
       "Examen",
       "Diagnostic"
     ]
+  },
+  {
+    "abreviation": "test1111",
+    "signification": "testsssssss",
+    "type": [
+      "Examen",
+      "Diagnostic",
+      "Diagnostic"
+    ]
   }
 ]
