@@ -423,5 +423,12 @@
       "Immuno-Allergie",
       "Dermatologie"
     ]
+  },
+  {
+    "abreviation": "test",
+    "signification": "testing",
+    "type": "Anatomie",
+    "categorie": "Anesthésie",
+    "langue": "(fr)"
   }
 ]
