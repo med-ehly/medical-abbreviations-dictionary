@@ -425,5 +425,18 @@
     "type": [
       "Anatomie"
     ]
+  },
+  {
+    "abreviation": "jhjhj",
+    "signification": "jhjhj",
+    "type": [
+      "Médication",
+      "Médication"
+    ],
+    "categorie": [
+      "Gynécologie",
+      "Infectio",
+      "Infectio"
+    ]
   }
 ]
