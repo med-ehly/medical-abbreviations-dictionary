@@ -419,5 +419,16 @@
     "abreviation": "test",
     "signification": "testing",
     "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "testiiiiiiin",
+    "signification": "teeeeeeeeeees",
+    "type": [
+      "Anatomie",
+      "Anatomie"
+    ],
+    "categorie": [
+      "Dermatologie"
+    ]
   }
 ]
