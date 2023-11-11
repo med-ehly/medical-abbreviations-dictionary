@@ -1,6 +1,6 @@
 [
   {
-    "abreviation": "A°",
+    "abreviation": "AÂ°",
     "significations": [
       {
         "signification": "Aorte"
@@ -16,8 +16,8 @@
     "abreviation": "A.",
     "significations": [
       {
-        "signification": "Antérieur",
-        "type": "+ Général"
+        "signification": "AntÃ©rieur",
+        "type": "+ GÃ©nÃ©ral"
       },
       {
         "signification": "Albumine",
@@ -25,13 +25,13 @@
       }
     ],
     "type": [
-      "+ Général",
+      "+ GÃ©nÃ©ral",
       "Labos"
     ],
     "langue": "(fr)"
   },
   {
-    "abreviation": "c̅",
+    "abreviation": "cÌ…",
     "signification": "Avec",
     "symbole": "SYMBOLE"
   },
@@ -48,17 +48,17 @@
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "♀",
+    "abreviation": "â™€",
     "signification": "Femme",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "♂",
+    "abreviation": "â™‚",
     "signification": "Homme",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "Ø",
+    "abreviation": "Ã˜",
     "significations": [
       {
         "signification": "Sans"
@@ -73,7 +73,7 @@
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "♥",
+    "abreviation": "â™¥",
     "significations": [
       {
         "signification": "Cardio"
@@ -88,25 +88,25 @@
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "↑",
-    "signification": "Augmenté",
+    "abreviation": "â†‘",
+    "signification": "AugmentÃ©",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "↓",
-    "signification": "Diminué",
+    "abreviation": "â†“",
+    "signification": "DiminuÃ©",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "Ψ",
+    "abreviation": "Î¨",
     "signification": "Psychiatrie",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "†",
+    "abreviation": "â€ ",
     "significations": [
       {
-        "signification": "Décès"
+        "signification": "DÃ©cÃ¨s"
       },
       {
         "signification": "Mort"
@@ -127,20 +127,20 @@
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "△",
+    "abreviation": "â–³",
     "signification": "Changement",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "△△",
+    "abreviation": "â–³â–³",
     "signification": "Poumon",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "□",
+    "abreviation": "â–¡",
     "significations": [
       {
-        "signification": "Demandé"
+        "signification": "DemandÃ©"
       },
       {
         "signification": "Prescrit"
@@ -149,21 +149,21 @@
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "©",
-    "signification": "Consultation avec un médecin spécialiste ou un professionnel",
+    "abreviation": "Â©",
+    "signification": "Consultation avec un mÃ©decin spÃ©cialiste ou un professionnel",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "→",
+    "abreviation": "â†’",
     "significations": [
       {
-        "signification": "Aboutit à"
+        "signification": "Aboutit Ã "
       },
       {
-        "signification": "Entraîne"
+        "signification": "EntraÃ®ne"
       },
       {
-        "signification": "Implique la conséquence"
+        "signification": "Implique la consÃ©quence"
       }
     ],
     "symbole": "SYMBOLE"
@@ -175,18 +175,18 @@
         "signification": "Continu"
       },
       {
-        "signification": "Implique l'égalité"
+        "signification": "Implique l'Ã©galitÃ©"
       }
     ],
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "≠",
-    "signification": "Différent de",
+    "abreviation": "â‰ ",
+    "signification": "DiffÃ©rent de",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "≈",
+    "abreviation": "â‰ˆ",
     "significations": [
       {
         "signification": "Environ"
@@ -195,14 +195,14 @@
         "signification": "Presque"
       },
       {
-        "signification": "Peu différent de"
+        "signification": "Peu diffÃ©rent de"
       }
     ],
     "symbole": "SYMBOLE"
   },
   {
     "abreviation": "//",
-    "signification": "Parallèle",
+    "signification": "ParallÃ¨le",
     "symbole": "SYMBOLE"
   },
   {
@@ -226,7 +226,7 @@
     "abreviation": "(+)",
     "significations": [
       {
-        "signification": "Implique l'excès"
+        "signification": "Implique l'excÃ¨s"
       },
       {
         "signification": "Plus positif"
@@ -241,19 +241,19 @@
         "signification": "Implique le manque"
       },
       {
-        "signification": "Moins négatif"
+        "signification": "Moins nÃ©gatif"
       }
     ],
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "±",
+    "abreviation": "Â±",
     "significations": [
       {
         "signification": "Plus ou moins"
       },
       {
-        "signification": "soit positif, soit négatif"
+        "signification": "soit positif, soit nÃ©gatif"
       }
     ],
     "symbole": "SYMBOLE"
@@ -264,7 +264,7 @@
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "‘",
+    "abreviation": "â€˜",
     "significations": [
       {
         "signification": "Minute"
@@ -279,7 +279,7 @@
     "abreviation": ">",
     "significations": [
       {
-        "signification": "Supérieur à"
+        "signification": "SupÃ©rieur Ã "
       },
       {
         "signification": "Plus grand que"
@@ -291,7 +291,7 @@
     "abreviation": "<",
     "significations": [
       {
-        "signification": "Inférieur à"
+        "signification": "InfÃ©rieur Ã "
       },
       {
         "signification": "Plus petit que"
@@ -300,50 +300,50 @@
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "≤",
-    "signification": "Inférieur ou égale",
+    "abreviation": "â‰¤",
+    "signification": "InfÃ©rieur ou Ã©gale",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "∞",
+    "abreviation": "âˆž",
     "signification": "Infini",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ꓕ",
+    "abreviation": "ê“•",
     "signification": "Perpendiculaire",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "°",
-    "signification": "Degré",
+    "abreviation": "Â°",
+    "signification": "DegrÃ©",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "½",
-    "signification": "Hémi",
+    "abreviation": "Â½",
+    "signification": "HÃ©mi",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "″",
+    "abreviation": "â€³",
     "signification": "Seconde",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "µ",
+    "abreviation": "Âµ",
     "signification": "Micron",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "Ɵ",
-    "signification": "Négatif",
+    "abreviation": "ÆŸ",
+    "signification": "NÃ©gatif",
     "symbole": "SYMBOLE"
   },
   {
     "abreviation": "(a",
     "significations": [
       {
-        "signification": "Jusqu'à"
+        "signification": "Jusqu'Ã "
       },
       {
         "signification": "Environ"
@@ -352,7 +352,7 @@
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "λ",
+    "abreviation": "Î»",
     "signification": "Lambda",
     "symbole": "SYMBOLE"
   },
@@ -362,7 +362,7 @@
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "µµ",
+    "abreviation": "ÂµÂµ",
     "signification": "Micromicron",
     "symbole": "SYMBOLE"
   },
@@ -373,7 +373,7 @@
         "signification": "Homme"
       },
       {
-        "signification": "Hétérochromosome mâle"
+        "signification": "HÃ©tÃ©rochromosome mÃ¢le"
       }
     ],
     "symbole": "SYMBOLE"
@@ -385,33 +385,33 @@
         "signification": "Femme"
       },
       {
-        "signification": "Hétérochromosome femelle"
+        "signification": "HÃ©tÃ©rochromosome femelle"
       }
     ],
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "®",
-    "signification": "Marque déposée",
+    "abreviation": "Â®",
+    "signification": "Marque dÃ©posÃ©e",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "β",
-    "signification": "Bêta",
+    "abreviation": "Î²",
+    "signification": "BÃªta",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "α",
+    "abreviation": "Î±",
     "signification": "Alpha",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ϒ",
+    "abreviation": "Ï’",
     "signification": "Gamma",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "Ω",
+    "abreviation": "Î©",
     "signification": "Ohm",
     "symbole": "SYMBOLE"
   },
@@ -430,13 +430,19 @@
     "abreviation": "jhjhj",
     "signification": "jhjhj",
     "type": [
-      "M�dication",
-      "M�dication"
+      "Médication",
+      "Médication"
     ],
     "categorie": [
-      "Gyn�cologie",
+      "Gynécologie",
       "Infectio",
       "Infectio"
     ]
+  },
+  {
+    "abreviation": "jhj",
+    "signification": "jhjh",
+    "type": "Diagnostic",
+    "categorie": "CEGDC"
   }
 ]
