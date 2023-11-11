@@ -414,5 +414,10 @@
     "abreviation": "Ω",
     "signification": "Ohm",
     "symbole": "SYMBOLE"
+  },
+  {
+    "abreviation": "test",
+    "signification": "testing",
+    "symbole": "SYMBOLE"
   }
 ]
