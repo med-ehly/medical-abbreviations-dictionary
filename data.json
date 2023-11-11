@@ -418,5 +418,13 @@
   {
     "abreviation": "test",
     "signification": "testtt"
+  },
+  {
+    "abreviation": "test1",
+    "signification": "testommgmg",
+    "type": [
+      "Examen",
+      "Diagnostic"
+    ]
   }
 ]
