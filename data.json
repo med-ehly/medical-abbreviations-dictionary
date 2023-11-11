@@ -430,5 +430,13 @@
     "categorie": [
       "Dermatologie"
     ]
+  },
+  {
+    "abreviation": "testttttt",
+    "signification": "ehsghg",
+    "type": "Labos",
+    "categorie": [
+      "Génétique"
+    ]
   }
 ]
