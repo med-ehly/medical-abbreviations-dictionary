@@ -443,5 +443,21 @@
       }
     ],
     "langue": "(fr)"
+  },
+  {
+    "abreviation": "kj",
+    "type": [
+      "Médication",
+      "Examen",
+      "Anatomie"
+    ],
+    "significations": [
+      {
+        "signification": "dsa"
+      },
+      {
+        "signification": "okdwos"
+      }
+    ]
   }
 ]
