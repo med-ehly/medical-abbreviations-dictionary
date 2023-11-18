@@ -531,5 +531,24 @@
         "signification": "wwww"
       }
     ]
+  },
+  {
+    "abreviation": "lmlkmkm",
+    "type": [
+      "Anatomie",
+      "Médication",
+      "Labos"
+    ],
+    "significations": [
+      {
+        "signification": "sada"
+      },
+      {
+        "signification": "wasdas"
+      },
+      {
+        "signification": "dsads"
+      }
+    ]
   }
 ]
