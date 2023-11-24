@@ -318,3 +318,63 @@ table td {
   color: white;
   background-color: #4e42d4;
 }
+
+
+/* Media Query for screens smaller than 600px */
+@media screen and (max-width: 600px) {
+  /* Make search input full width */
+  #searchInput {
+    width: 100%;
+  }
+
+  /* Center-align alphabet buttons */
+  .alphabet {
+    justify-content: center;
+  }
+
+  /* Reduce font size for buttons */
+  .letter-button,
+  .letter-button-symbol,
+  .category-button,
+  .type-button {
+    font-size: 12px;
+  }
+
+  /* Adjust padding for buttons */
+  .letter-button,
+  .letter-button-symbol,
+  .category-button,
+  .type-button {
+    padding: 3px 6px;
+  }
+
+  /* Adjust margin for buttons */
+  .letter-button,
+  .letter-button-symbol,
+  .category-button,
+  .type-button {
+    margin: 3px;
+  }
+
+  /* Make filter columns full width */
+  .filter-column {
+    width: 100%;
+    margin: 0;
+  }
+
+  /* Remove margin for category filter */
+  .category-filter {
+    margin-left: 0;
+  }
+
+  /* Remove margin for type filter */
+  .type-filter {
+    margin-right: 0;
+  }
+
+  /* Reduce margin for results container */
+  .results-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
