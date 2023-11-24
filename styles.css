@@ -319,7 +319,6 @@ table td {
   background-color: #4e42d4;
 }
 
-
 /* Media Query for screens smaller than 600px */
 @media screen and (max-width: 600px) {
   /* Make search input full width */
