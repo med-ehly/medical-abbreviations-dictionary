@@ -444,5 +444,17 @@
         "signification": "test2"
       }
     ]
+  },
+  {
+    "abreviation": "ssssssssssssssssssssssss",
+    "type": "Médication",
+    "significations": [
+      {
+        "signification": "sds"
+      },
+      {
+        "signification": "sssssss"
+      }
+    ]
   }
 ]
