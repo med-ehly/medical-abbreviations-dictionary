@@ -20,6 +20,19 @@
        "langue": "(fr)"
     },
     {
+     "abreviation": "A.A.",
+      "significations": [
+        {"signification":"Acide Aminé",
+          "type": "Labos"},
+        {"signification":"Adénoïdectomie et Amygdalectomie",
+          "type": "Traitement"},
+        {"signification":"Amplitude Articulaire",
+          "type": "+ Général"}
+        ],
+       "type": ["+ Général", "Labos", "Traitement],
+       "langue": "(fr)"
+    },
+    {
        "abreviation": "c̅",
        "signification": "Avec",
        "symbole": "SYMBOLE"
