@@ -1,6 +1,6 @@
 [
   {
-    "abreviation": "AÃƒâ€šÃ‚Â°",
+    "abreviation": "AÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°",
     "significations": [
       {
         "signification": "Aorte"
@@ -16,8 +16,8 @@
     "abreviation": "A.",
     "significations": [
       {
-        "signification": "AntÃƒÆ’Ã‚Â©rieur",
-        "type": "+ GÃƒÆ’Ã‚Â©nÃƒÆ’Ã‚Â©ral"
+        "signification": "AntÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©rieur",
+        "type": "+ GÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©nÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©ral"
       },
       {
         "signification": "Albumine",
@@ -25,13 +25,13 @@
       }
     ],
     "type": [
-      "+ GÃƒÆ’Ã‚Â©nÃƒÆ’Ã‚Â©ral",
+      "+ GÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©nÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©ral",
       "Labos"
     ],
     "langue": "(fr)"
   },
   {
-    "abreviation": "cÃƒÅ’Ã¢â‚¬Â¦",
+    "abreviation": "cÃƒÆ’Ã…â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦",
     "signification": "Avec",
     "symbole": "SYMBOLE"
   },
@@ -48,17 +48,17 @@
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÂ¢Ã¢â€žÂ¢Ã¢â€šÂ¬",
+    "abreviation": "ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬",
     "signification": "Femme",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÂ¢Ã¢â€žÂ¢Ã¢â‚¬Å¡",
+    "abreviation": "ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡",
     "signification": "Homme",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÆ’Ã‹Å“",
+    "abreviation": "ÃƒÆ’Ã†â€™Ãƒâ€¹Ã…â€œ",
     "significations": [
       {
         "signification": "Sans"
@@ -73,7 +73,7 @@
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÂ¢Ã¢â€žÂ¢Ã‚Â¥",
+    "abreviation": "ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢Ãƒâ€šÃ‚Â¥",
     "significations": [
       {
         "signification": "Cardio"
@@ -88,25 +88,25 @@
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬Ëœ",
-    "signification": "AugmentÃƒÆ’Ã‚Â©",
+    "abreviation": "ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã‹Å“",
+    "signification": "AugmentÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬Å“",
-    "signification": "DiminuÃƒÆ’Ã‚Â©",
+    "abreviation": "ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œ",
+    "signification": "DiminuÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÅ½Ã‚Â¨",
+    "abreviation": "ÃƒÆ’Ã…Â½Ãƒâ€šÃ‚Â¨",
     "signification": "Psychiatrie",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ",
+    "abreviation": "ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ",
     "significations": [
       {
-        "signification": "DÃƒÆ’Ã‚Â©cÃƒÆ’Ã‚Â¨s"
+        "signification": "DÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©cÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¨s"
       },
       {
         "signification": "Mort"
@@ -127,20 +127,20 @@
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÂ¢Ã¢â‚¬â€œÃ‚Â³",
+    "abreviation": "ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“Ãƒâ€šÃ‚Â³",
     "signification": "Changement",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÂ¢Ã¢â‚¬â€œÃ‚Â³ÃƒÂ¢Ã¢â‚¬â€œÃ‚Â³",
+    "abreviation": "ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“Ãƒâ€šÃ‚Â³ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“Ãƒâ€šÃ‚Â³",
     "signification": "Poumon",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÂ¢Ã¢â‚¬â€œÃ‚Â¡",
+    "abreviation": "ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“Ãƒâ€šÃ‚Â¡",
     "significations": [
       {
-        "signification": "DemandÃƒÆ’Ã‚Â©"
+        "signification": "DemandÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©"
       },
       {
         "signification": "Prescrit"
@@ -149,21 +149,21 @@
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "Ãƒâ€šÃ‚Â©",
-    "signification": "Consultation avec un mÃƒÆ’Ã‚Â©decin spÃƒÆ’Ã‚Â©cialiste ou un professionnel",
+    "abreviation": "ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©",
+    "signification": "Consultation avec un mÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©decin spÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©cialiste ou un professionnel",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢",
+    "abreviation": "ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢",
     "significations": [
       {
-        "signification": "Aboutit ÃƒÆ’Ã‚Â "
+        "signification": "Aboutit ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â "
       },
       {
-        "signification": "EntraÃƒÆ’Ã‚Â®ne"
+        "signification": "EntraÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â®ne"
       },
       {
-        "signification": "Implique la consÃƒÆ’Ã‚Â©quence"
+        "signification": "Implique la consÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©quence"
       }
     ],
     "symbole": "SYMBOLE"
@@ -175,18 +175,18 @@
         "signification": "Continu"
       },
       {
-        "signification": "Implique l'ÃƒÆ’Ã‚Â©galitÃƒÆ’Ã‚Â©"
+        "signification": "Implique l'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©galitÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©"
       }
     ],
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÂ¢Ã¢â‚¬Â°Ã‚Â ",
-    "signification": "DiffÃƒÆ’Ã‚Â©rent de",
+    "abreviation": "ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â°Ãƒâ€šÃ‚Â ",
+    "signification": "DiffÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©rent de",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÂ¢Ã¢â‚¬Â°Ã‹â€ ",
+    "abreviation": "ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â°Ãƒâ€¹Ã¢â‚¬Â ",
     "significations": [
       {
         "signification": "Environ"
@@ -195,14 +195,14 @@
         "signification": "Presque"
       },
       {
-        "signification": "Peu diffÃƒÆ’Ã‚Â©rent de"
+        "signification": "Peu diffÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©rent de"
       }
     ],
     "symbole": "SYMBOLE"
   },
   {
     "abreviation": "//",
-    "signification": "ParallÃƒÆ’Ã‚Â¨le",
+    "signification": "ParallÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¨le",
     "symbole": "SYMBOLE"
   },
   {
@@ -226,7 +226,7 @@
     "abreviation": "(+)",
     "significations": [
       {
-        "signification": "Implique l'excÃƒÆ’Ã‚Â¨s"
+        "signification": "Implique l'excÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¨s"
       },
       {
         "signification": "Plus positif"
@@ -241,19 +241,19 @@
         "signification": "Implique le manque"
       },
       {
-        "signification": "Moins nÃƒÆ’Ã‚Â©gatif"
+        "signification": "Moins nÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©gatif"
       }
     ],
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "Ãƒâ€šÃ‚Â±",
+    "abreviation": "ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â±",
     "significations": [
       {
         "signification": "Plus ou moins"
       },
       {
-        "signification": "soit positif, soit nÃƒÆ’Ã‚Â©gatif"
+        "signification": "soit positif, soit nÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©gatif"
       }
     ],
     "symbole": "SYMBOLE"
@@ -264,7 +264,7 @@
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÂ¢Ã¢â€šÂ¬Ã‹Å“",
+    "abreviation": "ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¹Ã…â€œ",
     "significations": [
       {
         "signification": "Minute"
@@ -279,7 +279,7 @@
     "abreviation": ">",
     "significations": [
       {
-        "signification": "SupÃƒÆ’Ã‚Â©rieur ÃƒÆ’Ã‚Â "
+        "signification": "SupÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©rieur ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â "
       },
       {
         "signification": "Plus grand que"
@@ -291,7 +291,7 @@
     "abreviation": "<",
     "significations": [
       {
-        "signification": "InfÃƒÆ’Ã‚Â©rieur ÃƒÆ’Ã‚Â "
+        "signification": "InfÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©rieur ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â "
       },
       {
         "signification": "Plus petit que"
@@ -300,50 +300,50 @@
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÂ¢Ã¢â‚¬Â°Ã‚Â¤",
-    "signification": "InfÃƒÆ’Ã‚Â©rieur ou ÃƒÆ’Ã‚Â©gale",
+    "abreviation": "ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â°Ãƒâ€šÃ‚Â¤",
+    "signification": "InfÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©rieur ou ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©gale",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÂ¢Ã‹â€ Ã…Â¾",
+    "abreviation": "ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â Ãƒâ€¦Ã‚Â¾",
     "signification": "Infini",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÂªÃ¢â‚¬Å“Ã¢â‚¬Â¢",
+    "abreviation": "ÃƒÆ’Ã‚ÂªÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢",
     "signification": "Perpendiculaire",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "Ãƒâ€šÃ‚Â°",
-    "signification": "DegrÃƒÆ’Ã‚Â©",
+    "abreviation": "ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°",
+    "signification": "DegrÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "Ãƒâ€šÃ‚Â½",
-    "signification": "HÃƒÆ’Ã‚Â©mi",
+    "abreviation": "ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â½",
+    "signification": "HÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©mi",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â³",
+    "abreviation": "ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â³",
     "signification": "Seconde",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "Ãƒâ€šÃ‚Âµ",
+    "abreviation": "ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âµ",
     "signification": "Micron",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "Ãƒâ€ Ã…Â¸",
-    "signification": "NÃƒÆ’Ã‚Â©gatif",
+    "abreviation": "ÃƒÆ’Ã¢â‚¬Â Ãƒâ€¦Ã‚Â¸",
+    "signification": "NÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©gatif",
     "symbole": "SYMBOLE"
   },
   {
     "abreviation": "(a",
     "significations": [
       {
-        "signification": "Jusqu'ÃƒÆ’Ã‚Â "
+        "signification": "Jusqu'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â "
       },
       {
         "signification": "Environ"
@@ -352,7 +352,7 @@
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÅ½Ã‚Â»",
+    "abreviation": "ÃƒÆ’Ã…Â½Ãƒâ€šÃ‚Â»",
     "signification": "Lambda",
     "symbole": "SYMBOLE"
   },
@@ -362,7 +362,7 @@
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "Ãƒâ€šÃ‚ÂµÃƒâ€šÃ‚Âµ",
+    "abreviation": "ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂµÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âµ",
     "signification": "Micromicron",
     "symbole": "SYMBOLE"
   },
@@ -373,7 +373,7 @@
         "signification": "Homme"
       },
       {
-        "signification": "HÃƒÆ’Ã‚Â©tÃƒÆ’Ã‚Â©rochromosome mÃƒÆ’Ã‚Â¢le"
+        "signification": "HÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©tÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©rochromosome mÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢le"
       }
     ],
     "symbole": "SYMBOLE"
@@ -385,40 +385,40 @@
         "signification": "Femme"
       },
       {
-        "signification": "HÃƒÆ’Ã‚Â©tÃƒÆ’Ã‚Â©rochromosome femelle"
+        "signification": "HÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©tÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©rochromosome femelle"
       }
     ],
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "Ãƒâ€šÃ‚Â®",
-    "signification": "Marque dÃƒÆ’Ã‚Â©posÃƒÆ’Ã‚Â©e",
+    "abreviation": "ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â®",
+    "signification": "Marque dÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©posÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©e",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÅ½Ã‚Â²",
-    "signification": "BÃƒÆ’Ã‚Âªta",
+    "abreviation": "ÃƒÆ’Ã…Â½Ãƒâ€šÃ‚Â²",
+    "signification": "BÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Âªta",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÅ½Ã‚Â±",
+    "abreviation": "ÃƒÆ’Ã…Â½Ãƒâ€šÃ‚Â±",
     "signification": "Alpha",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÂÃ¢â‚¬â„¢",
+    "abreviation": "ÃƒÆ’Ã‚ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢",
     "signification": "Gamma",
     "symbole": "SYMBOLE"
   },
   {
-    "abreviation": "ÃƒÅ½Ã‚Â©",
+    "abreviation": "ÃƒÆ’Ã…Â½Ãƒâ€šÃ‚Â©",
     "signification": "Ohm",
     "symbole": "SYMBOLE"
   },
   {
     "abreviation": "rwa",
     "type": [
-      "MÃƒÂ©dication",
+      "MÃƒÆ’Ã‚Â©dication",
       "Anatomie"
     ],
     "significations": [
@@ -447,7 +447,7 @@
   },
   {
     "abreviation": "ssssssssssssssssssssssss",
-    "type": "MÃ©dication",
+    "type": "MÃƒÂ©dication",
     "significations": [
       {
         "signification": "sds"
@@ -460,14 +460,14 @@
   {
     "abreviation": "testestset",
     "type": [
-      "Médication",
+      "MÃ©dication",
       "Traitement"
     ],
     "significations": [
       {
         "signification": "testsetrs",
         "type": [
-          "Médication"
+          "MÃ©dication"
         ]
       },
       {
@@ -524,7 +524,7 @@
     "abreviation": "fdsfdsfdsfdsfdsfdfd",
     "type": [
       "Anatomie",
-      "M�dication"
+      "Médication"
     ],
     "significations": [
       {
@@ -535,9 +535,7 @@
       },
       {
         "signification": "sfddddddd",
-        "type": [
-          "M�dication"
-        ]
+        "type": "Médication"
       }
     ]
   }
