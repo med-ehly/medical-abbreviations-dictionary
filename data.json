@@ -519,5 +519,26 @@
         ]
       }
     ]
+  },
+  {
+    "abreviation": "fdsfdsfdsfdsfdsfdfd",
+    "type": [
+      "Anatomie",
+      "Médication"
+    ],
+    "significations": [
+      {
+        "signification": "dsfdsf",
+        "type": [
+          "Anatomie"
+        ]
+      },
+      {
+        "signification": "sfddddddd",
+        "type": [
+          "Médication"
+        ]
+      }
+    ]
   }
 ]
