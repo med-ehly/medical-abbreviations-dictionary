@@ -566,7 +566,7 @@ document.addEventListener("DOMContentLoaded", () => {
       symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
 
       const allCategories = ["Anesthésie", "Cardiologie", "CEGDC", "CCVT", "Dermatologie", "Endocrinologie", "Gastrologie", "Génétique", "Gériatrie", "Gynécologie", "Hémato-Onco", "Immuno-Allergie", "Med Interne", "Infectio", "Néphrologie", "Neurochirurgie", "Neurologie", "Ophtalmologie", "ORL", "Orthopédie", "Pédiatrie", "Physiatrie", "Plastie", "Pneumologie", "Psychiatrie", "Rhumatologie", "Urologie"];
-      const allTypes = ["Anatomie", "Diagnostic", "Examen", "Médication", "Intervention", "Labos", "+ Général"];
+      const allTypes = ["Anatomie", "Diagnostic", "Examen", "Médication", "Interventions", "Labos", "+ Général"];
 
       const categoryFilter = document.querySelector(".category-filter");
       categoryFilter.innerHTML = "<h2>Catégories</h2>";
