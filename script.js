@@ -244,7 +244,8 @@ function searchMatches(item, searchTerm) {
 function matchesString(text, searchTerm) {
   if (!text) return false;
   const normalizedText = normalizeString(text);
-  return normalizedText.includes(searchTerm);
+  const highlightedText = highlightString(normalizedText, searchTerm);
+  return normalizedText.includes(searchTerm) || highlightedText.includes(searchTerm);
 }
 
 function matchesSignifications(significations, searchTerm) {
@@ -257,6 +258,24 @@ function matchesSignifications(significations, searchTerm) {
   const nestedTypeMatches = significations.some(significationObj => normalizeString(significationObj.signification).includes(searchTerm));
 
   return typeMatches || nestedTypeMatches;
+}
+
+function highlightString(text, searchTerm) {
+  let highlightedText = '';
+
+  for (let i = 0; i < text.length; i++) {
+    const char = text.charAt(i);
+    const searchTermChar = searchTerm.charAt(i);
+
+    if (char === searchTermChar) {
+      // Highlight the matching letter
+      highlightedText += `<span class="highlighted">${char}</span>`;
+    } else {
+      highlightedText += char;
+    }
+  }
+
+  return highlightedText;
 }
 
 function normalizeString(text) {
