@@ -2,7 +2,8 @@
     {
      "abreviation": "A°",
       "significations": [
-        {"signification":"Aorte"},
+        {"signification":"Aorte",
+        "type": "Anatomie"},
         {"signification":"Aortique"}
         ],
        "type": "Anatomie",
