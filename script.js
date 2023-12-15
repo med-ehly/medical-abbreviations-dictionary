@@ -97,7 +97,7 @@ function displaySearchResults(results) {
     return;
   }
 
-    // Create an object to store the results grouped by type
+  // Create an object to store the results grouped by type
   const groupedResults = {};
   results.forEach(result => {
     // Initialize types as an array
@@ -139,12 +139,24 @@ function displaySearchResults(results) {
             const significationContainer = document.createElement("div");
             significationContainer.classList.add("signification-container");
             const descriptionText = document.createElement("p");
-            // Check if the signification should be highlighted
             if (signification.highlight) {
-              descriptionText.classList.add("highlighted"); // You can define a CSS class for highlighting
+              const descriptionText = document.createElement("p");
+            
+              // Create a <span> element for the highlighted text
+              const highlightedSpan = document.createElement("span");
+              highlightedSpan.classList.add("highlighted");
+              highlightedSpan.textContent = `➤ ${signification.signification}`;
+            
+              // Append the <span> to the <p> element
+              descriptionText.appendChild(highlightedSpan);
+            
+              // Append the <p> element to the container
+              significationContainer.appendChild(descriptionText);
+            } else {
+              // If not highlighted, just set the text content directly
+              descriptionText.textContent = `➤ ${signification.signification}`;
+              significationContainer.appendChild(descriptionText);
             }
-            descriptionText.innerHTML = `➤ ${signification.signification}`;
-            significationContainer.appendChild(descriptionText);
             if (signification.url) {
               const icon = document.createElement("img");
               icon.src = "monicone.svg";
@@ -225,10 +237,10 @@ function handleSearch(event, data) {
       Array.isArray(item.significations) &&
       item.significations.some(signification => signification.type === activeTypeFilter)
     );
-    // Exclude "symbole" from the search results
-    const isSymbole = item.symbole === "SYMBOLE";
-
+    // Exclude "symbole" from the search results only when there is a search term
+    const isSymbole = item.symbole === "SYMBOLE" && searchTerm.trim() !== "";
     return matchesSearch && categoryMatches && typeMatches && !isSymbole;
+
   });
   applyActiveFilters(filteredResults);
 }
@@ -272,6 +284,62 @@ function normalizeString(text) {
     .replace(/\s/g, ""); // Remove spaces
 }
 
+// Add an event listener for the keyup event on the search input
+searchInput.addEventListener("keyup", function () {
+  var search_term = searchInput.value.toLowerCase();
+  removeHighlight(); // Assuming you have a function to remove highlighting
+  highlight(search_term);
+});
+
+// Function to highlight matching results
+function highlight(searchTerm) {
+  // Define a character mapping for specific equivalences
+  const characterMapping = {
+    'e': '[eéè]',
+    'i': '[iï]',
+  };
+
+  // Get all elements you want to search through, for example, elements with class "monitor"
+  const elementsToSearch = document.querySelectorAll('p, abbr');
+
+  elementsToSearch.forEach(element => {
+    // Get the text content of the element
+    const elementText = element.textContent;
+
+    // Check if the search term is not empty
+    if (searchTerm.trim() !== '') {
+      // Create a regular expression using the current search term (case-insensitive and accent-insensitive)
+      const escapedSearchTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // Escape special characters
+      const regexPattern = escapedSearchTerm
+        .split('')
+        .map(char => characterMapping[char] || char) // Use mapping or original character
+        .join('');
+      const regex = new RegExp(`(${regexPattern.replace(/\s/g, '.*')})`, 'gi');
+
+      // Replace matching substrings with highlighted versions
+      const highlightedText = elementText.replace(regex, match => `<span class="highlighted">${match}</span>`);
+
+      // Set the modified HTML back into the element
+      element.innerHTML = highlightedText;
+    } else {
+      // If the search term is empty, remove any existing highlighting
+      element.innerHTML = elementText;
+    }
+  });
+}
+
+
+
+
+// Function to remove highlighting from all elements
+function removeHighlight() {
+  const highlightedElements = document.querySelectorAll('p, abbr');
+
+  highlightedElements.forEach(element => {
+    // Remove the class or styling applied for highlighting
+    element.innerHTML = element.textContent; // Reset to original content
+  });
+}
 
 
 function displayResults(results) {
@@ -281,7 +349,7 @@ function displayResults(results) {
     return;
   }
 
-     // Create an object to store the results grouped by type
+  // Create an object to store the results grouped by type
   const groupedResults = {};
   results.forEach(result => {
     // Initialize types as an array
@@ -325,10 +393,23 @@ function displayResults(results) {
             const descriptionText = document.createElement("p");
             // Check if the signification should be highlighted
             if (signification.highlight) {
-              descriptionText.classList.add("highlighted"); // You can define a CSS class for highlighting
+              const descriptionText = document.createElement("p");
+            
+              // Create a <span> element for the highlighted text
+              const highlightedSpan = document.createElement("span");
+              highlightedSpan.classList.add("highlighted");
+              highlightedSpan.textContent = `➤ ${signification.signification}`;
+            
+              // Append the <span> to the <p> element
+              descriptionText.appendChild(highlightedSpan);
+            
+              // Append the <p> element to the container
+              significationContainer.appendChild(descriptionText);
+            } else {
+              // If not highlighted, just set the text content directly
+              descriptionText.textContent = `➤ ${signification.signification}`;
+              significationContainer.appendChild(descriptionText);
             }
-            descriptionText.innerHTML = `➤ ${signification.signification}`;
-            significationContainer.appendChild(descriptionText);
             if (signification.url) {
               const icon = document.createElement("img");
               icon.src = "monicone.svg";
@@ -635,13 +716,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const selectedTypeFilter = button.getAttribute("data-type");
         const isTypeFilterActive = button.classList.contains("active");
 
-         // Désactivez le bouton "Symbole" s'il est actif
-          if (activeSymbolButton) {
-            activeSymbolButton.classList.remove("active");
-            activeSymbolButton = null;
-            activeSymbolFilter = null;
-          }
-        
+        // Désactivez le bouton "Symbole" s'il est actif
+        if (activeSymbolButton) {
+          activeSymbolButton.classList.remove("active");
+          activeSymbolButton = null;
+          activeSymbolFilter = null;
+        }
+
         if (!isTypeFilterActive) {
           // Désactivez le bouton de type actif s'il y en a un
           if (activeTypeButton) {
