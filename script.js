@@ -97,112 +97,75 @@ function displaySearchResults(results) {
     return;
   }
 
-  // Create an object to store the results grouped by type
-  const groupedResults = {};
   results.forEach(result => {
-    // Initialize types as an array
-    let types = result.type || ["SYMBOLE"];
-    // Ensure "types" is an array
-    if (!Array.isArray(types)) {
-      types = [types];
-    }
-    types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
-    // Create a group for each type
-    types.forEach(type => {
-      if (!groupedResults[type]) {
-        groupedResults[type] = [];
-      }
-      groupedResults[type].push(result);
-    });
-  });
-  // Get the active type filter
-  const activeType = activeTypeFilter && activeTypeFilter.toUpperCase();
-  for (const group in groupedResults) {
-    if (groupedResults.hasOwnProperty(group)) {
-      if (activeType && group !== activeType) {
-        continue; // Skip this type if the activeType is set and doesn't match
-      }
-      const groupResults = groupedResults[group];
-      // Create a section for the group (type or "SYMBOLE")
-      const groupSection = document.createElement("div");
-      groupSection.classList.add("type-section");
-      groupSection.innerHTML = `<h2>${group}</h2>`;
-      groupResults.forEach(result => {
-        const row = document.createElement("li");
-        const abbrCell = document.createElement("abbr");
-        abbrCell.textContent = result.abreviation;
-        row.appendChild(abbrCell);
-        const descriptionContainer = document.createElement("div");
-        descriptionContainer.classList.add("description-container");
-        if (result.significations) {
-          result.significations.forEach(signification => {
-            const significationContainer = document.createElement("div");
-            significationContainer.classList.add("signification-container");
-            const descriptionText = document.createElement("p");
-            if (signification.highlight) {
-              const descriptionText = document.createElement("p");
-
-              // Create a <span> element for the highlighted text
-              const highlightedSpan = document.createElement("span");
-              highlightedSpan.classList.add("highlighted");
-              highlightedSpan.textContent = `➤ ${signification.signification}`;
-
-              // Append the <span> to the <p> element
-              descriptionText.appendChild(highlightedSpan);
-
-              // Append the <p> element to the container
-              significationContainer.appendChild(descriptionText);
-            } else {
-              // If not highlighted, just set the text content directly
-              descriptionText.textContent = `➤ ${signification.signification}`;
-              significationContainer.appendChild(descriptionText);
-            }
-            if (signification.url) {
-              const icon = document.createElement("img");
-              icon.src = "monicone.svg";
-              icon.alt = "Lien externe";
-              icon.style.cursor = "pointer";
-              icon.classList.add("icon-class");
-              icon.addEventListener("click", () => {
-                window.open(signification.url, "_blank");
-              });
-              significationContainer.appendChild(icon);
-            }
-            descriptionContainer.appendChild(significationContainer);
-          });
+    const row = document.createElement("li");
+    const abbrCell = document.createElement("abbr");
+    abbrCell.textContent = result.abreviation;
+    row.appendChild(abbrCell);
+    const descriptionContainer = document.createElement("div");
+    descriptionContainer.classList.add("description-container");
+    if (result.significations) {
+      result.significations.forEach(signification => {
+        const significationContainer = document.createElement("div");
+        significationContainer.classList.add("signification-container");
+        const descriptionText = document.createElement("p");
+        // Check if the signification should be highlighted
+        if (signification.highlight) {
+          // Create a <span> element for the highlighted text
+          const highlightedSpan = document.createElement("span");
+          highlightedSpan.classList.add("highlighted");
+          highlightedSpan.textContent = `➤ ${signification.signification}`;
+          // Append the <span> to the <p> element
+          descriptionText.appendChild(highlightedSpan);
         } else {
-          // Handle the case where there's only one signification
-          const significationContainer = document.createElement("div");
-          significationContainer.classList.add("signification-container");
-          const descriptionText = document.createElement("p");
-          descriptionText.innerHTML = `➤ ${result.signification}`;
-          significationContainer.appendChild(descriptionText);
-          if (result.url) {
-            const icon = document.createElement("img");
-            icon.src = "monicone.svg";
-            icon.alt = "Lien externe";
-            icon.style.cursor = "pointer";
-            icon.classList.add("icon-class");
-            icon.addEventListener("click", () => {
-              window.open(result.url, "_blank");
-            });
-            significationContainer.appendChild(icon);
-          }
-          descriptionContainer.appendChild(significationContainer);
+          // If not highlighted, just set the text content directly
+          descriptionText.textContent = `➤ ${signification.signification}`;
         }
-        row.appendChild(descriptionContainer);
-        const languePopover = document.createElement("div");
-        languePopover.classList.add("langue-popover");
-        languePopover.textContent = result.langue;
-        row.appendChild(languePopover);
-        groupSection.appendChild(row);
-        row.addEventListener('mouseenter', handleMouseEnter);
-        row.addEventListener('mouseleave', handleMouseLeave);
+        significationContainer.appendChild(descriptionText);
+        if (signification.url) {
+          const icon = document.createElement("img");
+          icon.src = "monicone.svg";
+          icon.alt = "Lien externe";
+          icon.style.cursor = "pointer";
+          icon.classList.add("icon-class");
+          icon.addEventListener("click", () => {
+            window.open(signification.url, "_blank");
+          });
+          significationContainer.appendChild(icon);
+        }
+        descriptionContainer.appendChild(significationContainer);
       });
-      resultsList.appendChild(groupSection);
+    } else {
+      // Handle the case where there's only one signification
+      const significationContainer = document.createElement("div");
+      significationContainer.classList.add("signification-container");
+      const descriptionText = document.createElement("p");
+      descriptionText.innerHTML = `➤ ${result.signification}`;
+      significationContainer.appendChild(descriptionText);
+      if (result.url) {
+        const icon = document.createElement("img");
+        icon.src = "monicone.svg";
+        icon.alt = "Lien externe";
+        icon.style.cursor = "pointer";
+        icon.classList.add("icon-class");
+        icon.addEventListener("click", () => {
+          window.open(result.url, "_blank");
+        });
+        significationContainer.appendChild(icon);
+      }
+      descriptionContainer.appendChild(significationContainer);
     }
-  }
+    row.appendChild(descriptionContainer);
+    const languePopover = document.createElement("div");
+    languePopover.classList.add("langue-popover");
+    languePopover.textContent = result.langue;
+    row.appendChild(languePopover);
+    resultsList.appendChild(row);
+    row.addEventListener('mouseenter', handleMouseEnter);
+    row.addEventListener('mouseleave', handleMouseLeave);
+  });
 }
+
 
 function scrollToTop() {
   window.scrollTo({
@@ -299,8 +262,8 @@ function highlight(searchTerm) {
     'i': '[iï]',
   };
 
-  // Get all elements you want to search through, for example, elements with class "monitor"
-  const elementsToSearch = document.querySelectorAll('p, abbr');
+  // Get all elements containing descriptions, for example, elements with class "description-container"
+  const elementsToSearch = document.querySelectorAll('.description-container p');
 
   elementsToSearch.forEach(element => {
     // Get the text content of the element
@@ -331,6 +294,7 @@ function highlight(searchTerm) {
 
 
 
+
 // Function to remove highlighting from all elements
 function removeHighlight() {
   const highlightedElements = document.querySelectorAll('p, abbr');
@@ -349,113 +313,75 @@ function displayResults(results) {
     return;
   }
 
-  // Create an object to store the results grouped by type
-  const groupedResults = {};
   results.forEach(result => {
-    // Initialize types as an array
-    let types = result.type || ["SYMBOLE"];
-    // Ensure "types" is an array
-    if (!Array.isArray(types)) {
-      types = [types];
-    }
-    types = types.map(type => type.toUpperCase()); // Convert each type to uppercase
-    // Create a group for each type
-    types.forEach(type => {
-      if (!groupedResults[type]) {
-        groupedResults[type] = [];
-      }
-      groupedResults[type].push(result);
-    });
-  });
-  // Get the active type filter
-  const activeType = activeTypeFilter && activeTypeFilter.toUpperCase();
-  for (const group in groupedResults) {
-    if (groupedResults.hasOwnProperty(group)) {
-      if (activeType && group !== activeType) {
-        continue; // Skip this type if the activeType is set and doesn't match
-      }
-      const groupResults = groupedResults[group];
-      // Create a section for the group (type or "SYMBOLE")
-      const groupSection = document.createElement("div");
-      groupSection.classList.add("type-section");
-      groupSection.innerHTML = `<h2>${group}</h2>`;
-      groupResults.forEach(result => {
-        const row = document.createElement("li");
-        const abbrCell = document.createElement("abbr");
-        abbrCell.textContent = result.abreviation;
-        row.appendChild(abbrCell);
-        const descriptionContainer = document.createElement("div");
-        descriptionContainer.classList.add("description-container");
-        if (result.significations) {
-          result.significations.forEach(signification => {
-            const significationContainer = document.createElement("div");
-            significationContainer.classList.add("signification-container");
-            const descriptionText = document.createElement("p");
-            // Check if the signification should be highlighted
-            if (signification.highlight) {
-              const descriptionText = document.createElement("p");
-
-              // Create a <span> element for the highlighted text
-              const highlightedSpan = document.createElement("span");
-              highlightedSpan.classList.add("highlighted");
-              highlightedSpan.textContent = `➤ ${signification.signification}`;
-
-              // Append the <span> to the <p> element
-              descriptionText.appendChild(highlightedSpan);
-
-              // Append the <p> element to the container
-              significationContainer.appendChild(descriptionText);
-            } else {
-              // If not highlighted, just set the text content directly
-              descriptionText.textContent = `➤ ${signification.signification}`;
-              significationContainer.appendChild(descriptionText);
-            }
-            if (signification.url) {
-              const icon = document.createElement("img");
-              icon.src = "monicone.svg";
-              icon.alt = "Lien externe";
-              icon.style.cursor = "pointer";
-              icon.classList.add("icon-class");
-              icon.addEventListener("click", () => {
-                window.open(signification.url, "_blank");
-              });
-              significationContainer.appendChild(icon);
-            }
-            descriptionContainer.appendChild(significationContainer);
-          });
+    const row = document.createElement("li");
+    const abbrCell = document.createElement("abbr");
+    abbrCell.textContent = result.abreviation;
+    row.appendChild(abbrCell);
+    const descriptionContainer = document.createElement("div");
+    descriptionContainer.classList.add("description-container");
+    if (result.significations) {
+      result.significations.forEach(signification => {
+        const significationContainer = document.createElement("div");
+        significationContainer.classList.add("signification-container");
+        const descriptionText = document.createElement("p");
+        if (signification.highlight) {
+          // Create a <span> element for the highlighted text
+          const highlightedSpan = document.createElement("span");
+          highlightedSpan.classList.add("highlighted");
+          highlightedSpan.textContent = `➤ ${signification.signification}`;
+          // Append the <span> to the <p> element
+          descriptionText.appendChild(highlightedSpan);
         } else {
-          // Handle the case where there's only one signification
-          const significationContainer = document.createElement("div");
-          significationContainer.classList.add("signification-container");
-          const descriptionText = document.createElement("p");
-          descriptionText.innerHTML = `➤ ${result.signification}`;
-          significationContainer.appendChild(descriptionText);
-          if (result.url) {
-            const icon = document.createElement("img");
-            icon.src = "monicone.svg";
-            icon.alt = "Lien externe";
-            icon.style.cursor = "pointer";
-            icon.classList.add("icon-class");
-            icon.addEventListener("click", () => {
-              window.open(result.url, "_blank");
-            });
-            significationContainer.appendChild(icon);
-          }
-          descriptionContainer.appendChild(significationContainer);
+          // If not highlighted, just set the text content directly
+          descriptionText.textContent = `➤ ${signification.signification}`;
         }
-        row.appendChild(descriptionContainer);
-        const languePopover = document.createElement("div");
-        languePopover.classList.add("langue-popover");
-        languePopover.textContent = result.langue;
-        row.appendChild(languePopover);
-        groupSection.appendChild(row);
-        row.addEventListener('mouseenter', handleMouseEnter);
-        row.addEventListener('mouseleave', handleMouseLeave);
+        significationContainer.appendChild(descriptionText);
+        if (signification.url) {
+          const icon = document.createElement("img");
+          icon.src = "monicone.svg";
+          icon.alt = "Lien externe";
+          icon.style.cursor = "pointer";
+          icon.classList.add("icon-class");
+          icon.addEventListener("click", () => {
+            window.open(signification.url, "_blank");
+          });
+          significationContainer.appendChild(icon);
+        }
+        descriptionContainer.appendChild(significationContainer);
       });
-      resultsList.appendChild(groupSection);
+    } else {
+      // Handle the case where there's only one signification
+      const significationContainer = document.createElement("div");
+      significationContainer.classList.add("signification-container");
+      const descriptionText = document.createElement("p");
+      descriptionText.innerHTML = `➤ ${result.signification}`;
+      significationContainer.appendChild(descriptionText);
+      if (result.url) {
+        const icon = document.createElement("img");
+        icon.src = "monicone.svg";
+        icon.alt = "Lien externe";
+        icon.style.cursor = "pointer";
+        icon.classList.add("icon-class");
+        icon.addEventListener("click", () => {
+          window.open(result.url, "_blank");
+        });
+        significationContainer.appendChild(icon);
+      }
+      descriptionContainer.appendChild(significationContainer);
     }
-  }
+    row.appendChild(descriptionContainer);
+    const languePopover = document.createElement("div");
+    languePopover.classList.add("langue-popover");
+    languePopover.textContent = result.langue;
+    row.appendChild(languePopover);
+    resultsList.appendChild(row);
+    row.addEventListener('mouseenter', handleMouseEnter);
+    row.addEventListener('mouseleave', handleMouseLeave);
+  });
 }
+
+
 
 function handleMouseEnter(event) {
   const row = event.currentTarget;
@@ -488,335 +414,285 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(response => response.json())
     .then(data => {
       const sortedData = sortDataAlphabeticallyWithFallback(data);
-      displayAbbreviationsAndSignifications(sortedData); // Initially display only abbreviations
+      displaySearchResults(sortedData);
       searchInput.addEventListener("input", event => handleSearch(event, sortedData));
       const letterButtons = document.querySelectorAll(".letter-button");
       const symbolFilterButton = document.getElementById("symbolFilterButton");
-      function displayAbbreviationsAndSignifications(results) {
-        resultsList.innerHTML = ''; // Clear previous results
-        if (results.length === 0) {
-          resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
-          return;
-        }
-      
-        results.forEach(result => {
-          const row = document.createElement("li");
-      
-          // Display abbreviation
-          const abbrCell = document.createElement("abbr");
-          abbrCell.textContent = result.abreviation;
-          row.appendChild(abbrCell);
-      
-          // Display significations
-          const descriptionContainer = document.createElement("div");
-          descriptionContainer.classList.add("description-container");
-      
-          if (result.significations) {
-            result.significations.forEach(signification => {
-              const significationText = document.createElement("p");
-              significationText.textContent = `➤ ${signification.signification}`;
-              descriptionContainer.appendChild(significationText);
-            });
-          } else {
-            // If there's only one signification
-            const significationText = document.createElement("p");
-            significationText.textContent = `➤ ${result.signification}`;
-            descriptionContainer.appendChild(significationText);
-          }
-      
-          // Append description container to row
-          row.appendChild(descriptionContainer);
-      
-          // Display language
-          const languePopover = document.createElement("div");
-          languePopover.classList.add("langue-popover");
-          languePopover.textContent = result.langue;
-          row.appendChild(languePopover);
-      
-          // Add row to results list
-          resultsList.appendChild(row);
-      
-          // Add event listeners for mouse enter and leave
-          row.addEventListener('mouseenter', handleMouseEnter);
-          row.addEventListener('mouseleave', handleMouseLeave);
-        });
-      }
-      
-  // Fonction pour gérer le clic sur une lettre
-  function handleLetterButtonClick(button) {
-    const selectedLetter = button.getAttribute("data-letter");
-    const isFilterActive = button.classList.contains("active");
 
-    if (!isFilterActive) {
-      // Désactivez toutes les autres lettres sélectionnées
-      letterButtons.forEach(letterButton => {
-        letterButton.classList.remove("active");
+      // Fonction pour gérer le clic sur une lettre
+      function handleLetterButtonClick(button) {
+        const selectedLetter = button.getAttribute("data-letter");
+        const isFilterActive = button.classList.contains("active");
+
+        if (!isFilterActive) {
+          // Désactivez toutes les autres lettres sélectionnées
+          letterButtons.forEach(letterButton => {
+            letterButton.classList.remove("active");
+          });
+
+          // Filter out items with "symbole" set to "SYMBOLE"
+          const filteredData = sortedData.filter(item => item.symbole !== "SYMBOLE");
+
+          button.classList.add("active");
+          activeLetterButton = selectedLetter; // Mettez à jour la variable globale activeLetterButton
+
+          // Désactivez le bouton "Symbole" s'il est actif
+          if (activeSymbolButton) {
+            activeSymbolButton.classList.remove("active");
+            activeSymbolButton = null;
+            activeSymbolFilter = null;
+          }
+
+          applyActiveFilters(filteredData); // Apply filters to the filtered data
+        } else {
+          button.classList.remove("active");
+          activeLetterButton = null; // Réinitialisez le filtre de lettre actif
+          applyActiveFilters(sortedData); // Apply filters to the original data
+        }
+      }
+
+
+      // Associez la fonction handleLetterButtonClick au clic sur chaque bouton de lettre
+      letterButtons.forEach(button => {
+        button.addEventListener("click", () => {
+          handleLetterButtonClick(button);
+        });
       });
 
-      // Filter out items with "symbole" set to "SYMBOLE"
-      const filteredData = sortedData.filter(item => item.symbole !== "SYMBOLE");
+      function resetFilters() {
+        // Réinitialisez les filtres de lettre
+        letterButtons.forEach((letterButton) => {
+          letterButton.classList.remove("active");
+        });
+        activeLetterButton = null;
 
-      button.classList.add("active");
-      activeLetterButton = selectedLetter; // Mettez à jour la variable globale activeLetterButton
+        // Réinitialisez le filtre "Symbole"
+        if (activeSymbolButton) {
+          activeSymbolButton.classList.remove("active");
+          activeSymbolButton = null;
+          activeSymbolFilter = null;
+        }
 
-      // Désactivez le bouton "Symbole" s'il est actif
-      if (activeSymbolButton) {
-        activeSymbolButton.classList.remove("active");
-        activeSymbolButton = null;
-        activeSymbolFilter = null;
-      }
+        // Réinitialisez les filtres de catégorie
+        categoryButtons.forEach((categoryButton) => {
+          categoryButton.classList.remove("active");
+        });
+        activeCategoryButton = null;
+        activeCategoryFilter = null;
 
-      applyActiveFilters(filteredData); // Apply filters to the filtered data
-    } else {
-      button.classList.remove("active");
-      activeLetterButton = null; // Réinitialisez le filtre de lettre actif
-      applyActiveFilters(sortedData); // Apply filters to the original data
-    }
-  }
+        // Réinitialisez les filtres de type
+        typeButtons.forEach((typeButton) => {
+          typeButton.classList.remove("active");
+        });
+        activeTypeButton = null;
+        activeTypeFilter = null;
 
+        // Reset the "highlight" property to false for each signification in your data if there are no active type filters
+        if (!activeTypeFilter) {
+          data.forEach(item => {
+            if (item.significations) {
+              item.significations.forEach(signification => {
+                signification.highlight = false;
+              });
+            }
+          });
 
-  // Associez la fonction handleLetterButtonClick au clic sur chaque bouton de lettre
-  letterButtons.forEach(button => {
-    button.addEventListener("click", () => {
-      handleLetterButtonClick(button);
-    });
-  });
-      
-  function resetFilters() {
-    // Réinitialisez les filtres de lettre
-    letterButtons.forEach((letterButton) => {
-      letterButton.classList.remove("active");
-    });
-    activeLetterButton = null;
-
-    // Réinitialisez le filtre "Symbole"
-    if (activeSymbolButton) {
-      activeSymbolButton.classList.remove("active");
-      activeSymbolButton = null;
-      activeSymbolFilter = null;
-    }
-
-    // Réinitialisez les filtres de catégorie
-    categoryButtons.forEach((categoryButton) => {
-      categoryButton.classList.remove("active");
-    });
-    activeCategoryButton = null;
-    activeCategoryFilter = null;
-
-    // Réinitialisez les filtres de type
-    typeButtons.forEach((typeButton) => {
-      typeButton.classList.remove("active");
-    });
-    activeTypeButton = null;
-    activeTypeFilter = null;
-
-    // Reset the "highlight" property to false for each signification in your data if there are no active type filters
-    if (!activeTypeFilter) {
-      data.forEach(item => {
-        if (item.significations) {
-          item.significations.forEach(signification => {
-            signification.highlight = false;
+          // Remove the "highlighted" class from DOM elements
+          const highlightedSignifications = document.querySelectorAll(".signification-container .highlighted");
+          highlightedSignifications.forEach(significationElement => {
+            significationElement.classList.remove("highlighted");
           });
         }
-      });
+        const searchInput = document.getElementById("searchInput");
+        if (searchInput) {
+          searchInput.value = "";
+        }
 
-      // Remove the "highlighted" class from DOM elements
-      const highlightedSignifications = document.querySelectorAll(".signification-container .highlighted");
-      highlightedSignifications.forEach(significationElement => {
-        significationElement.classList.remove("highlighted");
-      });
-    }
-    const searchInput = document.getElementById("searchInput");
-    if (searchInput) {
-      searchInput.value = "";
-    }
-
-    // Remove highlighting from the elements
-    const highlightedElements = document.querySelectorAll(".highlighted");
-    highlightedElements.forEach((element) => {
-      element.classList.remove("highlighted");
-    });
-
-    // Appliquez les filtres réinitialisés aux données
-    applyActiveFilters(sortedData);
-    scrollToTop();
-  }
-
-  const resetFiltersButton = document.getElementById("resetFiltersButton");
-
-  resetFiltersButton.addEventListener("click", () => {
-    resetFilters();
-    displayAbbreviationsAndSignifications(sortedData);
-  });
-
-
-
-  function handleSymbolFilterButtonClick() {
-    const isFilterActive = symbolFilterButton.classList.contains("active");
-
-    // Désactivez tous les autres filtres actifs
-    letterButtons.forEach(letterButton => {
-      letterButton.classList.remove("active");
-    });
-    activeLetterButton = null;
-
-    categoryButtons.forEach(categoryButton => {
-      categoryButton.classList.remove("active");
-    });
-    activeCategoryButton = null;
-    activeCategoryFilter = null;
-
-    typeButtons.forEach(typeButton => {
-      typeButton.classList.remove("active");
-    });
-    activeTypeButton = null;
-    activeTypeFilter = null;
-
-    // Si le filtre "Symbole" n'est pas actif, activez-le
-    if (!isFilterActive) {
-      symbolFilterButton.classList.add("active");
-      activeSymbolButton = symbolFilterButton;
-      activeSymbolFilter = "SYMBOLE";
-
-      const filteredResults = sortedData.filter(item => {
-        return activeSymbolFilter === null || (item.symbole === "SYMBOLE");
-      });
-
-      displayResults(filteredResults);
-    } else {
-      // Si le filtre "Symbole" est désactivé, réinitialisez les filtres
-      symbolFilterButton.classList.remove("active");
-      activeSymbolButton = null;
-      activeSymbolFilter = null;
-      applyActiveFilters(sortedData);
-    }
-  }
-
-
-  // Associez la fonction handleSymbolFilterButtonClick au clic sur le bouton de filtre "Symbole"
-  symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
-
-  const allCategories = ["Anesthésie", "Cardiologie", "CEGDC", "CCVT", "Dermatologie", "Endocrinologie", "Gastrologie", "Génétique", "Gériatrie", "Gynécologie", "Hémato-Onco", "Immuno-Allergie", "Med Interne", "Infectio", "Néphrologie", "Neurochirurgie", "Neurologie", "Ophtalmologie", "ORL", "Orthopédie", "Pédiatrie", "Physiatrie", "Plastie", "Pneumologie", "Psychiatrie", "Rhumatologie", "Urologie"];
-  const allTypes = ["Anatomie", "Diagnostic", "Examen", "Médication", "Interventions", "Labos", "+ Général"];
-
-  const categoryFilter = document.querySelector(".category-filter");
-  categoryFilter.innerHTML = "<h2>Catégories</h2>";
-  allCategories.forEach(category => {
-    const categoryButton = createFilterButton(category, "data-category", sortedData, handleCategoryFilterButtonClick);
-    categoryFilter.appendChild(categoryButton);
-  });
-  const typeFilter = document.querySelector(".type-filter");
-  typeFilter.innerHTML = "<h2>Types</h2>";
-  allTypes.forEach(type => {
-    const typeButton = createFilterButton(type, "data-type", sortedData, handleTypeFilterButtonClick);
-    typeFilter.appendChild(typeButton);
-  });
-  const categoryButtons = document.querySelectorAll(".category-button");
-  const typeButtons = document.querySelectorAll(".type-button");
-  function createFilterButton(text, attribute, data, filterFunction) {
-    const button = document.createElement("button");
-    button.textContent = text;
-    button.setAttribute(attribute, text);
-    button.addEventListener("click", () => filterFunction(button, sortedData));
-    // Ajoutez une classe CSS pour distinguer les boutons de catégories des boutons de types
-    if (attribute === "data-category") {
-      button.classList.add("category-button");
-    } else if (attribute === "data-type") {
-      button.classList.add("type-button");
-    }
-    return button;
-  }
-  function handleCategoryFilterButtonClick(button) {
-    const selectedCategoryFilter = button.getAttribute("data-category");
-    const isCategoryFilterActive = button.classList.contains("active");
-
-    // Désactivez le filtre "Symbole" si actif
-    if (activeSymbolButton) {
-      activeSymbolButton.classList.remove("active");
-      activeSymbolButton = null;
-      activeSymbolFilter = null;
-    }
-
-    if (!isCategoryFilterActive) {
-      // Désactivez le bouton de catégorie actif s'il y en a un
-      if (activeCategoryButton) {
-        activeCategoryButton.classList.remove("active");
-      }
-      button.classList.add("active");
-      activeCategoryButton = button;
-      activeCategoryFilter = selectedCategoryFilter;
-    } else {
-      button.classList.remove("active");
-      activeCategoryButton = null;
-      activeCategoryFilter = null;
-    }
-
-    // Apply filters based on the updated category filter
-    const filteredResults = sortedData.filter(item => {
-      return (
-        activeCategoryFilter === null ||
-        (Array.isArray(item.categorie) && item.categorie.includes(activeCategoryFilter))
-      );
-    });
-
-    applyActiveFilters(sortedData);
-    scrollToTop();
-  }
-  function handleTypeFilterButtonClick(button) {
-    const selectedTypeFilter = button.getAttribute("data-type");
-    const isTypeFilterActive = button.classList.contains("active");
-
-    // Désactivez le bouton "Symbole" s'il est actif
-    if (activeSymbolButton) {
-      activeSymbolButton.classList.remove("active");
-      activeSymbolButton = null;
-      activeSymbolFilter = null;
-    }
-
-    if (!isTypeFilterActive) {
-      // Désactivez le bouton de type actif s'il y en a un
-      if (activeTypeButton) {
-        activeTypeButton.classList.remove("active");
-      }
-      button.classList.add("active");
-      activeTypeButton = button;
-      activeTypeFilter = selectedTypeFilter;
-    } else {
-      button.classList.remove("active");
-      activeTypeButton = null;
-      activeTypeFilter = null;
-
-      // Remove the "highlighted" class from matching elements
-      const highlightedElements = document.querySelectorAll(".signification-container .highlighted");
-      highlightedElements.forEach((element) => {
-        element.classList.remove("highlighted");
-      });
-    }
-
-    // Apply filters based on the updated type filter
-    const filteredResults = sortedData.filter(item => {
-      return (
-        activeTypeFilter === null ||
-        (Array.isArray(item.type) && item.type.includes(activeTypeFilter)) ||
-        (Array.isArray(item.significations) &&
-          item.significations.some(signification => signification.type === activeTypeFilter))
-      );
-    });
-
-    // Highlight the matching significations
-    filteredResults.forEach(item => {
-      if (item.significations) {
-        item.significations.forEach(signification => {
-          signification.highlight = signification.type === activeTypeFilter;
+        // Remove highlighting from the elements
+        const highlightedElements = document.querySelectorAll(".highlighted");
+        highlightedElements.forEach((element) => {
+          element.classList.remove("highlighted");
         });
-      }
-    });
 
-    applyActiveFilters(sortedData);
-    scrollToTop();
-  }
-})
-  .catch(error => {
-    console.error("Une erreur s'est produite lors du chargement des données.", error);
-  });
+        // Appliquez les filtres réinitialisés aux données
+        applyActiveFilters(sortedData);
+        scrollToTop();
+      }
+
+      const resetFiltersButton = document.getElementById("resetFiltersButton");
+
+      resetFiltersButton.addEventListener("click", () => {
+        resetFilters();
+      });
+
+
+
+      function handleSymbolFilterButtonClick() {
+        const isFilterActive = symbolFilterButton.classList.contains("active");
+
+        // Désactivez tous les autres filtres actifs
+        letterButtons.forEach(letterButton => {
+          letterButton.classList.remove("active");
+        });
+        activeLetterButton = null;
+
+        categoryButtons.forEach(categoryButton => {
+          categoryButton.classList.remove("active");
+        });
+        activeCategoryButton = null;
+        activeCategoryFilter = null;
+
+        typeButtons.forEach(typeButton => {
+          typeButton.classList.remove("active");
+        });
+        activeTypeButton = null;
+        activeTypeFilter = null;
+
+        // Si le filtre "Symbole" n'est pas actif, activez-le
+        if (!isFilterActive) {
+          symbolFilterButton.classList.add("active");
+          activeSymbolButton = symbolFilterButton;
+          activeSymbolFilter = "SYMBOLE";
+
+          const filteredResults = sortedData.filter(item => {
+            return activeSymbolFilter === null || (item.symbole === "SYMBOLE");
+          });
+
+          displayResults(filteredResults);
+        } else {
+          // Si le filtre "Symbole" est désactivé, réinitialisez les filtres
+          symbolFilterButton.classList.remove("active");
+          activeSymbolButton = null;
+          activeSymbolFilter = null;
+          applyActiveFilters(sortedData);
+        }
+      }
+
+
+      // Associez la fonction handleSymbolFilterButtonClick au clic sur le bouton de filtre "Symbole"
+      symbolFilterButton.addEventListener("click", handleSymbolFilterButtonClick);
+
+      const allCategories = ["Anesthésie", "Cardiologie", "CEGDC", "CCVT", "Dermatologie", "Endocrinologie", "Gastrologie", "Génétique", "Gériatrie", "Gynécologie", "Hémato-Onco", "Immuno-Allergie", "Med Interne", "Infectio", "Néphrologie", "Neurochirurgie", "Neurologie", "Ophtalmologie", "ORL", "Orthopédie", "Pédiatrie", "Physiatrie", "Plastie", "Pneumologie", "Psychiatrie", "Rhumatologie", "Urologie"];
+      const allTypes = ["Anatomie", "Diagnostic", "Examen", "Médication", "Interventions", "Labos", "+ Général"];
+
+      const categoryFilter = document.querySelector(".category-filter");
+      categoryFilter.innerHTML = "<h2>Catégories</h2>";
+      allCategories.forEach(category => {
+        const categoryButton = createFilterButton(category, "data-category", sortedData, handleCategoryFilterButtonClick);
+        categoryFilter.appendChild(categoryButton);
+      });
+      const typeFilter = document.querySelector(".type-filter");
+      typeFilter.innerHTML = "<h2>Types</h2>";
+      allTypes.forEach(type => {
+        const typeButton = createFilterButton(type, "data-type", sortedData, handleTypeFilterButtonClick);
+        typeFilter.appendChild(typeButton);
+      });
+      const categoryButtons = document.querySelectorAll(".category-button");
+      const typeButtons = document.querySelectorAll(".type-button");
+      function createFilterButton(text, attribute, data, filterFunction) {
+        const button = document.createElement("button");
+        button.textContent = text;
+        button.setAttribute(attribute, text);
+        button.addEventListener("click", () => filterFunction(button, sortedData));
+        // Ajoutez une classe CSS pour distinguer les boutons de catégories des boutons de types
+        if (attribute === "data-category") {
+          button.classList.add("category-button");
+        } else if (attribute === "data-type") {
+          button.classList.add("type-button");
+        }
+        return button;
+      }
+      function handleCategoryFilterButtonClick(button) {
+        const selectedCategoryFilter = button.getAttribute("data-category");
+        const isCategoryFilterActive = button.classList.contains("active");
+
+        // Désactivez le filtre "Symbole" si actif
+        if (activeSymbolButton) {
+          activeSymbolButton.classList.remove("active");
+          activeSymbolButton = null;
+          activeSymbolFilter = null;
+        }
+
+        if (!isCategoryFilterActive) {
+          // Désactivez le bouton de catégorie actif s'il y en a un
+          if (activeCategoryButton) {
+            activeCategoryButton.classList.remove("active");
+          }
+          button.classList.add("active");
+          activeCategoryButton = button;
+          activeCategoryFilter = selectedCategoryFilter;
+        } else {
+          button.classList.remove("active");
+          activeCategoryButton = null;
+          activeCategoryFilter = null;
+        }
+
+        // Apply filters based on the updated category filter
+        const filteredResults = sortedData.filter(item => {
+          return (
+            activeCategoryFilter === null ||
+            (Array.isArray(item.categorie) && item.categorie.includes(activeCategoryFilter))
+          );
+        });
+
+        applyActiveFilters(sortedData);
+        scrollToTop();
+      }
+      function handleTypeFilterButtonClick(button) {
+        const selectedTypeFilter = button.getAttribute("data-type");
+        const isTypeFilterActive = button.classList.contains("active");
+
+        // Désactivez le bouton "Symbole" s'il est actif
+        if (activeSymbolButton) {
+          activeSymbolButton.classList.remove("active");
+          activeSymbolButton = null;
+          activeSymbolFilter = null;
+        }
+
+        if (!isTypeFilterActive) {
+          // Désactivez le bouton de type actif s'il y en a un
+          if (activeTypeButton) {
+            activeTypeButton.classList.remove("active");
+          }
+          button.classList.add("active");
+          activeTypeButton = button;
+          activeTypeFilter = selectedTypeFilter;
+        } else {
+          button.classList.remove("active");
+          activeTypeButton = null;
+          activeTypeFilter = null;
+
+          // Remove the "highlighted" class from matching elements
+          const highlightedElements = document.querySelectorAll(".signification-container .highlighted");
+          highlightedElements.forEach((element) => {
+            element.classList.remove("highlighted");
+          });
+        }
+
+        // Apply filters based on the updated type filter
+        const filteredResults = sortedData.filter(item => {
+          return (
+            activeTypeFilter === null ||
+            (Array.isArray(item.type) && item.type.includes(activeTypeFilter)) ||
+            (Array.isArray(item.significations) &&
+              item.significations.some(signification => signification.type === activeTypeFilter))
+          );
+        });
+
+        // Highlight the matching significations
+        filteredResults.forEach(item => {
+          if (item.significations) {
+            item.significations.forEach(signification => {
+              signification.highlight = signification.type === activeTypeFilter;
+            });
+          }
+        });
+
+        applyActiveFilters(sortedData);
+        scrollToTop();
+      }
+    })
+    .catch(error => {
+      console.error("Une erreur s'est produite lors du chargement des données.", error);
+    });
 });
