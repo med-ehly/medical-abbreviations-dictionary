@@ -535,5 +535,13 @@
     "abreviation": "A.Ch.E.",
     "signification": "Anthicholinestérase",
     "type": "Médication"
+  },
+   {
+    "abreviation": "AVC",
+    "signification": "Accident Vasculaire Cérébral",
+    "url": "https://www.google.ca/",
+    "categorie": "Neurologie",
+    "type": "Diagnostic",
+    "langue": "(fr)"
   }
 ]
