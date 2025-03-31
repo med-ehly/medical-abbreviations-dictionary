@@ -1,22 +1,5 @@
 [
   {
-    "abreviation": "test",
-    "significations": [
-      {
-        "signification": "avc",
-        "url": "test1"
-      },
-      {
-        "signification": "testttt",
-        "url": "test222"
-      }
-    ],
-    "categorie": "Neurologie,CCVT",
-    "type": "Diagnostic,CCVT",
-    "langue": "fr",
-    "signification": "test333"
-  },
-  {
     "abreviation": "A°",
     "significations": [
       {
