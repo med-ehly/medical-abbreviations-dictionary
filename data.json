@@ -1,5 +1,24 @@
 [
   {
+   "abreviation[0]": "AVC",
+  "abreviation[1]": "test",
+  "significations": [
+    {
+      "signification": "Accident vasculaire",
+      "url": "test"
+    },
+    {
+      "url": "url test"
+    }
+  ],
+  "categorie[0]": "neurologie",
+  "categorie[1]": "CCVT",
+  "type[0]": "diagnostic",
+  "type[1]": "anatomie",
+  "langue": "fr",
+  "signification": "test 2"
+},
+  {
     "abreviation": "A°",
     "significations": [
       {
