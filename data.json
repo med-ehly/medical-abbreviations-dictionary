@@ -1,20 +1,11 @@
 [
   {
-    "abreviation": "test",
-    "significations": [
-      {
-        "signification": "avc",
-        "url": "test1"
-      },
-      {
-        "signification": "testttt",
-        "url": "test222"
-      }
-    ],
-    "categorie": "Neurologie,CCVT",
-    "type": "Diagnostic,CCVT",
-    "langue": "fr",
-    "signification": "test333"
+    "abreviation": "AVC",
+    "signification": "Accident Vasculaire Cérébral",
+    "categorie": ["Neurologie", "CCVT"],
+    "type": ["Diagnostic", "Anatomie"],
+    "langue": "(fr)",
+    "url": "http://requin.reg05.rtss.qc.ca/"
   },
   {
     "abreviation": "A°",
