@@ -11,8 +11,8 @@
         "url": "test222"
       }
     ],
-    "categorie": "Neurologie,\nCCVT",
-    "type": "Diagnostic,\nAnatomie",
+    "categorie": "Neurologie,CCVT",
+    "type": "Diagnostic,CCVT",
     "langue": "fr",
     "signification": "test333"
   },
