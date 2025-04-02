@@ -4,14 +4,14 @@
     "significations": [
       {
         "signification": "aorte",
-        "type": "anatomie"
+        "type": "Anatomie"
       },
       {
         "signification": "aortique",
-        "type": "anatomie"
+        "type": "Anatomie"
       }
     ],
-    "type": "anatomie",
+    "type": "Anatomie",
     "categorie": "CCVT",
     "langue": "fr"
   },
