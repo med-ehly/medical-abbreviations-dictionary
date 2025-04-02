@@ -1,27 +1,5 @@
 [
    {
-    "abreviation": "A",
-    "significations": [
-      {
-        "signification": "anterieur",
-        "type": "général"
-      },
-      {
-        "signification": "albumine",
-        "type": "labos"
-      }
-    ],
-    "types": [
-      {
-        "type": "general"
-      },
-      {
-        "type": "labos"
-      }
-    ],
-    "langue": "fr"
-  },
-  {
     "abreviation": "A.",
     "significations": [
       {
