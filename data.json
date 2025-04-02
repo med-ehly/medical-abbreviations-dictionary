@@ -1,20 +1,4 @@
 [
-  {
-    "abreviation": "A",
-    "significations": [
-      {
-        "signification": "aorte",
-        "type": "Anatomie"
-      },
-      {
-        "signification": "aortique",
-        "type": "Anatomie"
-      }
-    ],
-    "type": "Anatomie",
-    "categorie": "CCVT",
-    "langue": "fr"
-  },
    {
     "abreviation": "A.",
     "significations": [
