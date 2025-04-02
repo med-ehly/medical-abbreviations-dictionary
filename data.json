@@ -1,5 +1,5 @@
 [
-   {
+  {
     "abreviation": "A",
     "significations": [
       {
@@ -11,11 +11,7 @@
         "type": "anatomie"
       }
     ],
-    "type": [
-      {
-        "type": "anatomie"
-      }
-    ],
+    "type": "anatomie",
     "categorie": "CCVT",
     "langue": "fr"
   },
